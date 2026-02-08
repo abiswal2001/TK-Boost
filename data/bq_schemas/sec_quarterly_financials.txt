@@ -1,0 +1,53 @@
+[DATASET=sec_quarterly_financials]
+bigquery-public-data.sec_quarterly_financials.calculation
+  NUM cols: group, arc, negative
+  STR cols: submission_number, parent_tag, parent_version, child_tag, child_version
+  OTHER cols: PARTITION
+
+bigquery-public-data.sec_quarterly_financials.dimension
+  STR cols: segments_hash, segments
+  BOOL cols: segment_truncation
+  OTHER cols: PARTITION
+
+bigquery-public-data.sec_quarterly_financials.measure_tag
+  STR cols: measure_tag, version, datatype, i_or_d, credit_or_debit, tag_label, doc
+  BOOL cols: custom, abstract
+  OTHER cols: PARTITION
+
+bigquery-public-data.sec_quarterly_financials.numbers
+  NUM cols: period_end_date, number_of_quarters, iprx, value, footnote_length, num_dimensions, duration_fraction, date_fraction, decimal
+  STR cols: submission_number, company_name, measure_tag, version, units, dimension_hash, footnote, coregistrant
+  OTHER cols: PARTITION
+
+bigquery-public-data.sec_quarterly_financials.presentation
+  NUM cols: report, line
+  STR cols: submission_number, statement, rfile, measure_tag, version, preferred_role, preferred_label
+  BOOL cols: presented_parenthetically, negating
+  OTHER cols: PARTITION
+
+bigquery-public-data.sec_quarterly_financials.quick_summary
+  NUM cols: value, number_of_quarters, central_index_key, fiscal_year, date_filed
+  STR cols: submission_number, company_name, measure_tag, period_end_date, units, version, ein, sic, fiscal_year_end, form, fiscal_period_focus
+  TIME cols: date_accepted
+  OTHER cols: PARTITION
+
+bigquery-public-data.sec_quarterly_financials.rendering
+  NUM cols: report, parentreport, ultimate_parent_report
+  STR cols: submission_number, file_type, menu_category, shortname, longname, roleuri, parentroleuri
+  OTHER cols: PARTITION
+
+bigquery-public-data.sec_quarterly_financials.sic_codes
+  STR cols: sic_code, ad_office, industry_title
+
+bigquery-public-data.sec_quarterly_financials.submission
+  NUM cols: central_index_key, date_changed, period, fiscal_year, date_filed, num_ciks, public_float_usd, float_date, float_terms
+  STR cols: submission_number, company_name, sic, countryba, stprba, cityba, zipba, ba_street1, ba_street2, ba_phone, countryma, stprma, cityma, zipma, ma_street1, ma_street2, country_inc, state_province_inc, ein, former_name, filer_status, fiscal_year_end, form, fiscal_period_focus, instance, additional_ciks, float_axis
+  TIME cols: date_accepted
+  BOOL cols: well_known_seasoned_issuer, has_previous_report, has_required_detail
+  OTHER cols: PARTITION
+
+bigquery-public-data.sec_quarterly_financials.txt
+  NUM cols: period_end_date, num_quarters, iprx, language_decimal, duration_fraction, date_fraction, num_dimensions, source_length, text_length, footnote_length
+  STR cols: submission_number, measure_tag, version, language, dimension_hash, coregistrant, footnote, context, value
+  BOOL cols: escaped
+  OTHER cols: PARTITION

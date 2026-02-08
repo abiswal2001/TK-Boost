@@ -1,0 +1,20 @@
+[DATASET=firebase]
+firebase-public-project.analytics_153293282.events_201806* (15 tables)
+  NUM cols: event_timestamp, event_previous_timestamp, user_first_touch_timestamp
+  STR cols: event_date, event_name, user_id, user_pseudo_id, stream_id, platform
+  OTHER cols: event_params, user_properties, user_ltv, device, geo, app_info, traffic_source
+
+firebase-public-project.analytics_153293282.[events_20180627 | events_20180628 | events_20180629 | events_20180630 | events_20180701]
+  NUM cols: event_timestamp, event_previous_timestamp, event_value_in_usd, user_first_touch_timestamp
+  STR cols: event_date, event_name, user_id, user_pseudo_id, stream_id, platform
+  OTHER cols: event_params, user_properties, user_ltv, device, geo, app_info, traffic_source
+
+firebase-public-project.analytics_153293282.events_20180* (57 tables)
+  NUM cols: event_timestamp, event_previous_timestamp, event_value_in_usd, event_bundle_sequence_id, event_server_timestamp_offset, user_first_touch_timestamp
+  STR cols: event_date, event_name, user_id, user_pseudo_id, stream_id, platform
+  OTHER cols: event_params, user_properties, user_ltv, device, geo, app_info, traffic_source
+
+firebase-public-project.analytics_153293282.events_2018* (37 tables)
+  NUM cols: event_timestamp, event_previous_timestamp, event_value_in_usd, event_bundle_sequence_id, event_server_timestamp_offset, user_first_touch_timestamp
+  STR cols: event_date, event_name, user_id, user_pseudo_id, stream_id, platform
+  OTHER cols: event_params, user_properties, user_ltv, device, geo, app_info, traffic_source, event_dimensions

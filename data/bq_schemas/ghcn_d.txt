@@ -1,0 +1,24 @@
+[DATASET=ghcn_d]
+bigquery-public-data.ghcn_d.ghcnd_* (253 tables)
+  NUM cols: value
+  STR cols: id, element, mflag, qflag, sflag, time
+  TIME cols: date
+
+bigquery-public-data.ghcn_d.ghcnd_20* (9 tables)
+  NUM cols: value
+  STR cols: id, element, mflag, qflag, sflag, time, source_url
+  TIME cols: date, etl_timestamp
+
+bigquery-public-data.ghcn_d.ghcnd_inventory
+  NUM cols: latitude, longitude, firstyear, lastyear
+  STR cols: id, element, source_url
+  TIME cols: etl_timestamp
+
+bigquery-public-data.ghcn_d.[ghcnd_countries | ghcnd_states]
+  STR cols: code, name, source_url
+  TIME cols: etl_timestamp
+
+bigquery-public-data.ghcn_d.ghcnd_stations
+  NUM cols: latitude, longitude, elevation, wmoid
+  STR cols: id, state, name, gsn_flag, hcn_crn_flag, source_url
+  TIME cols: etl_timestamp

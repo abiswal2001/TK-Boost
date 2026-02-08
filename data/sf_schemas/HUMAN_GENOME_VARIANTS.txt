@@ -1,0 +1,45 @@
+[DB=HUMAN_GENOME_VARIANTS | SCHEMA=HUMAN_GENOME_VARIANTS]
+HUMAN_GENOME_VARIANTS.HUMAN_GENOME_VARIANTS.PLATINUM_GENOMES_DEEPVARIANT_VARIANTS.__[20180823-20180823]
+  NUM cols: end_position, quality, start_position
+  STR cols: reference_bases, reference_name
+  TIME cols: partition_date_please_ignore
+  OTHER cols: alternate_bases, call, filter, names
+  AVAILABLE PARTITIONS: 20180823
+
+HUMAN_GENOME_VARIANTS.HUMAN_GENOME_VARIANTS.SIMONS_GENOME_DIVERSITY_PROJECT_SAMPLE_ATTRIBUTES
+  NUM cols: ena_base_count, ena_spot_count, latitude, longitude
+  STR cols: country, dna_source, ena_checklist, era_id, id_from_vcf, illumina_id, population, region, sex, town
+  TIME cols: ena_first_public, ena_last_update
+
+HUMAN_GENOME_VARIANTS.HUMAN_GENOME_VARIANTS.SIMONS_GENOME_DIVERSITY_PROJECT_SAMPLE_METADATA
+  NUM cols: Coverage, HetRateAuto, Latitude, Longitude
+  STR cols: Contributor, Country, Gender, Panel, Population_ID, Region, SGDP_ID
+
+HUMAN_GENOME_VARIANTS.HUMAN_GENOME_VARIANTS.SIMONS_GENOME_DIVERSITY_PROJECT_SAMPLE_VARIANTS
+  NUM cols: AN, BaseQRankSum, Dels, DP, end_position, FS, GC, HaplotypeScore, InbreedingCoeff, MQ, MQ0, MQRankSum, QD, quality, ReadPosRankSum, start_position
+  STR cols: reference_bases, reference_name, RU
+  TIME cols: partition_date_please_ignore
+  OTHER cols: alternate_bases, BaseCounts, call, DB, DS, filter, names, RPA, STR
+
+HUMAN_GENOME_VARIANTS.HUMAN_GENOME_VARIANTS._1000_GENOMES_PEDIGREE
+  NUM cols: Gender, Phenotype
+  STR cols: Family_ID, Individual_ID, Maternal_ID, Other_Comments, Paternal_ID, Population, Relationship, Second_Order, Siblings, Third_Order
+
+HUMAN_GENOME_VARIANTS.HUMAN_GENOME_VARIANTS._1000_GENOMES_PHASE_3_OPTIMIZED_SCHEMA_VARIANTS.__[20150220-20150220]
+  NUM cols: AN, DP, end_position, MEND, MLEN, MSTART, NS, quality, start_position
+  STR cols: AA, CS, OLD_VARIANT, reference_bases, reference_name, SVTYPE, TSD
+  TIME cols: partition_date_please_ignore
+  OTHER cols: alternate_bases, call, CIEND, CIPOS, EX_TARGET, filter, hom_ref_call, IMPRECISE, MC, MEINFO, MULTI_ALLELIC, names, no_call, SVLEN, VT
+  AVAILABLE PARTITIONS: 20150220
+
+HUMAN_GENOME_VARIANTS.HUMAN_GENOME_VARIANTS._1000_GENOMES_PHASE_3_VARIANTS.__[20150220-20150220]
+  NUM cols: AN, DP, end_position, MEND, MLEN, MSTART, NS, quality, start_position
+  STR cols: AA, CS, OLD_VARIANT, reference_bases, reference_name, SVTYPE, TSD
+  TIME cols: partition_date_please_ignore
+  OTHER cols: alternate_bases, call, CIEND, CIPOS, EX_TARGET, filter, IMPRECISE, MC, MEINFO, MULTI_ALLELIC, names, SVLEN, VT
+  AVAILABLE PARTITIONS: 20150220
+
+HUMAN_GENOME_VARIANTS.HUMAN_GENOME_VARIANTS._1000_GENOMES_SAMPLE_INFO
+  NUM cols: E_Indel_Ratio, EBV_Coverage, LC_Indel_Ratio, LC_Non_Duplicated_Aligned_Coverage, Total_Exome_Sequence, Total_LC_Sequence, VerifyBam_E_Affy_Chip, VerifyBam_E_Affy_Free, VerifyBam_E_Omni_Chip, VerifyBam_E_Omni_Free, VerifyBam_LC_Affy_Chip, VerifyBam_LC_Affy_Free, VerifyBam_LC_Omni_Chip, VerifyBam_LC_Omni_Free, X_Targets_Covered_to_20x_or_greater
+  STR cols: Avuncular, DNA_Source_from_Coriell, ET_Pilot_Centers, ET_Pilot_Platforms, Family_ID, Gender, Grandparents, Half_Siblings, HC_Pilot_Centers, HC_Pilot_Platforms, LC_Pilot_Centers, LC_Pilot_Platforms, Main_Project_E_Centers, Main_Project_E_Platform, Main_project_LC_Centers, Main_project_LC_platform, Non_Paternity, Phase1_E_Centers, Phase1_E_Platform, Phase1_LC_Centers, Phase1_LC_Platform, Population, Population_Description, Relationship, Sample, Siblings, Super_Population, Super_Population_Description, Third_Order, Unexpected_Parent_Child, Unknown_Second_Order
+  OTHER cols: E_Passed_QC, Has_Affy_6_0_Genotypes, Has_Axiom_Genotypes, Has_Exome_LOF_Genotypes, Has_Omni_Genotypes, Has_phase1_chrMT_SNPs, Has_phase1_chrY_Deletions, Has_Phase1_chrY_SNPS, Has_Sequence_from_Blood_in_Index, Has_Sequence_in_Phase1, In_Exon_Targetted_Pilot, In_Final_Phase_Variant_Calling, In_High_Coverage_Pilot, In_Low_Coverage_Pilot, In_Phase1_Integrated_Variant_Set, LC_Passed_QC

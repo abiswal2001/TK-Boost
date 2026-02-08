@@ -1,0 +1,25 @@
+[DB=TCGA_HG19_DATA_V0 | SCHEMA=TCGA_HG19_DATA_V0]
+TCGA_HG19_DATA_V0.TCGA_HG19_DATA_V0.DNA_METHYLATION
+  NUM cols: beta_value
+  STR cols: aliquot_barcode, case_barcode, platform, probe_id, project_short_name, sample_barcode
+  OTHER TABLES WITH IDENTICAL SCHEMA: DNA_METHYLATION_CHR8, DNA_METHYLATION_CHRX, DNA_METHYLATION_CHRY, DNA_METHYLATION_CHR[10-22], DNA_METHYLATION_CHR[4-6]
+
+TCGA_HG19_DATA_V0.TCGA_HG19_DATA_V0.MIRNASEQ_EXPRESSION
+  NUM cols: read_count, reads_per_million_miRNA_mapped
+  STR cols: aliquot_barcode, aliquot_gdc_id, case_barcode, case_gdc_id, cross_mapped, file_gdc_id, mirna_id, project_short_name, sample_barcode, sample_gdc_id
+
+TCGA_HG19_DATA_V0.TCGA_HG19_DATA_V0.MIRNASEQ_ISOFORM_EXPRESSION
+  NUM cols: end_pos, read_count, reads_per_million_miRNA_mapped, start_pos
+  STR cols: aliquot_barcode, aliquot_gdc_id, case_barcode, case_gdc_id, chromosome, cross_mapped, file_gdc_id, mirna_accession, mirna_id, mirna_transcript, project_short_name, sample_barcode, sample_gdc_id, strand
+
+TCGA_HG19_DATA_V0.TCGA_HG19_DATA_V0.RNASEQ_GENE_EXPRESSION_UNC_RSEM
+  NUM cols: gene_id, normalized_count
+  STR cols: aliquot_barcode, case_barcode, HGNC_gene_symbol, original_gene_symbol, platform, project_short_name, sample_barcode
+
+TCGA_HG19_DATA_V0.TCGA_HG19_DATA_V0.SOMATIC_MUTATION_DCC
+  NUM cols: CCLE_ONCOMAP_Total_Mutations_In_Gene, COSMIC_Total_Alterations_In_Gene, End_Position, Entrez_Gene_Id, GC_Content, HGNC_HGNC_ID, Start_Position, Transcript_Exon, UniProt_AApos
+  STR cols: aliquot_barcode_normal, aliquot_barcode_tumor, Annotation_Transcript, case_barcode, cDNA_Change, Center, Chromosome, DbSNP_RS, DbSNP_Val_Status, DNARepairGenes_Role, DrugBank, GENCODE_Transcript_Name, GENCODE_Transcript_Status, GENCODE_Transcript_Type, Gene_Type, Genome_Change, GO_Biological_Process, GO_Cellular_Component, GO_Molecular_Function, HGNC_Accession_Numbers, HGNC_CCDS_IDs, HGNC_Ensembl_ID_Supplied_By_Ensembl, HGNC_Locus_Group, HGNC_Locus_Type, HGNC_OMIM_ID_Supplied_By_NCBI, HGNC_RefSeq_Supplied_By_NCBI, HGNC_UCSC_ID_Supplied_By_UCSC, HGNC_UniProt_ID_Supplied_By_UniProt, Hugo_Symbol, Mutation_Status, NCBI_Build, Normal_Seq_Allele[1-2], Normal_Validation_Allele[1-2], OREGANNO_ID, project_short_name, Protein_Change, Ref_Context, Reference_Allele, Refseq_Prot_Id, sample_barcode_normal, sample_barcode_tumor, Secondary_Variant_Classification, Sequence_Source, Sequencer, SwissProt_Acc_Id, SwissProt_Entry_Id, Transcript_Position, Transcript_Strand, Tumor_Seq_Allele[1-2], Tumor_Validation_Allele[1-2], UniProt_Region, Validation_Method, Variant_Classification, Variant_Type
+
+TCGA_HG19_DATA_V0.TCGA_HG19_DATA_V0.SOMATIC_MUTATION_MC3
+  NUM cols: DISTANCE, End_Position, HGNC_ID, HGVS_OFFSET, n_alt_count, n_depth, n_ref_count, NCALLERS, Start_Position, STRAND, t_alt_count, t_depth, t_ref_count
+  STR cols: AA_MAF, AFR_MAF, aliquot_barcode_normal, aliquot_barcode_tumor, all_effects, Amino_acids, AMR_MAF, ASN_MAF, BIOTYPE, CALLERS, CANONICAL, case_barcode, CCDS, cDNA_position, CDS_position, Chromosome, CLIN_SIG, Codons, Consequence, CONTEXT, COSMIC, dbSNP_RS, DBVS, DOMAINS, EA_MAF, EAS_MAF, ENSP, EUR_MAF, Existing_variation, EXON, Exon_Number, Feature, Feature_type, FILTER, Gene, GMAF, HGVSc, HGVSp, HGVSp_Short, Hugo_Symbol, IMPACT, INTRON, NCBI_Build, PHENO, PolyPhen, project_short_name, Protein_position, PUBMED, Reference_Allele, sample_barcode_normal, sample_barcode_tumor, SAS_MAF, SIFT, SOMATIC, SWISSPROT, SYMBOL, SYMBOL_SOURCE, Transcript_ID, TREMBL, Tumor_Seq_Allele[1-2]

@@ -1,0 +1,32 @@
+[DB=PANCANCER_ATLAS_1 | SCHEMA=PANCANCER_ATLAS_FILTERED]
+PANCANCER_ATLAS_1.PANCANCER_ATLAS_FILTERED.ALL_CNVR_DATA_BY_GENE_FILTERED
+  NUM cols: GISTIC_Calls, Locus_ID
+  STR cols: AliquotBarcode, Cytoband, Gene_Symbol, ParticipantBarcode, SampleBarcode, SampleType, SampleTypeLetterCode, Study
+
+PANCANCER_ATLAS_1.PANCANCER_ATLAS_FILTERED.CLINICAL_PANCAN_PATIENT_WITH_FOLLOWUP_FILTERED
+  NUM cols: age_at_initial_pathologic_diagnosis, days_to_birth, days_to_initial_pathologic_diagnosis, year_of_initial_pathologic_diagnosis
+  STR cols: ablation_embolization_tx_adjuvant, abnormality_tested_methodology, abnormality_tested_methodology_1, abnormality_tested_results, abnormality_tested_results_1, acronym, additional_pharmaceutical_therapy, additional_radiation_therapy, adenocarcinoma_invasion, adjacent_hepatic_tissue_inflammation_extent_type, age_began_smoking_in_years, agent_total_dose_count, albumin_result_lower_limit, albumin_result_specified_value, albumin_result_upper_limit, alcohol_history_documented, alcoholic_exposure_category, aln_pos_ihc, aln_pos_light_micro, amount_of_alcohol_consumption_per_day, amt_alcohol_consumption_per_day, anatomic_neoplasm_subdivision, anatomic_neoplasm_subdivision_other, animal_insect_allergy_history, animal_insect_allergy_types, antireflux_treatment, antireflux_treatment_type, asbestos_exposure_age, asbestos_exposure_age_last, asbestos_exposure_source, asbestos_exposure_type, asbestos_exposure_years, asthma_history, atypical_mitotic_figures, axillary_lymph_node_stage_method_type, axillary_lymph_node_stage_other_method_descriptive_text, b_lymphocyte_genotyping_method, b_lymphocyte_genotyping_method_1, barretts_esophagus, bcr_patient_barcode, bcr_patient_uuid, bilateral_diagnosis_timing_type, bilirubin_lower_limit, bilirubin_upper_limit, biochemical_recurrence, birth_control_pill_history_usage_category, bladder_carcinoma_extracapsular_extension_status, bone_marrow_biopsy_done, bone_marrow_involvement, bone_marrow_involvement_1, bone_marrow_sample_histology, bone_scan_results, brachytherapy_first_reference_point_administered_total_dose, brachytherapy_method_other_specify_text, brachytherapy_method_type, braf_gene_analysis_performed, braf_gene_analysis_result, braf_gene_genotyping_outcome_lab_results_text, breast_cancer_surgery_margin_status, breast_carcinoma_estrogen_receptor_status
+
+PANCANCER_ATLAS_1.PANCANCER_ATLAS_FILTERED.EBPP_ADJUSTPANCAN_ILLUMINAHISEQ_RNASEQV2_GENEXP_FILTERED
+  NUM cols: normalized_count
+  STR cols: AliquotBarcode, Entrez, ParticipantBarcode, SampleBarcode, SampleType, SampleTypeLetterCode, Study, Symbol
+
+PANCANCER_ATLAS_1.PANCANCER_ATLAS_FILTERED.JHU_USC_EDU_PANCAN_HUMANMETHYLATION27_BETAVALUE_WHITELISTED_FILTERED
+  NUM cols: Beta
+  STR cols: AliquotBarcode, ID, ParticipantBarcode, SampleBarcode, SampleType, SampleTypeLetterCode, Study
+  OTHER TABLES WITH IDENTICAL SCHEMA: JHU_USC_EDU_PANCAN_HUMANMETHYLATION450_BETAVALUE_WHITELISTED_FILTERED, JHU_USC_EDU_PANCAN_MERGED_HUMANMETHYLATION27_HUMANMETHYLATION450_BETAVALUE_WHITELISTED_FILTERED
+
+PANCANCER_ATLAS_1.PANCANCER_ATLAS_FILTERED.MC3_MAF_V5_ONE_PER_TUMOR_SAMPLE
+  STR cols: CENTERS, FILTER, HGVSc, HGVSp_Short, Hugo_Symbol, Normal_AliquotBarcode, Normal_SampleBarcode, Normal_SampleTypeLetterCode, ParticipantBarcode, Study, Tumor_AliquotBarcode, Tumor_SampleBarcode, Variant_Classification
+
+PANCANCER_ATLAS_1.PANCANCER_ATLAS_FILTERED.PANCANMIRS_EBADJONPROTOCOLPLATFORMWITHOUTREPSWITHUNCORRECTMIRS_08_04_16_FILTERED
+  NUM cols: miRNAexpr
+  STR cols: AliquotBarcode, Corrected, ID, ParticipantBarcode, SampleBarcode, SampleType, SampleTypeLetterCode, Study
+
+PANCANCER_ATLAS_1.PANCANCER_ATLAS_FILTERED.PURITY_PLOIDY_ALL_SAMPLES_FILTERED
+  NUM cols: Cancer_DNA_fraction, Coverage_for_80_power, Genome_doublings, Ploidy, Purity, Subclonal_genome_fraction
+  STR cols: AliquotBarcode, CallStatus, ParticipantBarcode, SampleBarcode, SampleType, SampleTypeLetterCode, Solution, Study
+
+PANCANCER_ATLAS_1.PANCANCER_ATLAS_FILTERED.TCGA_RPPA_PANCAN_CLEAN_FILTERED
+  NUM cols: Value
+  STR cols: AliquotBarcode, ParticipantBarcode, Protein, SampleBarcode, SampleType, SampleTypeLetterCode, Study

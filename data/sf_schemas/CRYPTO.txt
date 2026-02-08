@@ -1,0 +1,193 @@
+[DB=CRYPTO | SCHEMA=CRYPTO_BAND]
+CRYPTO.CRYPTO_BAND.BLOCKS
+  NUM cols: block_height, block_timestamp_truncated
+  STR cols: app_hash, block_hash, block_timestamp, consensus_hash, data_hash, evidence_hash, last_commit_hash, last_results_hash, next_validators_hash, proposer_address, validators_hash
+  OTHER cols: signatures
+
+CRYPTO.CRYPTO_BAND.BLOCK_EVENTS
+  NUM cols: block_height, block_timestamp_truncated
+  STR cols: block_event_type, block_timestamp, event_type
+  OTHER cols: attributes
+
+CRYPTO.CRYPTO_BAND.ERRORS
+  STR cols: errors, tableRow
+
+CRYPTO.CRYPTO_BAND.LOGS
+  NUM cols: block_height, block_timestamp, block_timestamp_truncated, log_index, msg_index
+  STR cols: log, txhash
+  OTHER cols: events
+
+CRYPTO.CRYPTO_BAND.MESSAGES
+  NUM cols: block_height, block_timestamp_truncated
+  STR cols: block_timestamp, message_type, txhash
+  OTHER cols: cosmos_sdk_MsgBeginRedelegate, cosmos_sdk_MsgCreateValidator, cosmos_sdk_MsgDelegate, cosmos_sdk_MsgDeposit, cosmos_sdk_MsgEditValidator, cosmos_sdk_MsgFundCommunityPool, cosmos_sdk_MsgModifyWithdrawAddress, cosmos_sdk_MsgMultiSend, cosmos_sdk_MsgSend, cosmos_sdk_MsgSubmitEvidence, cosmos_sdk_MsgSubmitProposal, cosmos_sdk_MsgUndelegate, cosmos_sdk_MsgUnjail, cosmos_sdk_MsgVerifyInvariant, cosmos_sdk_MsgVote, cosmos_sdk_MsgWithdrawDelegationReward, cosmos_sdk_MsgWithdrawValidatorCommission, oracle_Activate, oracle_AddReporter, oracle_CreateDataSource, oracle_CreateOracleScript, oracle_EditDataSource, oracle_EditOracleScript, oracle_RemoveReporter, oracle_Report, oracle_Request
+
+CRYPTO.CRYPTO_BAND.ORACLE_REQUESTS
+  NUM cols: block_height, block_timestamp_truncated, oracle_request_id
+  STR cols: block_timestamp
+  OTHER cols: decoded_result, oracle_script, reports, request, result
+
+CRYPTO.CRYPTO_BAND.TRANSACTIONS
+  NUM cols: block_height, block_timestamp_truncated, gas_used, gas_wanted
+  STR cols: block_timestamp, memo, sender, transaction_type, txhash
+  OTHER cols: fee
+
+[DB=CRYPTO | SCHEMA=CRYPTO_BITCOIN]
+CRYPTO.CRYPTO_BITCOIN.BLOCKS
+  NUM cols: number, size, stripped_size, timestamp, transaction_count, version, weight
+  STR cols: bits, coinbase_param, hash, merkle_root, nonce
+  TIME cols: timestamp_month
+
+CRYPTO.CRYPTO_BITCOIN.INPUTS
+  NUM cols: block_number, block_timestamp, index, required_signatures, sequence, spent_output_index, value
+  STR cols: block_hash, script_asm, script_hex, spent_transaction_hash, transaction_hash, type
+  OTHER cols: addresses
+
+CRYPTO.CRYPTO_BITCOIN.OUTPUTS
+  NUM cols: block_number, block_timestamp, index, required_signatures, value
+  STR cols: block_hash, script_asm, script_hex, transaction_hash, type
+  OTHER cols: addresses
+
+CRYPTO.CRYPTO_BITCOIN.TRANSACTIONS
+  NUM cols: block_number, block_timestamp, fee, input_count, input_value, lock_time, output_count, output_value, size, version, virtual_size
+  STR cols: block_hash, hash
+  TIME cols: block_timestamp_month
+  OTHER cols: inputs, is_coinbase, outputs
+
+[DB=CRYPTO | SCHEMA=CRYPTO_BITCOIN_CASH]
+CRYPTO.CRYPTO_BITCOIN_CASH.BLOCKS
+  NUM cols: number, size, stripped_size, timestamp, transaction_count, version, weight
+  STR cols: bits, coinbase_param, hash, merkle_root, nonce
+  TIME cols: timestamp_month
+
+CRYPTO.CRYPTO_BITCOIN_CASH.INPUTS
+  NUM cols: block_number, block_timestamp, index, required_signatures, sequence, spent_output_index, value
+  STR cols: block_hash, script_asm, script_hex, spent_transaction_hash, transaction_hash, type
+  OTHER cols: addresses
+
+CRYPTO.CRYPTO_BITCOIN_CASH.OUTPUTS
+  NUM cols: block_number, block_timestamp, index, required_signatures, value
+  STR cols: block_hash, script_asm, script_hex, transaction_hash, type
+  OTHER cols: addresses
+
+CRYPTO.CRYPTO_BITCOIN_CASH.TRANSACTIONS
+  NUM cols: block_number, block_timestamp, fee, input_count, input_value, lock_time, output_count, output_value, size, version, virtual_size
+  STR cols: block_hash, hash
+  TIME cols: block_timestamp_month
+  OTHER cols: inputs, is_coinbase, outputs
+
+[DB=CRYPTO | SCHEMA=CRYPTO_DASH]
+CRYPTO.CRYPTO_DASH.BLOCKS
+  NUM cols: number, size, stripped_size, timestamp, transaction_count, version, weight
+  STR cols: bits, coinbase_param, hash, merkle_root, nonce
+  TIME cols: timestamp_month
+
+CRYPTO.CRYPTO_DASH.INPUTS
+  NUM cols: block_number, block_timestamp, index, required_signatures, sequence, spent_output_index, value
+  STR cols: block_hash, script_asm, script_hex, spent_transaction_hash, transaction_hash, type
+  OTHER cols: addresses
+
+CRYPTO.CRYPTO_DASH.OUTPUTS
+  NUM cols: block_number, block_timestamp, index, required_signatures, value
+  STR cols: block_hash, script_asm, script_hex, transaction_hash, type
+  OTHER cols: addresses
+
+CRYPTO.CRYPTO_DASH.TRANSACTIONS
+  NUM cols: block_number, block_timestamp, fee, input_count, input_value, lock_time, output_count, output_value, size, version, virtual_size
+  STR cols: block_hash, hash
+  TIME cols: block_timestamp_month
+  OTHER cols: inputs, is_coinbase, outputs
+
+[DB=CRYPTO | SCHEMA=CRYPTO_ETHEREUM]
+CRYPTO.CRYPTO_ETHEREUM.BLOCKS
+  NUM cols: base_fee_per_gas, blob_gas_used, difficulty, excess_blob_gas, gas_limit, gas_used, number, size, timestamp, total_difficulty, transaction_count
+  STR cols: extra_data, hash, logs_bloom, miner, nonce, parent_hash, receipts_root, sha3_uncles, state_root, transactions_root, withdrawals_root
+  OTHER cols: withdrawals
+
+CRYPTO.CRYPTO_ETHEREUM.CONTRACTS
+  NUM cols: block_number, block_timestamp
+  STR cols: address, block_hash, bytecode
+  OTHER cols: function_sighashes, is_erc20, is_erc721
+
+CRYPTO.CRYPTO_ETHEREUM.LOGS
+  NUM cols: block_number, block_timestamp, log_index, transaction_index
+  STR cols: address, block_hash, data, transaction_hash
+  OTHER cols: topics
+
+CRYPTO.CRYPTO_ETHEREUM.TOKEN_TRANSFERS
+  NUM cols: block_number, block_timestamp, log_index
+  STR cols: block_hash, from_address, to_address, token_address, transaction_hash, value
+
+CRYPTO.CRYPTO_ETHEREUM.TRACES
+  NUM cols: block_number, block_timestamp, gas, gas_used, status, subtraces, transaction_index, value
+  STR cols: block_hash, call_type, error, from_address, input, output, reward_type, to_address, trace_address, trace_id, trace_type, transaction_hash
+
+CRYPTO.CRYPTO_ETHEREUM.TRANSACTIONS
+  NUM cols: block_number, block_timestamp, gas, gas_price, max_fee_per_blob_gas, max_fee_per_gas, max_priority_fee_per_gas, nonce, receipt_blob_gas_price, receipt_blob_gas_used, receipt_cumulative_gas_used, receipt_effective_gas_price, receipt_gas_used, receipt_status, transaction_index, transaction_type, value
+  STR cols: block_hash, from_address, hash, input, receipt_contract_address, receipt_root, to_address
+  OTHER cols: blob_versioned_hashes
+
+[DB=CRYPTO | SCHEMA=CRYPTO_ETHEREUM_CLASSIC]
+CRYPTO.CRYPTO_ETHEREUM_CLASSIC.BALANCES
+  NUM cols: eth_balance
+  STR cols: address
+
+CRYPTO.CRYPTO_ETHEREUM_CLASSIC.BLOCKS
+  NUM cols: difficulty, gas_limit, gas_used, number, size, timestamp, total_difficulty, transaction_count
+  STR cols: extra_data, hash, logs_bloom, miner, nonce, parent_hash, receipts_root, sha3_uncles, state_root, transactions_root
+
+CRYPTO.CRYPTO_ETHEREUM_CLASSIC.CONTRACTS
+  NUM cols: block_number, block_timestamp
+  STR cols: address, block_hash, bytecode
+  OTHER cols: function_sighashes, is_erc20, is_erc721
+
+CRYPTO.CRYPTO_ETHEREUM_CLASSIC.LOGS
+  NUM cols: block_number, block_timestamp, log_index, transaction_index
+  STR cols: address, block_hash, data, transaction_hash
+  OTHER cols: topics
+
+CRYPTO.CRYPTO_ETHEREUM_CLASSIC.TOKENS
+  NUM cols: block_number, block_timestamp
+  STR cols: address, block_hash, decimals, name, symbol, total_supply
+
+CRYPTO.CRYPTO_ETHEREUM_CLASSIC.TOKEN_TRANSFERS
+  NUM cols: block_number, block_timestamp, log_index
+  STR cols: block_hash, from_address, to_address, token_address, transaction_hash, value
+
+CRYPTO.CRYPTO_ETHEREUM_CLASSIC.TRACES
+  NUM cols: block_number, block_timestamp, gas, gas_used, status, subtraces, transaction_index, value
+  STR cols: block_hash, call_type, error, from_address, input, output, reward_type, to_address, trace_address, trace_id, trace_type, transaction_hash
+
+CRYPTO.CRYPTO_ETHEREUM_CLASSIC.TRANSACTIONS
+  NUM cols: block_number, block_timestamp, gas, gas_price, nonce, receipt_cumulative_gas_used, receipt_gas_used, receipt_status, transaction_index, value
+  STR cols: block_hash, from_address, hash, input, receipt_contract_address, receipt_root, to_address
+
+[DB=CRYPTO | SCHEMA=CRYPTO_ZILLIQA]
+CRYPTO.CRYPTO_ZILLIQA.DS_BLOCKS
+  NUM cols: difficulty, difficulty_ds, gas_price, number, timestamp
+  STR cols: ds_leader_address, ds_leader_pub_key, prev_hash
+  OTHER cols: signature
+
+CRYPTO.CRYPTO_ZILLIQA.EVENT_LOGS
+  NUM cols: block_number, block_timestamp, index
+  STR cols: address, event_name, transaction_id
+  OTHER cols: params
+
+CRYPTO.CRYPTO_ZILLIQA.EXCEPTIONS
+  NUM cols: block_number, block_timestamp, index, line
+  STR cols: message, transaction_id
+
+CRYPTO.CRYPTO_ZILLIQA.TRANSACTIONS
+  NUM cols: amount, block_number, block_timestamp, cumulative_gas, epoch_num, gas_limit, gas_price, version
+  STR cols: code, data, id, sender, sender_pub_key, to_addr
+  OTHER cols: accepted, signature, success
+
+CRYPTO.CRYPTO_ZILLIQA.TRANSITIONS
+  NUM cols: amount, block_number, block_timestamp, depth, index
+  STR cols: addr, recipient, tag, transaction_id
+  OTHER cols: accepted, params
+
+CRYPTO.CRYPTO_ZILLIQA.TX_BLOCKS
+  NUM cols: ds_block_number, gas_limit, gas_used, num_micro_blocks, num_present_transactions, num_transactions, number, rewards, timestamp, version
+  STR cols: mb_info_hash, prev_block_hash, state_delta_hash, state_root_hash, tx_leader_address, tx_leader_pub_key
+  OTHER cols: header_signature

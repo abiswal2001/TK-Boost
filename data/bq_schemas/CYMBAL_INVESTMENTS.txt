@@ -1,0 +1,6 @@
+[DATASET=CYMBAL_INVESTMENTS]
+bigquery-public-data.cymbal_investments.trade_capture_report
+  NUM cols: Quantity, StrikePrice, LastPx
+  STR cols: TargetCompID, SenderCompID, Symbol, OrderID, TradeReportID, CFICode
+  TIME cols: SendingTime, TransactTime, MaturityDate, TradeDate
+  OTHER cols: Sides

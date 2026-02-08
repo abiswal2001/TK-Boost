@@ -1,0 +1,97 @@
+[DB=SAN_FRANCISCO_PLUS | SCHEMA=SAN_FRANCISCO_311]
+SAN_FRANCISCO_PLUS.SAN_FRANCISCO_311._311_SERVICE_REQUESTS
+  NUM cols: closed_date, created_date, latitude, longitude, resolution_action_updated_date, supervisor_district, unique_key
+  STR cols: agency_name, category, complaint_type, descriptor, incident_address, location, media_url, neighborhood, police_district, source, status, status_notes
+
+[DB=SAN_FRANCISCO_PLUS | SCHEMA=SAN_FRANCISCO_BIKESHARE]
+SAN_FRANCISCO_PLUS.SAN_FRANCISCO_BIKESHARE.BIKESHARE_REGIONS
+  NUM cols: region_id
+  STR cols: name
+
+SAN_FRANCISCO_PLUS.SAN_FRANCISCO_BIKESHARE.BIKESHARE_STATION_INFO
+  NUM cols: capacity, lat, lon, region_id
+  STR cols: external_id, name, rental_methods, short_name, station_id
+  OTHER cols: eightd_has_key_dispenser, has_kiosk, station_geom
+
+SAN_FRANCISCO_PLUS.SAN_FRANCISCO_BIKESHARE.BIKESHARE_STATION_STATUS
+  NUM cols: last_reported, num_bikes_available, num_bikes_disabled, num_docks_available, num_docks_disabled, num_ebikes_available
+  STR cols: station_id
+  OTHER cols: eightd_has_available_keys, is_installed, is_renting, is_returning
+
+SAN_FRANCISCO_PLUS.SAN_FRANCISCO_BIKESHARE.BIKESHARE_TRIPS
+  NUM cols: bike_number, duration_sec, end_date, end_station_id, end_station_latitude, end_station_longitude, member_birth_year, start_date, start_station_id, start_station_latitude, start_station_longitude
+  STR cols: bike_share_for_all_trip, c_subscription_type, end_station_name, member_gender, start_station_name, subscriber_type, trip_id, zip_code
+  OTHER cols: end_station_geom, start_station_geom
+
+[DB=SAN_FRANCISCO_PLUS | SCHEMA=SAN_FRANCISCO_FILM_LOCATIONS]
+SAN_FRANCISCO_PLUS.SAN_FRANCISCO_FILM_LOCATIONS.FILM_LOCATIONS
+  NUM cols: release_year
+  STR cols: actor_[1-3], director, distributor, fun_facts, locations, production_company, title, writer
+
+[DB=SAN_FRANCISCO_PLUS | SCHEMA=SAN_FRANCISCO_NEIGHBORHOODS]
+SAN_FRANCISCO_PLUS.SAN_FRANCISCO_NEIGHBORHOODS.BOUNDARIES
+  NUM cols: internal_point_latitude, internal_point_longitude
+  STR cols: neighborhood
+  OTHER cols: internal_point_geom, neighborhood_geom
+
+[DB=SAN_FRANCISCO_PLUS | SCHEMA=SAN_FRANCISCO_SFFD_SERVICE_CALLS]
+SAN_FRANCISCO_PLUS.SAN_FRANCISCO_SFFD_SERVICE_CALLS.SFFD_SERVICE_CALLS
+  NUM cols: available_timestamp, call_number, dispatch_timestamp, entry_timestamp, final_priority, hospital_timestamp, incident_number, latitude, longitude, number_of_alarms, on_scene_timestamp, received_timestamp, response_timestamp, transport_timestamp, unit_sequence_in_call_dispatch
+  STR cols: address, battalion, box, call_final_disposition, call_type, call_type_group, city, fire_prevention_district, neighborhood_name, original_priority, priority, row_id, station_area, supervisor_district, unit_id, unit_type, zipcode_of_incident
+  TIME cols: call_date, watch_date
+  OTHER cols: als_unit, location_geom
+
+[DB=SAN_FRANCISCO_PLUS | SCHEMA=SAN_FRANCISCO_SFPD_INCIDENTS]
+SAN_FRANCISCO_PLUS.SAN_FRANCISCO_SFPD_INCIDENTS.SFPD_INCIDENTS
+  NUM cols: latitude, longitude, pdid, timestamp, unique_key
+  STR cols: address, category, dayofweek, descript, location, pddistrict, resolution
+
+[DB=SAN_FRANCISCO_PLUS | SCHEMA=SAN_FRANCISCO_TRANSIT_MUNI]
+SAN_FRANCISCO_PLUS.SAN_FRANCISCO_TRANSIT_MUNI.CALENDAR
+  STR cols: service_desc, service_id
+  TIME cols: exceptions
+  OTHER cols: exception_type, friday, monday, saturday, sunday, thursday, tuesday, wednesday
+
+SAN_FRANCISCO_PLUS.SAN_FRANCISCO_TRANSIT_MUNI.FARES
+  NUM cols: price, transfer_duration
+  STR cols: fare_id, payment_method, rider_desc, rider_id, transfers_permitted
+
+SAN_FRANCISCO_PLUS.SAN_FRANCISCO_TRANSIT_MUNI.ROUTES
+  STR cols: route_id, route_long_name, route_short_name, route_type
+
+SAN_FRANCISCO_PLUS.SAN_FRANCISCO_TRANSIT_MUNI.SHAPES
+  NUM cols: shape_distance_traveled, shape_point_lat, shape_point_lon, shape_point_sequence
+  STR cols: shape_id
+  OTHER cols: shape_point_geom
+
+SAN_FRANCISCO_PLUS.SAN_FRANCISCO_TRANSIT_MUNI.STOPS
+  NUM cols: stop_lat, stop_lon
+  STR cols: stop_id, stop_name
+  OTHER cols: stop_geom
+
+SAN_FRANCISCO_PLUS.SAN_FRANCISCO_TRANSIT_MUNI.STOP_MONITORING
+  NUM cols: aimed_arrival_time, aimed_departure_time, time_recorded, vehicle_location_lat, vehicle_location_lon
+  STR cols: direction, route_id, route_long_name, stop_id, stop_name, trip_id, vehicle_id
+  TIME cols: trip_date
+  OTHER cols: vehicle_at_stop, vehicle_location
+
+SAN_FRANCISCO_PLUS.SAN_FRANCISCO_TRANSIT_MUNI.STOP_TIMES
+  NUM cols: stop_id, stop_sequence, trip_id
+  STR cols: dropoff_type
+  TIME cols: arrival_time, departure_time
+  OTHER cols: arrives_next_day, departs_next_day, exact_timepoint
+
+SAN_FRANCISCO_PLUS.SAN_FRANCISCO_TRANSIT_MUNI.TRIPS
+  STR cols: block_id, direction, route_id, service_category, shape_id, trip_headsign, trip_id
+  OTHER cols: trip_shape
+
+SAN_FRANCISCO_PLUS.SAN_FRANCISCO_TRANSIT_MUNI.VEHICLE_MONITORING
+  NUM cols: next_stop_aimed_arrival_time, next_stop_aimed_departure_time, next_stop_expected_arrival_time, next_stop_expected_departure_time, onward_stop_aimed_arrival_time_[1-10], onward_stop_aimed_departure_time_[1-10], onward_stop_expected_arrival_time_[1-10], time_recorded, vehicle_location_lat, vehicle_location_lon
+  STR cols: direction, next_stop_id, next_stop_name, onward_stop_id_[1-10], onward_stop_name_[1-10], route_id, route_long_name, trip_id, vehicle_id
+  TIME cols: trip_date
+  OTHER cols: vehicle_location
+
+[DB=SAN_FRANCISCO_PLUS | SCHEMA=SAN_FRANCISCO_TREES]
+SAN_FRANCISCO_PLUS.SAN_FRANCISCO_TREES.STREET_TREES
+  NUM cols: latitude, longitude, plant_date, site_order, tree_id, x_coordinate, y_coordinate
+  STR cols: address, care_assistant, care_taker, dbh, legal_status, location, permit_notes, plant_type, plot_size, site_info, species

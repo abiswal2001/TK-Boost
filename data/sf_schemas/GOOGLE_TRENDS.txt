@@ -1,0 +1,20 @@
+[DB=GOOGLE_TRENDS | SCHEMA=GOOGLE_TRENDS]
+GOOGLE_TRENDS.GOOGLE_TRENDS.INTERNATIONAL_TOP_RISING_TERMS
+  NUM cols: percent_gain, rank, score
+  STR cols: country_code, country_name, region_code, region_name, term
+  TIME cols: refresh_date, week
+
+GOOGLE_TRENDS.GOOGLE_TRENDS.INTERNATIONAL_TOP_TERMS
+  NUM cols: rank, score
+  STR cols: country_code, country_name, region_code, region_name, term
+  TIME cols: refresh_date, week
+
+GOOGLE_TRENDS.GOOGLE_TRENDS.TOP_RISING_TERMS
+  NUM cols: dma_id, percent_gain, rank, score
+  STR cols: dma_name, term
+  TIME cols: refresh_date, week
+
+GOOGLE_TRENDS.GOOGLE_TRENDS.TOP_TERMS
+  NUM cols: dma_id, rank, score
+  STR cols: dma_name, term
+  TIME cols: refresh_date, week

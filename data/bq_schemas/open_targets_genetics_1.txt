@@ -1,0 +1,70 @@
+[DATASET=open_targets_genetics_1]
+open-targets-genetics.genetics.disease_variant_gene
+  NUM cols: n_initial, n_replication, n_cases, num_assoc_loci, lead_pos, tag_pos, overall_r2, AFR_1000G_prop, AMR_1000G_prop, EAS_1000G_prop, EUR_1000G_prop, SAS_1000G_prop, log10_ABF, posterior_prob, odds_ratio, oddsr_ci_lower, oddsr_ci_upper, beta, beta_ci_lower, beta_ci_upper, pval_mantissa, pval_exponent, pval, fpred_max_score, qtl_beta, qtl_se, qtl_pval, qtl_score, interval_score, qtl_score_q, interval_score_q, d, distance_score, distance_score_q
+  STR cols: study_id, source, pmid, pub_date, pub_journal, pub_title, pub_author, trait_reported, trait_category, lead_chrom, lead_ref, lead_alt, tag_chrom, tag_ref, tag_alt, direction, gene_id, feature, type_id, source_id, fpred_max_label
+  BOOL cols: has_sumstats
+  OTHER cols: trait_efos, ancestry_initial, ancestry_replication, fpred_labels, fpred_scores, description="Gene
+
+open-targets-genetics.genetics.genes
+  NUM cols: end, fwdstrand, start, tss
+  STR cols: biotype, chr, description, exons, gene_id, gene_name
+  OTHER cols: description="Gene
+
+open-targets-genetics.genetics.locus2gene
+  NUM cols: pos, y_proba_dist_foot, y_proba_dist_tss, y_proba_full_model, y_proba_logi_distance, y_proba_logi_interaction, y_proba_logi_molecularQTL, y_proba_logi_pathogenicity, y_proba_logo_distance, y_proba_logo_interaction, y_proba_logo_molecularQTL, y_proba_logo_pathogenicity
+  STR cols: study_id, chrom, ref, alt, gene_id, training_clf, training_gs, training_fold
+  OTHER cols: description="Locus
+
+open-targets-genetics.genetics.ot_release
+  STR cols: release
+
+open-targets-genetics.genetics.sa_gwas
+  NUM cols: pos, beta, se, pval, n_total, n_cases, eaf, mac, mac_cases, info
+  STR cols: type_id, study_id, chrom, ref, alt
+  BOOL cols: is_cc
+  OTHER cols: description="Summary
+
+open-targets-genetics.genetics.sa_molecular_trait
+  NUM cols: pos, beta, se, pval, n_total, n_cases, eaf, mac, mac_cases, num_tests, info
+  STR cols: type_id, study_id, phenotype_id, gene_id, chrom, ref, alt, bio_feature
+  BOOL cols: is_cc
+  OTHER cols: description="Summary
+
+open-targets-genetics.genetics.studies
+  NUM cols: n_cases, n_initial, n_replication, num_assoc_loci
+  STR cols: study_id, pmid, pub_author, pub_date, pub_journal, pub_title, source, trait_reported, trait_category
+  BOOL cols: has_sumstats
+  OTHER cols: ancestry_initial, ancestry_replication, trait_efos, description="Study
+
+open-targets-genetics.genetics.studies_overlap
+  NUM cols: A_pos, B_pos, A_distinct, AB_overlap, B_distinct
+  STR cols: A_study_id, A_chrom, A_ref, A_alt, B_study_id, B_chrom, B_ref, B_alt
+  OTHER cols: description="Study
+
+open-targets-genetics.genetics.variant_disease
+  NUM cols: lead_pos, beta, beta_ci_lower, beta_ci_upper, odds_ratio, oddsr_ci_lower, oddsr_ci_upper, pval_mantissa, pval_exponent, pval, n_cases, n_initial, n_replication, num_assoc_loci, tag_pos, overall_r2, AFR_1000G_prop, AMR_1000G_prop, EAS_1000G_prop, EUR_1000G_prop, SAS_1000G_prop, log10_ABF, posterior_prob
+  STR cols: study_id, lead_chrom, lead_ref, lead_alt, direction, pmid, pub_author, pub_date, pub_journal, pub_title, source, trait_reported, trait_category, tag_chrom, tag_ref, tag_alt
+  BOOL cols: has_sumstats, pics_95perc_credset
+  OTHER cols: ancestry_initial, ancestry_replication, trait_efos, description="Variant
+
+open-targets-genetics.genetics.variant_disease_coloc
+  NUM cols: coloc_n_vars, coloc_h0, coloc_h1, coloc_h2, coloc_h3, coloc_h4, left_pos, right_pos, coloc_h4_h3, coloc_log2_h4_h3, left_var_right_study_beta, left_var_right_study_se, left_var_right_study_pval
+  STR cols: left_type, left_study, left_chrom, left_ref, left_alt, right_type, right_study, right_bio_feature, right_phenotype, right_chrom, right_ref, right_alt, right_gene_id
+  BOOL cols: is_flipped, left_var_right_isCC
+  OTHER cols: description="Variant
+
+open-targets-genetics.genetics.variant_disease_credset
+  NUM cols: lead_pos, logABF, postprob, postprob_cumsum, tag_beta, tag_beta_cond, tag_pos, tag_pval, tag_pval_cond, tag_se, tag_se_cond
+  STR cols: bio_feature, gene_id, lead_alt, lead_chrom, lead_ref, lead_variant_id, multisignal_method, phenotype_id, study_id, tag_alt, tag_chrom, tag_ref, tag_variant_id, type
+  BOOL cols: is95_credset, is99_credset
+  OTHER cols: description="Variant
+
+open-targets-genetics.genetics.variant_gene
+  NUM cols: position, fpred_max_score, qtl_beta, qtl_se, qtl_pval, qtl_score, interval_score, qtl_score_q, interval_score_q, d, distance_score, distance_score_q
+  STR cols: chr_id, ref_allele, alt_allele, gene_id, feature, type_id, source_id, fpred_max_label
+  OTHER cols: fpred_labels, fpred_scores, description="Variant
+
+open-targets-genetics.genetics.variants
+  NUM cols: position, position_b37, gene_id_any_distance, gene_id_prot_coding_distance
+  STR cols: chr_id, ref_allele, alt_allele, chr_id_b37, rs_id, most_severe_consequence, gene_id_any, gene_id_prot_coding
+  OTHER cols: cadd, af, description="Variant

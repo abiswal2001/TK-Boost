@@ -1,0 +1,18 @@
+[DB=PATENTS_GOOGLE | SCHEMA=PATENTS_GOOGLE]
+PATENTS_GOOGLE.PATENTS_GOOGLE.ABS_AND_EMB
+  STR cols: abstract, country, publication_description, publication_number, title, url
+  OTHER cols: abstract_translated, cited_by, cpc, cpc_inventive_low, cpc_low, embedding_v1, similar, title_translated, top_terms
+
+PATENTS_GOOGLE.PATENTS_GOOGLE.CPC_DEFINITION
+  NUM cols: dateRevised, level
+  STR cols: ipcConcordant, status, symbol, titleFull
+  OTHER cols: applicationReferences, breakdownCode, childGroups, children, definition, glossary, informativeReferences, limitingReferences, notAllocatable, parents, precedenceLimitingReferences, residualReferences, rules, scopeLimitingReferences, synonyms, titlePart
+
+PATENTS_GOOGLE.PATENTS_GOOGLE.DISCLOSURES_13
+  NUM cols: date
+  STR cols: blanket_scope, blanket_type, committee_project, copyright, disclosure_event, family_id, licensing_commitment, patent_owner_harmonized, patent_owner_unharmonized, pub_cleaned, reciprocity, record_id, sc_name, serial_cleaned, sso, standard, tc_name, third_party, wg_name
+
+PATENTS_GOOGLE.PATENTS_GOOGLE.PUBLICATIONS
+  NUM cols: filing_date, grant_date, priority_date, publication_date
+  STR cols: application_kind, application_number, application_number_formatted, art_unit, country_code, entity_status, family_id, kind_code, pct_number, publication_number
+  OTHER cols: abstract_localized, assignee, assignee_harmonized, citation, claims_localized, cpc, description_localized, examiner, fi, fterm, inventor, inventor_harmonized, ipc, priority_claim, title_localized, uspc

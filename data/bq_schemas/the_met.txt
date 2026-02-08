@@ -1,0 +1,16 @@
+[DATASET=the_met]
+bigquery-public-data.the_met.images
+  NUM cols: object_id
+  STR cols: public_caption, title, original_image_url, caption, gcs_url
+  BOOL cols: is_oasc
+
+bigquery-public-data.the_met.objects
+  NUM cols: object_id, object_begin_date, object_end_date
+  STR cols: object_number, department, object_name, title, culture, period, dynasty, reign, portfolio, artist_role, artist_prefix, artist_display_name, artist_display_bio, artist_suffix, artist_alpha_sort, artist_nationality, artist_begin_date, artist_end_date, object_date, medium, dimensions, credit_line, geography_type, city, state, county, country, region, subregion, locale, locus, excavation, river, classification, rights_and_reproduction, link_resource, repository
+  TIME cols: metadata_date
+  BOOL cols: is_highlight, is_public_domain
+
+bigquery-public-data.the_met.vision_api_data
+  NUM cols: object_id
+  STR cols: fullTextAnnotation, safeSearchAnnotation
+  OTHER cols: faceAnnotations, landmarkAnnotations, cropHintsAnnotation, logoAnnotations, labelAnnotations, textAnnotations, imagePropertiesAnnotation, webDetection

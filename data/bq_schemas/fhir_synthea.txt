@@ -1,0 +1,77 @@
+[DATASET=fhir_synthea]
+bigquery-public-data.fhir_synthea.allergy_intolerance
+  STR cols: implicitRules, language, lastOccurrence, assertedDate, clinicalStatus, criticality, id, type, verificationStatus
+  OTHER cols: asserter, identifier, note, onset, reaction, recorder, text, category, code, meta, patient
+
+bigquery-public-data.fhir_synthea.basic
+  STR cols: created, implicitRules, language, id
+  OTHER cols: author, identifier, subject, text, code, meta
+
+bigquery-public-data.fhir_synthea.care_plan
+  STR cols: description, implicitRules, language, title, id, intent, status
+  OTHER cols: author, basedOn, careTeam, definition, identifier, meta, note, partOf, replaces, supportingInfo, text, activity, addresses, category, context, goal, period, subject
+
+bigquery-public-data.fhir_synthea.claim
+  STR cols: created, implicitRules, language, id, status, use
+  OTHER cols: accident, careTeam, employmentImpacted, enterer, facility, fundsReserve, hospitalization, identifier, insurance, insurer, meta, originalPrescription, payee, priority, provider, referral, related, subType, text, type, billablePeriod, diagnosis, information, item, organization, patient, prescription, procedure, total
+
+bigquery-public-data.fhir_synthea.condition
+  STR cols: implicitRules, language, assertedDate, clinicalStatus, id, verificationStatus
+  OTHER cols: asserter, bodySite, evidence, identifier, note, severity, stage, text, abatement, category, code, context, meta, onset, subject
+
+bigquery-public-data.fhir_synthea.diagnostic_report
+  STR cols: conclusion, implicitRules, language, id, status
+  TIME cols: issued
+  OTHER cols: basedOn, category, codedDiagnosis, identifier, image, imagingStudy, meta, performer, presentedForm, specimen, text, code, context, effective, result, subject
+
+bigquery-public-data.fhir_synthea.encounter
+  STR cols: implicitRules, language, id, status
+  OTHER cols: account, appointment, classHistory, diagnosis, episodeOfCare, identifier, incomingReferral, length, location, partOf, priority, statusHistory, text, shr_action_PerformedContext_extension, class, hospitalization, meta, participant, period, reason, serviceProvider, subject, type
+
+bigquery-public-data.fhir_synthea.explanation_of_benefit
+  NUM cols: precedence
+  STR cols: disposition, implicitRules, language, created, id, status
+  OTHER cols: accident, addItem, benefitBalance, claimResponse, employmentImpacted, enterer, facility, form, hospitalization, information, insurer, originalPrescription, outcome, payee, prescription, procedure, processNote, related, subType, text, totalBenefit, unallocDeductable, StructureDefinition_bluebutton_inpatient_clm_mdcr_non_pmt_rsn_cd_extension, StructureDefinition_bluebutton_inpatient_clm_pass_thru_per_diem_amt_extension, StructureDefinition_bluebutton_inpatient_clm_pps_cptl_dsprprtnt_shr_amt_extension, StructureDefinition_bluebutton_inpatient_clm_pps_cptl_excptn_amt_extension, StructureDefinition_bluebutton_inpatient_clm_pps_cptl_fsp_amt_extension, StructureDefinition_bluebutton_inpatient_clm_pps_cptl_ime_amt_extension, StructureDefinition_bluebutton_inpatient_clm_pps_cptl_outlier_amt_extension, StructureDefinition_bluebutton_inpatient_clm_pps_old_cptl_hld_hrmls_amt_extension, StructureDefinition_bluebutton_inpatient_clm_tot_pps_cptl_amt_extension, StructureDefinition_bluebutton_inpatient_dsh_op_clm_val_amt_extension, StructureDefinition_bluebutton_inpatient_fi_num_extension, StructureDefinition_bluebutton_inpatient_ime_op_clm_val_amt_extension, StructureDefinition_bluebutton_inpatient_nch_bene_blood_ddctbl_lblty_am_extension, StructureDefinition_bluebutton_inpatient_nch_bene_ip_ddctbl_amt_extension, StructureDefinition_bluebutton_inpatient_nch_bene_pta_coinsrnc_lblty_amt_extension, StructureDefinition_bluebutton_inpatient_nch_drg_outlier_aprvd_pmt_amt_extension, StructureDefinition_bluebutton_inpatient_nch_ip_ncvrd_chrg_amt_extension, StructureDefinition_bluebutton_inpatient_nch_ip_tot_ddctn_amt_extension, StructureDefinition_bluebutton_inpatient_nch_profnl_cmpnt_chrg_amt_extension, StructureDefinition_bluebutton_inpatient_prpayamt_extension, StructureDefinition_bluebutton_outpatient_clm_mdcr_non_pmt_rsn_cd_extension, StructureDefinition_bluebutton_outpatient_clm_op_bene_pmt_amt_extension, StructureDefinition_bluebutton_outpatient_clm_op_prvdr_pmt_amt_extension, StructureDefinition_bluebutton_outpatient_fi_num_extension, StructureDefinition_bluebutton_outpatient_nch_bene_blood_ddctbl_lblty_am_extension, StructureDefinition_bluebutton_outpatient_nch_bene_ptb_coinsrnc_amt_extension, StructureDefinition_bluebutton_outpatient_nch_bene_ptb_ddctbl_amt_extension, StructureDefinition_bluebutton_outpatient_nch_profnl_cmpnt_chrg_amt_extension, StructureDefinition_bluebutton_outpatient_prpayamt_extension, billablePeriod, careTeam, claim, diagnosis, identifier, insurance, item, meta, organization, patient, payment, provider, referral, totalCost, type
+
+bigquery-public-data.fhir_synthea.goal
+  STR cols: implicitRules, language, statusDate, statusReason, id, status
+  OTHER cols: addresses, category, expressedBy, identifier, meta, note, outcomeCode, outcomeReference, priority, start, subject, target, text, description
+
+bigquery-public-data.fhir_synthea.imaging_study
+  NUM cols: numberOfInstances, numberOfSeries
+  STR cols: availability, description, implicitRules, language, id, started, uid
+  OTHER cols: accession, basedOn, endpoint, identifier, interpreter, meta, modalityList, procedureCode, procedureReference, reason, referrer, text, context, patient, series
+
+bigquery-public-data.fhir_synthea.immunization
+  STR cols: expirationDate, implicitRules, language, lotNumber, date, id, status
+  BOOL cols: notGiven, primarySource
+  OTHER cols: doseQuantity, explanation, identifier, location, manufacturer, note, practitioner, reaction, reportOrigin, route, site, text, vaccinationProtocol, shr_action_PerformedContext_extension, encounter, meta, patient, vaccineCode
+
+bigquery-public-data.fhir_synthea.medication_request
+  STR cols: implicitRules, language, priority, authoredOn, id, intent, status
+  OTHER cols: basedOn, category, definition, detectedIssue, dispenseRequest, eventHistory, groupIdentifier, identifier, note, priorPrescription, reasonCode, recorder, substitution, supportingInformation, text, shr_action_RequestedContext_extension, shr_base_ActionCode_extension, context, dosageInstruction, medication, meta, reasonReference, requester, subject
+
+bigquery-public-data.fhir_synthea.observation
+  STR cols: comment, implicitRules, language, id, status
+  TIME cols: issued
+  OTHER cols: basedOn, bodySite, dataAbsentReason, device, identifier, interpretation, method, performer, referenceRange, related, specimen, text, category, code, component, context, effective, meta, subject, value
+
+bigquery-public-data.fhir_synthea.organization
+  STR cols: implicitRules, language, id, name
+  BOOL cols: active
+  OTHER cols: alias, endpoint, partOf, text, address, contact, identifier, meta, telecom, type
+
+bigquery-public-data.fhir_synthea.patient
+  STR cols: implicitRules, language, birthDate, gender, id
+  BOOL cols: active
+  OTHER cols: animal, contact, generalPractitioner, link, managingOrganization, photo, birthPlace, disability_adjusted_life_years, patient_mothersMaidenName, quality_adjusted_life_years, shr_actor_FictionalPerson_extension, shr_demographics_SocialSecurityNumber_extension, shr_entity_FathersName_extension, shr_entity_Person_extension, us_core_birthsex, us_core_ethnicity, us_core_race, address, communication, deceased, identifier, maritalStatus, meta, multipleBirth, name, telecom, text
+
+bigquery-public-data.fhir_synthea.practitioner
+  STR cols: birthDate, implicitRules, language, gender, id
+  BOOL cols: active
+  OTHER cols: communication, meta, photo, qualification, telecom, text, address, identifier, name
+
+bigquery-public-data.fhir_synthea.procedure
+  STR cols: implicitRules, language, id, status
+  BOOL cols: notDone
+  OTHER cols: basedOn, bodySite, category, complication, complicationDetail, definition, focalDevice, followUp, identifier, location, notDoneReason, note, outcome, partOf, performer, reasonCode, report, text, usedCode, usedReference, shr_action_PerformedContext_extension, code, context, meta, performed, reasonReference, subject

@@ -1,0 +1,14 @@
+[DB=PATENTS | SCHEMA=PATENTS]
+PATENTS.PATENTS.CPC_DEFINITION
+  NUM cols: dateRevised, level
+  STR cols: ipcConcordant, status, symbol, titleFull
+  OTHER cols: applicationReferences, breakdownCode, childGroups, children, definition, glossary, informativeReferences, limitingReferences, notAllocatable, parents, precedenceLimitingReferences, residualReferences, rules, scopeLimitingReferences, synonyms, titlePart
+
+PATENTS.PATENTS.DISCLOSURES_13
+  NUM cols: date
+  STR cols: blanket_scope, blanket_type, committee_project, copyright, disclosure_event, family_id, licensing_commitment, patent_owner_harmonized, patent_owner_unharmonized, pub_cleaned, reciprocity, record_id, sc_name, serial_cleaned, sso, standard, tc_name, third_party, wg_name
+
+PATENTS.PATENTS.PUBLICATIONS
+  NUM cols: filing_date, grant_date, priority_date, publication_date
+  STR cols: application_kind, application_number, application_number_formatted, art_unit, country_code, entity_status, family_id, kind_code, pct_number, publication_number, spif_application_number, spif_publication_number
+  OTHER cols: abstract_localized, assignee, assignee_harmonized, child, citation, claims_localized, claims_localized_html, cpc, description_localized, description_localized_html, examiner, fi, fterm, inventor, inventor_harmonized, ipc, locarno, parent, priority_claim, title_localized, uspc

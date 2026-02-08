@@ -1,0 +1,30 @@
+[DB=ETHEREUM_BLOCKCHAIN | SCHEMA=ETHEREUM_BLOCKCHAIN]
+ETHEREUM_BLOCKCHAIN.ETHEREUM_BLOCKCHAIN.BLOCKS
+  NUM cols: difficulty, gas_limit, gas_used, number, size, timestamp, total_difficulty, transaction_count
+  STR cols: extra_data, hash, logs_bloom, miner, nonce, parent_hash, receipts_root, sha3_uncles, state_root, transactions_root
+
+ETHEREUM_BLOCKCHAIN.ETHEREUM_BLOCKCHAIN.CONTRACTS
+  NUM cols: block_number, block_timestamp
+  STR cols: address, block_hash, bytecode
+  OTHER cols: function_sighashes, is_erc20, is_erc721
+
+ETHEREUM_BLOCKCHAIN.ETHEREUM_BLOCKCHAIN.LOGS
+  NUM cols: block_number, block_timestamp, log_index, transaction_index
+  STR cols: address, block_hash, data, transaction_hash
+  OTHER cols: topics
+
+ETHEREUM_BLOCKCHAIN.ETHEREUM_BLOCKCHAIN.TOKENS
+  NUM cols: block_number, block_timestamp
+  STR cols: address, block_hash, decimals, name, symbol, total_supply
+
+ETHEREUM_BLOCKCHAIN.ETHEREUM_BLOCKCHAIN.TOKEN_TRANSFERS
+  NUM cols: block_number, block_timestamp, log_index
+  STR cols: block_hash, from_address, to_address, token_address, transaction_hash, value
+
+ETHEREUM_BLOCKCHAIN.ETHEREUM_BLOCKCHAIN.TRACES
+  NUM cols: block_number, block_timestamp, gas, gas_used, status, subtraces, transaction_index, value
+  STR cols: block_hash, call_type, error, from_address, input, output, reward_type, to_address, trace_address, trace_type, transaction_hash
+
+ETHEREUM_BLOCKCHAIN.ETHEREUM_BLOCKCHAIN.TRANSACTIONS
+  NUM cols: block_number, block_timestamp, gas, gas_price, nonce, receipt_cumulative_gas_used, receipt_gas_used, receipt_status, transaction_index, value
+  STR cols: block_hash, from_address, hash, input, receipt_contract_address, receipt_root, to_address

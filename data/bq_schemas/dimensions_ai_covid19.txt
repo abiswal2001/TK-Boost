@@ -1,0 +1,35 @@
+[DATASET=dimensions_ai_covid19]
+bigquery-public-data.dimensions_ai_covid19.clinical_trials
+  NUM cols: study_participants, start_year, end_year
+  STR cols: id, title, brief_title, abstract, acronym, phase, overall_status, registry, linkout, gender, study_type, study_eligibility_criteria, study_minimum_age, study_maximum_age, start_date, end_date
+  TIME cols: date_inserted, date_imported_gbq
+  OTHER cols: conditions, interventions, study_arms, study_designs, study_outcome_measures, mesh_terms, funding_details, publication_ids, investigators, organisation_details, concepts, active_years, associated_grant_ids, funder_orgs, researcher_ids, research_orgs, category_bra, category_for, category_hra, category_hrcs_hc, category_hrcs_rac, category_icrp_cso, category_icrp_ct, category_rcdc, category_sdg, category_uoa, categories, altmetrics
+
+bigquery-public-data.dimensions_ai_covid19.datasets
+  NUM cols: year
+  STR cols: id, title, description, created_date, embargo_date, repository_url, doi, repository_id, repository_name, associated_publication_doi, associated_publication_pmid, associated_publication_arxiv_id, associated_publication_id, citation_string
+  TIME cols: date, date_modified, date_imported_gbq
+  OTHER cols: authors, license, category_bra, category_for, category_hra, category_hrcs_hc, category_hrcs_rac, category_icrp_cso, category_icrp_ct, category_rcdc, category_sdg, category_uoa, categories, research_orgs, researcher_ids, associated_grant_ids, research_org_cities, research_org_countries, research_org_state_codes
+
+bigquery-public-data.dimensions_ai_covid19.grants
+  NUM cols: start_year, end_year, funding_amount, funding_aud, funding_cad, funding_chf, funding_eur, funding_gbp, funding_jpy, funding_nzd, funding_usd, funding_cny
+  STR cols: id, title, abstract, language, linkout, grant_number, foa_number, start_date, end_date, funder_org, funding_currency
+  TIME cols: date_inserted, date_imported_gbq
+  OTHER cols: original_title, original_abstract, active_years, investigators, researcher_ids, research_orgs, organisation_details, research_org_cities, research_org_state_codes, research_org_countries, funder_org_cities, funder_org_state_codes, funder_org_countries, concepts, category_bra, category_for, category_hra, category_hrcs_hc, category_hrcs_rac, category_icrp_cso, category_icrp_ct, category_rcdc, category_sdg, category_uoa, categories, resulting_publication_ids, funder_org_acronyms
+
+bigquery-public-data.dimensions_ai_covid19.grid
+  NUM cols: established, closed
+  STR cols: id, status, redirect, name, email_address, wikipedia_url
+  OTHER cols: aliases, acronyms, types, links, labels, relationships, external_ids, address
+
+bigquery-public-data.dimensions_ai_covid19.patents
+  NUM cols: expiration_year, publication_year, filing_year, priority_year, granted_year, family_count
+  STR cols: id, title, abstract, kind, jurisdiction, application_number, publication_date, filing_date, priority_date, granted_date, expiration_date, family_id, filing_status, legal_status
+  TIME cols: date_imported_gbq
+  OTHER cols: inventor_names, researcher_ids, current_assignee, original_assignee, assignee_orgs, current_assignee_orgs, original_assignee_orgs, legal_events, concepts, orange_book, federal_support, cpc, ipcr, category_bra, category_for, category_hra, category_hrcs_hc, category_hrcs_rac, category_icrp_cso, category_icrp_ct, category_rcdc, category_sdg, category_uoa, categories, reference_ids, funding_details, publication_ids, associated_grant_ids, funder_orgs, assignee_countries, original_assignee_countries, current_assignee_countries, cited_by_ids, family_members_ids
+
+bigquery-public-data.dimensions_ai_covid19.publications
+  NUM cols: year, citations_count
+  STR cols: id, doi, volume, issue, pages, copyright_statement, pmid, pmcid, type, date, date_online, date_print, arxiv_id, resulting_publication_doi, eisbn, isbn, parent_id, source_id
+  TIME cols: date_normal, date_inserted, date_imported_gbq
+  OTHER cols: subtitles, abstract, acknowledgements, funding_section, publisher, open_access_categories, open_access_categories_v2, book_title, book_series_title, proceedings_title, conference, repository_dois, editors, reference_ids, mesh_headings, mesh_terms, category_bra, category_for, category_hra, category_hrcs_hc, category_hrcs_rac, category_icrp_cso, category_icrp_ct, category_rcdc, category_sdg, category_uoa, categories, clinical_trial_ids, funding_details, funder_orgs, document_type, title, patent_ids, citations, journal, journal_lists, researcher_ids, research_orgs, research_org_cities, research_org_city_names, research_org_countries, research_org_country_names, research_org_state_codes, research_org_state_names, supporting_grant_ids, funder_countries, metrics, authors, concepts, altmetrics

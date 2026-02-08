@@ -1,0 +1,35 @@
+[DATASET=libraries_io]
+bigquery-public-data.libraries_io.dependencies
+  NUM cols: id, project_id, version_id, dependency_project_id
+  STR cols: platform, project_name, version_number, dependency_name, dependency_platform, dependency_kind, optional_dependency, dependency_requirements
+
+bigquery-public-data.libraries_io.projects
+  NUM cols: id, versions_count, sourcerank, package_manager_id, dependent_projects_count, dependent_repositories_count, repository_id
+  STR cols: platform, name, description, keywords, homepage_url, licenses, repository_url, latest_release_number, language, status
+  TIME cols: created_timestamp, updated_timestamp, latest_release_publish_timestamp, last_synced_timestamp
+
+bigquery-public-data.libraries_io.projects_with_repository_fields
+  NUM cols: id, versions_count, sourcerank, package_manager_id, dependent_projects_count, dependent_repositories_count, repository_id, repository_size, repository_stars_count, repository_forks_count, repository_open_issues_count, repository_watchers_count, repository_contributors_count, repository_sourcerank
+  STR cols: platform, name, description, keywords, homepage_url, licenses, repository_url, latest_release_number, language, status, repository_host_type, repository_name_with_owner, repository_description, repository_homepage_url, repository_language, repository_mirror_url, repository_default_branch, repository_uuid, repository_fork_source_name_with_owner, repository_license, repository_readme_filename, repository_changelog_filename, repository_contributing_guidelines_filename, repository_license_filename, repository_code_of_conduct_filename, repository_security_threat_model_filename, repository_security_audit_filename, repository_status, repository_last_synced_timestamp, repository_display_name, repository_scm_type, repository_pull_requests_enabled, repository_logo_url, repository_keywords, bh
+  TIME cols: created_timestamp, updated_timestamp, latest_release_publish_timestamp, last_synced_timestamp, repository_created_timestamp, repository_updated_timestamp, repository_last_pushed_timestamp
+  BOOL cols: repository_fork, repository_issues_enabled, repository_wiki_enabled, repository_pages_enabled
+
+bigquery-public-data.libraries_io.repositories
+  NUM cols: id, size, stars_count, forks_count, open_issues_count, watchers_count, contributors_count, sourcerank
+  STR cols: host_type, name_with_owner, description, homepage_url, language, mirror_url, default_branch, uuid, fork_source_name_with_owner, license, readme_filename, changelog_filename, contributing_guidelines_filename, license_filename, code_of_conduct_filename, security_threat_model_filename, security_audit_filename, status, display_name, scm_type, pull_requests_enabled, logo_url, keywords, an
+  TIME cols: created_timestamp, updated_timestamp, last_pushed_timestamp, last_synced_timestamp
+  BOOL cols: fork, issues_enabled, wiki_enabled, pages_enabled
+
+bigquery-public-data.libraries_io.repository_dependencies
+  NUM cols: id, repository_id, dependency_project_id
+  STR cols: host_type, repository_name_with_owner, manifest_platform, manifest_filepath, git_branch, manifest_kind, optional, dependency_project_name, dependency_requirements, dependency_kind
+
+bigquery-public-data.libraries_io.tags
+  NUM cols: id, repository_id
+  STR cols: host_type, repository_name_with_owner, tag_name, tag_git_sha
+  TIME cols: tag_published_timestamp, tag_created_timestamp, tag_updated_timestamp
+
+bigquery-public-data.libraries_io.versions
+  NUM cols: id, project_id
+  STR cols: platform, project_name, number
+  TIME cols: published_timestamp, created_timestamp, updated_timestamp

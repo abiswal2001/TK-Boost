@@ -1,0 +1,19 @@
+[DATASET=pancancer_atlas_2]
+isb-cgc-bq.pancancer_atlas.Filtered_EBpp_AdjustPANCAN_IlluminaHiSeq_RNASeqV2_genExp
+  NUM cols: normalized_count
+  STR cols: ParticipantBarcode, SampleBarcode, AliquotBarcode, SampleTypeLetterCode, SampleType, Study, Symbol, Entrez
+  OTHER cols: friendly_name="PanCancer, description="Data, labels=[("access",
+
+isb-cgc-bq.pancancer_atlas.Filtered_MC3_MAF_V5_one_per_tumor_sample
+  STR cols: ParticipantBarcode, Tumor_SampleBarcode, Tumor_AliquotBarcode, Normal_SampleBarcode, Normal_AliquotBarcode, Normal_SampleTypeLetterCode, Study, Hugo_Symbol, HGVSp_Short, Variant_Classification, HGVSc, CENTERS, FILTER
+  OTHER cols: friendly_name="PanCancer, description="Extracted, labels=[("category",
+
+isb-cgc-bq.pancancer_atlas.Filtered_TCGA_RPPA_pancan_clean
+  NUM cols: Value
+  STR cols: ParticipantBarcode, SampleBarcode, AliquotBarcode, SampleTypeLetterCode, SampleType, Study, Protein
+  OTHER cols: friendly_name="PanCancer, description="Data, labels=[("category",
+
+isb-cgc-bq.pancancer_atlas.Original_TCGA_RPPA_pancan_clean
+  NUM cols: Value
+  STR cols: AliquotBarcode, Study, Protein
+  OTHER cols: friendly_name="PanCancer, description="Data, labels=[("category",

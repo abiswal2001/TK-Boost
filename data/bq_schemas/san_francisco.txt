@@ -1,0 +1,39 @@
+[DATASET=san_francisco]
+bigquery-public-data.san_francisco.311_service_requests
+  NUM cols: unique_key, supervisor_district, latitude, longitude
+  STR cols: status, status_notes, agency_name, category, complaint_type, descriptor, incident_address, neighborhood, location, source, media_url, police_district
+  TIME cols: created_date, closed_date, resolution_action_updated_date
+
+bigquery-public-data.san_francisco.bikeshare_stations
+  NUM cols: station_id, latitude, longitude, dockcount
+  STR cols: name, landmark
+  TIME cols: installation_date
+
+bigquery-public-data.san_francisco.bikeshare_status
+  NUM cols: station_id, bikes_available, docks_available
+  TIME cols: time
+
+bigquery-public-data.san_francisco.bikeshare_trips
+  NUM cols: trip_id, duration_sec, start_station_id, end_station_id, bike_number
+  STR cols: start_station_name, end_station_name, zip_code, subscriber_type
+  TIME cols: start_date, end_date
+
+bigquery-public-data.san_francisco.film_locations
+  NUM cols: release_year
+  STR cols: title, locations, fun_facts, production_company, distributor, director, writer, actor_1, actor_2, actor_3
+
+bigquery-public-data.san_francisco.sffd_service_calls
+  NUM cols: call_number, incident_number, final_priority, number_of_alarms, unit_sequence_in_call_dispatch, latitude, longitude
+  STR cols: unit_id, call_type, call_final_disposition, address, city, zipcode_of_incident, battalion, station_area, box, original_priority, priority, call_type_group, unit_type, fire_prevention_district, supervisor_district, neighborhood_district, location, row_id
+  TIME cols: call_date, watch_date, received_timestamp, entry_timestamp, dispatch_timestamp, response_timestamp, on_scene_timestamp, transport_timestamp, hospital_timestamp, available_timestamp
+  BOOL cols: als_unit
+
+bigquery-public-data.san_francisco.sfpd_incidents
+  NUM cols: unique_key, longitude, latitude, pdid
+  STR cols: category, descript, dayofweek, pddistrict, resolution, address, location
+  TIME cols: timestamp
+
+bigquery-public-data.san_francisco.street_trees
+  NUM cols: tree_id, site_order, x_coordinate, y_coordinate, latitude, longitude
+  STR cols: legal_status, species, address, site_info, plant_type, care_taker, care_assistant, dbh, plot_size, permit_notes, location
+  TIME cols: plant_date

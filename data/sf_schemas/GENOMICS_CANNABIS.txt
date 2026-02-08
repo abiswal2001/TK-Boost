@@ -1,0 +1,31 @@
+[DB=GENOMICS_CANNABIS | SCHEMA=GENOMICS_CANNABIS]
+GENOMICS_CANNABIS.GENOMICS_CANNABIS.CS10_GFF
+  NUM cols: _part, end, phase, start
+  STR cols: id, score, seq_id, source, strand, type
+  OTHER cols: attributes, child_features, derived_features, geometry
+
+GENOMICS_CANNABIS.GENOMICS_CANNABIS.CS3K_PROJECT_INFO
+  NUM cols: AvgSpotLen, InsertSize, MBases, MBytes
+  STR cols: Assay_Type, BioProject, BioSample, Center_Name, Consent, DATASTORE_filetype, DATASTORE_provider, DATASTORE_region, Experiment, Instrument, Library_Name, LibraryLayout, LibrarySelection, LibrarySource, Organism, Platform, Run, Sample_Name, SRA_Sample, SRA_Study
+  TIME cols: LoadDate, ReleaseDate
+
+GENOMICS_CANNABIS.GENOMICS_CANNABIS.CS3K_VCF_CS10_DV090
+  NUM cols: _part, end_position, quality, start_position
+  STR cols: reference_bases, reference_name
+  OTHER cols: alternate_bases, call, filter, geometry, names
+
+GENOMICS_CANNABIS.GENOMICS_CANNABIS.MNPR01.__[201703-201703]
+  NUM cols: AN, DP, DPB, end, EPPR, GTI, MQMR, NS, NUMALT, ODDS, PAIREDR, PQR, PRO, QR, quality, RO, RPPR, SRF, SRP, SRR, start
+  STR cols: reference_bases, reference_name, variant_id
+  OTHER cols: AB, ABP, AC, AF, alternate_bases, AO, call, CIGAR, DPRA, EPP, filter, LEN, MEANALT, MQM, names, PAIRED, PAO, PQA, QA, RPL, RPP, RPR, RUN, SAF, SAP, SAR, TYPE
+  AVAILABLE MONTHS (YYYYMM): 201703
+  OTHER TABLES WITH IDENTICAL SCHEMA: MNPR01_TRANSCRIPTOME.__[201703-201703]
+
+GENOMICS_CANNABIS.GENOMICS_CANNABIS.MNPR01_REFERENCE.__[201703-201703]
+  NUM cols: length
+  STR cols: name
+  AVAILABLE MONTHS (YYYYMM): 201703
+
+GENOMICS_CANNABIS.GENOMICS_CANNABIS.SAMPLE_INFO.__[201703-201703]
+  STR cols: cultivar_s, Library_Name_s, Sample_Name_s, SRA_Sample_s
+  AVAILABLE MONTHS (YYYYMM): 201703

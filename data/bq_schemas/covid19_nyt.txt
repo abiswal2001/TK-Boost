@@ -1,0 +1,23 @@
+[DATASET=covid19_nyt]
+bigquery-public-data.covid19_nyt.excess_deaths
+  NUM cols: month, week, deaths, expected_deaths, excess_deaths
+  STR cols: country, placename, frequency, year, baseline
+  TIME cols: start_date, end_date
+  OTHER cols: description="Last
+
+bigquery-public-data.covid19_nyt.mask_use_by_county
+  NUM cols: never, rarely, sometimes, frequently, always
+  STR cols: county_fips_code
+  OTHER cols: description="This
+
+bigquery-public-data.covid19_nyt.us_counties
+  NUM cols: confirmed_cases, deaths
+  STR cols: county, state_name, county_fips_code
+  TIME cols: date
+  OTHER cols: description="County-level
+
+bigquery-public-data.covid19_nyt.us_states
+  NUM cols: confirmed_cases, deaths
+  STR cols: state_name, state_fips_code
+  TIME cols: date
+  OTHER cols: description="State-level

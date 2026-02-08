@@ -1,0 +1,33 @@
+[DATASET=austin]
+bigquery-public-data.austin_311.311_service_requests
+  NUM cols: incident_zip, state_plane_y_coordinate, latitude, longitude, council_district_code
+  STR cols: unique_key, complaint_description, source, status, incident_address, street_number, street_name, city, county, state_plane_x_coordinate, location, map_page, map_tile
+  TIME cols: status_change_date, created_date, last_update_date, close_date
+
+bigquery-public-data.austin_bikeshare.bikeshare_stations
+  NUM cols: station_id, city_asset_number, number_of_docks, footprint_length, footprint_width, council_district
+  STR cols: name, status, address, alternate_name, property_type, power_type, notes
+  TIME cols: modified_date
+  OTHER cols: description="Austin
+
+bigquery-public-data.austin_bikeshare.bikeshare_trips
+  NUM cols: start_station_id, duration_minutes
+  STR cols: trip_id, subscriber_type, bike_id, bike_type, start_station_name, end_station_id, end_station_name
+  TIME cols: start_time
+
+bigquery-public-data.austin_crime.crime
+  NUM cols: unique_key, census_tract, council_district_code, latitude, longitude, x_coordinate, y_coordinate, year
+  STR cols: address, clearance_status, description, district, location, location_description, primary_type, zipcode
+  TIME cols: clearance_date, timestamp
+  OTHER cols: description="Austin
+
+bigquery-public-data.austin_incidents.[incidents_2008 | incidents_2009 | incidents_2010 | incidents_2011 | incidents_2016]
+  NUM cols: unique_key, longitude, latitude
+  STR cols: descript, address, location
+  TIME cols: date, time, timestamp
+
+bigquery-public-data.austin_waste.waste_and_diversion
+  NUM cols: load_id, load_weight
+  STR cols: load_type, dropoff_site, route_type, route_number
+  TIME cols: report_date, load_time
+  OTHER cols: description="Austin

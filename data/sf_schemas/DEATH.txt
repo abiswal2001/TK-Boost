@@ -1,0 +1,21 @@
+[DB=DEATH | SCHEMA=DEATH]
+DEATH.DEATH.ACTIVITYCODE
+  NUM cols: Code
+  STR cols: Description
+  OTHER TABLES WITH IDENTICAL SCHEMA: AGERECODE12, AGERECODE27, AGERECODE52, AGETYPE, BRIDGEDRACEFLAG, DAYOFWEEKOFDEATH, EDUCATION1989REVISION, EDUCATION2003REVISION, EDUCATIONREPORTINGFLAG, HISPANICORIGIN, INFANTAGERECODE22, MANNEROFDEATH, PLACEOFINJURY, RACE, RACEIMPUTATIONFLAG, RACERECODE3, RACERECODE5, RESIDENTSTATUS
+
+DEATH.DEATH.DEATHRECORDS
+  NUM cols: ActivityCode, Age, AgeRecode12, AgeRecode27, AgeRecode52, AgeSubstitutionFlag, AgeType, BridgedRaceFlag, CauseRecode113, CauseRecode358, CauseRecode39, CurrentDataYear, DayOfWeekOfDeath, Education1989Revision, Education2003Revision, EducationReportingFlag, HispanicOrigin, HispanicOriginRaceRecode, Id, InfantAgeRecode22, InfantCauseRecode130, MannerOfDeath, MonthOfDeath, NumberOfEntityAxisConditions, NumberOfRecordAxisConditions, PlaceOfDeathAndDecedentsStatus, PlaceOfInjury, Race, RaceImputationFlag, RaceRecode3, RaceRecode5, ResidentStatus
+  STR cols: Autopsy, Icd10Code, InjuryAtWork, MaritalStatus, MethodOfDisposition, Sex
+
+DEATH.DEATH.ENTITYAXISCONDITIONS
+  NUM cols: DeathRecordId, Id, Line, Part, Sequence
+  STR cols: Icd10Code
+
+DEATH.DEATH.ICD10CODE
+  STR cols: Code, Description
+  OTHER TABLES WITH IDENTICAL SCHEMA: MARITALSTATUS, METHODOFDISPOSITION
+
+DEATH.DEATH.RECORDAXISCONDITIONS
+  NUM cols: DeathRecordId, Id
+  STR cols: Icd10Code

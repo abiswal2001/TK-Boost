@@ -1,0 +1,98 @@
+[DB=HTAN_2 | SCHEMA=HTAN]
+HTAN_2.HTAN.BULKRNASEQ_LEVEL3_METADATA_CURRENT
+  NUM cols: File_Size, Manifest_Version
+  STR cols: CDS_Release, Component, Data_Category, Data_Release, entityId, Expression_Units, File_Format, Filename, Fusion_Gene_Detected, Fusion_Gene_Identity, Genomic_Reference, Genomic_Reference_URL, HTAN_Center, HTAN_Data_File_ID, HTAN_Parent_Data_File_ID, Id, Manifest_Id, Matrix_Type, md5, Pseudo_Alignment_Used, Software_and_Version, Specify_Other_Fusion_Gene, Workflow_Link
+
+HTAN_2.HTAN.BULKWES_LEVEL2_METADATA_CURRENT
+  NUM cols: File_Size, Manifest_Version
+  STR cols: Adapter_Content, Alignment_Workflow_Type, Average_Base_Quality, Average_Insert_Size, Average_Read_Length, Basic_Statistics, CDS_Release, Component, Contamination, Contamination_Error, Custom_Alignment_Workflow, Data_Release, Encoding, entityId, File_Format, Filename, Genomic_Reference, Genomic_Reference_URL, HTAN_Center, HTAN_Data_File_ID, HTAN_Parent_Biospecimen_ID, HTAN_Parent_Data_File_ID, Id, Index_File_Name, Is_lowest_level, Manifest_Id, md5, Mean_Coverage, MSI_Score, MSI_Status, MSI_Workflow_Link, Overrepresented_Sequences, Pairs_On_Diff_CHR, Per_Base_N_Content, Per_Base_Sequence_Content, Per_Base_Sequence_Quality, Per_Sequence_GC_Content, Per_Sequence_Quality_Score, Per_Tile_Sequence_Quality, Percent_GC_Content, Proportion_Base_Mismatch, Proportion_Coverage_10x, Proportion_Coverage_30X, Proportion_Reads_Duplicated, Proportion_Reads_Mapped, Proportion_Targets_No_Coverage, QC_Workflow_Link, QC_Workflow_Type, QC_Workflow_Version, Sequence_Duplication_Levels, Sequence_Length_Distribution, Short_Reads, Total_Reads, Total_Uniquely_Mapped, Total_Unmapped_reads
+
+HTAN_2.HTAN.CLINICAL_TIER3_BRAIN_CURRENT
+  NUM cols: Manifest_Version
+  STR cols: CNS_Tumor_Primary_Anatomic_Site, Component, entityId, Glioma_Specific_Metastasis_Sites, Glioma_Specific_Radiation_Field, HTAN_Center, HTAN_Participant_ID, Id, Infra_Tentorial_Ependymoma_Molecular_Subgroup, Manifest_Id, Neuroblastoma_MYCN_Gene_Amplification_Status, Start_Days_from_Index, Stop_Days_from_Index, Supra_Tentorial_Ependymoma_Molecular_Subgroup, Timepoint_Label
+
+HTAN_2.HTAN.CLINICAL_TIER3_COLORECTAL_CURRENT
+  NUM cols: Manifest_Version
+  STR cols: Colon_Polyp_Occurence_Indicator, Colorectal_Cancer_Detection_Method_Type, Colorectal_Cancer_KRAS_Indicator, Colorectal_Cancer_Tumor_Border_Configuration, Colorectal_Polyp_Adenoma_Type, Colorectal_Polyp_Count, Colorectal_Polyp_New_Indicator, Colorectal_Polyp_Shape, Colorectal_Polyp_Type, Component, entityId, Family_Colon_Cancer_History_Indicator, Family_History_Colorectal_Polyp, Family_Medical_History_Colorectal_Polyp_Diagnosis, History_of_Prior_Colon_Polyps, HTAN_Center, HTAN_Participant_ID, Id, Immediate_Family_History_Endometrial_Cancer, Immediate_Family_History_Ovarian_Cancer, Manifest_Id, MLH1_Promoter_Methylation_Status, Patient_Colonoscopy_Performed_Indicator, Patient_Inflammatory_Bowel_Disease_Personal_Medica_History, Size_of_Polyp_Removed, Start_Days_from_Index, Stop_Days_from_Index, Timepoint_Label
+
+HTAN_2.HTAN.ELECTRON_MICROSCOPY_LEVEL1_METADATA_CURRENT
+  NUM cols: File_Size, Manifest_Version
+  STR cols: CDS_Release, Component, Data_Release, EM_beam_current, EM_contrast_type, EM_dwell_or_exposure_time, EM_instrument, EM_method, EM_signal_or_contrast_mech, EM_signal_processing, EM_spot_size, EM_stage_tilt, EM_voltage, entityId, File_Format, Filename, HTAN_Center, HTAN_Data_File_ID, HTAN_Parent_Biospecimen_ID, Id, Manifest_Id, md5, PhysicalSizeX, PhysicalSizeY, PhysicalSizeZ, Protocol_Link, SizeC, SizeX, SizeY, SizeZ, Software_and_Version
+
+HTAN_2.HTAN.ELECTRON_MICROSCOPY_LEVEL2_METADATA_CURRENT
+  NUM cols: File_Size, Manifest_Version
+  STR cols: CDS_Release, Component, Data_Release, EM_contrast_type, entityId, File_Format, Filename, HTAN_Center, HTAN_Data_File_ID, HTAN_Parent_Data_File_ID, Id, Manifest_Id, md5, Tile_overlap_X, Tile_overlap_Y
+
+HTAN_2.HTAN.HICSEQ_LEVEL1_METADATA_CURRENT
+  NUM cols: File_Size, Manifest_Version
+  STR cols: Biotin_Enrichment, CDS_Release, Component, Crosslinking_Condtion, Data_Release, DNA_Digestion_Condition, DNA_Input_Amount, entityId, File_Format, Filename, Genomic_Reference, HTAN_Center, HTAN_Data_File_ID, HTAN_Parent_Biospecimen_ID, Id, Ligation_Condition, Manifest_Id, md5, Nuclei_Permeabilization_Method, Nucleic_Acid_Source, Protocol_Link, Sequencing_Platform, Technical_Replicate_Group, Total_Reads, Transposition_Reaction
+
+HTAN_2.HTAN.HICSEQ_LEVEL2_METADATA_CURRENT
+  NUM cols: File_Size, Manifest_Version
+  STR cols: Aligned_Read_Length, CDS_Release, Component, Data_Release, entityId, File_Format, Filename, Genomic_Reference, HTAN_Center, HTAN_Data_File_ID, HTAN_Parent_Data_File_ID, Id, Manifest_Id, md5, Normalization_Method, Resolution, Tool
+
+HTAN_2.HTAN.IMAGING_CHANNEL_METADATA_CURRENT
+  NUM cols: lineNum
+  STR cols: Channel_Metadata_Filename, Channel_Metadata_ID, HTAN_Center, Imaging_Assay_Type
+  OTHER cols: channel_attributes
+
+HTAN_2.HTAN.IMAGING_LEVEL1_METADATA_CURRENT
+  NUM cols: FILE_SIZE, MANIFEST_VERSION
+  STR cols: CDS_RELEASE, COMMENT, COMMIT_SHA, COMPONENT, DATA_RELEASE, ENTITYID, FILE_FORMAT, FILENAME, HTAN_CENTER, HTAN_DATA_FILE_ID, HTAN_PARENT_BIOSPECIMEN_ID, ID, IMAGING_ASSAY_TYPE, MANIFEST_ID, MD5, PRE_PROCESSING_COMPLETED, PRE_PROCESSING_REQUIRED, PROTOCOL_LINK, SOFTWARE_AND_VERSION
+
+HTAN_2.HTAN.IMAGING_LEVEL2_METADATA_CURRENT
+  NUM cols: FILE_SIZE, MANIFEST_VERSION
+  STR cols: CDS_RELEASE, CHANNEL_METADATA_FILENAME, COMMENT, COMPONENT, DATA_RELEASE, DIMENSIONORDER, ENTITYID, FILE_FORMAT, FILENAME, FOV_NUMBER, FOVX, FOVXUNIT, FOVY, FOVYUNIT, FRAME_AVERAGING, HTAN_CENTER, HTAN_DATA_FILE_ID, HTAN_PARENT_BIOSPECIMEN_ID, HTAN_PARENT_DATA_FILE_ID, HTAN_PARTICIPANT_ID, ID, IMAGE_ID, IMAGING_ASSAY_TYPE, IMMERSION, LENSNA, MANIFEST_ID, MD5, MERFISH_CODEBOOK_FILE, MERFISH_POSITIONS_FILE, MICROSCOPE, NOMINALMAGNIFICATION, OBJECTIVE, PASSED_QC, PHYSICALSIZEX, PHYSICALSIZEXUNIT, PHYSICALSIZEY, PHYSICALSIZEYUNIT, PHYSICALSIZEZ, PHYSICALSIZEZUNIT, PIXELS_BIGENDIAN, PIXELTYPE, PLANECOUNT, PROTOCOL_LINK, PYRAMID, SIZEC, SIZET, SIZEX, SIZEY, SIZEZ, SOFTWARE_AND_VERSION, TSERIES, WORKINGDISTANCE, WORKINGDISTANCEUNIT, ZSTACK
+
+HTAN_2.HTAN.IMAGING_LEVEL4_HMS_ORION_CURRENT
+  NUM cols: AF1, Area, Argo550, Blank, CD163, CD20, CD31, CD3e, CD4, CD45, CD45RO, CD68, CD8a, CellID, E_Cadherin, Eccentricity, Extent, FOXP3, Hoechst, Ki_67, MajorAxisLength, MinorAxisLength, Orientation, Pan_CK, PD_1, PD_L1, SMA, Solidity, X_centroid, Y_centroid
+  STR cols: HTAN_Biospecimen_ID, HTAN_Center, HTAN_Data_File_ID, Source_entityId, Source_filename
+
+HTAN_2.HTAN.MASSSPECTROMETRY_LEVEL3_METADATA_CURRENT
+  NUM cols: File_Size, Manifest_Version
+  STR cols: CDS_Release, Component, Data_Release, entityId, File_Format, Filename, HTAN_Center, HTAN_Data_File_ID, HTAN_Parent_Biospecimen_ID, HTAN_Parent_Data_File_ID, Id, Manifest_Id, Mass_Spectrometry_Auxiliary_File, md5, MS_Assay_Category, Software_and_Version
+  OTHER TABLES WITH IDENTICAL SCHEMA: MASSSPECTROMETRY_LEVEL4_METADATA_CURRENT
+
+HTAN_2.HTAN.METABOLOMICS_METADATA_CURRENT
+  NUM cols: File_Size
+  STR cols: Assay_Type, Base_Filename, Component, Data_Release, entityId, File_Format, Filename, HTAN_Center, HTAN_Data_File_ID, HTAN_Parent_Biospecimen_ID, md5
+  OTHER TABLES WITH IDENTICAL SCHEMA: PROTEOMICS_METADATA_CURRENT
+
+HTAN_2.HTAN.RPPA_LEVEL2_METADATA_CURRENT
+  NUM cols: File_Size, Manifest_Version
+  STR cols: Assay_Type, CDS_Release, Component, Data_Release, entityId, File_Format, Filename, HTAN_Center, HTAN_Data_File_ID, HTAN_Parent_Biospecimen_ID, HTAN_Parent_Data_File_ID, HTAN_Participant_ID, HTAN_RPPA_Antibody_Table, Id, Manifest_Id, md5, Protocol_Link, Software_and_Version
+
+HTAN_2.HTAN.SCATACSEQ_LEVEL2_METADATA_CURRENT
+  NUM cols: File_Size, Manifest_Version
+  STR cols: Alignment_Workflow_Type, Alignment_Workflow_Url, Average_Base_Quality, Average_Insert_Size, Average_Read_Length, CDS_Release, Component, Contamination, Contamination_Error, Custom_Alignment_Workflow, Data_Release, entityId, File_Format, Filename, Genomic_Reference, Genomic_Reference_URL, HTAN_Center, HTAN_Data_File_ID, HTAN_Parent_Data_File_ID, Id, Index_File_Name, Manifest_Id, MapQ30, md5, Mean_Coverage, Median_Percentage_of_Mitochondrial_Reads_per_Nucleus, Pairs_On_Diff_CHR, Proportion_Base_Mismatch, Proportion_Coverage_10x, Proportion_Coverage_30X, Proportion_Reads_Duplicated, Proportion_Reads_Mapped, Proportion_Targets_No_Coverage, Short_Reads, Total_Reads, Total_Uniquely_Mapped, Total_Unmapped_reads
+
+HTAN_2.HTAN.SCRNASEQ_HTAPP_LEVEL4_CURRENT
+  NUM cols: X, Y
+  STR cols: batchID, Biospecimen, Cell_Subset, CellType, HTAN_Center, HTAPP_ID, NAME, Source_entityId, Source_filename, Top_Level_Cell_Subset
+
+HTAN_2.HTAN.SCRNASEQ_LEVEL1_METADATA_CURRENT
+  NUM cols: File_Size, Manifest_Version
+  STR cols: cDNA_Length, cDNA_Offset, CDS_Release, Cell_Barcode_Length, Cell_Barcode_Offset, Component, Cryopreserved_Cells_in_Sample, Data_Release, Dissociation_Method, Empty_Well_Barcode, End_Bias, entityId, Feature_Reference_Id, File_Format, Filename, HTAN_Center, HTAN_Data_File_ID, HTAN_Parent_Biospecimen_ID, Id, Input_Cells_and_Nuclei, Library_Construction_Method, Library_Preparation_Days_from_Index, Manifest_Id, md5, Median_UMIs_per_Cell_Number, Nucleic_Acid_Capture_Days_from_Index, Nucleic_Acid_Source, Protocol_Link, Read[1-2], Read_Indicator, Reverse_Transcription_Primer, Sequencing_Library_Construction_Days_from_Index, Sequencing_Platform, Single_Cell_Dissociation_Days_from_Index, Single_Cell_Isolation_Method, Spike_In, Spike_In_Concentration, Technical_Replicate_Group, Total_Number_of_Input_Cells, UMI_Barcode_Length, UMI_Barcode_Offset, Valid_Barcodes_Cell_Number, Well_Index
+
+HTAN_2.HTAN.SCRNASEQ_MSK_EPITHELIAL_CELLS_CURRENT
+  NUM cols: iObs, iVar, log1p_n_genes_by_counts, log1p_total_counts, mito_frac, n_genes_by_counts, RBP_frac, total_counts, X_value
+  STR cols: assay, assay_ontology_term_id, author_cell_type, batch, cell_type, cell_type_ontology_term_id, clusters, development_stage, development_stage_ontology_term_id, disease, disease_ontology_term_id, donor_id, feature_biotype, feature_name, feature_reference, HTAN_Biospecimen_ID, HTAN_Participant_ID, organism, organism_ontology_term_id, procedure, self_reported_ethnicity, self_reported_ethnicity_ontology_term_id, sex, sex_ontology_term_id, suspension_type, tissue, tissue_ontology_term_id, treatment
+  OTHER cols: feature_is_filtered, is_primary_data
+
+HTAN_2.HTAN.SCRNASEQ_MSK_SCLC_COMBINED_SAMPLES_CURRENT
+  NUM cols: H_KNN, IOBS, IVAR, LIBSIZE, MITO_FRAC, NGENES, RBP_FRAC, X_VALUE
+  STR cols: ASSAY, ASSAY_ONTOLOGY_TERM_ID, BATCH, CELL_TYPE, CELL_TYPE_COARSE, CELL_TYPE_FINE, CELL_TYPE_GENERAL, CELL_TYPE_MED, CELL_TYPE_ONTOLOGY_TERM_ID, CLUSTERS, DEVELOPMENT_STAGE, DEVELOPMENT_STAGE_ONTOLOGY_TERM_ID, DISEASE, DISEASE_ONTOLOGY_TERM_ID, DONOR_ID, FEATURE_BIOTYPE, FEATURE_NAME, FEATURE_REFERENCE, HISTO, HTAN_BIOSPECIMEN_ID, HTAN_PARTICIPANT_ID, ORGANISM, ORGANISM_ONTOLOGY_TERM_ID, PROCEDURE, SELF_REPORTED_ETHNICITY, SELF_REPORTED_ETHNICITY_ONTOLOGY_TERM_ID, SEX, SEX_ONTOLOGY_TERM_ID, SUSPENSION_TYPE, TISSUE, TISSUE_ONTOLOGY_TERM_ID, TREATMENT
+  OTHER cols: FEATURE_IS_FILTERED, IS_PRIMARY_DATA
+
+HTAN_2.HTAN.SCRNASEQ_MSK_SCLC_EPITHELIAL_CELLS_CURRENT
+  NUM cols: clusters, iObs, iVar, log1p_n_genes_by_counts, log1p_total_counts, MHCI_PRESENTATION, MHCII_PRESENTATION, mito_frac, n_genes_by_counts, NEUROD_genes, pval_SCLC_A, pval_SCLC_N, pval_SCLC_P, RBP_frac, total_counts, X_value
+  STR cols: assay, assay_ontology_term_id, batch, cell_type, cell_type_ontology_term_id, clusters_fine, development_stage, development_stage_ontology_term_id, disease, disease_ontology_term_id, donor_id, feature_biotype, feature_name, feature_reference, histo, HTAN_Biospecimen_ID, HTAN_Participant_ID, organism, organism_ontology_term_id, procedure, SCLC_major_subtype_of_sample, SCLC_subtype, SCLC_subtype_plus_TP53_RB1_wt, self_reported_ethnicity, self_reported_ethnicity_ontology_term_id, sex, sex_ontology_term_id, suspension_type, tissue, tissue_ontology_term_id, treatment, treatment_categorized
+  OTHER cols: feature_is_filtered, is_primary_data, recurrent_cluster
+
+HTAN_2.HTAN.SRRS_BIOSPECIMEN_CURRENT
+  NUM cols: MANIFEST_VERSION
+  STR cols: ACQUISITION_METHOD_OTHER_SPECIFY, ACQUISITION_METHOD_TYPE, ADDITIONAL_TOPOGRAPHY, ADJACENT_BIOSPECIMEN_IDS, ANALYTE_TYPE, BIOSPECIMEN_DIMENSION_[1-3], BIOSPECIMEN_TYPE, COLLECTION_DAYS_FROM_INDEX, COLLECTION_MEDIA, COMPONENT, ENTITYID, FIXATION_DURATION, FIXATIVE_TYPE, HISTOLOGIC_MORPHOLOGY_CODE, HTAN_BIOSPECIMEN_ID, HTAN_CENTER, HTAN_PARENT_ID, ID, ISCHEMIC_TEMPERATURE, ISCHEMIC_TIME, MANIFEST_ID, PORTION_WEIGHT, PREINVASIVE_MORPHOLOGY, PRESERVATION_METHOD, PROCESSING_DAYS_FROM_INDEX, PROTOCOL_LINK, SECTION_NUMBER_IN_SEQUENCE, SECTION_THICKNESS_VALUE, SECTIONING_DAYS_FROM_INDEX, SHIPPING_CONDITION_TYPE, SITE_OF_RESECTION_OR_BIOPSY, SLIDE_CHARGE_TYPE, SOURCE_HTAN_BIOSPECIMEN_ID, SPECIMEN_LATERALITY, STORAGE_METHOD, TIMEPOINT_LABEL, TOPOGRAPHY_CODE, TOTAL_VOLUME, TUMOR_TISSUE_TYPE
+
+HTAN_2.HTAN._10XVISIUM_SPATIALTRANSCRIPTOMICS_SCRNASEQ_LEVEL3_METADATA_CURRENT
+  NUM cols: File_Size, Manifest_Version
+  STR cols: Capture_Area, CDS_Release, Component, Data_Release, entityId, File_Format, Filename, HTAN_Center, HTAN_Data_File_ID, HTAN_Parent_Biospecimen_ID, HTAN_Parent_Data_File_ID, Id, Manifest_Id, md5, Mean_Reads_per_Spatial_Spot, Median_Number_Genes_per_Spatial_Spot, Median_UMI_Counts_per_Spot, Proportion_Reads_Mapped, Proportion_Reads_Mapped_to_Transcriptome, Run_ID, Sequencing_Saturation, Spots_under_tissue, Visium_File_Type, Workflow_Link, Workflow_Version

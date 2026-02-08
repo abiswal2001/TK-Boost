@@ -1,0 +1,89 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+.venv/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+*.tmp
+*.temp
+temp/
+tmp/
+
+# Database files (if any local ones)
+*.db
+*.sqlite
+*.sqlite3
+
+# API keys and secrets
+*secret*
+*key*
+*password*
+*credential*
+
+data/spider2/
+data/bird
+old_code
+data/minidev/
+outputs/shubham_run/*
+external_repos/*
+# Exclude large CSV files from validator output (intermediate and final results)
+outputs/*/execution_result_after_*.csv
+outputs/*/execution_result_final.csv
+outputs/snowflake_validator_withmem/**/execution_result_after_*.csv
+outputs/snowflake_validator_withmem/**/execution_result_final.csv
+outputs/snowflake_validator_nomem/**/execution_result_after_*.csv
+outputs/snowflake_validator_nomem/**/execution_result_final.csv

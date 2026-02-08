@@ -1,0 +1,104 @@
+[DB=WIDE_WORLD_IMPORTERS | SCHEMA=WIDE_WORLD_IMPORTERS]
+WIDE_WORLD_IMPORTERS.WIDE_WORLD_IMPORTERS.APPLICATION_COUNTRIES
+  NUM cols: Border, CountryID, IsoNumericCode, LastEditedBy, LatestRecordedPopulation, ValidFrom, ValidTo
+  STR cols: Continent, CountryName, CountryType, FormalName, IsoAlpha3Code, Region, Subregion
+
+WIDE_WORLD_IMPORTERS.WIDE_WORLD_IMPORTERS.APPLICATION_DELIVERYMETHODS
+  NUM cols: DeliveryMethodID, LastEditedBy, ValidFrom, ValidTo
+  STR cols: DeliveryMethodName
+
+WIDE_WORLD_IMPORTERS.WIDE_WORLD_IMPORTERS.APPLICATION_PAYMENTMETHODS
+  NUM cols: LastEditedBy, PaymentMethodID, ValidFrom, ValidTo
+  STR cols: PaymentMethodName
+
+WIDE_WORLD_IMPORTERS.WIDE_WORLD_IMPORTERS.APPLICATION_PEOPLE
+  NUM cols: IsEmployee, IsExternalLogonProvider, IsPermittedToLogon, IsSalesperson, IsSystemUser, LastEditedBy, PersonID, ValidFrom, ValidTo
+  STR cols: CustomFields, EmailAddress, FaxNumber, FullName, HashedPassword, LogonName, OtherLanguages, PhoneNumber, Photo, PreferredName, SearchName, UserPreferences
+
+WIDE_WORLD_IMPORTERS.WIDE_WORLD_IMPORTERS.APPLICATION_STATEPROVINCES
+  NUM cols: CountryID, LastEditedBy, LatestRecordedPopulation, StateProvinceID, ValidFrom, ValidTo
+  STR cols: SalesTerritory, StateProvinceCode, StateProvinceName
+  OTHER cols: Border
+
+WIDE_WORLD_IMPORTERS.WIDE_WORLD_IMPORTERS.APPLICATION_SYSTEMPARAMETERS
+  NUM cols: DeliveryCityID, DeliveryPostalCode, LastEditedBy, PostalCityID, PostalPostalCode, SystemParameterID
+  STR cols: ApplicationSettings, DeliveryAddressLine[1-2], DeliveryLocation, LastEditedWhen, PostalAddressLine[1-2]
+
+WIDE_WORLD_IMPORTERS.WIDE_WORLD_IMPORTERS.APPLICATION_TRANSACTIONTYPES
+  NUM cols: LastEditedBy, TransactionTypeID, ValidFrom, ValidTo
+  STR cols: TransactionTypeName
+
+WIDE_WORLD_IMPORTERS.WIDE_WORLD_IMPORTERS.PURCHASING_PURCHASEORDER
+  NUM cols: ContactPersonID, DeliveryMethodID, IsOrderFinalized, LastEditedBy, LastEditedWhen, PurchaseOrderID, SupplierID
+  STR cols: Comments, InternalComments, SupplierReference
+  TIME cols: ExpectedDeliveryDate, OrderDate
+
+WIDE_WORLD_IMPORTERS.WIDE_WORLD_IMPORTERS.PURCHASING_SUPPLIERCATEGORIES
+  NUM cols: LastEditedBy, SupplierCategoryID, ValidFrom, ValidTo
+  STR cols: SupplierCategoryName
+
+WIDE_WORLD_IMPORTERS.WIDE_WORLD_IMPORTERS.PURCHASING_SUPPLIERS
+  NUM cols: AlternateContactPersonID, BankAccountCode, BankAccountNumber, BankInternationalCode, DeliveryCityID, DeliveryLocation, DeliveryPostalCode, LastEditedBy, PaymentDays, PostalCityID, PostalPostalCode, PrimaryContactPersonID, SupplierCategoryID, SupplierID, ValidFrom, ValidTo
+  STR cols: BankAccountBranch, BankAccountName, DeliveryAddressLine[1-2], DeliveryMethodID, FaxNumber, InternalComments, PhoneNumber, PostalAddressLine[1-2], SupplierName, SupplierReference, WebsiteURL
+
+WIDE_WORLD_IMPORTERS.WIDE_WORLD_IMPORTERS.SALES_BUYINGGROUPS
+  NUM cols: BuyingGroupID, LastEditedBy, ValidFrom, ValidTo
+  STR cols: BuyingGroupName
+
+WIDE_WORLD_IMPORTERS.WIDE_WORLD_IMPORTERS.SALES_CUSTOMERCATEGORIES
+  NUM cols: CustomerCategoryID, LastEditedBy, ValidFrom, ValidTo
+  STR cols: CustomerCategoryName
+
+WIDE_WORLD_IMPORTERS.WIDE_WORLD_IMPORTERS.SALES_CUSTOMERS
+  NUM cols: BillToCustomerID, CustomerCategoryID, CustomerID, DeliveryCityID, DeliveryLocation, DeliveryMethodID, DeliveryPostalCode, IsOnCreditHold, IsStatementSent, LastEditedBy, PaymentDays, PostalCityID, PostalPostalCode, PrimaryContactPersonID, StandardDiscountPercentage, ValidFrom, ValidTo
+  STR cols: AlternateContactPersonID, BuyingGroupID, CreditLimit, CustomerName, DeliveryAddressLine[1-2], DeliveryRun, FaxNumber, PhoneNumber, PostalAddressLine[1-2], RunPosition, WebsiteURL
+  TIME cols: AccountOpenedDate
+
+WIDE_WORLD_IMPORTERS.WIDE_WORLD_IMPORTERS.SALES_CUSTOMERTRANSACTIONS
+  NUM cols: AmountExcludingTax, CustomerID, CustomerTransactionID, InvoiceID, IsFinalized, LastEditedBy, OutstandingBalance, PaymentMethodID, TaxAmount, TransactionAmount, TransactionTypeID
+  STR cols: FinalizationDate, LastEditedWhen, TransactionDate
+
+WIDE_WORLD_IMPORTERS.WIDE_WORLD_IMPORTERS.SALES_INVOICES
+  NUM cols: AccountsPersonID, BillToCustomerID, Comments, ContactPersonID, CreditNoteReason, CustomerID, CustomerPurchaseOrderNumber, DeliveryMethodID, DeliveryRun, InternalComments, InvoiceID, IsCreditNote, LastEditedBy, OrderID, PackedByPersonID, RunPosition, SalespersonPersonID, TotalChillerItems, TotalDryItems
+  STR cols: ConfirmedDeliveryTime, ConfirmedReceivedBy, DeliveryInstructions, InvoiceDate, LastEditedWhen, ReturnedDeliveryData
+
+WIDE_WORLD_IMPORTERS.WIDE_WORLD_IMPORTERS.SALES_ORDERLINES
+  NUM cols: LastEditedBy, LastEditedWhen, OrderID, OrderLineID, PackageTypeID, PickedQuantity, Quantity, StockItemID, TaxRate, UnitPrice
+  STR cols: Description, PickingCompletedWhen
+
+WIDE_WORLD_IMPORTERS.WIDE_WORLD_IMPORTERS.SALES_ORDERS
+  NUM cols: ContactPersonID, CustomerID, CustomerPurchaseOrderNumber, IsUndersupplyBackordered, LastEditedBy, LastEditedWhen, OrderID, SalespersonPersonID
+  STR cols: BackorderOrderID, Comments, DeliveryInstructions, InternalComments, PickedByPersonID, PickingCompletedWhen
+  TIME cols: ExpectedDeliveryDate, OrderDate
+
+WIDE_WORLD_IMPORTERS.WIDE_WORLD_IMPORTERS.SALES_SPECIALDEALS
+  NUM cols: BuyingGroupID, DiscountPercentage, LastEditedBy, LastEditedWhen, SpecialDealID, StockGroupID
+  STR cols: CustomerCategoryID, CustomerID, DealDescription, DiscountAmount, StockItemID, UnitPrice
+  TIME cols: EndDate, StartDate
+
+WIDE_WORLD_IMPORTERS.WIDE_WORLD_IMPORTERS.WAREHOUSE_COLORS
+  NUM cols: ColorID, LastEditedBy, ValidFrom, ValidTo
+  STR cols: ColorName
+
+WIDE_WORLD_IMPORTERS.WIDE_WORLD_IMPORTERS.WAREHOUSE_STOCKGROUPS
+  NUM cols: LastEditedBy, StockGroupID, ValidFrom, ValidTo
+  STR cols: StockGroupName
+
+WIDE_WORLD_IMPORTERS.WIDE_WORLD_IMPORTERS.WAREHOUSE_STOCKITEMHOLDINGS
+  NUM cols: LastCostPrice, LastEditedBy, LastEditedWhen, LastStocktakeQuantity, QuantityOnHand, ReorderLevel, StockItemID, TargetStockLevel
+  STR cols: BinLocation
+
+WIDE_WORLD_IMPORTERS.WIDE_WORLD_IMPORTERS.WAREHOUSE_STOCKITEMS
+  NUM cols: IsChillerStock, LastEditedBy, LeadTimeDays, OuterPackageID, QuantityPerOuter, RecommendedRetailPrice, StockItemID, SupplierID, TaxRate, TypicalWeightPerUnit, UnitPackageID, UnitPrice, ValidFrom, ValidTo
+  STR cols: Barcode, Brand, ColorID, CustomFields, InternalComments, MarketingComments, Photo, SearchDetails, Size, StockItemName, Tags
+
+WIDE_WORLD_IMPORTERS.WIDE_WORLD_IMPORTERS.WAREHOUSE_STOCKITEMSTOCKGROUPS
+  NUM cols: LastEditedBy, LastEditedWhen, StockGroupID, StockItemID, StockItemStockGroupID
+
+WIDE_WORLD_IMPORTERS.WIDE_WORLD_IMPORTERS.WAREHOUSE_STOCKITEMTRANSACTIONS
+  NUM cols: CustomerID, InvoiceID, LastEditedBy, PurchaseOrderID, Quantity, StockItemID, StockItemTransactionID, SupplierID, TransactionTypeID
+  STR cols: LastEditedWhen, TransactionOccurredWhen
+
+WIDE_WORLD_IMPORTERS.WIDE_WORLD_IMPORTERS.WAREHOUSE_VEHICLETEMPERATURES
+  NUM cols: ChillerSensorNumber, IsCompressed, RecordedWhen, Temperature, VehicleTemperatureID
+  STR cols: CompressedSensorData, FullSensorData, VehicleRegistration

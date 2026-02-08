@@ -1,0 +1,7 @@
+[DATASET=hacker_news]
+bigquery-public-data.hacker_news.full
+  NUM cols: score, time, id, parent, descendants, ranking
+  STR cols: title, url, text, by, type
+  TIME cols: timestamp
+  BOOL cols: dead, deleted
+  OTHER cols: description="A

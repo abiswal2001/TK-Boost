@@ -1,0 +1,5 @@
+[DATASET=ga4]
+bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_202* (92 tables)
+  NUM cols: event_timestamp, event_previous_timestamp, event_value_in_usd, event_bundle_sequence_id, event_server_timestamp_offset, user_first_touch_timestamp, stream_id
+  STR cols: event_date, event_name, user_id, user_pseudo_id, platform
+  OTHER cols: event_params, privacy_info, user_properties, user_ltv, device, geo, app_info, traffic_source, event_dimensions, ecommerce, items

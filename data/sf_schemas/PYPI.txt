@@ -1,0 +1,10 @@
+[DB=PYPI | SCHEMA=PYPI]
+PYPI.PYPI.DISTRIBUTION_METADATA
+  NUM cols: size, upload_time
+  STR cols: author, author_email, blake2_256_digest, comment_text, description, description_content_type, download_url, filename, home_page, keywords, license, maintainer, maintainer_email, md5_digest, metadata_version, name, packagetype, path, python_version, requires_python, sha256_digest, summary, uploaded_via, version
+  OTHER cols: classifiers, has_signature, obsoletes, obsoletes_dist, platform, project_urls, provides, provides_dist, requires, requires_dist, requires_external
+
+PYPI.PYPI.FILE_DOWNLOADS
+  NUM cols: timestamp
+  STR cols: country_code, project, tls_cipher, tls_protocol, url
+  OTHER cols: details, file

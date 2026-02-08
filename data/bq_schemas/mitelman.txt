@@ -1,0 +1,75 @@
+[DATASET=mitelman]
+mitelman-db.prod.AuthorReference
+  NUM cols: Refno, NameOrder
+  STR cols: Name
+
+mitelman-db.prod.CytoBands_hg38
+  NUM cols: hg38_start, hg38_stop
+  STR cols: chromosome, cytoband_name
+
+mitelman-db.prod.CytoConverted
+  NUM cols: RefNo, InvNo, Clone, ChrOrd, Start, End
+  STR cols: CaseNo, Chr, Type, CellsPresent
+
+mitelman-db.prod.CytoConvertedLog
+  NUM cols: RefNo, InvNo, Clone
+  STR cols: CaseNo, Type, Message
+
+mitelman-db.prod.Cytogen
+  NUM cols: RefNo, Age, CaseOrder
+  STR cols: CaseNo, Sex, Race, Series, Country, PrevTum, PrevMorph, PrevTopo, PrevTreat, HerDis, SpecHerDis, Morph, SpecMorph, Topo, Immunology, SpecObs, Origin, PatientID, PatientName
+
+mitelman-db.prod.CytogenInv
+  NUM cols: RefNo, InvNo, Clones, KaryLength
+  STR cols: CaseNo, InvDate, Tissue, KaryShort, KaryLong, CaseOrder
+
+mitelman-db.prod.CytogenInvValid
+  NUM cols: RefNo, InvNo, KaryLength
+  STR cols: CaseNo, KaryShort, KaryLong, Message, Reason, CytoConvInput
+
+mitelman-db.prod.KaryAbnorm
+  NUM cols: RefNo, InvNo, CloneNo, OrderNo
+  STR cols: CaseNo, Abnormality
+
+mitelman-db.prod.KaryBit
+  NUM cols: RefNo, InvNo, CloneNo, OrderNo
+  STR cols: CaseNo, Bit
+
+mitelman-db.prod.KaryBreak
+  NUM cols: RefNo, InvNo, CloneNo, OrderNo
+  STR cols: CaseNo, Breakpoint
+
+mitelman-db.prod.KaryClone
+  NUM cols: RefNo, InvNo, CloneNo, ChromoMin, ChromoMax, CloneLength
+  STR cols: CaseNo, CloneShort, CloneLong, Sole
+
+mitelman-db.prod.Koder
+  STR cols: Kod, KodTyp, Aktiv, Intern, Benamning, Kortnamn, Notering, Inregdatum, GiltigFran, GiltigTill, Flagga1, Flagga2, Flagga3, Flagga4
+
+mitelman-db.prod.MolBiolClinAssoc
+  NUM cols: RefNo, InvNo, KaryLength
+  STR cols: MolClin, Morph, Topo, Immunology, GeneLength, GeneShort, GeneLong, KaryShort, KaryLong
+
+mitelman-db.prod.MolClinAbnorm
+  NUM cols: RefNo, InvNo, OrderNo
+  STR cols: MolClin, Abnormality
+
+mitelman-db.prod.MolClinBreak
+  NUM cols: RefNo, InvNo, OrderNo
+  STR cols: MolClin, Breakpoint
+
+mitelman-db.prod.MolClinGene
+  NUM cols: RefNo, InvNo, OrderNo
+  STR cols: MolClin, Prefix, Gene, Suffix
+
+mitelman-db.prod.RecurrentData
+  NUM cols: ChrOrder
+  STR cols: Chromosome, Arm, Band, Abnormality, Morph, Topo, TotalCases, Gene, Type
+
+mitelman-db.prod.RecurrentNumData
+  NUM cols: ChrOrder
+  STR cols: Chromosome, Abnormality, Morph, Topo, TotalCases
+
+mitelman-db.prod.Reference
+  NUM cols: RefNo, TitleLength, Year
+  STR cols: TitleShort, TitleLong, Volume, Journal, Text, Abbreviation, AuthorsLength, AuthorsShort, AuthorsLong, Flag, Pubmed

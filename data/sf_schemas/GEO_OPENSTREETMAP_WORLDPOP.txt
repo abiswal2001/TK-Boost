@@ -1,0 +1,43 @@
+[DB=GEO_OPENSTREETMAP_WORLDPOP | SCHEMA=GEO_OPENSTREETMAP]
+GEO_OPENSTREETMAP_WORLDPOP.GEO_OPENSTREETMAP.HISTORY_CHANGESETS
+  NUM cols: id, osm_timestamp_max, osm_timestamp_min
+  OTHER cols: nodes, relations, ways
+
+GEO_OPENSTREETMAP_WORLDPOP.GEO_OPENSTREETMAP.HISTORY_LAYERS
+  NUM cols: layer_code, osm_id, osm_timestamp, osm_version, osm_way_id
+  STR cols: gdal_type, layer_class, layer_name
+  OTHER cols: all_tags, geometry
+  OTHER TABLES WITH IDENTICAL SCHEMA: PLANET_LAYERS
+
+GEO_OPENSTREETMAP_WORLDPOP.GEO_OPENSTREETMAP.HISTORY_NODES
+  NUM cols: changeset, id, latitude, longitude, osm_timestamp, version
+  STR cols: username
+  OTHER cols: all_tags, geometry, visible
+  OTHER TABLES WITH IDENTICAL SCHEMA: PLANET_NODES
+
+GEO_OPENSTREETMAP_WORLDPOP.GEO_OPENSTREETMAP.HISTORY_RELATIONS
+  NUM cols: changeset, id, osm_timestamp, version
+  STR cols: username
+  OTHER cols: all_tags, geometry, members, visible
+  OTHER TABLES WITH IDENTICAL SCHEMA: PLANET_RELATIONS
+
+GEO_OPENSTREETMAP_WORLDPOP.GEO_OPENSTREETMAP.PLANET_FEATURES
+  NUM cols: osm_id, osm_timestamp, osm_version, osm_way_id
+  STR cols: feature_type
+  OTHER cols: all_tags, geometry
+
+GEO_OPENSTREETMAP_WORLDPOP.GEO_OPENSTREETMAP.PLANET_FEATURES_POINTS
+  NUM cols: osm_id, osm_timestamp, osm_version, osm_way_id
+  OTHER cols: all_tags, geometry
+
+GEO_OPENSTREETMAP_WORLDPOP.GEO_OPENSTREETMAP.PLANET_WAYS
+  NUM cols: changeset, id, osm_timestamp, version
+  STR cols: username
+  OTHER cols: all_tags, geometry, nodes, visible
+
+[DB=GEO_OPENSTREETMAP_WORLDPOP | SCHEMA=WORLDPOP]
+GEO_OPENSTREETMAP_WORLDPOP.WORLDPOP.POPULATION_GRID_1KM
+  NUM cols: latitude_centroid, longitude_centroid, population
+  STR cols: alpha_3_code, country_name, geo_id
+  TIME cols: last_updated
+  OTHER cols: geog

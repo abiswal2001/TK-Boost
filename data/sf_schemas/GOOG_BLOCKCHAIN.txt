@@ -1,0 +1,39 @@
+[DB=GOOG_BLOCKCHAIN | SCHEMA=GOOG_BLOCKCHAIN_ARBITRUM_ONE_US]
+GOOG_BLOCKCHAIN.GOOG_BLOCKCHAIN_ARBITRUM_ONE_US.DECODED_EVENTS
+  NUM cols: BLOCK_NUMBER, BLOCK_TIMESTAMP, LOG_INDEX, TRANSACTION_INDEX
+  STR cols: ADDRESS, ARGS, BLOCK_HASH, EVENT_HASH, EVENT_SIGNATURE, TRANSACTION_HASH
+  OTHER cols: REMOVED, TOPICS
+
+GOOG_BLOCKCHAIN.GOOG_BLOCKCHAIN_ARBITRUM_ONE_US.LOGS
+  NUM cols: block_number, block_timestamp, log_index, transaction_index
+  STR cols: address, block_hash, data, transaction_hash
+  OTHER cols: removed, topics
+
+[DB=GOOG_BLOCKCHAIN | SCHEMA=GOOG_BLOCKCHAIN_CRONOS_MAINNET_US]
+GOOG_BLOCKCHAIN.GOOG_BLOCKCHAIN_CRONOS_MAINNET_US.BLOCKS
+  NUM cols: base_fee_per_gas, block_number, gas_limit, gas_used, nonce, size
+  STR cols: block_hash, difficulty, extra_data, logs_bloom, miner, mix_hash, parent_hash, receipts_root, state_root, total_difficulty, transactions_root, uncles, uncles_sha3
+  TIME cols: block_timestamp
+
+GOOG_BLOCKCHAIN.GOOG_BLOCKCHAIN_CRONOS_MAINNET_US.TRANSACTIONS
+  NUM cols: gas, max_fee_per_gas, max_priority_fee_per_gas, nonce, transaction_index, transaction_type
+  STR cols: access_list, block_hash, from_address, gas_price, input, r, s, to_address, transaction_hash, v, value
+  TIME cols: block_timestamp
+
+[DB=GOOG_BLOCKCHAIN | SCHEMA=GOOG_BLOCKCHAIN_POLYGON_MAINNET_US]
+GOOG_BLOCKCHAIN.GOOG_BLOCKCHAIN_POLYGON_MAINNET_US.TRANSACTIONS
+  NUM cols: gas, max_fee_per_gas, max_priority_fee_per_gas, nonce, transaction_index, transaction_type
+  STR cols: access_list, block_hash, from_address, gas_price, input, r, s, to_address, transaction_hash, v, value
+  TIME cols: block_timestamp
+
+[DB=GOOG_BLOCKCHAIN | SCHEMA=GOOG_BLOCKCHAIN_TRON_MAINNET_US]
+GOOG_BLOCKCHAIN.GOOG_BLOCKCHAIN_TRON_MAINNET_US.BLOCKS
+  NUM cols: base_fee_per_gas, block_number, gas_limit, gas_used, nonce, size
+  STR cols: block_hash, difficulty, extra_data, logs_bloom, miner, mix_hash, parent_hash, receipts_root, state_root, total_difficulty, transactions_root, uncles, uncles_sha3
+  TIME cols: block_timestamp
+
+GOOG_BLOCKCHAIN.GOOG_BLOCKCHAIN_TRON_MAINNET_US.LOGS
+  NUM cols: block_number, log_index, transaction_index
+  STR cols: address, block_hash, data, topics, transaction_hash
+  TIME cols: block_timestamp
+  OTHER cols: removed

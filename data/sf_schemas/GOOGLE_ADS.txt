@@ -1,0 +1,8 @@
+[DB=GOOGLE_ADS | SCHEMA=GOOGLE_ADS_TRANSPARENCY_CENTER]
+GOOGLE_ADS.GOOGLE_ADS_TRANSPARENCY_CENTER.CREATIVE_STATS
+  STR cols: ad_format_type, advertiser_disclosed_name, advertiser_id, advertiser_legal_name, advertiser_location, advertiser_verification_status, creative_id, creative_page_url, topic
+  OTHER cols: audience_selection_approach_info, is_funded_by_google_ad_grants, region_stats
+
+GOOGLE_ADS.GOOGLE_ADS_TRANSPARENCY_CENTER.REMOVED_CREATIVE_STATS
+  STR cols: creative_page_url
+  OTHER cols: audience_selection_approach_info, disapproval, region_stats

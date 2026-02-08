@@ -1,0 +1,47 @@
+[DB=GITHUB_REPOS_DATE | SCHEMA=DAY]
+GITHUB_REPOS_DATE.DAY.GAMES_POST_WIDE [TABLE DOES NOT EXIST - DO NOT USE]
+  NUM cols: atBatEventSequenceNumber, attendance, awayCurrentTotalRuns, awayFinalErrors, awayFinalHits, awayFinalRuns, awayFinalRunsForInning, balls, createdAt, durationMinutes, hitLocation, hitterHeight, hitterPitchCount, hitterWeight, homeCurrentTotalRuns, homeFinalErrors, homeFinalHits, homeFinalRuns, homeFinalRunsForInning, inningHalfEventSequenceNumber, inningNumber, is_ab, is_ab_over, is_bunt, is_bunt_shown, is_double_play, is_hit, is_on_base, is_passed_ball, is_triple_play, is_wild_pitch, lineupOrder, lineupPosition, outs, pitcherPitchCount, pitchSpeed, pitchZone, rob0_end, rob1_end, rob2_end, rob3_end, startingBalls, startingOuts, startingStrikes, startTime, strikes, updatedAt, venueCapacity, year
+  STR cols: atBatEventType, awayBatter[1-9], awayFielder[1-12], awayTeamId, awayTeamName, dayNight, description, duration, gameId, gameStatus, hitterBatHand, hitterFirstName, hitterId, hitterLastName, hitType, homeBatter[1-9], homeFielder[1-12], homeTeamId, homeTeamName, inningEventType, inningHalf, lineupPlayerId, lineupTeamId, outcomeDescription, outcomeId, pitcherFirstName, pitcherId, pitcherLastName, pitcherThrowHand, pitchType, pitchTypeDescription, rob0_isOut, rob0_outcomeDescription, rob0_outcomeId, rob0_start, rob1_isOut, rob1_outcomeDescription, rob1_outcomeId, rob1_start, rob2_isOut, rob2_outcomeDescription, rob2_outcomeId, rob2_start, rob3_isOut, rob3_outcomeDescription, rob3_outcomeId, rob3_start, seasonId, seasonType, status, venueCity, venueId, venueMarket, venueName, venueOutfieldDistances, venueState, venueSurface, venueZip
+
+[DB=GITHUB_REPOS_DATE | SCHEMA=GITHUB_REPOS]
+GITHUB_REPOS_DATE.GITHUB_REPOS.LANGUAGES
+  STR cols: repo_name
+  OTHER cols: language
+
+GITHUB_REPOS_DATE.GITHUB_REPOS.LICENSES
+  STR cols: license, repo_name
+
+GITHUB_REPOS_DATE.GITHUB_REPOS.SAMPLE_COMMITS
+  STR cols: commit, encoding, message, repo_name, subject, tree
+  OTHER cols: author, committer, difference, difference_truncated, parent, trailer
+
+GITHUB_REPOS_DATE.GITHUB_REPOS.SAMPLE_CONTENTS
+  NUM cols: copies, sample_mode, size
+  STR cols: content, id, sample_path, sample_ref, sample_repo_name, sample_symlink_target
+  OTHER cols: binary
+
+GITHUB_REPOS_DATE.GITHUB_REPOS.SAMPLE_FILES
+  NUM cols: mode
+  STR cols: id, path, ref, repo_name, symlink_target
+
+GITHUB_REPOS_DATE.GITHUB_REPOS.SAMPLE_REPOS
+  NUM cols: watch_count
+  STR cols: repo_name
+
+[DB=GITHUB_REPOS_DATE | SCHEMA=MONTH]
+GITHUB_REPOS_DATE.MONTH..__[201104-202402]
+  Note: Tables have YYYYMM suffixes (e.g., _201102, _201506).
+  Example: SELECT * FROM GITHUB_REPOS_DATE.MONTH._201506
+  NUM cols: created_at
+  STR cols: id, other, payload, type
+  OTHER cols: actor, org, public, repo
+  AVAILABLE MONTHS (YYYYMM): 201104, 201107, 201110, 201111, 201203, 201208, 201301, 201307, 201410, 201606, 201805, 201904, 201907, 201910, 202011, 202101, 202102, 202204, 202210, 202212, 202301, 202304, 202306, 202311, 202402
+
+[DB=GITHUB_REPOS_DATE | SCHEMA=YEAR]
+GITHUB_REPOS_DATE.YEAR..__[2011-2023]
+  Note: Tables have YYYY suffixes (e.g., _2011, _2015).
+  Example: SELECT * FROM GITHUB_REPOS_DATE.YEAR._2015
+  NUM cols: created_at
+  STR cols: id, other, payload, type
+  OTHER cols: actor, org, public, repo
+  AVAILABLE YEARS (YYYY): 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023

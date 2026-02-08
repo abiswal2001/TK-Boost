@@ -1,0 +1,5 @@
+[DATASET=usa_names]
+bigquery-public-data.usa_names.[usa_1910_2013 | usa_1910_current]
+  NUM cols: year, number
+  STR cols: state, gender, name
+  OTHER cols: description="The

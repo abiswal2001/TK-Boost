@@ -1,0 +1,590 @@
+[DATASET=ebi_chembl]
+bigquery-public-data.ebi_chembl.action_type* (10 tables)
+  STR cols: action_type, description, parent_type
+
+bigquery-public-data.ebi_chembl.activities_23
+  STR cols: activity_id, assay_id, doc_id, record_id, molregno, standard_relation, published_value, published_units, standard_value, standard_units, standard_flag, standard_type, activity_comment, published_type, data_validity_comment, potential_duplicate, published_relation, pchembl_value, bao_endpoint, uo_units, qudt_units
+
+bigquery-public-data.ebi_chembl.activities_24
+  STR cols: activity_id, assay_id, doc_id, record_id, molregno, standard_relation, published_value, published_units, standard_value, standard_units, standard_flag, standard_type, activity_comment, published_type, data_validity_comment, potential_duplicate, published_relation, pchembl_value, bao_endpoint, uo_units, qudt_units, toid, upper_value, standard_upper_value, src_id, type, relation, value, units, text_value, standard_text_value
+
+bigquery-public-data.ebi_chembl.[activities_25 | activities_26 | activities_27 | activities_28 | activities_29]
+  STR cols: activity_id, assay_id, doc_id, record_id, molregno, standard_relation, standard_value, standard_units, standard_flag, standard_type, activity_comment, data_validity_comment, potential_duplicate, pchembl_value, bao_endpoint, uo_units, qudt_units, toid, upper_value, standard_upper_value, src_id, type, relation, value, units, text_value, standard_text_value
+
+bigquery-public-data.ebi_chembl.activities_30
+  NUM cols: activity_id, assay_id, doc_id, record_id, molregno, standard_value, standard_flag, potential_duplicate, pchembl_value, toid, upper_value, standard_upper_value, src_id, value
+  STR cols: standard_relation, standard_units, standard_type, activity_comment, data_validity_comment, bao_endpoint, uo_units, qudt_units, type, relation, units, text_value, standard_text_value
+
+bigquery-public-data.ebi_chembl.[activities | activities_33]
+  STR cols: activity_id, assay_id, doc_id, record_id, molregno, standard_relation, standard_value, standard_units, standard_flag, standard_type, activity_comment, data_validity_comment, potential_duplicate, pchembl_value, bao_endpoint, uo_units, qudt_units, toid, upper_value, standard_upper_value, src_id, type, relation, value, units, text_value, standard_text_value, action_type
+
+bigquery-public-data.ebi_chembl.activity_properties_30
+  NUM cols: ap_id, activity_id, value, standard_value, result_flag
+  STR cols: type, relation, units, text_value, standard_type, standard_relation, standard_units, standard_text_value, comments
+
+bigquery-public-data.ebi_chembl.activity_properties* (8 tables)
+  STR cols: ap_id, activity_id, type, relation, value, units, text_value, standard_type, standard_relation, standard_value, standard_units, standard_text_value, comments, result_flag
+
+bigquery-public-data.ebi_chembl.activity_smid* (8 tables)
+  STR cols: smid
+
+bigquery-public-data.ebi_chembl.activity_smid_30
+  NUM cols: smid
+
+bigquery-public-data.ebi_chembl.activity_stds_lookup* (9 tables)
+  STR cols: std_act_id, standard_type, definition, standard_units, normal_range_min, normal_range_max
+
+bigquery-public-data.ebi_chembl.activity_stds_lookup_30
+  NUM cols: std_act_id, normal_range_min, normal_range_max
+  STR cols: standard_type, definition, standard_units
+
+bigquery-public-data.ebi_chembl.activity_supp_30
+  NUM cols: as_id, rgid, smid, value, standard_value
+  STR cols: type, relation, units, text_value, standard_type, standard_relation, standard_units, standard_text_value, comments
+
+bigquery-public-data.ebi_chembl.activity_supp* (8 tables)
+  STR cols: as_id, rgid, smid, type, relation, value, units, text_value, standard_type, standard_relation, standard_value, standard_units, standard_text_value, comments
+
+bigquery-public-data.ebi_chembl.activity_supp_map* (7 tables)
+  STR cols: actsm_id, activity_id, smid
+
+bigquery-public-data.ebi_chembl.activity_supp_map_24
+  STR cols: activity_id, smid
+
+bigquery-public-data.ebi_chembl.activity_supp_map_30
+  NUM cols: actsm_id, activity_id, smid
+
+bigquery-public-data.ebi_chembl.assay_class_map_30
+  NUM cols: ass_cls_map_id, assay_id, assay_class_id
+
+bigquery-public-data.ebi_chembl.assay_class_map* (7 tables)
+  STR cols: ass_cls_map_id, assay_id, assay_class_id
+
+bigquery-public-data.ebi_chembl.[assay_classification_26 | assay_classification_27]
+  STR cols: assay_class_id, l1, l2, l3, class_type, bao_id, source
+
+bigquery-public-data.ebi_chembl.[assay_classification | assay_classification_25 | assay_classification_28 | assay_classification_29 | assay_classification_33]
+  STR cols: assay_class_id, l1, l2, l3, class_type, source
+
+bigquery-public-data.ebi_chembl.assay_classification_30
+  NUM cols: assay_class_id
+  STR cols: l1, l2, l3, class_type, source
+
+bigquery-public-data.ebi_chembl.assay_parameters_23
+  STR cols: assay_param_id, assay_id, parameter_type, parameter_value
+
+bigquery-public-data.ebi_chembl.assay_parameters* (8 tables)
+  STR cols: assay_param_id, assay_id, type, relation, value, units, text_value, standard_type, standard_relation, standard_value, standard_units, standard_text_value, comments
+
+bigquery-public-data.ebi_chembl.assay_parameters_30
+  NUM cols: assay_param_id, assay_id, value, standard_value
+  STR cols: type, relation, units, text_value, standard_type, standard_relation, standard_units, standard_text_value, comments
+
+bigquery-public-data.ebi_chembl.assay_type* (10 tables)
+  STR cols: assay_type, assay_desc
+
+bigquery-public-data.ebi_chembl.assays_23
+  STR cols: assay_id, doc_id, description, assay_type, assay_test_type, assay_category, assay_organism, assay_tax_id, assay_strain, assay_tissue, assay_cell_type, assay_subcellular_fraction, tid, relationship_type, confidence_score, curated_by, src_id, src_assay_id, chembl_id, cell_id, bao_format, tissue_id, variant_id
+
+bigquery-public-data.ebi_chembl.assays* (6 tables)
+  STR cols: assay_id, doc_id, description, assay_type, assay_test_type, assay_category, assay_organism, assay_tax_id, assay_strain, assay_tissue, assay_cell_type, assay_subcellular_fraction, tid, relationship_type, confidence_score, curated_by, src_id, src_assay_id, chembl_id, cell_id, bao_format, tissue_id, variant_id, aidx
+
+bigquery-public-data.ebi_chembl.[assays_26 | assays_27]
+  STR cols: assay_id, doc_id, description, assay_type, assay_test_type, assay_category, assay_organism, assay_tax_id, assay_strain, assay_tissue, assay_cell_type, assay_subcellular_fraction, tid, relationship_type, confidence_score, curated_by, activity_count, assay_source, src_id, src_assay_id, chembl_id, updated_on, updated_by, orig_description, mc_tax_id, mc_organism, mc_target_type, mc_target_name, mc_target_accession, cell_id, bao_format, tissue_id, curation_comment, variant_id, aidx, job_id, log_id, ridx, tid_fixed
+
+bigquery-public-data.ebi_chembl.assays_30
+  NUM cols: assay_id, doc_id, assay_tax_id, tid, confidence_score, src_id, cell_id, tissue_id, variant_id
+  STR cols: description, assay_type, assay_test_type, assay_category, assay_organism, assay_strain, assay_tissue, assay_cell_type, assay_subcellular_fraction, relationship_type, curated_by, src_assay_id, chembl_id, bao_format, aidx
+
+bigquery-public-data.ebi_chembl.atc_classification* (10 tables)
+  STR cols: who_name, level1, level2, level3, level4, level5, level1_description, level2_description, level3_description, level4_description
+
+bigquery-public-data.ebi_chembl.binding_sites* (9 tables)
+  STR cols: site_id, site_name, tid
+
+bigquery-public-data.ebi_chembl.binding_sites_30
+  NUM cols: site_id, tid
+  STR cols: site_name
+
+bigquery-public-data.ebi_chembl.bio_component_sequences* (9 tables)
+  STR cols: component_id, component_type, description, sequence, sequence_md5sum, tax_id, organism
+
+bigquery-public-data.ebi_chembl.bio_component_sequences_30
+  NUM cols: component_id, tax_id
+  STR cols: component_type, description, sequence, sequence_md5sum, organism
+
+bigquery-public-data.ebi_chembl.bioassay_ontology* (10 tables)
+  STR cols: bao_id, label
+
+bigquery-public-data.ebi_chembl.biotherapeutic_components* (9 tables)
+  STR cols: biocomp_id, molregno, component_id
+
+bigquery-public-data.ebi_chembl.biotherapeutic_components_30
+  NUM cols: biocomp_id, molregno, component_id
+
+bigquery-public-data.ebi_chembl.biotherapeutics* (9 tables)
+  STR cols: molregno, description, helm_notation
+
+bigquery-public-data.ebi_chembl.biotherapeutics_30
+  NUM cols: molregno
+  STR cols: description, helm_notation
+
+bigquery-public-data.ebi_chembl.[cell_dictionary_23 | cell_dictionary_24 | cell_dictionary_25]
+  STR cols: cell_id, cell_name, cell_description, cell_source_tissue, cell_source_organism, cell_source_tax_id, clo_id, efo_id, cellosaurus_id, cl_lincs_id, chembl_id
+
+bigquery-public-data.ebi_chembl.cell_dictionary* (6 tables)
+  STR cols: cell_id, cell_name, cell_description, cell_source_tissue, cell_source_organism, cell_source_tax_id, clo_id, efo_id, cellosaurus_id, cl_lincs_id, chembl_id, cell_ontology_id
+
+bigquery-public-data.ebi_chembl.cell_dictionary_30
+  NUM cols: cell_id, cell_source_tax_id
+  STR cols: cell_name, cell_description, cell_source_tissue, cell_source_organism, clo_id, efo_id, cellosaurus_id, cl_lincs_id, chembl_id, cell_ontology_id
+
+bigquery-public-data.ebi_chembl.chembl_id_lookup_2* (6 tables)
+  STR cols: chembl_id, entity_type, entity_id, status
+
+bigquery-public-data.ebi_chembl.[chembl_id_lookup | chembl_id_lookup_29 | chembl_id_lookup_33]
+  STR cols: chembl_id, entity_type, entity_id, status, last_active
+
+bigquery-public-data.ebi_chembl.chembl_id_lookup_30
+  NUM cols: entity_id, last_active
+  STR cols: chembl_id, entity_type, status
+
+bigquery-public-data.ebi_chembl.[chembl_release | chembl_release_33]
+  STR cols: chembl_release_id, chembl_release, creation_date
+
+bigquery-public-data.ebi_chembl.component_class* (9 tables)
+  STR cols: component_id, protein_class_id, comp_class_id
+
+bigquery-public-data.ebi_chembl.component_class_30
+  NUM cols: component_id, protein_class_id, comp_class_id
+
+bigquery-public-data.ebi_chembl.component_domains* (9 tables)
+  STR cols: compd_id, domain_id, component_id, start_position, end_position
+
+bigquery-public-data.ebi_chembl.component_domains_30
+  NUM cols: compd_id, domain_id, component_id, start_position, end_position
+
+bigquery-public-data.ebi_chembl.component_go* (9 tables)
+  STR cols: comp_go_id, component_id, go_id
+
+bigquery-public-data.ebi_chembl.component_go_30
+  NUM cols: comp_go_id, component_id
+  STR cols: go_id
+
+bigquery-public-data.ebi_chembl.component_sequences* (9 tables)
+  STR cols: component_id, component_type, accession, sequence, sequence_md5sum, description, tax_id, organism, db_source, db_version
+
+bigquery-public-data.ebi_chembl.component_sequences_30
+  NUM cols: component_id, tax_id
+  STR cols: component_type, accession, sequence, sequence_md5sum, description, organism, db_source, db_version
+
+bigquery-public-data.ebi_chembl.component_synonyms* (9 tables)
+  STR cols: compsyn_id, component_id, component_synonym, syn_type
+
+bigquery-public-data.ebi_chembl.component_synonyms_30
+  NUM cols: compsyn_id, component_id
+  STR cols: component_synonym, syn_type
+
+bigquery-public-data.ebi_chembl.compound_properties_23
+  STR cols: molregno, mw_freebase, alogp, hba, hbd, psa, rtb, ro3_pass, num_ro5_violations, acd_most_apka, acd_most_bpka, acd_logp, acd_logd, molecular_species, full_mwt, aromatic_rings, heavy_atoms, num_alerts, qed_weighted, mw_monoisotopic, full_molformula, hba_lipinski, hbd_lipinski, num_lipinski_ro5_violations
+
+bigquery-public-data.ebi_chembl.[compound_properties_24 | compound_properties_25]
+  STR cols: molregno, mw_freebase, alogp, hba, hbd, psa, rtb, ro3_pass, num_ro5_violations, acd_most_apka, acd_most_bpka, acd_logp, acd_logd, molecular_species, full_mwt, aromatic_rings, heavy_atoms, qed_weighted, mw_monoisotopic, full_molformula, hba_lipinski, hbd_lipinski, num_lipinski_ro5_violations
+
+bigquery-public-data.ebi_chembl.[compound_properties_26 | compound_properties_27 | compound_properties_28 | compound_properties_29]
+  STR cols: molregno, mw_freebase, alogp, hba, hbd, psa, rtb, ro3_pass, num_ro5_violations, cx_most_apka, cx_most_bpka, cx_logp, cx_logd, molecular_species, full_mwt, aromatic_rings, heavy_atoms, qed_weighted, mw_monoisotopic, full_molformula, hba_lipinski, hbd_lipinski, num_lipinski_ro5_violations
+
+bigquery-public-data.ebi_chembl.compound_properties_30
+  NUM cols: molregno, mw_freebase, alogp, hba, hbd, psa, rtb, num_ro5_violations, cx_most_apka, cx_most_bpka, cx_logp, cx_logd, full_mwt, aromatic_rings, heavy_atoms, qed_weighted, mw_monoisotopic, hba_lipinski, hbd_lipinski, num_lipinski_ro5_violations
+  STR cols: ro3_pass, molecular_species, full_molformula
+
+bigquery-public-data.ebi_chembl.[compound_properties | compound_properties_33]
+  STR cols: molregno, mw_freebase, alogp, hba, hbd, psa, rtb, ro3_pass, num_ro5_violations, cx_most_apka, cx_most_bpka, cx_logp, cx_logd, molecular_species, full_mwt, aromatic_rings, heavy_atoms, qed_weighted, mw_monoisotopic, full_molformula, hba_lipinski, hbd_lipinski, num_lipinski_ro5_violations, np_likeness_score
+
+bigquery-public-data.ebi_chembl.compound_records_23
+  STR cols: record_id, molregno, doc_id, compound_key, compound_name, src_id, src_compound_id
+
+bigquery-public-data.ebi_chembl.compound_records* (8 tables)
+  STR cols: record_id, molregno, doc_id, compound_key, compound_name, src_id, src_compound_id, cidx
+
+bigquery-public-data.ebi_chembl.compound_records_30
+  NUM cols: record_id, molregno, doc_id, src_id
+  STR cols: compound_key, compound_name, src_compound_id, cidx
+
+bigquery-public-data.ebi_chembl.compound_structural_alerts* (9 tables)
+  STR cols: cpd_str_alert_id, molregno, alert_id
+
+bigquery-public-data.ebi_chembl.compound_structural_alerts_30
+  NUM cols: cpd_str_alert_id, molregno, alert_id
+
+bigquery-public-data.ebi_chembl.compound_structures* (9 tables)
+  STR cols: molregno, molfile, standard_inchi, standard_inchi_key, canonical_smiles
+
+bigquery-public-data.ebi_chembl.compound_structures_30
+  NUM cols: molregno
+  STR cols: molfile, standard_inchi, standard_inchi_key, canonical_smiles
+
+bigquery-public-data.ebi_chembl.confidence_score_lookup* (9 tables)
+  STR cols: confidence_score, description, target_mapping
+
+bigquery-public-data.ebi_chembl.confidence_score_lookup_30
+  NUM cols: confidence_score
+  STR cols: description, target_mapping
+
+bigquery-public-data.ebi_chembl.curation_lookup* (10 tables)
+  STR cols: curated_by, description
+
+bigquery-public-data.ebi_chembl.data_validity_lookup* (10 tables)
+  STR cols: data_validity_comment, description
+
+bigquery-public-data.ebi_chembl.defined_daily_dose_30
+  NUM cols: ddd_id, ddd_value
+  STR cols: atc_code, ddd_units, ddd_admr, ddd_comment
+
+bigquery-public-data.ebi_chembl.defined_daily_dose* (9 tables)
+  STR cols: atc_code, ddd_units, ddd_admr, ddd_comment, ddd_id, ddd_value
+
+bigquery-public-data.ebi_chembl.docs_23
+  STR cols: doc_id, journal, year, volume, issue, first_page, last_page, pubmed_id, doi, chembl_id, title, doc_type, authors, abstract, patent_id
+
+bigquery-public-data.ebi_chembl.docs_2* (6 tables)
+  STR cols: doc_id, journal, year, volume, issue, first_page, last_page, pubmed_id, doi, chembl_id, title, doc_type, authors, abstract, patent_id, ridx, src_id
+
+bigquery-public-data.ebi_chembl.docs_30
+  NUM cols: doc_id, year, pubmed_id, src_id
+  STR cols: journal, volume, issue, first_page, last_page, doi, chembl_id, title, doc_type, authors, abstract, patent_id, ridx
+
+bigquery-public-data.ebi_chembl.[docs | docs_33]
+  STR cols: doc_id, journal, year, volume, issue, first_page, last_page, pubmed_id, doi, chembl_id, title, doc_type, authors, abstract, patent_id, ridx, src_id, chembl_release_id
+
+bigquery-public-data.ebi_chembl.domains_30
+  NUM cols: domain_id
+  STR cols: domain_type, source_domain_id, domain_name, domain_description
+
+bigquery-public-data.ebi_chembl.domains* (9 tables)
+  STR cols: domain_id, domain_type, source_domain_id, domain_name, domain_description
+
+bigquery-public-data.ebi_chembl.drug_indication_30
+  NUM cols: drugind_id, record_id, molregno, max_phase_for_ind
+  STR cols: mesh_id, mesh_heading, efo_id, efo_term
+
+bigquery-public-data.ebi_chembl.drug_indication* (9 tables)
+  STR cols: drugind_id, record_id, molregno, max_phase_for_ind, mesh_id, mesh_heading, efo_id, efo_term
+
+bigquery-public-data.ebi_chembl.[drug_mechanism_23 | drug_mechanism_24 | drug_mechanism_25 | drug_mechanism_26 | drug_mechanism_27]
+  STR cols: mec_id, record_id, molregno, mechanism_of_action, tid, site_id, action_type, direct_interaction, molecular_mechanism, disease_efficacy, mechanism_comment, selectivity_comment, binding_site_comment
+
+bigquery-public-data.ebi_chembl.[drug_mechanism | drug_mechanism_28 | drug_mechanism_29 | drug_mechanism_33]
+  STR cols: mec_id, record_id, molregno, mechanism_of_action, tid, site_id, action_type, direct_interaction, molecular_mechanism, disease_efficacy, mechanism_comment, selectivity_comment, binding_site_comment, variant_id
+
+bigquery-public-data.ebi_chembl.drug_mechanism_30
+  NUM cols: mec_id, record_id, molregno, tid, site_id, direct_interaction, molecular_mechanism, disease_efficacy, variant_id
+  STR cols: mechanism_of_action, action_type, mechanism_comment, selectivity_comment, binding_site_comment
+
+bigquery-public-data.ebi_chembl.[drug_warning | drug_warning_33]
+  STR cols: warning_id, record_id, molregno, warning_type, warning_class, warning_description, warning_country, warning_year, efo_term, efo_id, efo_id_for_warning_class
+
+bigquery-public-data.ebi_chembl.[drug_warning_28 | drug_warning_29]
+  STR cols: warning_id, record_id, molregno, warning_type, warning_class, warning_description, warning_country, warning_year
+
+bigquery-public-data.ebi_chembl.drug_warning_30
+  NUM cols: warning_id, record_id, molregno, warning_year
+  STR cols: warning_type, warning_class, warning_description, warning_country
+
+bigquery-public-data.ebi_chembl.formulations* (9 tables)
+  STR cols: product_id, ingredient, strength, record_id, molregno, formulation_id
+
+bigquery-public-data.ebi_chembl.formulations_30
+  NUM cols: record_id, molregno, formulation_id
+  STR cols: product_id, ingredient, strength
+
+bigquery-public-data.ebi_chembl.frac_classification* (9 tables)
+  STR cols: frac_class_id, active_ingredient, level1, level1_description, level2, level2_description, level3, level3_description, level4, level4_description, level5, frac_code
+
+bigquery-public-data.ebi_chembl.frac_classification_30
+  NUM cols: frac_class_id
+  STR cols: active_ingredient, level1, level1_description, level2, level2_description, level3, level3_description, level4, level4_description, level5, frac_code
+
+bigquery-public-data.ebi_chembl.go_classification* (9 tables)
+  STR cols: go_id, parent_go_id, pref_name, class_level, aspect, path
+
+bigquery-public-data.ebi_chembl.go_classification_30
+  NUM cols: class_level
+  STR cols: go_id, parent_go_id, pref_name, aspect, path
+
+bigquery-public-data.ebi_chembl.hrac_classification* (9 tables)
+  STR cols: hrac_class_id, active_ingredient, level1, level1_description, level2, level2_description, level3, hrac_code
+
+bigquery-public-data.ebi_chembl.hrac_classification_30
+  NUM cols: hrac_class_id
+  STR cols: active_ingredient, level1, level1_description, level2, level2_description, level3, hrac_code
+
+bigquery-public-data.ebi_chembl.indication_refs_30
+  NUM cols: indref_id, drugind_id
+  STR cols: ref_type, ref_id, ref_url
+
+bigquery-public-data.ebi_chembl.indication_refs* (9 tables)
+  STR cols: indref_id, drugind_id, ref_type, ref_id, ref_url
+
+bigquery-public-data.ebi_chembl.irac_classification_30
+  NUM cols: irac_class_id
+  STR cols: active_ingredient, level1, level1_description, level2, level2_description, level3, level3_description, level4, irac_code
+
+bigquery-public-data.ebi_chembl.irac_classification* (9 tables)
+  STR cols: irac_class_id, active_ingredient, level1, level1_description, level2, level2_description, level3, level3_description, level4, irac_code
+
+bigquery-public-data.ebi_chembl.ligand_eff* (9 tables)
+  STR cols: activity_id, bei, sei, le, lle
+
+bigquery-public-data.ebi_chembl.ligand_eff_30
+  NUM cols: activity_id, bei, sei, le, lle
+
+bigquery-public-data.ebi_chembl.[match_23 | match_24]
+  STR cols: patent_no, publication_number
+
+bigquery-public-data.ebi_chembl.mechanism_refs_30
+  NUM cols: mecref_id, mec_id
+  STR cols: ref_type, ref_id, ref_url
+
+bigquery-public-data.ebi_chembl.mechanism_refs* (9 tables)
+  STR cols: mecref_id, mec_id, ref_type, ref_id, ref_url
+
+bigquery-public-data.ebi_chembl.metabolism* (9 tables)
+  STR cols: met_id, drug_record_id, substrate_record_id, metabolite_record_id, pathway_id, pathway_key, enzyme_name, enzyme_tid, met_conversion, organism, tax_id, met_comment
+
+bigquery-public-data.ebi_chembl.metabolism_30
+  NUM cols: met_id, drug_record_id, substrate_record_id, metabolite_record_id, pathway_id, enzyme_tid, tax_id
+  STR cols: pathway_key, enzyme_name, met_conversion, organism, met_comment
+
+bigquery-public-data.ebi_chembl.metabolism_refs* (9 tables)
+  STR cols: metref_id, met_id, ref_type, ref_id, ref_url
+
+bigquery-public-data.ebi_chembl.metabolism_refs_30
+  NUM cols: metref_id, met_id
+  STR cols: ref_type, ref_id, ref_url
+
+bigquery-public-data.ebi_chembl.molecule_atc_classification* (9 tables)
+  STR cols: mol_atc_id, level5, molregno
+
+bigquery-public-data.ebi_chembl.molecule_atc_classification_30
+  NUM cols: mol_atc_id, molregno
+  STR cols: level5
+
+bigquery-public-data.ebi_chembl.[molecule_dictionary | molecule_dictionary_33]
+  STR cols: molregno, pref_name, chembl_id, max_phase, therapeutic_flag, dosed_ingredient, structure_type, chebi_par_id, molecule_type, first_approval, oral, parenteral, topical, black_box_warning, first_in_class, chirality, prodrug, inorganic_flag, usan_year, availability_type, usan_stem, polymer_flag, usan_substem, usan_stem_definition, indication_class, withdrawn_flag, chemical_probe, natural_product
+
+bigquery-public-data.ebi_chembl.molecule_dictionary_23
+  STR cols: molregno, pref_name, chembl_id, max_phase, therapeutic_flag, dosed_ingredient, structure_type, chebi_par_id, molecule_type, first_approval, oral, parenteral, topical, black_box_warning, natural_product, first_in_class, chirality, prodrug, inorganic_flag, usan_year, availability_type, usan_stem, polymer_flag, usan_substem, usan_stem_definition, indication_class, withdrawn_flag, withdrawn_year, withdrawn_country, withdrawn_reason
+
+bigquery-public-data.ebi_chembl.molecule_dictionary_2* (6 tables)
+  STR cols: molregno, pref_name, chembl_id, max_phase, therapeutic_flag, dosed_ingredient, structure_type, chebi_par_id, molecule_type, first_approval, oral, parenteral, topical, black_box_warning, natural_product, first_in_class, chirality, prodrug, inorganic_flag, usan_year, availability_type, usan_stem, polymer_flag, usan_substem, usan_stem_definition, indication_class, withdrawn_flag, withdrawn_year, withdrawn_country, withdrawn_reason, withdrawn_class
+
+bigquery-public-data.ebi_chembl.molecule_dictionary_30
+  NUM cols: molregno, max_phase, therapeutic_flag, dosed_ingredient, chebi_par_id, first_approval, oral, parenteral, topical, black_box_warning, natural_product, first_in_class, chirality, prodrug, inorganic_flag, usan_year, availability_type, polymer_flag, withdrawn_flag, withdrawn_year
+  STR cols: pref_name, chembl_id, structure_type, molecule_type, usan_stem, usan_substem, usan_stem_definition, indication_class, withdrawn_country, withdrawn_reason, withdrawn_class
+
+bigquery-public-data.ebi_chembl.molecule_frac_classification* (9 tables)
+  STR cols: mol_frac_id, frac_class_id, molregno
+
+bigquery-public-data.ebi_chembl.molecule_frac_classification_30
+  NUM cols: mol_frac_id, frac_class_id, molregno
+
+bigquery-public-data.ebi_chembl.molecule_hierarchy_30
+  NUM cols: molregno, parent_molregno, active_molregno
+
+bigquery-public-data.ebi_chembl.molecule_hierarchy* (9 tables)
+  STR cols: molregno, parent_molregno, active_molregno
+
+bigquery-public-data.ebi_chembl.molecule_hrac_classification* (9 tables)
+  STR cols: mol_hrac_id, hrac_class_id, molregno
+
+bigquery-public-data.ebi_chembl.molecule_hrac_classification_30
+  NUM cols: mol_hrac_id, hrac_class_id, molregno
+
+bigquery-public-data.ebi_chembl.molecule_irac_classification* (9 tables)
+  STR cols: mol_irac_id, irac_class_id, molregno
+
+bigquery-public-data.ebi_chembl.molecule_irac_classification_30
+  NUM cols: mol_irac_id, irac_class_id, molregno
+
+bigquery-public-data.ebi_chembl.molecule_synonyms* (9 tables)
+  STR cols: molregno, syn_type, molsyn_id, res_stem_id, synonyms
+
+bigquery-public-data.ebi_chembl.molecule_synonyms_30
+  NUM cols: molregno, molsyn_id, res_stem_id
+  STR cols: syn_type, synonyms
+
+bigquery-public-data.ebi_chembl.organism_class* (9 tables)
+  STR cols: oc_id, tax_id, l1, l2, l3
+
+bigquery-public-data.ebi_chembl.organism_class_30
+  NUM cols: oc_id, tax_id
+  STR cols: l1, l2, l3
+
+bigquery-public-data.ebi_chembl.parameter_type_23
+  STR cols: parameter_type, description
+
+bigquery-public-data.ebi_chembl.patent_use_codes* (10 tables)
+  STR cols: patent_use_code, definition
+
+bigquery-public-data.ebi_chembl.predicted_binding_domains* (9 tables)
+  STR cols: predbind_id, activity_id, site_id, prediction_method, confidence
+
+bigquery-public-data.ebi_chembl.predicted_binding_domains_30
+  NUM cols: predbind_id, activity_id, site_id
+  STR cols: prediction_method, confidence
+
+bigquery-public-data.ebi_chembl.product_patents_23
+  STR cols: prod_pat_id, product_id, patent_no, patent_expire_date, drug_substance_flag, drug_product_flag, patent_use_code, delist_flag
+
+bigquery-public-data.ebi_chembl.product_patents* (8 tables)
+  STR cols: prod_pat_id, product_id, patent_no, patent_expire_date, drug_substance_flag, drug_product_flag, patent_use_code, delist_flag, submission_date
+
+bigquery-public-data.ebi_chembl.product_patents_30
+  NUM cols: prod_pat_id, drug_substance_flag, drug_product_flag, delist_flag
+  STR cols: product_id, patent_no, patent_use_code
+  TIME cols: patent_expire_date, submission_date
+
+bigquery-public-data.ebi_chembl.products* (9 tables)
+  STR cols: dosage_form, route, trade_name, approval_date, ad_type, oral, topical, parenteral, black_box_warning, applicant_full_name, innovator_company, product_id, nda_type
+
+bigquery-public-data.ebi_chembl.products_30
+  NUM cols: oral, topical, parenteral, black_box_warning, innovator_company
+  STR cols: dosage_form, route, trade_name, ad_type, applicant_full_name, product_id, nda_type
+  TIME cols: approval_date
+
+bigquery-public-data.ebi_chembl.protein_class_synonyms* (9 tables)
+  STR cols: protclasssyn_id, protein_class_id, protein_class_synonym, syn_type
+
+bigquery-public-data.ebi_chembl.protein_class_synonyms_30
+  NUM cols: protclasssyn_id, protein_class_id
+  STR cols: protein_class_synonym, syn_type
+
+bigquery-public-data.ebi_chembl.protein_classification* (9 tables)
+  STR cols: protein_class_id, parent_id, pref_name, short_name, protein_class_desc, definition, class_level
+
+bigquery-public-data.ebi_chembl.protein_classification_30
+  NUM cols: protein_class_id, parent_id, class_level
+  STR cols: pref_name, short_name, protein_class_desc, definition
+
+bigquery-public-data.ebi_chembl.protein_family_classification* (8 tables)
+  STR cols: protein_class_id, protein_class_desc, l1, l2, l3, l4, l5, l6, l7, l8
+
+bigquery-public-data.ebi_chembl.protein_family_classification_30
+  NUM cols: protein_class_id
+  STR cols: protein_class_desc, l1, l2, l3, l4, l5, l6, l7, l8
+
+bigquery-public-data.ebi_chembl.relationship_type* (10 tables)
+  STR cols: relationship_type, relationship_desc
+
+bigquery-public-data.ebi_chembl.research_companies* (9 tables)
+  STR cols: co_stem_id, res_stem_id, company, country, previous_company
+
+bigquery-public-data.ebi_chembl.research_companies_30
+  NUM cols: co_stem_id, res_stem_id
+  STR cols: company, country, previous_company
+
+bigquery-public-data.ebi_chembl.research_stem* (9 tables)
+  STR cols: res_stem_id, research_stem
+
+bigquery-public-data.ebi_chembl.research_stem_30
+  NUM cols: res_stem_id
+  STR cols: research_stem
+
+bigquery-public-data.ebi_chembl.site_components* (9 tables)
+  STR cols: sitecomp_id, site_id, component_id, domain_id, site_residues
+
+bigquery-public-data.ebi_chembl.site_components_30
+  NUM cols: sitecomp_id, site_id, component_id, domain_id
+  STR cols: site_residues
+
+bigquery-public-data.ebi_chembl.source* (9 tables)
+  STR cols: src_id, src_description, src_short_name
+
+bigquery-public-data.ebi_chembl.source_30
+  NUM cols: src_id
+  STR cols: src_description, src_short_name
+
+bigquery-public-data.ebi_chembl.sqlite_stat1* (9 tables)
+  STR cols: tbl, idx, stat
+
+bigquery-public-data.ebi_chembl.structural_alert_sets* (9 tables)
+  STR cols: alert_set_id, set_name, priority
+
+bigquery-public-data.ebi_chembl.structural_alert_sets_30
+  NUM cols: alert_set_id, priority
+  STR cols: set_name
+
+bigquery-public-data.ebi_chembl.structural_alerts* (9 tables)
+  STR cols: alert_id, alert_set_id, alert_name, smarts
+
+bigquery-public-data.ebi_chembl.structural_alerts_30
+  NUM cols: alert_id, alert_set_id
+  STR cols: alert_name, smarts
+
+bigquery-public-data.ebi_chembl.target_components* (9 tables)
+  STR cols: tid, component_id, targcomp_id, homologue
+
+bigquery-public-data.ebi_chembl.target_components_30
+  NUM cols: tid, component_id, targcomp_id, homologue
+
+bigquery-public-data.ebi_chembl.target_dictionary* (9 tables)
+  STR cols: tid, target_type, pref_name, tax_id, organism, chembl_id, species_group_flag
+
+bigquery-public-data.ebi_chembl.target_dictionary_30
+  NUM cols: tid, tax_id, species_group_flag
+  STR cols: target_type, pref_name, organism, chembl_id
+
+bigquery-public-data.ebi_chembl.target_relations* (9 tables)
+  STR cols: tid, relationship, related_tid, targrel_id
+
+bigquery-public-data.ebi_chembl.target_relations_30
+  NUM cols: tid, related_tid, targrel_id
+  STR cols: relationship
+
+bigquery-public-data.ebi_chembl.target_type* (10 tables)
+  STR cols: target_type, target_desc, parent_type
+
+bigquery-public-data.ebi_chembl.tissue_dictionary_28
+  STR cols: tissue_id, uberon_id, pref_name, efo_id, chembl_id, bto_id, caloha_id, downgraded
+
+bigquery-public-data.ebi_chembl.tissue_dictionary_30
+  NUM cols: tissue_id
+  STR cols: uberon_id, pref_name, efo_id, chembl_id, bto_id, caloha_id
+
+bigquery-public-data.ebi_chembl.tissue_dictionary* (8 tables)
+  STR cols: tissue_id, uberon_id, pref_name, efo_id, chembl_id, bto_id, caloha_id
+
+bigquery-public-data.ebi_chembl.[usan_stems | usan_stems_33]
+  STR cols: usan_stem_id, stem, subgroup, annotation, stem_class, major_class
+
+bigquery-public-data.ebi_chembl.usan_stems_2* (7 tables)
+  STR cols: usan_stem_id, stem, subgroup, annotation, stem_class, major_class, who_extra
+
+bigquery-public-data.ebi_chembl.usan_stems_30
+  NUM cols: usan_stem_id, who_extra
+  STR cols: stem, subgroup, annotation, stem_class, major_class
+
+bigquery-public-data.ebi_chembl.[variant_sequences_23 | variant_sequences_24 | variant_sequences_25]
+  STR cols: variant_id, mutation, accession, version, isoform, sequence, organism
+
+bigquery-public-data.ebi_chembl.variant_sequences_30
+  NUM cols: variant_id, version, isoform, tax_id
+  STR cols: mutation, accession, sequence, organism
+
+bigquery-public-data.ebi_chembl.variant_sequences* (6 tables)
+  STR cols: variant_id, mutation, accession, version, isoform, sequence, organism, tax_id
+
+bigquery-public-data.ebi_chembl.version_30
+  STR cols: name, comments
+  TIME cols: creation_date
+
+bigquery-public-data.ebi_chembl.version* (9 tables)
+  STR cols: name, creation_date, comments
+
+bigquery-public-data.ebi_chembl.[warning_refs | warning_refs_28 | warning_refs_29 | warning_refs_33]
+  STR cols: warnref_id, warning_id, ref_type, ref_id, ref_url
+
+bigquery-public-data.ebi_chembl.warning_refs_30
+  NUM cols: warnref_id, warning_id
+  STR cols: ref_type, ref_id, ref_url

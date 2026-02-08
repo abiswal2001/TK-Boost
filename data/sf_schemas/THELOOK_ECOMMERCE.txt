@@ -1,0 +1,28 @@
+[DB=THELOOK_ECOMMERCE | SCHEMA=THELOOK_ECOMMERCE]
+THELOOK_ECOMMERCE.THELOOK_ECOMMERCE.DISTRIBUTION_CENTERS
+  NUM cols: id, latitude, longitude
+  STR cols: name
+
+THELOOK_ECOMMERCE.THELOOK_ECOMMERCE.EVENTS
+  NUM cols: created_at, id, sequence_number, user_id
+  STR cols: browser, city, event_type, ip_address, postal_code, session_id, state, traffic_source, uri
+
+THELOOK_ECOMMERCE.THELOOK_ECOMMERCE.INVENTORY_ITEMS
+  NUM cols: cost, created_at, id, product_distribution_center_id, product_id, product_retail_price, sold_at
+  STR cols: product_brand, product_category, product_department, product_name, product_sku
+
+THELOOK_ECOMMERCE.THELOOK_ECOMMERCE.ORDERS
+  NUM cols: created_at, delivered_at, num_of_item, order_id, returned_at, shipped_at, user_id
+  STR cols: gender, status
+
+THELOOK_ECOMMERCE.THELOOK_ECOMMERCE.ORDER_ITEMS
+  NUM cols: created_at, delivered_at, id, inventory_item_id, order_id, product_id, returned_at, sale_price, shipped_at, user_id
+  STR cols: status
+
+THELOOK_ECOMMERCE.THELOOK_ECOMMERCE.PRODUCTS
+  NUM cols: cost, distribution_center_id, id, retail_price
+  STR cols: brand, category, department, name, sku
+
+THELOOK_ECOMMERCE.THELOOK_ECOMMERCE.USERS
+  NUM cols: age, created_at, id, latitude, longitude
+  STR cols: city, country, email, first_name, gender, last_name, postal_code, state, street_address, traffic_source

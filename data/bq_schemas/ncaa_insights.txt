@@ -1,0 +1,80 @@
+[DATASET=ncaa_insights]
+data-to-insights.ncaa.2018_tournament_results
+  NUM cols: season, round, days_from_epoch, points, opponent_points
+  STR cols: day, label, seed, market, name, alias, school_ncaa, opponent_seed, opponent_market, opponent_name, opponent_alias, opponent_school_ncaa
+  TIME cols: game_date
+
+data-to-insights.ncaa.2019_tournament_seeds
+  NUM cols: seed, season
+  STR cols: school_ncaa
+
+data-to-insights.ncaa.adjusted_metrics
+  NUM cols: season, tm_code, raw_stat, raw_rtg, raw_rk, adj_stat, adj_rtg, adj_rk
+  STR cols: tm, stat_name, through_games_of
+
+data-to-insights.ncaa.feature_engineering
+  NUM cols: season, poss_40min, pace_rating, pace_rank, pts_100poss, efficiency_rating, efficiency_rank
+  STR cols: team
+
+data-to-insights.ncaa.mascots
+  STR cols: id, market, name, mascot, mascot_name, mascot_common_name, tax_subspecies, tax_species, tax_genus, tax_family, tax_order, tax_class, tax_phylum, tax_kingdom, tax_domain, non_tax_type
+
+data-to-insights.ncaa.mbb_games_sr
+  NUM cols: season, attendance, lead_changes, times_tied, periods, venue_capacity, h_points_game, h_rank, h_field_goals_made, h_field_goals_att, h_field_goals_pct, h_three_points_made, h_three_points_att, h_three_points_pct, h_two_points_made, h_two_points_att, h_two_points_pct, h_blocked_att, h_free_throws_made, h_free_throws_att, h_free_throws_pct, h_offensive_rebounds, h_defensive_rebounds, h_rebounds, h_assists, h_turnovers, h_steals, h_blocks, h_assists_turnover_ratio, h_personal_fouls, h_ejections, h_foulouts, h_points, h_fast_break_pts, h_second_chance_pts, h_team_turnovers, h_points_off_turnovers, h_team_rebounds, h_flagrant_fouls, h_player_tech_fouls, h_team_tech_fouls, h_coach_tech_fouls, a_points_game, a_rank, a_field_goals_made, a_field_goals_att, a_field_goals_pct, a_three_points_made, a_three_points_att, a_three_points_pct, a_two_points_made, a_two_points_att, a_two_points_pct, a_blocked_att, a_free_throws_made, a_free_throws_att, a_free_throws_pct, a_offensive_rebounds, a_defensive_rebounds, a_rebounds, a_assists, a_turnovers, a_steals, a_blocks, a_assists_turnover_ratio, a_personal_fouls, a_ejections, a_foulouts, a_points, a_fast_break_pts, a_second_chance_pts, a_team_turnovers, a_points_off_turnovers, a_team_rebounds, a_flagrant_fouls, a_player_tech_fouls, a_team_tech_fouls, a_coach_tech_fouls
+  STR cols: game_id, status, coverage, tournament, tournament_type, tournament_round, tournament_game_no, possession_arrow, venue_id, venue_city, venue_state, venue_address, venue_zip, venue_country, venue_name, h_name, h_market, h_id, h_alias, h_league_id, h_league_name, h_league_alias, h_conf_id, h_conf_name, h_conf_alias, h_division_id, h_division_name, h_division_alias, h_logo_large, h_logo_medium, h_logo_small, h_minutes, a_name, a_market, a_id, a_alias, a_league_id, a_league_name, a_league_alias, a_conf_id, a_conf_name, a_conf_alias, a_division_id, a_division_name, a_division_alias, a_logo_large, a_logo_medium, a_logo_small, a_minutes
+  TIME cols: scheduled_date, gametime, created
+  BOOL cols: neutral_site, conference_game
+  OTHER cols: description="Team-level
+
+data-to-insights.ncaa.mbb_historical_teams_games
+  NUM cols: season, attendance, points_game, opp_code, opp_points_game
+  STR cols: scheduled_date, market, name, team_code, team_id, alias, current_division, opp_market, opp_name, opp_id, opp_alias, opp_current_division
+  BOOL cols: win
+  OTHER cols: description="Final
+
+data-to-insights.ncaa.mbb_historical_teams_seasons
+  NUM cols: season, team_code, division, wins, losses, ties
+  STR cols: market, name, team_id, alias, current_division
+  OTHER cols: description="Season
+
+data-to-insights.ncaa.mbb_historical_tournament_games
+  NUM cols: season, round, days_from_epoch, win_code_ncaa, win_kaggle_team_id, win_pts, lose_code_ncaa, lose_kaggle_team_id, lose_pts, num_ot, academic_year
+  STR cols: day, win_seed, win_region, win_market, win_name, win_alias, win_team_id, win_school_ncaa, lose_seed, lose_region, lose_market, lose_name, lose_alias, lose_team_id, lose_school_ncaa
+  TIME cols: game_date
+  OTHER cols: description="Game
+
+data-to-insights.ncaa.mbb_pbp_sr
+  NUM cols: season, venue_capacity, attendance, period, elapsed_time_sec, jersey_num, event_coord_x, event_coord_y, points_scored, timeout_duration
+  STR cols: game_id, status, venue_id, venue_name, venue_city, venue_state, venue_address, venue_zip, venue_country, tournament, tournament_type, round, game_no, away_market, away_name, away_id, away_alias, away_conf_name, away_conf_alias, away_division_name, away_division_alias, away_league_name, home_market, home_name, home_id, home_alias, home_conf_name, home_conf_alias, home_division_name, home_division_alias, home_league_name, game_clock, possession_arrow, team_name, team_market, team_id, team_alias, team_conf_name, team_conf_alias, team_division_name, team_division_alias, team_league_name, team_basket, possession_team_id, player_id, player_full_name, event_id, event_description, event_type, type, shot_type, shot_subtype, turnover_type, rebound_type
+  TIME cols: load_timestamp, scheduled_date, timestamp
+  BOOL cols: neutral_site, conference_game, shot_made, three_point_shot
+  OTHER cols: description="Play-by-play
+
+data-to-insights.ncaa.mbb_players_games_sr
+  NUM cols: season, jersey_number, height, weight, minutes_int64, field_goals_made, field_goals_att, field_goals_pct, three_points_made, three_points_att, three_points_pct, two_points_made, two_points_att, two_points_pct, blocked_att, free_throws_made, free_throws_att, free_throws_pct, offensive_rebounds, defensive_rebounds, rebounds, assists, turnovers, steals, blocks, assists_turnover_ratio, personal_fouls, tech_fouls, flagrant_fouls, points
+  STR cols: game_id, tournament, tournament_type, tournament_round, tournament_game_no, player_id, last_name, first_name, full_name, abbr_name, status, birth_place, birthplace_city, birthplace_state, birthplace_country, class, team_name, team_market, team_id, team_alias, conf_name, conf_alias, division_name, division_alias, league_name, minutes, position, primary_position
+  TIME cols: scheduled_date, gametime, sp_created
+  BOOL cols: neutral_site, home_team, active, played, starter
+  OTHER cols: description="Player-level
+
+data-to-insights.ncaa.mbb_teams
+  NUM cols: code_ncaa, kaggle_team_id, venue_capacity
+  STR cols: market, alias, name, id, school_ncaa, turner_name, league_name, league_alias, league_id, conf_name, conf_alias, conf_id, division_name, division_alias, division_id, venue_id, venue_city, venue_state, venue_address, venue_zip, venue_country, venue_name, logo_large, logo_medium, logo_small
+  OTHER cols: description="General
+
+data-to-insights.ncaa.mbb_teams_games_sr
+  NUM cols: season, attendance, lead_changes, times_tied, periods, venue_capacity, points_game, field_goals_made, field_goals_att, field_goals_pct, three_points_made, three_points_att, three_points_pct, two_points_made, two_points_att, two_points_pct, blocked_att, free_throws_made, free_throws_att, free_throws_pct, offensive_rebounds, defensive_rebounds, rebounds, assists, turnovers, steals, blocks, assists_turnover_ratio, personal_fouls, ejections, foulouts, points, fast_break_pts, second_chance_pts, team_turnovers, points_off_turnovers, team_rebounds, flagrant_fouls, player_tech_fouls, team_tech_fouls, coach_tech_fouls, opp_points_game, opp_field_goals_made, opp_field_goals_att, opp_field_goals_pct, opp_three_points_made, opp_three_points_att, opp_three_points_pct, opp_two_points_made, opp_two_points_att, opp_two_points_pct, opp_blocked_att, opp_free_throws_made, opp_free_throws_att, opp_free_throws_pct, opp_offensive_rebounds, opp_defensive_rebounds, opp_rebounds, opp_assists, opp_turnovers, opp_steals, opp_blocks, opp_assists_turnover_ratio, opp_personal_fouls, opp_ejections, opp_foulouts, opp_points, opp_fast_break_pts, opp_second_chance_pts, opp_team_turnovers, opp_points_off_turnovers, opp_team_rebounds, opp_flagrant_fouls, opp_player_tech_fouls, opp_team_tech_fouls, opp_coach_tech_fouls
+  STR cols: game_id, status, coverage, tournament, tournament_type, tournament_round, tournament_game_no, possession_arrow, venue_id, venue_city, venue_state, venue_address, venue_zip, venue_country, venue_name, name, market, team_id, alias, league_id, league_name, league_alias, conf_id, conf_name, conf_alias, division_id, division_name, division_alias, logo_large, logo_medium, logo_small, opp_name, opp_market, opp_id, opp_alias, opp_league_id, opp_league_name, opp_league_alias, opp_conf_id, opp_conf_name, opp_conf_alias, opp_division_id, opp_division_name, opp_division_alias, opp_logo_large, opp_logo_medium, opp_logo_small, minutes, opp_minutes
+  TIME cols: scheduled_date, gametime, created
+  BOOL cols: neutral_site, conference_game, home_team, win
+  OTHER cols: description="Team-level
+
+data-to-insights.ncaa.metric_names
+  NUM cols: rd_dec
+  STR cols: stat_name, label, concept_name, off_or_def, off_def_stat_name
+  BOOL cols: rank_asc
+
+data-to-insights.ncaa.team_colors
+  NUM cols: code_ncaa
+  STR cols: market, id, color
+  OTHER cols: description="Hex

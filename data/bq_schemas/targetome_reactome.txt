@@ -1,0 +1,42 @@
+[DATASET=targetome_reactome]
+isb-cgc-bq.targetome_versioned.drug_synonyms_v1
+  NUM cols: drugID
+  STR cols: synonym
+  OTHER cols: friendly_name="TARGETOME, description="Synonyms, labels=[("access",
+
+isb-cgc-bq.targetome_versioned.experiments_v1
+  NUM cols: expID, exp_assayValueLow, exp_assayValueMedian, exp_assayValueHigh, sourceID
+  STR cols: exp_assayType, exp_assayUnits, exp_assayRelation, exp_assayDescription, exp_assaySpecies, exp_parentSource, PubMedID, databaseName, db_version, db_downloadURL, db_downloadDate
+  OTHER cols: friendly_name="TARGETOME, description="Targetome, labels=[("access",
+
+isb-cgc-bq.targetome_versioned.interactions_v1
+  NUM cols: interactionID, drugID, targetID, sourceID, expID
+  STR cols: interactionType, drugName, drug_approvalDate, drug_atcClassID, drug_atcClassName, drug_atcClassStatus, drug_epcClassID, drug_epcClassName, targetName, targetType, target_uniprotID, targetSpecies
+  OTHER cols: friendly_name="TARGETOME, description="Targetome, labels=[("access",
+
+isb-cgc-bq.reactome_versioned.pathway_hierarchy_v77
+  STR cols: parent_id, child_id
+  OTHER cols: friendly_name="REACTOME, description="Reactome, labels=[("access",
+
+isb-cgc-bq.reactome_versioned.pathway_v77
+  STR cols: stable_id, url, name, species
+  BOOL cols: lowest_level
+  OTHER cols: friendly_name="REACTOME, description="Reactome, labels=[("access",
+
+isb-cgc-bq.reactome_versioned.pe_to_pathway_v77
+  STR cols: pe_stable_id, pathway_stable_id, evidence_code
+  OTHER cols: friendly_name="REACTOME, description="External, labels=[("access",
+
+isb-cgc-bq.reactome_versioned.physical_entity_v77
+  STR cols: ensembl_id, uniprot_id, stable_id, name, location
+  OTHER cols: friendly_name="REACTOME, description="External, labels=[("access",
+
+isb-cgc-bq.targetome_versioned.sources_v1
+  NUM cols: sourceID
+  STR cols: PubMedID, databaseName, db_version, db_downloadURL, db_downloadDate
+  OTHER cols: friendly_name="TARGETOME, description="Targetome, labels=[("access",
+
+isb-cgc-bq.targetome_versioned.target_synonyms_v1
+  NUM cols: targetID
+  STR cols: synonym
+  OTHER cols: friendly_name="TARGETOME, description="Synonyms, labels=[("access",

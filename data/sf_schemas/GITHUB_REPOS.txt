@@ -1,0 +1,24 @@
+[DB=GITHUB_REPOS | SCHEMA=GITHUB_REPOS]
+GITHUB_REPOS.GITHUB_REPOS.LANGUAGES
+  STR cols: repo_name
+  OTHER cols: language
+
+GITHUB_REPOS.GITHUB_REPOS.LICENSES
+  STR cols: license, repo_name
+
+GITHUB_REPOS.GITHUB_REPOS.SAMPLE_COMMITS
+  STR cols: commit, encoding, message, repo_name, subject, tree
+  OTHER cols: author, committer, difference, difference_truncated, parent, trailer
+
+GITHUB_REPOS.GITHUB_REPOS.SAMPLE_CONTENTS
+  NUM cols: copies, sample_mode, size
+  STR cols: content, id, sample_path, sample_ref, sample_repo_name, sample_symlink_target
+  OTHER cols: binary
+
+GITHUB_REPOS.GITHUB_REPOS.SAMPLE_FILES
+  NUM cols: mode
+  STR cols: id, path, ref, repo_name, symlink_target
+
+GITHUB_REPOS.GITHUB_REPOS.SAMPLE_REPOS
+  NUM cols: watch_count
+  STR cols: repo_name

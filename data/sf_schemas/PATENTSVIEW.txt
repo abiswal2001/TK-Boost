@@ -1,0 +1,88 @@
+[DB=PATENTSVIEW | SCHEMA=PATENTSVIEW]
+PATENTSVIEW.PATENTSVIEW.ASSIGNEE
+  NUM cols: type
+  STR cols: id, name_first, name_last, organization
+
+PATENTSVIEW.PATENTSVIEW.BRF_SUM_TEXT
+  STR cols: patent_id, text, uuid
+
+PATENTSVIEW.PATENTSVIEW.CLAIM
+  STR cols: dependent, exemplary, patent_id, sequence, text, uuid
+
+PATENTSVIEW.PATENTSVIEW.CLAIMS.__[2021-2021]
+  NUM cols: exemplary, sequence
+  STR cols: dependent, num, patent_id, text, uuid
+  AVAILABLE YEARS (YYYY): 2021
+
+PATENTSVIEW.PATENTSVIEW.CPC_GROUP
+  STR cols: id, title
+  OTHER TABLES WITH IDENTICAL SCHEMA: NBER_SUBCATEGORY
+
+PATENTSVIEW.PATENTSVIEW.DETAIL_DESC_TEXT.__[2021-2021]
+  NUM cols: length
+  STR cols: patent_id, text
+  AVAILABLE YEARS (YYYY): 2021
+
+PATENTSVIEW.PATENTSVIEW.DRAW_DESC_TEXT.__[2021-2021]
+  NUM cols: sequence
+  STR cols: patent_id, text, uuid
+  AVAILABLE YEARS (YYYY): 2021
+  OTHER TABLES WITH IDENTICAL SCHEMA: OTHERREFERENCE
+
+PATENTSVIEW.PATENTSVIEW.FIGURES
+  NUM cols: num_figures, num_sheets
+  STR cols: patent_id, uuid
+
+PATENTSVIEW.PATENTSVIEW.FOREIGNCITATION
+  NUM cols: sequence
+  STR cols: category, country, date, number, patent_id, uuid
+
+PATENTSVIEW.PATENTSVIEW.INVENTOR
+  NUM cols: attribution_status, male_flag
+  STR cols: id, name_first, name_last
+
+PATENTSVIEW.PATENTSVIEW.INVENTOR_GENDER
+  STR cols: disamb_inventor_id_20170808, disamb_inventor_id_20181127, disamb_inventor_id_20190312, male
+
+PATENTSVIEW.PATENTSVIEW.IPCR
+  NUM cols: sequence
+  STR cols: action_date, classification_data_source, classification_level, classification_status, classification_value, ipc_class, ipc_version_indicator, main_group, patent_id, section, subclass, subgroup, symbol_position, uuid
+
+PATENTSVIEW.PATENTSVIEW.LOCATION
+  NUM cols: latitude, longitude, state_fips
+  STR cols: city, country, county, county_fips, id, state
+
+PATENTSVIEW.PATENTSVIEW.NON_INVENTOR_APPLICANT
+  NUM cols: sequence
+  STR cols: applicant_type, designation, fname, lname, organization, patent_id, rawlocation_id, uuid
+
+PATENTSVIEW.PATENTSVIEW.PATENT
+  NUM cols: num_claims, withdrawn
+  STR cols: abstract, country, date, filename, id, kind, number, title, type
+
+PATENTSVIEW.PATENTSVIEW.PATENT_LAWYER
+  STR cols: lawyer_id, patent_id
+
+PATENTSVIEW.PATENTSVIEW.PERSISTENT_ASSIGNEE_DISAMBIG
+  STR cols: disamb_assignee_id_20181127, disamb_assignee_id_20190312, disamb_assignee_id_20190820, disamb_assignee_id_20191008, disamb_assignee_id_20191231, disamb_assignee_id_20200331, disamb_assignee_id_20200630, disamb_assignee_id_20200929, rawassignee_id
+
+PATENTSVIEW.PATENTSVIEW.RAWASSIGNEE
+  NUM cols: sequence, type
+  STR cols: assignee_id, name_first, name_last, organization, patent_id, rawlocation_id, uuid
+
+PATENTSVIEW.PATENTSVIEW.RAWLOCATION
+  STR cols: city, country, id, latlong, location_id, state
+
+PATENTSVIEW.PATENTSVIEW.SUBCLASS
+  STR cols: id
+
+PATENTSVIEW.PATENTSVIEW.USAPPLICATIONCITATION
+  NUM cols: sequence
+  STR cols: application_id, category, country, date, kind, name, number, patent_id, uuid
+
+PATENTSVIEW.PATENTSVIEW.USPC
+  NUM cols: sequence
+  STR cols: mainclass_id, patent_id, subclass_id, uuid
+
+PATENTSVIEW.PATENTSVIEW.US_TERM_OF_GRANT
+  STR cols: disclaimer_date, lapse_of_patent, patent_id, term_disclaimer, term_extension, term_grant, uuid

@@ -1,0 +1,129 @@
+[DATASET=TCGA_bioclin_v0]
+isb-cgc.TCGA_bioclin_v0.Annotations
+  STR cols: project_short_name, entity_barcode, entity_type, category, classification, notes, date_created, date_edited, case_gdc_id, case_barcode, sample_barcode, aliquot_barcode
+  OTHER cols: friendly_name="TCGA, description="This, labels=[("data_type",
+
+isb-cgc.TCGA_bioclin_v0.Biospecimen
+  NUM cols: batch_number, days_to_collection, days_to_sample_procurement, num_portions, num_slides, avg_percent_lymphocyte_infiltration, avg_percent_monocyte_infiltration, avg_percent_necrosis, avg_percent_neutrophil_infiltration, avg_percent_normal_cells, avg_percent_stromal_cells, avg_percent_tumor_cells, avg_percent_tumor_nuclei, max_percent_lymphocyte_infiltration, max_percent_monocyte_infiltration, max_percent_necrosis, max_percent_neutrophil_infiltration, max_percent_normal_cells, max_percent_stromal_cells, max_percent_tumor_cells, max_percent_tumor_nuclei, min_percent_lymphocyte_infiltration, min_percent_monocyte_infiltration, min_percent_necrosis, min_percent_neutrophil_infiltration, min_percent_normal_cells, min_percent_stromal_cells, min_percent_tumor_cells, min_percent_tumor_nuclei
+  STR cols: sample_barcode, sample_gdc_id, case_barcode, case_gdc_id, sample_type, sample_type_name, program_name, project_short_name, bcr, is_ffpe
+  OTHER cols: friendly_name="TCGA, description="Data, labels=[("data_type",
+
+isb-cgc.TCGA_bioclin_v0.Clinical
+  NUM cols: age_at_diagnosis, days_to_birth, days_to_death, days_to_initial_pathologic_diagnosis, days_to_last_followup, days_to_last_known_alive, days_to_submitted_specimen_dx, year_of_initial_pathologic_diagnosis, number_of_lymphnodes_examined, number_of_lymphnodes_positive_by_he, batch_number, age_began_smoking_in_years, year_of_tobacco_smoking_onset, stopped_smoking_year, tobacco_smoking_history, number_pack_years_smoked, height, weight, bmi, gleason_score_combined, psa_value
+  STR cols: program_name, case_barcode, case_gdc_id, program_dbgap_accession_number, project_short_name, project_name, disease_code, gender, vital_status, race, ethnicity, clinical_stage, clinical_T, clinical_N, clinical_M, pathologic_stage, pathologic_T, pathologic_N, pathologic_M, tumor_tissue_site, primary_neoplasm_melanoma_dx, anatomic_neoplasm_subdivision, country, other_dx, other_malignancy_anatomic_site, other_malignancy_type, other_malignancy_histological_type, history_of_neoadjuvant_treatment, primary_therapy_outcome_success, histological_type, neoplasm_histologic_grade, icd_10, icd_o_3_site, icd_o_3_histology, person_neoplasm_cancer_status, residual_tumor, tumor_type, new_tumor_event_after_initial_treatment, lymphnodes_examined, lymphatic_invasion, venous_invasion, lymphovascular_invasion_present, bcr, tss_code, mononucleotide_and_dinucleotide_marker_panel_analysis_status, menopause_status, pregnancies, hpv_status, hpv_calls, h_pylori_infection, colorectal_cancer, history_of_colon_polyps
+  OTHER cols: friendly_name="TCGA, description="Data, labels=[("data_type",
+
+isb-cgc.GDC_metadata.DLBC_affected_files
+  STR cols: file_name, case_submitter_id, file_id
+  OTHER cols: friendly_name="GDC, description="Data, labels=[("access",
+
+isb-cgc.GDC_metadata.[GDC_sync_active_20190104 | GDC_sync_active_20190115 | GDC_sync_legacy_20190104 | GDC_sync_legacy_20190115 | GDC_sync_obsolete_20190115]
+  NUM cols: size, release
+  STR cols: id, project_id, file_name, md5, state, baseid, version, acl, type, deletereason, url
+  OTHER cols: friendly_name="GDC, description="Data, labels=[("access",
+
+isb-cgc.GDC_metadata.PanCanAtlas_manifest
+  STR cols: file_name, gdc_id, PCA_project_id
+  OTHER cols: friendly_name="PANCANATLAS, description="Data, labels=[("access",
+
+isb-cgc.TCGA_bioclin_v0.clinical_v1
+  NUM cols: age_at_diagnosis, batch_number, bmi, days_to_birth, days_to_death, days_to_initial_pathologic_diagnosis, days_to_last_followup, days_to_last_known_alive, height, number_of_lymphnodes_examined, number_pack_years_smoked, stopped_smoking_year, tobacco_smoking_history, weight, year_of_diagnosis, year_of_tobacco_smoking_onset
+  STR cols: case_gdc_id, case_barcode, program_name, disease_code, project_short_name, age_began_smoking_in_years, anatomic_neoplasm_subdivision, bcr, clinical_M, clinical_N, clinical_stage, clinical_T, colorectal_cancer, country, days_to_submitted_specimen_dx, ethnicity, gender, gleason_score_combined, h_pylori_infection, histological_type, history_of_colon_polyps, history_of_neoadjuvant_treatment, hpv_calls, hpv_status, icd_10, icd_o_3_histology, icd_o_3_site, lymphatic_invasion, lymphnodes_examined, lymphovascular_invasion_present, menopause_status, mononucleotide_and_dinucleotide_marker_panel_analysis_status, neoplasm_histologic_grade, number_of_lymphnodes_positive_by_he, other_dx, other_malignancy_anatomic_site, other_malignancy_histological_type, other_malignancy_type, pathologic_M, pathologic_N, pathologic_stage, pathologic_T, person_neoplasm_cancer_status, pregnancies, primary_neoplasm_melanoma_dx, primary_therapy_outcome_success, psa_value, race, residual_tumor, tss_code, tumor_tissue_site, tumor_type, venous_invasion, vital_status
+  BOOL cols: new_tumor_event_after_initial_treatment
+  OTHER cols: friendly_name="TCGA, description="Data, labels=[("data_type",
+
+isb-cgc.TCGA_bioclin_v0.clinical_v1_1
+  NUM cols: age_at_diagnosis, batch_number, bmi, days_to_birth, days_to_death, days_to_initial_pathologic_diagnosis, days_to_last_followup, days_to_last_known_alive, height, number_of_lymphnodes_examined, number_pack_years_smoked, stopped_smoking_year, tobacco_smoking_history, weight, year_of_diagnosis, year_of_tobacco_smoking_onset
+  STR cols: case_gdc_id, case_barcode, program_name, disease_code, project_short_name, age_began_smoking_in_years, anatomic_neoplasm_subdivision, bcr, clinical_M, clinical_N, clinical_stage, clinical_T, colorectal_cancer, country, days_to_submitted_specimen_dx, ethnicity, gender, gleason_score_combined, h_pylori_infection, histological_type, history_of_colon_polyps, history_of_neoadjuvant_treatment, hpv_calls, hpv_status, icd_10, icd_o_3_histology, icd_o_3_site, lymphatic_invasion, lymphnodes_examined, lymphovascular_invasion_present, menopause_status, mononucleotide_and_dinucleotide_marker_panel_analysis_status, neoplasm_histologic_grade, number_of_lymphnodes_positive_by_he, other_dx, other_malignancy_anatomic_site, other_malignancy_histological_type, other_malignancy_type, pathologic_M, pathologic_N, pathologic_stage, pathologic_T, person_neoplasm_cancer_status, pregnancies, primary_neoplasm_melanoma_dx, primary_therapy_outcome_success, psa_value, race, residual_tumor, tss_code, tumor_tissue_site, tumor_type, venous_invasion, vital_status, project_name
+  BOOL cols: new_tumor_event_after_initial_treatment
+  OTHER cols: description="Copy
+
+isb-cgc.GDC_metadata.[rel12_GDCfileID_to_GCSurl | rel13_GDCfileID_to_GCSurl | rel14_GDCfileID_to_GCSurl]
+  STR cols: file_gdc_id, file_gcs_url
+  OTHER cols: friendly_name="GDC, description="Data, labels=[("access",
+
+isb-cgc.GDC_metadata.[rel12_aliquot2caseIDmap | rel13_aliquot2caseIDmap]
+  NUM cols: sample_type_id
+  STR cols: program_name, project_id, case_gdc_id, case_barcode, sample_gdc_id, sample_barcode, sample_type, portion_gdc_id, portion_barcode, analyte_gdc_id, analyte_barcode, aliquot_gdc_id, aliquot_barcode
+  OTHER cols: friendly_name="ALIQUOT, description="Data, labels=[("access",
+
+isb-cgc.GDC_metadata.rel12_fileData_current
+  NUM cols: archive__revision, file_size, index_files__file_size
+  STR cols: dbName, file_id, access, acl, analysis__input_files__file_id, analysis__workflow_link, analysis__workflow_type, archive__archive_id, archive__state, archive__submitter_id, associated_entities__case_id, associated_entities__entity_id, associated_entities__entity_submitter_id, associated_entities__entity_type, cases__case_id, cases__project__dbgap_accession_number, cases__project__disease_type, cases__project__name, cases__project__program__dbgap_accession_number, cases__project__program__name, cases__project__project_id, created_datetime, data_category, data_format, data_type, downstream_analyses__output_files__file_id, downstream_analyses__workflow_link, downstream_analyses__workflow_type, experimental_strategy, file_name, file_state, id, index_files__file_id, index_files__file_name, md5sum, platform, state, submitter_id, type, updated_datetime
+  OTHER cols: friendly_name="FILE, description="Data, labels=[("access",
+
+isb-cgc.GDC_metadata.rel12_slide2caseIDmap
+  NUM cols: sample_type_id
+  STR cols: program_name, project_id, case_gdc_id, case_barcode, sample_gdc_id, sample_barcode, sample_type, portion_gdc_id, portion_barcode, slide_gdc_id, slide_barcode
+  OTHER cols: friendly_name="SLIDE, description="Data, labels=[("access",
+
+isb-cgc.GDC_metadata.[rel12_caseData | rel13_caseData]
+  NUM cols: legacy_file_count, active_file_count
+  STR cols: file_id, project__dbgap_accession_number, project__disease_type, project__name, project__program__dbgap_accession_number, project__program__name, project__project_id, submitter_id
+  OTHER cols: friendly_name="CASE, description="Data, labels=[("access",
+
+isb-cgc.GDC_metadata.rel13_fileData_current
+  NUM cols: file_size, index_files__file_size
+  STR cols: dbName, file_id, access, acl, analysis__input_files__file_id, analysis__workflow_link, analysis__workflow_type, associated_entities__case_id, associated_entities__entity_id, associated_entities__entity_submitter_id, associated_entities__entity_type, cases__case_id, cases__project__dbgap_accession_number, cases__project__disease_type, cases__project__name, cases__project__program__dbgap_accession_number, cases__project__program__name, cases__project__project_id, created_datetime, data_category, data_format, data_type, downstream_analyses__output_files__file_id, downstream_analyses__workflow_link, downstream_analyses__workflow_type, experimental_strategy, file_name, id, index_files__file_id, index_files__file_name, md5sum, platform, state, submitter_id, type, updated_datetime
+  OTHER cols: friendly_name="FILE, description="Data, labels=[("access",
+
+isb-cgc.GDC_metadata.[rel12_fileData_legacy | rel13_fileData_legacy]
+  NUM cols: archive__revision, center__code, file_size, index_files__file_size
+  STR cols: dbName, file_id, access, acl, archive__archive_id, archive__state, archive__submitter_id, associated_entities__case_id, associated_entities__entity_id, associated_entities__entity_submitter_id, associated_entities__entity_type, cases__case_id, cases__project__dbgap_accession_number, cases__project__disease_type, cases__project__name, cases__project__program__dbgap_accession_number, cases__project__program__name, cases__project__project_id, center__center_type, center__name, center__short_name, created_datetime, data_category, data_format, data_type, experimental_strategy, file_name, id, index_files__file_id, index_files__file_name, md5sum, metadata_files__file_id, metadata_files__file_name, metadata_files__file_size, metadata_files__type, platform, state, submitter_id, tags, type, updated_datetime
+  OTHER cols: friendly_name="FILE, description="Data, labels=[("access",
+
+isb-cgc.GDC_metadata.rel13_slide2caseIDmap
+  NUM cols: sample_type_id
+  STR cols: program_name, project_id, case_gdc_id, case_barcode, sample_gdc_id, sample_barcode, sample_type, portion_gdc_id, portion_barcode, slide_gdc_id, slide_barcode
+  OTHER cols: friendly_name="RELEASE, description="Data, labels=[("access",
+
+isb-cgc.GDC_metadata.[rel14_caseData | rel15_caseData]
+  NUM cols: legacy_file_count, current_file_count
+  STR cols: case_gdc_id, project_dbgap_accession_number, project_disease_type, project_name, program_dbgap_accession_number, program_name, project_id, case_barcode
+  OTHER cols: friendly_name="CASE, description="Data, labels=[("access",
+
+isb-cgc.GDC_metadata.[rel14_fileData_current | rel15_fileData_current | rel16_fileData_active]
+  NUM cols: file_size, index_file_size
+  STR cols: dbName, file_gdc_id, access, acl, analysis_input_file_gdc_ids, analysis_workflow_link, analysis_workflow_type, associated_entities__case_gdc_id, associated_entities__entity_gdc_id, associated_entities__entity_submitter_id, associated_entities__entity_type, case_gdc_id, project_dbgap_accession_number, project_disease_type, project_name, program_dbgap_accession_number, program_name, project_short_name, created_datetime, data_category, data_format, data_type, downstream_analyses__output_file_gdc_ids, downstream_analyses__workflow_link, downstream_analyses__workflow_type, experimental_strategy, file_name, file_id, index_file_gdc_id, index_file_name, md5sum, platform, file_state, file_submitter_id, file_type, updated_datetime
+  OTHER cols: friendly_name="FILE, description="Data, labels=[("access",
+
+isb-cgc.GDC_metadata.[rel14_aliquot2caseIDmap | rel15_aliquot2caseIDmap]
+  STR cols: program_name, project_id, case_gdc_id, case_barcode, sample_gdc_id, sample_barcode, sample_type, sample_type_name, portion_gdc_id, portion_barcode, analyte_gdc_id, analyte_barcode, aliquot_gdc_id, aliquot_barcode
+  OTHER cols: friendly_name="ALIQUOT, description="Data, labels=[("access",
+
+isb-cgc.GDC_metadata.rel* (9 tables)
+  NUM cols: archive_revision, file_size, index_file_size
+  STR cols: dbName, file_gdc_id, access, acl, archive_gdc_id, archive_state, archive_submitter_id, associated_entities__case_gdc_id, associated_entities__entity_gdc_id, associated_entities__entity_submitter_id, associated_entities__entity_type, case_gdc_id, project_dbgap_accession_number, project_disease_type, project_name, program_dbgap_accession_number, program_name, project_short_name, center_type, center_code, center_name, center_short_name, created_datetime, data_category, data_format, data_type, experimental_strategy, file_name, file_id, index_file_gdc_id, index_file_name, md5sum, metadata_file_id, metadata_file_name, metadata_file_size, metadata_file_type, platform, file_state, file_submitter_id, file_tags, file_type, updated_datetime
+  OTHER cols: friendly_name="FILE, description="Data, labels=[("access",
+
+isb-cgc.GDC_metadata.rel* (8 tables)
+  STR cols: program_name, project_id, case_gdc_id, case_barcode, sample_gdc_id, sample_barcode, sample_type, sample_type_name, sample_is_ffpe, sample_preservation_method, portion_gdc_id, portion_barcode, analyte_gdc_id, analyte_barcode, aliquot_gdc_id, aliquot_barcode
+  OTHER cols: friendly_name="ALIQUOT, description="Data, labels=[("access",
+
+isb-cgc.GDC_metadata.rel* (7 tables)
+  NUM cols: archive_revision, file_size, index_file_size
+  STR cols: dbName, file_gdc_id, access, acl, analysis_input_file_gdc_ids, analysis_workflow_link, analysis_workflow_type, archive_gdc_id, archive_state, archive_submitter_id, associated_entities__case_gdc_id, associated_entities__entity_gdc_id, associated_entities__entity_submitter_id, associated_entities__entity_type, case_gdc_id, project_dbgap_accession_number, project_disease_type, project_name, program_dbgap_accession_number, program_name, project_short_name, created_datetime, data_category, data_format, data_type, downstream_analyses__output_file_gdc_ids, downstream_analyses__workflow_link, downstream_analyses__workflow_type, experimental_strategy, file_name, file_id, index_file_gdc_id, index_file_name, md5sum, platform, file_state, file_submitter_id, file_type, updated_datetime
+  OTHER cols: friendly_name="FILE, description="Data, labels=[("access",
+
+isb-cgc.GDC_metadata.rel18_fileData_legacy
+  NUM cols: archive_revision, file_size, index_file_size
+  STR cols: dbName, file_gdc_id, access, acl, archive_gdc_id, archive_state, archive_submitter_id, associated_entities__case_gdc_id, associated_entities__entity_gdc_id, associated_entities__entity_submitter_id, associated_entities__entity_type, case_gdc_id, project_dbgap_accession_number, project_disease_type, project_name, program_dbgap_accession_number, program_name, project_short_name, center_type, center_code, center_name, center_short_name, created_datetime, data_category, data_format, data_type, experimental_strategy, file_name, file_id, index_file_gdc_id, index_file_name, md5sum, metadata_file_id, metadata_file_name, metadata_file_size, metadata_file_type, platform, file_state, file_submitter_id, file_tags, file_type, updated_datetime
+  OTHER cols: friendly_name="FILE, description="Data, labels=[("access",
+
+isb-cgc.GDC_metadata.rel* (7 tables)
+  NUM cols: sample_type
+  STR cols: program_name, project_id, case_gdc_id, case_barcode, sample_gdc_id, sample_barcode, sample_type_name, portion_gdc_id, portion_barcode, slide_gdc_id, slide_barcode
+  OTHER cols: friendly_name="SLIDE, description="Data, labels=[("access",
+
+isb-cgc.GDC_metadata.[rel14_GDCfileID_to_GCSurl_NEW | rel21_GDCfileID_to_GCSurl | rel22_GDCfileID_to_GCSurl | rel24_GDCfileID_to_GCSurl]
+  STR cols: file_gdc_id, file_gdc_url
+  OTHER cols: friendly_name="GDC, description="Data, labels=[("access",
+
+isb-cgc.GDC_metadata.rel* (8 tables)
+  NUM cols: legacy_file_count, active_file_count
+  STR cols: case_gdc_id, project_dbgap_accession_number, project_disease_type, project_name, program_dbgap_accession_number, program_name, project_id, case_barcode
+  OTHER cols: friendly_name="CASE, description="Data, labels=[("access",
+
+isb-cgc.GDC_metadata.[rel22_slide2caseIDmap | rel23_slide2caseIDmap | rel24_slide2caseIDmap]
+  STR cols: program_name, project_id, case_gdc_id, case_barcode, sample_gdc_id, sample_barcode, sample_type, sample_type_name, portion_gdc_id, portion_barcode, slide_gdc_id, slide_barcode
+  OTHER cols: friendly_name="SLIDE, description="Data, labels=[("access",

@@ -1,0 +1,285 @@
+[DATASET=nhtsa_traffic_fatalities]
+bigquery-public-data.nhtsa_traffic_fatalities.accident_2015
+  NUM cols: state_number, consecutive_number, number_of_vehicle_forms_submitted_all, number_of_motor_vehicles_in_transport_mvit, number_of_parked_working_vehicles, number_of_forms_submitted_for_persons_not_in_motor_vehicles, number_of_forms_submitted_for_persons_in_motor_vehicles, number_of_persons_in_motor_vehicles_in_transport_mvit, number_of_persons_not_in_motor_vehicles_in_transport_mvit, county, city, day_of_crash, month_of_crash, year_of_crash, day_of_week, hour_of_crash, minute_of_crash, national_highway_system, route_signing, land_use, functional_system, ownership, milepoint, latitude, longitude, special_jurisdiction, first_harmful_event, manner_of_collision, relation_to_junction_within_interchange_area, relation_to_junction_specific_location, type_of_intersection, work_zone, relation_to_trafficway, light_condition, atmospheric_conditions_1, atmospheric_conditions_2, atmospheric_conditions, school_bus_related, hour_of_notification, minute_of_notification, hour_of_arrival_at_scene, minute_of_arrival_at_scene, hour_of_ems_arrival_at_hospital, minute_of_ems_arrival_at_hospital, related_factors_crash_level_1, related_factors_crash_level_2, related_factors_crash_level_3, number_of_fatalities, number_of_drunk_drivers
+  STR cols: state_name, day_name, month_of_crash_name, day_of_week_name, hour_of_crash_name, minute_of_crash_name, national_highway_system_name, route_signing_name, trafficway_identifier, trafficway_identifier_2, land_use_name, functional_system_name, ownership_name, milepoint_name, latitude_name, longitude_name, special_jurisdiction_name, first_harmful_event_name, manner_of_collision_name, relation_to_junction_within_interchange_area_name, relation_to_junction_specific_location_name, type_of_intersection_name, work_zone_name, relation_to_trafficway_name, light_condition_name, atmospheric_conditions_1_name, atmospheric_conditions_2_name, atmospheric_conditions_name, school_bus_related_name, rail_grade_crossing_identifier, rail_grade_crossing_identifier_name, hour_of_notification_name, minute_of_notification_name, hour_of_arrival_at_scene_name, minute_of_arrival_at_scene_name, hour_of_ems_arrival_at_hospital_name, minute_of_ems_arrival_at_hospital_name, related_factors_crash_level_1_name, related_factors_crash_level_2_name, related_factors_crash_level_3_name
+  TIME cols: timestamp_of_crash
+
+bigquery-public-data.nhtsa_traffic_fatalities.[ accident_2016 |  accident_2017 |  accident_2018 |  accident_2019]
+  NUM cols: state_number, consecutive_number, number_of_vehicle_forms_submitted_all, number_of_motor_vehicles_in_transport_mvit, number_of_parked_working_vehicles, number_of_forms_submitted_for_persons_not_in_motor_vehicles, number_of_forms_submitted_for_persons_in_motor_vehicles, number_of_persons_in_motor_vehicles_in_transport_mvit, number_of_persons_not_in_motor_vehicles_in_transport_mvit, county, city, day_of_crash, month_of_crash, year_of_crash, day_of_week, hour_of_crash, minute_of_crash, national_highway_system, route_signing, land_use, functional_system, ownership, milepoint, latitude, longitude, special_jurisdiction, first_harmful_event, manner_of_collision, relation_to_junction_within_interchange_area, relation_to_junction_specific_location, type_of_intersection, work_zone, relation_to_trafficway, light_condition, atmospheric_conditions_1, atmospheric_conditions_2, atmospheric_conditions, school_bus_related, hour_of_notification, minute_of_notification, hour_of_arrival_at_scene, minute_of_arrival_at_scene, hour_of_ems_arrival_at_hospital, minute_of_ems_arrival_at_hospital, related_factors_crash_level_1, related_factors_crash_level_2, related_factors_crash_level_3, number_of_fatalities, number_of_drunk_drivers
+  STR cols: state_name, county_name, city_name, day_name, month_of_crash_name, day_of_week_name, hour_of_crash_name, minute_of_crash_name, national_highway_system_name, route_signing_name, trafficway_identifier, trafficway_identifier_2, land_use_name, functional_system_name, ownership_name, milepoint_name, latitude_name, longitude_name, special_jurisdiction_name, first_harmful_event_name, manner_of_collision_name, relation_to_junction_within_interchange_area_name, relation_to_junction_specific_location_name, type_of_intersection_name, work_zone_name, relation_to_trafficway_name, light_condition_name, atmospheric_conditions_1_name, atmospheric_conditions_2_name, atmospheric_conditions_name, school_bus_related_name, rail_grade_crossing_identifier, rail_grade_crossing_identifier_name, hour_of_notification_name, minute_of_notification_name, hour_of_arrival_at_scene_name, minute_of_arrival_at_scene_name, hour_of_ems_arrival_at_hospital_name, minute_of_ems_arrival_at_hospital_name, related_factors_crash_level_1_name, related_factors_crash_level_2_name, related_factors_crash_level_3_name
+  TIME cols: timestamp_of_crash
+
+bigquery-public-data.nhtsa_traffic_fatalities.accident_2020
+  NUM cols: state_number, consecutive_number, number_of_vehicle_forms_submitted_all, number_of_motor_vehicles_in_transport_mvit, number_of_parked_working_vehicles, number_of_forms_submitted_for_persons_not_in_motor_vehicles, number_of_forms_submitted_for_persons_in_motor_vehicles, number_of_persons_in_motor_vehicles_in_transport_mvit, number_of_persons_not_in_motor_vehicles_in_transport_mvit, county, city, day_of_crash, month_of_crash, year_of_crash, day_of_week, hour_of_crash, minute_of_crash, national_highway_system, route_signing, land_use, functional_system, ownership, milepoint, latitude, longitude, special_jurisdiction, first_harmful_event, manner_of_collision, relation_to_junction_within_interchange_area, relation_to_junction_specific_location, type_of_intersection, work_zone, relation_to_trafficway, light_condition, atmospheric_conditions_1, atmospheric_conditions_2, hour_of_notification, minute_of_notification, hour_of_arrival_at_scene, minute_of_arrival_at_scene, hour_of_ems_arrival_at_hospital, minute_of_ems_arrival_at_hospital, number_of_fatalities, number_of_drunk_drivers
+  STR cols: state_name, county_name, city_name, day_name, month_of_crash_name, day_of_week_name, hour_of_crash_name, minute_of_crash_name, national_highway_system_name, route_signing_name, trafficway_identifier, trafficway_identifier_2, land_use_name, functional_system_name, ownership_name, milepoint_name, latitude_name, longitude_name, special_jurisdiction_name, first_harmful_event_name, manner_of_collision_name, relation_to_junction_within_interchange_area_name, relation_to_junction_specific_location_name, type_of_intersection_name, work_zone_name, relation_to_trafficway_name, light_condition_name, atmospheric_conditions_1_name, atmospheric_conditions_2_name, rail_grade_crossing_identifier, rail_grade_crossing_identifier_name, hour_of_notification_name, minute_of_notification_name, hour_of_arrival_at_scene_name, minute_of_arrival_at_scene_name, hour_of_ems_arrival_at_hospital_name, minute_of_ems_arrival_at_hospital_name
+  TIME cols: timestamp_of_crash
+
+bigquery-public-data.nhtsa_traffic_fatalities. cevent_20* (6 tables)
+  NUM cols: state_number, consecutive_number, event_number, vehicle_number_this_vehicle, area_of_impact_this_vehicle, sequence_of_events, vehicle_number_other_vehicle
+  STR cols: state_name, area_of_impact_this_vehicle_name, sequence_of_events_name, vehicle_number_other_vehicle_name, area_of_impact_other_vehicle, area_of_impact_other_vehicle_name
+
+bigquery-public-data.nhtsa_traffic_fatalities. damage_20* (6 tables)
+  NUM cols: state_number, consecutive_number, vehicle_number, damaged_areas
+  STR cols: state_name, damaged_areas_name
+
+bigquery-public-data.nhtsa_traffic_fatalities. distract_20* (6 tables)
+  NUM cols: state_number, consecutive_number, vehicle_number, driver_distracted_by
+  STR cols: state_name, driver_distracted_by_name
+
+bigquery-public-data.nhtsa_traffic_fatalities. drimpair_20* (6 tables)
+  NUM cols: state_number, consecutive_number, vehicle_number, condition_impairment_at_time_of_crash_driver
+  STR cols: state_name, condition_impairment_at_time_of_crash_driver_name
+
+bigquery-public-data.nhtsa_traffic_fatalities. factor_20* (6 tables)
+  NUM cols: state_number, consecutive_number, vehicle_number, contributing_circumstances_motor_vehicle
+  STR cols: state_name, contributing_circumstances_motor_vehicle_name
+
+bigquery-public-data.nhtsa_traffic_fatalities. maneuver_20* (6 tables)
+  NUM cols: state_number, consecutive_number, vehicle_number, driver_maneuvered_to_avoid
+  STR cols: state_name, driver_maneuvered_to_avoid_name
+
+bigquery-public-data.nhtsa_traffic_fatalities. nmcrash_20* (6 tables)
+  NUM cols: state_number, consecutive_number, vehicle_number, person_number, non_motorist_contributing_circumstances
+  STR cols: state_name, non_motorist_contributing_circumstances_name
+
+bigquery-public-data.nhtsa_traffic_fatalities. nmimpair_20* (6 tables)
+  NUM cols: state_number, consecutive_number, vehicle_number, person_number, condition_impairment_at_time_of_crash_non_motorist
+  STR cols: state_name, condition_impairment_at_time_of_crash_non_motorist_name
+
+bigquery-public-data.nhtsa_traffic_fatalities. nmprior_20* (6 tables)
+  NUM cols: state_number, consecutive_number, vehicle_number, person_number, non_motorist_action_circumstances
+  STR cols: state_name, non_motorist_action_circumstances_name
+
+bigquery-public-data.nhtsa_traffic_fatalities.parkwork_2015
+  NUM cols: state_number, consecutive_number, vehicle_number, number_of_motor_vehicles_in_transport_mvit, number_of_occupants, day_of_crash, month_of_crash, hour_of_crash, minute_of_crash, first_harmful_event, manner_of_collision, unit_type, hit_and_run, registration_state, registered_vehicle_owner, vehicle_make, vehicle_model, body_type, vehicle_model_year, vehicle_trailing, mcid_issuing_authority, gross_vehicle_weight_rating, vehicle_configuration, cargo_body_type, hazardous_material_involvement, hazardous_material_placard, hazardous_material_identification_number, hazardous_material_class_number, release_of_hazardous_material_from_the_cargo_compartment, bus_use, special_use, emergency_motor_vehicle_use, underride_override, initial_contact_point, extent_of_damage, vehicle_removal, most_harmful_event, related_factors_vehicle_level1, related_factors_vehicle_level2, fire_occurrence, fatalities_in_vehicle
+  STR cols: state_name, number_of_occupants_name, day_of_crash_name, month_of_crash_name, hour_of_crash_name, minute_of_crash_name, first_harmful_event_name, manner_of_collision_name, unit_type_name, hit_and_run_name, registration_state_name, registered_vehicle_owner_name, vehicle_make_name, make_model_combined, body_type_name, vehicle_model_year_name, vehicle_identification_number_vin, vehicle_identification_number_vin_name, vin_character_1, vin_character_2, vin_character_3, vin_character_4, vin_character_5, vin_character_6, vin_character_7, vin_character_8, vin_character_9, vin_character_10, vin_character_11, vin_character_12, vehicle_trailing_name, mcid_issuing_authority_name, mcid_identification_number, mcid_identification_number_name, motor_carrier_identification_number, motor_carrier_identification_number_name, gross_vehicle_weight_rating_name, vehicle_configuration_name, cargo_body_type_name, hazardous_material_involvement_name, hazardous_material_placard_name, hazardous_material_identification_number_name, hazardous_material_class_number_name, release_of_hazardous_material_from_the_cargo_compartment_name, bus_use_name, special_use_name, emergency_motor_vehicle_use_name, underride_override_name, initial_contact_point_name, extent_of_damage_name, vehicle_removal_name, most_harmful_event_name, related_factors_vehicle_level1_name, related_factors_vehicle_level2_name, fire_occurrence_name
+
+bigquery-public-data.nhtsa_traffic_fatalities.parkwork_2018
+  NUM cols: state_number, consecutive_number, vehicle_number, number_of_motor_vehicles_in_transport_mvit, number_of_occupants, day_of_crash, month_of_crash, hour_of_crash, minute_of_crash, first_harmful_event, manner_of_collision, unit_type, hit_and_run, registration_state, registered_vehicle_owner, vehicle_make, vehicle_model, body_type, vehicle_model_year, vehicle_trailing, mcid_issuing_authority, gross_vehicle_weight_rating, vehicle_configuration, cargo_body_type, hazardous_material_involvement, hazardous_material_placard, hazardous_material_identification_number, hazardous_material_class_number, release_of_hazardous_material_from_the_cargo_compartment, bus_use, special_use, emergency_motor_vehicle_use, underride_override, initial_contact_point, extent_of_damage, vehicle_removal, most_harmful_event, related_factors_vehicle_level1, related_factors_vehicle_level2, fire_occurrence, fatalities_in_vehicle
+  STR cols: state_name, number_of_occupants_name, day_of_crash_name, month_of_crash_name, hour_of_crash_name, minute_of_crash_name, first_harmful_event_name, manner_of_collision_name, unit_type_name, hit_and_run_name, registration_state_name, registered_vehicle_owner_name, vehicle_make_name, make_model_combined, make_model_combined_name, body_type_name, vehicle_model_year_name, vehicle_identification_number_vin, vehicle_identification_number_vin_name, vin_character_1, vin_character_2, vin_character_3, vin_character_4, vin_character_5, vin_character_6, vin_character_7, vin_character_8, vin_character_9, vin_character_10, vin_character_11, vin_character_12, vehicle_trailing_name, mcid_issuing_authority_name, mcid_identification_number, mcid_identification_number_name, motor_carrier_identification_number, motor_carrier_identification_number_name, gross_vehicle_weight_rating_name, vehicle_configuration_name, cargo_body_type_name, hazardous_material_involvement_name, hazardous_material_placard_name, hazardous_material_identification_number_name, hazardous_material_class_number_name, release_of_hazardous_material_from_the_cargo_compartment_name, bus_use_name, special_use_name, emergency_motor_vehicle_use_name, underride_override_name, initial_contact_point_name, extent_of_damage_name, vehicle_removal_name, most_harmful_event_name, related_factors_vehicle_level1_name, related_factors_vehicle_level2_name, fire_occurrence_name, ptrlr1vin, ptrlr1vinname, ptrlr2vin, ptrlr2vinname, ptrlr3vin, ptrlr3vinname
+
+bigquery-public-data.nhtsa_traffic_fatalities.[ parkwork_2016 |  parkwork_2017 |  parkwork_2019]
+  NUM cols: state_number, consecutive_number, vehicle_number, number_of_motor_vehicles_in_transport_mvit, number_of_occupants, day_of_crash, month_of_crash, hour_of_crash, minute_of_crash, first_harmful_event, manner_of_collision, unit_type, hit_and_run, registration_state, registered_vehicle_owner, vehicle_make, vehicle_model, body_type, vehicle_model_year, vehicle_trailing, mcid_issuing_authority, gross_vehicle_weight_rating, vehicle_configuration, cargo_body_type, hazardous_material_involvement, hazardous_material_placard, hazardous_material_identification_number, hazardous_material_class_number, release_of_hazardous_material_from_the_cargo_compartment, bus_use, special_use, emergency_motor_vehicle_use, underride_override, initial_contact_point, extent_of_damage, vehicle_removal, most_harmful_event, related_factors_vehicle_level1, related_factors_vehicle_level2, fire_occurrence, fatalities_in_vehicle
+  STR cols: state_name, number_of_occupants_name, day_of_crash_name, month_of_crash_name, hour_of_crash_name, minute_of_crash_name, first_harmful_event_name, manner_of_collision_name, unit_type_name, hit_and_run_name, registration_state_name, registered_vehicle_owner_name, vehicle_make_name, make_model_combined, body_type_name, vehicle_model_year_name, vehicle_identification_number_vin, vehicle_identification_number_vin_name, vin_character_1, vin_character_2, vin_character_3, vin_character_4, vin_character_5, vin_character_6, vin_character_7, vin_character_8, vin_character_9, vin_character_10, vin_character_11, vin_character_12, vehicle_trailing_name, mcid_issuing_authority_name, mcid_identification_number, mcid_identification_number_name, motor_carrier_identification_number, motor_carrier_identification_number_name, gross_vehicle_weight_rating_name, vehicle_configuration_name, cargo_body_type_name, hazardous_material_involvement_name, hazardous_material_placard_name, hazardous_material_identification_number_name, hazardous_material_class_number_name, release_of_hazardous_material_from_the_cargo_compartment_name, bus_use_name, special_use_name, emergency_motor_vehicle_use_name, underride_override_name, initial_contact_point_name, extent_of_damage_name, vehicle_removal_name, most_harmful_event_name, related_factors_vehicle_level1_name, related_factors_vehicle_level2_name, fire_occurrence_name, ptrlr1vin, ptrlr1vinname, ptrlr2vin, ptrlr2vinname, ptrlr3vin, ptrlr3vinname
+
+bigquery-public-data.nhtsa_traffic_fatalities.parkwork_2020
+  NUM cols: state_number, consecutive_number, vehicle_number, number_of_motor_vehicles_in_transport_mvit, number_of_occupants, day_of_crash, month_of_crash, hour_of_crash, minute_of_crash, first_harmful_event, manner_of_collision, unit_type, hit_and_run, registration_state, registered_vehicle_owner, vehicle_make, vehicle_model, body_type, vehicle_model_year, vehicle_trailing, mcid_issuing_authority, vehicle_configuration, cargo_body_type, hazardous_material_involvement, hazardous_material_placard, hazardous_material_identification_number, hazardous_material_class_number, release_of_hazardous_material_from_the_cargo_compartment, bus_use, special_use, emergency_motor_vehicle_use, underride_override, initial_contact_point, extent_of_damage, vehicle_removal, most_harmful_event, fire_occurrence, fatalities_in_vehicle
+  STR cols: state_name, number_of_occupants_name, day_of_crash_name, month_of_crash_name, hour_of_crash_name, minute_of_crash_name, first_harmful_event_name, manner_of_collision_name, unit_type_name, hit_and_run_name, registration_state_name, registered_vehicle_owner_name, vehicle_make_name, make_model_combined, body_type_name, vehicle_model_year_name, vehicle_identification_number_vin, vehicle_identification_number_vin_name, vin_character_1, vin_character_2, vin_character_3, vin_character_4, vin_character_5, vin_character_6, vin_character_7, vin_character_8, vin_character_9, vin_character_10, vin_character_11, vin_character_12, vehicle_trailing_name, mcid_issuing_authority_name, mcid_identification_number, mcid_identification_number_name, motor_carrier_identification_number, motor_carrier_identification_number_name, vehicle_configuration_name, cargo_body_type_name, hazardous_material_involvement_name, hazardous_material_placard_name, hazardous_material_identification_number_name, hazardous_material_class_number_name, release_of_hazardous_material_from_the_cargo_compartment_name, bus_use_name, special_use_name, emergency_motor_vehicle_use_name, underride_override_name, initial_contact_point_name, extent_of_damage_name, vehicle_removal_name, most_harmful_event_name, fire_occurrence_name, ptrlr1vin, ptrlr1vinname, ptrlr2vin, ptrlr2vinname, ptrlr3vin, ptrlr3vinname, pvpicmake, pvpicmakename, pvpicmodel, pvpicmodelname, pvpicbodyclass, pvpicbodyclassname, picfinalbody, picfinalbodyname, pgvwr_from, pgvwr_fromname, pgvwr_to, pgvwr_toname, ptrlr1gvwr, ptrlr1gvwrname, ptrlr2gvwr, ptrlr2gvwrname, ptrlr3gvwr, ptrlr3gvwrname
+
+bigquery-public-data.nhtsa_traffic_fatalities. pbtype_20* (6 tables)
+  NUM cols: state_number, consecutive_number, vehicle_number, person_number, person_type, age, crash_type_pedestrian, crash_type_bicycle, crash_group_pedestrian, crash_group_bicycle
+  STR cols: state_name, person_type_name, age_name, sex, sex_name, marked_crosswalk_present, marked_crosswalk_present_name, sidewalk_present, sidewalk_present_name, school_zone, school_zone_name, crash_type_pedestrian_name, crash_type_bicycle_name, crash_location_pedestrian, crash_location_pedestrian_name, crash_location_bicycle, crash_location_bicycle_name, pedestrian_position, pedestrian_position_name, bicyclist_position, bicyclist_position_name, pedestrian_initial_direction_of_travel, pedestrian_initial_direction_of_travel_name, bicyclist_initial_direction_of_travel, bicyclist_initial_direction_of_travel_name, motorist_initial_direction_of_travel, motorist_initial_direction_of_travel_name, motorist_maneuver, motorist_maneuver_name, intersection_leg, intersection_leg_name, pedestrian_scenario, pedestrian_scenario_name, crash_group_pedestrian_name, crash_group_bicycle_name
+
+bigquery-public-data.nhtsa_traffic_fatalities.[ safetyeq_2015 |  safetyeq_2016]
+  NUM cols: state_number, consecutive_number, vehicle_number, person_number
+  STR cols: state_name, non_motorist_safety_equipment_use, non_motorist_safety_equipment_use_name
+
+bigquery-public-data.nhtsa_traffic_fatalities.[ safetyeq_2017 |  safetyeq_2018 |  safetyeq_2019 |  safetyeq_2020]
+  NUM cols: state_number, consecutive_number, vehicle_number, person_number
+  STR cols: state_name, nm_helmet, nm_helmet_name, nm_propad, nm_propad_name, nm_othpro, nm_othpro_name, nm_refclo, nm_refclo_name, nm_light, nm_light_name, nm_othpre, nm_othpre_name
+
+bigquery-public-data.nhtsa_traffic_fatalities. vevent_20* (6 tables)
+  NUM cols: state_number, consecutive_number, event_number, vehicle_number, vehicle_number_this_vehicle, area_of_impact_this_vehicle, sequence_of_events, vehicle_number_other_vehicle, area_of_impact_other_vehicle
+  STR cols: state_name, vehicle_event_number, area_of_impact_this_vehicle_name, sequence_of_events_name, vehicle_number_other_vehicle_name, area_of_impact_other_vehicle_name
+
+bigquery-public-data.nhtsa_traffic_fatalities.vindecode_2015
+  NUM cols: state_number, consecutive_number, vehicle_number, marketing_year, num_of_doors, number_of_wheels, num_of_wheels_by_power_train, displacement_cid, displacement_cc, cycle_count, gross_vehicle_weights_range_code, distance_between_axles_for_base_model, front_tire, front_tire_pressure, rear_tire, rear_tire_pressure, displacement_liters, valves_per_cylinder, valves_total
+  STR cols: state_name, vehicle_make, vehicle_type_code, vehicle_type, make_name, model_code, vehicle_trim, vehicle_trim_1, vehicle_trim_2, vehicle_trim_3, vehicle_trim_4, body_style_code, body_style, vehicle_manufacturer_code, vehicle_manufacturer_name, cylinder_count_code, fuel_code, fuel, type_of_fuel_code, type_of_fuel, carburetion_types_code, carburetion_types, num_of_barrels, gross_vehicle_weights_range, distance_between_axles_for_particular_series, front_tire_size_code, front_tire_size, rear_tire_size_code, rear_tire_size, tonnage_rating, shipping_weight, base_price, drive_type_1, drive_type_2, country_sold_code, country_sold, brakes_abs_code, brakes_abs_description, security_type_code, security_type, daytime_running_lights_1, daytime_running_lights_2, restraint_type_code, restraint_type, cab_configuration_code, cab_configuration, axle_type_front_axle_code, axle_type_front_axle, axle_type_rear_axle_code, axle_type_rear_axle, brake_type_code, brake_type, engine_manufacture_code, engine_manufacture, engine_model, duty_type_code, duty_type, bed_length_code, bed_length, standard_segmentation_code, standard_segmentation, plant_code, plant_country, plant_city, plant_country_code, plant_state_code, plant_state, origin_code, origin, block_type, head_configuration_1, head_configuration_2, engine_code, is_incomplete, battery_type_code, battery_type, total_battery_power, battery_voltage, supercharge_flag, supercharge_flag_description, turbocharger_flag, turbocharger_flag_description, variable_valve_timing_flag, motorcycles_body_style_code, motorcycles_body_style
+
+bigquery-public-data.nhtsa_traffic_fatalities. violatn_20* (6 tables)
+  NUM cols: state_number, consecutive_number, vehicle_number
+  STR cols: state_name, violations_charged, violations_charged_name
+
+bigquery-public-data.nhtsa_traffic_fatalities. vision_20* (6 tables)
+  NUM cols: state_number, consecutive_number, vehicle_number, drivers_vision_obscured_by
+  STR cols: state_name, drivers_vision_obscured_by_name
+
+bigquery-public-data.nhtsa_traffic_fatalities. vsoe_20* (6 tables)
+  NUM cols: state_number, consecutive_number, vehicle_number, vehicle_event_number, sequence_of_events, area_of_Impact_associated_with_the_event
+  STR cols: state_name, sequence_of_events_name, area_of_Impact_associated_with_the_event_name
+
+bigquery-public-data.nhtsa_traffic_fatalities.accident_2015
+  NUM cols: state_number, consecutive_number, number_of_vehicle_forms_submitted_all, number_of_motor_vehicles_in_transport_mvit, number_of_parked_working_vehicles, number_of_forms_submitted_for_persons_not_in_motor_vehicles, number_of_persons_not_in_motor_vehicles_in_transport_mvit, number_of_persons_in_motor_vehicles_in_transport_mvit, number_of_forms_submitted_for_persons_in_motor_vehicles, county, city, day_of_crash, month_of_crash, year_of_crash, day_of_week, hour_of_crash, minute_of_crash, national_highway_system, land_use, functional_system, ownership, route_signing, milepoint, latitude, longitude, special_jurisdiction, first_harmful_event, manner_of_collision, relation_to_junction_specific_location, relation_to_trafficway, light_condition, atmospheric_conditions_1, atmospheric_conditions_2, atmospheric_conditions, hour_of_notification, minute_of_notification, hour_of_arrival_at_scene, minute_of_arrival_at_scene, hour_of_ems_arrival_at_hospital, minute_of_ems_arrival_at_hospital, related_factors_crash_level_1, related_factors_crash_level_2, related_factors_crash_level_3, number_of_fatalities, number_of_drunk_drivers
+  STR cols: state_name, land_use_name, functional_system_name, ownership_name, route_signing_name, trafficway_identifier, trafficway_identifier_2, special_jurisdiction_name, first_harmful_event_name, manner_of_collision_name, relation_to_junction_within_interchange_area, relation_to_junction_specific_location_name, type_of_intersection, work_zone, relation_to_trafficway_name, light_condition_name, atmospheric_conditions_1_name, atmospheric_conditions_2_name, atmospheric_conditions_name, school_bus_related, rail_grade_crossing_identifier, related_factors_crash_level_1_name, related_factors_crash_level_2_name, related_factors_crash_level_3_name
+  TIME cols: timestamp_of_crash
+  OTHER cols: description="This
+
+bigquery-public-data.nhtsa_traffic_fatalities.accident_2016
+  NUM cols: state_number, consecutive_number, number_of_vehicle_forms_submitted_all, number_of_motor_vehicles_in_transport_mvit, number_of_parked_working_vehicles, number_of_forms_submitted_for_persons_not_in_motor_vehicles, number_of_persons_not_in_motor_vehicles_in_transport_mvit, number_of_persons_in_motor_vehicles_in_transport_mvit, number_of_forms_submitted_for_persons_in_motor_vehicles, county, city, day_of_crash, month_of_crash, year_of_crash, day_of_week, hour_of_crash, minute_of_crash, national_highway_system, land_use, functional_system, ownership, route_signing, milepoint, latitude, longitude, special_jurisdiction, first_harmful_event, manner_of_collision, relation_to_junction_specific_location, relation_to_trafficway, light_condition, atmospheric_conditions_1, atmospheric_conditions_2, atmospheric_conditions, hour_of_notification, minute_of_notification, hour_of_arrival_at_scene, minute_of_arrival_at_scene, hour_of_ems_arrival_at_hospital, minute_of_ems_arrival_at_hospital, related_factors_crash_level_1, related_factors_crash_level_2, related_factors_crash_level_3, number_of_fatalities, number_of_drunk_drivers
+  STR cols: state_name, land_use_name, functional_system_name, ownership_name, route_signing_name, trafficway_identifier, trafficway_identifier_2, special_jurisdiction_name, first_harmful_event_name, manner_of_collision_name, relation_to_junction_within_interchange_area, relation_to_junction_specific_location_name, type_of_intersection, work_zone, relation_to_trafficway_name, light_condition_name, atmospheric_conditions_1_name, atmospheric_conditions_2_name, atmospheric_conditions_name, school_bus_related, rail_grade_crossing_identifier, related_factors_crash_level_1_name, related_factors_crash_level_2_name, related_factors_crash_level_3_name
+  TIME cols: timestamp_of_crash
+
+bigquery-public-data.nhtsa_traffic_fatalities.cevent_2015
+  NUM cols: state_number, consecutive_number, event_number, vehicle_number_this_vehicle, area_of_impact_this_vehicle, sequence_of_events, vehicle_number_other_vehicle, area_of_impact_other_vehicle
+  STR cols: area_of_impact_this_vehicle_name, sequence_of_events_name, area_of_impact_other_vehicle_name
+  OTHER cols: description="This
+
+bigquery-public-data.nhtsa_traffic_fatalities.cevent_2016
+  NUM cols: state_number, consecutive_number, event_number, vehicle_number_this_vehicle, area_of_impact_this_vehicle, sequence_of_events, vehicle_number_other_vehicle, area_of_impact_other_vehicle
+  STR cols: area_of_impact_this_vehicle_name, sequence_of_events_name, area_of_impact_other_vehicle_name
+
+bigquery-public-data.nhtsa_traffic_fatalities.damage_2015
+  NUM cols: state_number, consecutive_number, vehicle_number, damaged_areas
+  STR cols: damaged_areas_name
+  OTHER cols: description="This
+
+bigquery-public-data.nhtsa_traffic_fatalities.damage_2016
+  NUM cols: state_number, consecutive_number, vehicle_number, damaged_areas
+  STR cols: damaged_areas_name
+
+bigquery-public-data.nhtsa_traffic_fatalities.distract_2015
+  NUM cols: state_number, consecutive_number, vehicle_number, driver_distracted_by
+  STR cols: driver_distracted_by_name
+  OTHER cols: description="This
+
+bigquery-public-data.nhtsa_traffic_fatalities.distract_2016
+  NUM cols: state_number, consecutive_number, vehicle_number, driver_distracted_by
+  STR cols: driver_distracted_by_name
+
+bigquery-public-data.nhtsa_traffic_fatalities.drimpair_2015
+  NUM cols: state_number, consecutive_number, vehicle_number, condition_impairment_at_time_of_crash_driver
+  STR cols: condition_impairment_at_time_of_crash_driver_name
+  OTHER cols: description="This
+
+bigquery-public-data.nhtsa_traffic_fatalities.drimpair_2016
+  NUM cols: state_number, consecutive_number, vehicle_number, condition_impairment_at_time_of_crash_driver
+  STR cols: condition_impairment_at_time_of_crash_driver_name
+
+bigquery-public-data.nhtsa_traffic_fatalities.factor_2015
+  NUM cols: state_number, consecutive_number, vehicle_number, contributing_circumstances_motor_vehicle
+  STR cols: contributing_circumstances_motor_vehicle_name
+  OTHER cols: description="This
+
+bigquery-public-data.nhtsa_traffic_fatalities.factor_2016
+  NUM cols: state_number, consecutive_number, vehicle_number, contributing_circumstances_motor_vehicle
+  STR cols: contributing_circumstances_motor_vehicle_name
+
+bigquery-public-data.nhtsa_traffic_fatalities.maneuver_2015
+  NUM cols: state_number, consecutive_number, vehicle_number, driver_maneuvered_to_avoid
+  STR cols: driver_maneuvered_to_avoid_name
+  OTHER cols: description="This
+
+bigquery-public-data.nhtsa_traffic_fatalities.maneuver_2016
+  NUM cols: state_number, consecutive_number, vehicle_number, driver_maneuvered_to_avoid
+  STR cols: driver_maneuvered_to_avoid_name
+
+bigquery-public-data.nhtsa_traffic_fatalities.nmcrash_2015
+  NUM cols: state_number, consecutive_number, vehicle_number, person_number, non_motorist_contributing_circumstances
+  STR cols: non_motorist_contributing_circumstances_name
+  OTHER cols: description="This
+
+bigquery-public-data.nhtsa_traffic_fatalities.nmcrash_2016
+  NUM cols: state_number, consecutive_number, vehicle_number, person_number, non_motorist_contributing_circumstances
+  STR cols: non_motorist_contributing_circumstances_name
+
+bigquery-public-data.nhtsa_traffic_fatalities.nmimpair_2015
+  NUM cols: state_number, consecutive_number, vehicle_number, person_number, condition_impairment_at_time_of_crash_non_motorist
+  STR cols: condition_impairment_at_time_of_crash_non_motorist_name
+  OTHER cols: description="This
+
+bigquery-public-data.nhtsa_traffic_fatalities.nmimpair_2016
+  NUM cols: state_number, consecutive_number, vehicle_number, person_number, condition_impairment_at_time_of_crash_non_motorist
+  STR cols: condition_impairment_at_time_of_crash_non_motorist_name
+
+bigquery-public-data.nhtsa_traffic_fatalities.nmprior_2015
+  NUM cols: state_number, consecutive_number, vehicle_number, person_number, non_motorist_action_circumstances
+  STR cols: non_motorist_action_circumstances_name
+  OTHER cols: description="This
+
+bigquery-public-data.nhtsa_traffic_fatalities.nmprior_2016
+  NUM cols: state_number, consecutive_number, vehicle_number, person_number, non_motorist_action_circumstances
+  STR cols: non_motorist_action_circumstances_name
+
+bigquery-public-data.nhtsa_traffic_fatalities.parkwork_2015
+  NUM cols: state_number, consecutive_number, vehicle_number, number_of_motor_vehicles_in_transport_mvit, number_of_occupants, day_of_crash, month_of_crash, hour_of_crash, minute_of_crash, first_harmful_event, manner_of_collision, registration_state, registered_vehicle_owner, vehicle_make, vehicle_model, make_model_combined, body_type, vehicle_model_year, mcid_issuing_authority, gross_vehicle_weight_rating, vehicle_configuration, cargo_body_type, hazardous_material_identification_number, hazardous_material_class_number, special_use, underride_override, initial_contact_point, most_harmful_event, related_factors_vehicle_level1, related_factors_vehicle_level2, fatalities_in_vehicle
+  STR cols: first_harmful_event_name, manner_of_collision_name, unit_type, hit_and_run, registration_state_name, registered_vehicle_owner_name, vehicle_make_name, body_type_name, vehicle_identification_number_vin, vin_character_1, vin_character_2, vin_character_3, vin_character_4, vin_character_5, vin_character_6, vin_character_7, vin_character_8, vin_character_9, vin_character_10, vin_character_11, vin_character_12, vehicle_trailing, mcid_issuing_authority_name, mcid_identification_number, motor_carrier_identification_number, hazardous_material_involvement, hazardous_material_placard, release_of_hazardous_material_from_the_cargo_compartment, bus_use, special_use_name, emergency_motor_vehicle_use, underride_override_name, extent_of_damage, vehicle_removal, fire_occurrence
+  OTHER cols: description="This
+
+bigquery-public-data.nhtsa_traffic_fatalities.parkwork_2016
+  NUM cols: state_number, consecutive_number, vehicle_number, number_of_motor_vehicles_in_transport_mvit, number_of_occupants, day_of_crash, month_of_crash, hour_of_crash, minute_of_crash, first_harmful_event, manner_of_collision, registration_state, registered_vehicle_owner, vehicle_make, vehicle_model, make_model_combined, body_type, vehicle_model_year, mcid_issuing_authority, gross_vehicle_weight_rating, vehicle_configuration, cargo_body_type, hazardous_material_identification_number, hazardous_material_class_number, special_use, underride_override, initial_contact_point, most_harmful_event, related_factors_vehicle_level1, related_factors_vehicle_level2, fatalities_in_vehicle
+  STR cols: first_harmful_event_name, manner_of_collision_name, unit_type, hit_and_run, registration_state_name, registered_vehicle_owner_name, vehicle_make_name, body_type_name, vehicle_identification_number_vin, vin_character_1, vin_character_2, vin_character_3, vin_character_4, vin_character_5, vin_character_6, vin_character_7, vin_character_8, vin_character_9, vin_character_10, vin_character_11, vin_character_12, vehicle_trailing, mcid_issuing_authority_name, mcid_identification_number, motor_carrier_identification_number, hazardous_material_involvement, hazardous_material_placard, release_of_hazardous_material_from_the_cargo_compartment, bus_use, special_use_name, emergency_motor_vehicle_use, underride_override_name, extent_of_damage, vehicle_removal, fire_occurrence
+
+bigquery-public-data.nhtsa_traffic_fatalities.pbtype_2015
+  NUM cols: state_number, consecutive_number, vehicle_number, person_number, person_type, age, crash_type_pedestrian, crash_type_bicycle, crash_group_pedestrian, crash_group_bicycle
+  STR cols: person_type_name, sex, marked_crosswalk_present, sidewalk_present, school_zone, crash_type_pedestrian_name, crash_type_bicycle_name, crash_location_pedestrian, crash_location_bicycle, pedestrian_position, bicyclist_position, pedestrian_initial_direction_of_travel, bicyclist_initial_direction_of_travel, motorist_initial_direction_of_travel, motorist_maneuver, intersection_leg, pedestrian_scenario, pedestrian_scenario_name, crash_group_pedestrian_name, crash_group_bicycle_name
+  OTHER cols: description="This
+
+bigquery-public-data.nhtsa_traffic_fatalities.pbtype_2016
+  NUM cols: state_number, consecutive_number, vehicle_number, person_number, person_type, age, crash_type_pedestrian, crash_type_bicycle, crash_group_pedestrian, crash_group_bicycle
+  STR cols: person_type_name, sex, marked_crosswalk_present, sidewalk_present, school_zone, crash_type_pedestrian_name, crash_type_bicycle_name, crash_location_pedestrian, crash_location_bicycle, pedestrian_position, bicyclist_position, pedestrian_initial_direction_of_travel, bicyclist_initial_direction_of_travel, motorist_initial_direction_of_travel, motorist_maneuver, intersection_leg, pedestrian_scenario, pedestrian_scenario_name, crash_group_pedestrian_name, crash_group_bicycle_name
+
+bigquery-public-data.nhtsa_traffic_fatalities.person_2015
+  NUM cols: state_number, consecutive_number, number_of_motor_vehicles_in_transport_mvit, vehicle_number, person_number, number_of_motor_vehicle_striking_non_motorist, county, day_of_crash, month_of_crash, hour_of_crash, minute_of_crash, first_harmful_event, manner_of_collision, vehicle_make, make_model_combined, body_type, special_use, initial_contact_point, age, person_type, injury_severity, seating_position, restraint_system_helmet_use, air_bag_deployed, ejection, ejection_path, drug_test_type4, drug_test_type5, drug_test_type6, transported_to_first_treatment_facility, day_of_death, month_of_death, year_of_death, hour_of_death, minute_of_death, death_time, lag_hours, lag_minutes, related_factors_person_level1, related_factors_person_level2, related_factors_person_level3, hispanic_origin, race, non_motorist_location_at_time_of_crash
+  STR cols: land_use, land_use_name, functional_system, functional_system_name, first_harmful_event_name, manner_of_collision_name, school_bus_related, vehicle_make_name, body_type_name, vehicle_trailing, special_use_name, emergency_motor_vehicle_use, rollover, initial_contact_point_name, fire_occurrence, sex, person_type_name, injury_severity_name, seating_position_name, restraint_system_helmet_use_name, indication_of_misuse_of_restraint_system_helmet, air_bag_deployed_name, ejection_name, ejection_path_name, extrication, police_reported_alcohol_involvement, method_of_alcohol_determination_by_police, alcohol_test_status1, alcohol_test_status2, alcohol_test_status3, alcohol_test_status3_name, police_reported_drug_involvement, method_of_drug_determination_by_police, drug_test_status, drug_test_type1, drug_test_type2, drug_test_type3, drug_test_type4_name, drug_test_type5_name, drug_test_type6_name, transported_to_first_treatment_facility_name, died_at_scene_en_route, fatal_injury_at_work, hispanic_origin_name, race_name, non_motorist_location_at_time_of_crash_name
+  TIME cols: timestamp_of_crash
+  OTHER cols: description="This
+
+bigquery-public-data.nhtsa_traffic_fatalities.person_2016
+  NUM cols: state_number, consecutive_number, number_of_motor_vehicles_in_transport_mvit, vehicle_number, person_number, number_of_motor_vehicle_striking_non_motorist, county, day_of_crash, month_of_crash, hour_of_crash, minute_of_crash, first_harmful_event, manner_of_collision, vehicle_make, make_model_combined, body_type, special_use, initial_contact_point, age, person_type, injury_severity, seating_position, restraint_system_helmet_use, air_bag_deployed, ejection, ejection_path, drug_test_type4, drug_test_type5, drug_test_type6, transported_to_first_treatment_facility, day_of_death, month_of_death, year_of_death, hour_of_death, minute_of_death, death_time, lag_hours, lag_minutes, related_factors_person_level1, related_factors_person_level2, related_factors_person_level3, hispanic_origin, race, non_motorist_location_at_time_of_crash
+  STR cols: land_use, land_use_name, functional_system, functional_system_name, first_harmful_event_name, manner_of_collision_name, school_bus_related, vehicle_make_name, body_type_name, vehicle_trailing, special_use_name, emergency_motor_vehicle_use, rollover, initial_contact_point_name, fire_occurrence, sex, person_type_name, injury_severity_name, seating_position_name, restraint_system_helmet_use_name, indication_of_misuse_of_restraint_system_helmet, air_bag_deployed_name, ejection_name, ejection_path_name, extrication, police_reported_alcohol_involvement, method_of_alcohol_determination_by_police, alcohol_test_status1, alcohol_test_status2, alcohol_test_status3, alcohol_test_status3_name, police_reported_drug_involvement, method_of_drug_determination_by_police, drug_test_status, drug_test_type1, drug_test_type2, drug_test_type3, drug_test_type4_name, drug_test_type5_name, drug_test_type6_name, transported_to_first_treatment_facility_name, died_at_scene_en_route, fatal_injury_at_work, hispanic_origin_name, race_name, non_motorist_location_at_time_of_crash_name
+  TIME cols: timestamp_of_crash
+
+bigquery-public-data.nhtsa_traffic_fatalities.safetyeq_2015
+  NUM cols: state_number, consecutive_number, vehicle_number, person_number
+  STR cols: non_motorist_safety_equipment_use
+  OTHER cols: description="This
+
+bigquery-public-data.nhtsa_traffic_fatalities.safetyeq_2016
+  NUM cols: state_number, consecutive_number, vehicle_number, person_number
+  STR cols: non_motorist_safety_equipment_use
+
+bigquery-public-data.nhtsa_traffic_fatalities.vehicle_2015
+  NUM cols: state_number, consecutive_number, vehicle_number, number_of_motor_vehicles_in_transport_mvit, number_of_occupants, day_of_crash, month_of_crash, hour_of_crash, minute_of_crash, first_harmful_event, manner_of_collision, registration_state, registered_vehicle_owner, vehicle_make, vehicle_model, make_model_combined, body_type, vehicle_model_year, mcid_issuing_authority, vehicle_configuration, cargo_body_type, hazardous_material_placard, hazardous_material_identification_number, hazardous_material_class_number, special_use, travel_speed, underride_override, initial_contact_point, most_harmful_event, related_factors_vehicle_level_1, related_factors_vehicle_level_2, drivers_license_state, drivers_zip_code, non_cdl_license_status, commercial_motor_vehicle_license_status, compliance_with_license_restrictions, driver_height, driver_weight, previous_recorded_crashes, previous_recorded_suspensions_and_revocations, previous_dwi_convictions, previous_speeding_convictions, previous_other_moving_violation_convictions, month_of_first_crash_suspension_or_conviction, year_of_first_crash_suspension_or_conviction, month_of_last_crash_suspension_or_conviction, year_of_last_crash_suspension_or_conviction, related_factors_driver_level_1, related_factors_driver_level_2, related_factors_driver_level_3, related_factors_driver_level_4, total_lanes_in_roadway, speed_limit, roadway_surface_condition, traffic_control_device, pre_event_movement_prior_to_recognition_of_critical_event, critical_event_precrash, attempted_avoidance_maneuver, pre_impact_location, crash_type, fatalities_in_vehicle
+  STR cols: first_harmful_event_name, unit_type, hit_and_run, registration_state_name, registered_vehicle_owner_name, vehicle_make_name, body_type_name, vehicle_identification_number_vin, vin_character_1, vin_character_2, vin_character_3, vin_character_4, vin_character_5, vin_character_6, vin_character_7, vin_character_8, vin_character_9, vin_character_10, vin_character_11, vin_character_12, vehicle_trailing, jackknife, mcid_identification_number, motor_carrier_identification_number_mcid, gross_vehicle_weight_rating, vehicle_configuration_name, cargo_body_type_name, hazardous_material_involvement, release_of_hazardous_material_from_the_cargo_compartment, bus_use, special_use_name, emergency_motor_vehicle_use, rollover, location_of_rollover, extent_of_damage, vehicle_removal, fire_occurrence, driver_presence, non_cdl_license_type, compliance_with_cdl_endorsements, license_compliance_with_class_of_vehicle, speeding_related, trafficway_description, roadway_alignment, roadway_grade, roadway_surface_type, roadway_surface_condition_name, traffic_control_device_functioning, critical_event_precrash_name, attempted_avoidance_maneuver_name, pre_impact_stability, crash_type_name, driver_drinking
+  TIME cols: timestamp_of_crash
+  OTHER cols: description="This
+
+bigquery-public-data.nhtsa_traffic_fatalities.vehicle_2016
+  NUM cols: state_number, consecutive_number, vehicle_number, number_of_motor_vehicles_in_transport_mvit, number_of_occupants, day_of_crash, month_of_crash, hour_of_crash, minute_of_crash, first_harmful_event, manner_of_collision, registration_state, registered_vehicle_owner, vehicle_make, vehicle_model, make_model_combined, body_type, vehicle_model_year, mcid_issuing_authority, vehicle_configuration, cargo_body_type, hazardous_material_placard, hazardous_material_identification_number, hazardous_material_class_number, special_use, travel_speed, underride_override, initial_contact_point, most_harmful_event, related_factors_vehicle_level_1, related_factors_vehicle_level_2, drivers_license_state, drivers_zip_code, non_cdl_license_status, commercial_motor_vehicle_license_status, compliance_with_license_restrictions, driver_height, driver_weight, previous_recorded_crashes, previous_recorded_suspensions_and_revocations, previous_dwi_convictions, previous_speeding_convictions, previous_other_moving_violation_convictions, month_of_first_crash_suspension_or_conviction, year_of_first_crash_suspension_or_conviction, month_of_last_crash_suspension_or_conviction, year_of_last_crash_suspension_or_conviction, related_factors_driver_level_1, related_factors_driver_level_2, related_factors_driver_level_3, related_factors_driver_level_4, total_lanes_in_roadway, speed_limit, roadway_surface_condition, traffic_control_device, pre_event_movement_prior_to_recognition_of_critical_event, critical_event_precrash, attempted_avoidance_maneuver, pre_impact_location, crash_type, fatalities_in_vehicle
+  STR cols: first_harmful_event_name, unit_type, hit_and_run, registration_state_name, registered_vehicle_owner_name, vehicle_make_name, body_type_name, vehicle_identification_number_vin, vin_character_1, vin_character_2, vin_character_3, vin_character_4, vin_character_5, vin_character_6, vin_character_7, vin_character_8, vin_character_9, vin_character_10, vin_character_11, vin_character_12, vehicle_trailing, jackknife, mcid_identification_number, motor_carrier_identification_number_mcid, gross_vehicle_weight_rating, vehicle_configuration_name, cargo_body_type_name, hazardous_material_involvement, release_of_hazardous_material_from_the_cargo_compartment, bus_use, special_use_name, emergency_motor_vehicle_use, rollover, location_of_rollover, extent_of_damage, vehicle_removal, fire_occurrence, driver_presence, non_cdl_license_type, compliance_with_cdl_endorsements, license_compliance_with_class_of_vehicle, speeding_related, trafficway_description, roadway_alignment, roadway_grade, roadway_surface_type, roadway_surface_condition_name, traffic_control_device_functioning, critical_event_precrash_name, attempted_avoidance_maneuver_name, pre_impact_stability, crash_type_name, driver_drinking
+  TIME cols: timestamp_of_crash
+
+bigquery-public-data.nhtsa_traffic_fatalities.vevent_2015
+  NUM cols: state_number, consecutive_number, event_number, vehicle_number, vehicle_event_number, vehicle_number_this_vehicle, area_of_impact_this_vehicle, sequence_of_events, vehicle_number_other_vehicle, area_of_impact_other_vehicle
+  STR cols: area_of_impact_this_vehicle_name, sequence_of_events_name, area_of_impact_other_vehicle_name
+  OTHER cols: description="This
+
+bigquery-public-data.nhtsa_traffic_fatalities.vevent_2016
+  NUM cols: state_number, consecutive_number, event_number, vehicle_number, vehicle_event_number, vehicle_number_this_vehicle, area_of_impact_this_vehicle, sequence_of_events, vehicle_number_other_vehicle, area_of_impact_other_vehicle
+  STR cols: area_of_impact_this_vehicle_name, sequence_of_events_name, area_of_impact_other_vehicle_name
+
+bigquery-public-data.nhtsa_traffic_fatalities.vindecode_2015
+  NUM cols: state_number, consecutive_number, vehicle_number, marketing_year, num_of_doors, number_of_wheels, num_of_wheels_by_power_train, displacement_cid, displacement_cc, cycle_count, gross_vehicle_weights_range_code, distance_between_axles_for_base_model, front_tire, front_tire_pressure, rear_tire, rear_tire_pressure, shipping_weight, displacement_liters, valves_per_cylinder, valves_total
+  STR cols: vehicle_make, vehicle_type_code, vehicle_type, make_name, model_code, vehicle_trim, vehicle_trim_1, vehicle_trim_2, vehicle_trim_3, vehicle_trim_4, body_style_code, body_style, vehicle_manufacturer_code, vehicle_manufacturer_name, cylinder_count_code, fuel_code, fuel, type_of_fuel_code, type_of_fuel, carburetion_types_code, carburetion_types, num_of_barrels, gross_vehicle_weights_range, distance_between_axles_for_particular_series, front_tire_size_code, front_tire_size, rear_tire_size_code, rear_tire_size, tonnage_rating, base_price, drive_type_1, drive_type_2, country_sold_code, country_sold, brakes_abs_code, brakes_abs_description, security_type_code, security_type, daytime_running_lights_1, daytime_running_lights_2, restraint_type_code, restraint_type, cab_configuration_code, cab_configuration, axle_type_front_axle_code, axle_type_front_axle, axle_type_rear_axle_code, axle_type_rear_axle, brake_type_code, brake_type, engine_manufacture_code, engine_manufacture, engine_model, duty_type_code, duty_type, bed_length_code, bed_length, standard_segmentation_code, standard_segmentation, plant_code, plant_country, plant_city, plant_country_code, plant_state_code, plant_state, origin_code, origin, block_type, head_configuration_1, head_configuration_2, engine_code, is_incomplete, battery_type_code, battery_type, total_battery_power, battery_voltage, supercharge_flag, supercharge_flag_description, turbocharger_flag, turbocharger_flag_description, variable_valve_timing_flag, motorcycles_body_style_code, motorcycles_body_style
+  OTHER cols: description="This
+
+bigquery-public-data.nhtsa_traffic_fatalities.vindecode_2016
+  NUM cols: state_number, consecutive_number, vehicle_number, marketing_year, num_of_doors, number_of_wheels, num_of_wheels_by_power_train, displacement_cid, displacement_cc, cycle_count, gross_vehicle_weights_range_code, distance_between_axles_for_base_model, front_tire, front_tire_pressure, rear_tire, rear_tire_pressure, shipping_weight, displacement_liters, valves_per_cylinder, valves_total
+  STR cols: vehicle_make, vehicle_type_code, vehicle_type, make_name, model_code, vehicle_trim, vehicle_trim_1, vehicle_trim_2, vehicle_trim_3, vehicle_trim_4, body_style_code, body_style, vehicle_manufacturer_code, vehicle_manufacturer_name, cylinder_count_code, fuel_code, fuel, type_of_fuel_code, type_of_fuel, carburetion_types_code, carburetion_types, num_of_barrels, gross_vehicle_weights_range, distance_between_axles_for_particular_series, front_tire_size_code, front_tire_size, rear_tire_size_code, rear_tire_size, tonnage_rating, base_price, drive_type_1, drive_type_2, country_sold_code, country_sold, brakes_abs_code, brakes_abs_description, security_type_code, security_type, daytime_running_lights_1, daytime_running_lights_2, restraint_type_code, restraint_type, cab_configuration_code, cab_configuration, axle_type_front_axle_code, axle_type_front_axle, axle_type_rear_axle_code, axle_type_rear_axle, brake_type_code, brake_type, engine_manufacture_code, engine_manufacture, engine_model, duty_type_code, duty_type, bed_length_code, bed_length, standard_segmentation_code, standard_segmentation, plant_code, plant_country, plant_city, plant_country_code, plant_state_code, plant_state, origin_code, origin, block_type, head_configuration_1, head_configuration_2, engine_code, is_incomplete, battery_type_code, battery_type, total_battery_power, battery_voltage, supercharge_flag, supercharge_flag_description, turbocharger_flag, turbocharger_flag_description, variable_valve_timing_flag, motorcycles_body_style_code, motorcycles_body_style
+
+bigquery-public-data.nhtsa_traffic_fatalities.violatn_2015
+  NUM cols: state_number, consecutive_number, vehicle_number
+  STR cols: violations_charged, violations_charged_name
+  OTHER cols: description="This
+
+bigquery-public-data.nhtsa_traffic_fatalities.violatn_2016
+  NUM cols: state_number, consecutive_number, vehicle_number
+  STR cols: violations_charged, violations_charged_name
+
+bigquery-public-data.nhtsa_traffic_fatalities.vision_2015
+  NUM cols: state_number, consecutive_number, vehicle_number, drivers_vision_obscured_by
+  STR cols: drivers_vision_obscured_by_name
+  OTHER cols: description="This
+
+bigquery-public-data.nhtsa_traffic_fatalities.vision_2016
+  NUM cols: state_number, consecutive_number, vehicle_number, drivers_vision_obscured_by
+  STR cols: drivers_vision_obscured_by_name
+
+bigquery-public-data.nhtsa_traffic_fatalities.vsoe_2015
+  NUM cols: state_number, consecutive_number, vehicle_number, vehicle_event_number, sequence_of_events, area_of_Impact_associated_with_the_event
+  STR cols: sequence_of_events_name, area_of_Impact_associated_with_the_event_name
+  OTHER cols: description="This
+
+bigquery-public-data.nhtsa_traffic_fatalities.vsoe_2016
+  NUM cols: state_number, consecutive_number, vehicle_number, vehicle_event_number, sequence_of_events, area_of_Impact_associated_with_the_event
+  STR cols: sequence_of_events_name, area_of_Impact_associated_with_the_event_name

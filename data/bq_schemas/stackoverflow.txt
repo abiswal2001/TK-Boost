@@ -1,0 +1,59 @@
+[DATASET=stackoverflow]
+bigquery-public-data.stackoverflow.badges
+  NUM cols: id, user_id, class
+  STR cols: name
+  TIME cols: date
+  BOOL cols: tag_based
+
+bigquery-public-data.stackoverflow.comments
+  NUM cols: id, post_id, user_id, score
+  STR cols: text, user_display_name
+  TIME cols: creation_date
+
+bigquery-public-data.stackoverflow.post_history
+  NUM cols: id, post_id, post_history_type_id, user_id
+  STR cols: revision_guid, text, comment
+  TIME cols: creation_date
+
+bigquery-public-data.stackoverflow.post_links
+  NUM cols: id, link_type_id, post_id, related_post_id
+  TIME cols: creation_date
+
+bigquery-public-data.stackoverflow.posts_answers
+  NUM cols: id, comment_count, last_editor_user_id, owner_user_id, parent_id, post_type_id, score
+  STR cols: title, body, accepted_answer_id, answer_count, favorite_count, last_editor_display_name, owner_display_name, tags, view_count
+  TIME cols: community_owned_date, creation_date, last_activity_date, last_edit_date
+
+bigquery-public-data.stackoverflow.[posts_moderator_nomination | posts_orphaned_tag_wiki | posts_tag_wiki | posts_tag_wiki_excerpt]
+  NUM cols: id, comment_count, last_editor_user_id, owner_user_id, post_type_id, score
+  STR cols: title, body, accepted_answer_id, answer_count, favorite_count, last_editor_display_name, owner_display_name, parent_id, tags, view_count
+  TIME cols: community_owned_date, creation_date, last_activity_date, last_edit_date
+
+bigquery-public-data.stackoverflow.posts_questions
+  NUM cols: id, accepted_answer_id, answer_count, comment_count, favorite_count, last_editor_user_id, owner_user_id, post_type_id, score, view_count
+  STR cols: title, body, last_editor_display_name, owner_display_name, parent_id, tags
+  TIME cols: community_owned_date, creation_date, last_activity_date, last_edit_date
+
+bigquery-public-data.stackoverflow.[posts_privilege_wiki | posts_wiki_placeholder]
+  NUM cols: id, comment_count, last_editor_user_id, owner_user_id, post_type_id, score
+  STR cols: title, body, accepted_answer_id, answer_count, community_owned_date, favorite_count, last_editor_display_name, owner_display_name, parent_id, tags, view_count
+  TIME cols: creation_date, last_activity_date, last_edit_date
+
+bigquery-public-data.stackoverflow.stackoverflow_posts
+  NUM cols: id, accepted_answer_id, answer_count, comment_count, favorite_count, last_editor_user_id, owner_user_id, parent_id, post_type_id, score, view_count
+  STR cols: title, body, last_editor_display_name, owner_display_name, tags
+  TIME cols: community_owned_date, creation_date, last_activity_date, last_edit_date
+  OTHER cols: description="Don't
+
+bigquery-public-data.stackoverflow.tags
+  NUM cols: id, count, excerpt_post_id, wiki_post_id
+  STR cols: tag_name
+
+bigquery-public-data.stackoverflow.users
+  NUM cols: id, reputation, up_votes, down_votes, views
+  STR cols: display_name, about_me, age, location, profile_image_url, website_url
+  TIME cols: creation_date, last_access_date
+
+bigquery-public-data.stackoverflow.votes
+  NUM cols: id, post_id, vote_type_id
+  TIME cols: creation_date

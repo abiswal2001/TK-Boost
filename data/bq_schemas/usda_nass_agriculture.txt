@@ -1,0 +1,8 @@
+[DATASET=usda_nass_agriculture]
+bigquery-public-data.usda_nass_agriculture.* (6 tables)
+  STR cols: source_desc, sector_desc, group_desc, commodity_desc, class_desc, prodn_practice_desc, util_practice_desc, statisticcat_desc, unit_desc, short_desc, domain_desc, domaincat_desc, agg_level_desc, state_ansi, state_fips_code, state_alpha, state_name, asd_code, asd_desc, county_ansi, county_code, county_name, region_desc, zip_5, watershed_code, watershed_desc, congr_district_code, country_code, country_name, location_desc, year, freq_desc, begin_code, end_code, reference_period_desc, week_ending, load_time, value, cv_percent
+
+bigquery-public-data.usda_nass_agriculture.[census_2002 | census_2007 | census_2012 | crops | environmental]
+  NUM cols: state_ansi, state_fips_code, asd_code, county_ansi, county_code, zip_5, watershed_code, congr_district_code, country_code, year, begin_code, end_code, value, cv_percent
+  STR cols: source_desc, sector_desc, group_desc, commodity_desc, class_desc, prodn_practice_desc, util_practice_desc, statisticcat_desc, unit_desc, short_desc, domain_desc, domaincat_desc, agg_level_desc, state_alpha, state_name, asd_desc, county_name, region_desc, watershed_desc, country_name, location_desc, freq_desc, reference_period_desc, value_suppression_code, cv_suppression_code
+  TIME cols: week_ending, load_time

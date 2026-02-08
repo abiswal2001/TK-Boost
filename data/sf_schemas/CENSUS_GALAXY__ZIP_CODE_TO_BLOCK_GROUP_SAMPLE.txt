@@ -1,0 +1,32 @@
+[DB=CENSUS_GALAXY__ZIP_CODE_TO_BLOCK_GROUP_SAMPLE | SCHEMA=PUBLIC]
+CENSUS_GALAXY__ZIP_CODE_TO_BLOCK_GROUP_SAMPLE.PUBLIC.Dim_CensusGeography
+  NUM cols: AmtLand, AmtWater
+  STR cols: BlockGroupCentroidLat, BlockGroupCentroidLon, BlockGroupCentroidPoints, BlockGroupCode, BlockGroupID, BlockGroupName, BlockGroupPolygon, CountyFIPS, CountyName, FuncStat, GeographyYear, MTFCC, StateAbbrev, StateCountyTractID, StateFIPS, StateName, TractCode
+
+CENSUS_GALAXY__ZIP_CODE_TO_BLOCK_GROUP_SAMPLE.PUBLIC.Dim_CensusMetrics
+  STR cols: Descriptor[1-3], MetricCategory, MetricGroup, MetricID, MetricTableDesc, MetricTableID, Type, UnitMeasureType
+
+CENSUS_GALAXY__ZIP_CODE_TO_BLOCK_GROUP_SAMPLE.PUBLIC.Fact_CensusValues_ACS.__[2021-2021]
+  NUM cols: CensusValue
+  STR cols: BlockGroupID, MetricID
+  AVAILABLE YEARS (YYYY): 2021
+
+CENSUS_GALAXY__ZIP_CODE_TO_BLOCK_GROUP_SAMPLE.PUBLIC.Fact_CensusValues_ACS2021_ByZip
+  NUM cols: CensusValueByZip
+  STR cols: MetricID, ZipCode
+
+CENSUS_GALAXY__ZIP_CODE_TO_BLOCK_GROUP_SAMPLE.PUBLIC.Fact_StateBenchmark_ACS.__[2021-2021]
+  NUM cols: StateBenchmarkValue, TotalStatePopulation, TotalUSPopulation
+  STR cols: MetricID, StateAbbrev, StateFIPS
+  AVAILABLE YEARS (YYYY): 2021
+
+CENSUS_GALAXY__ZIP_CODE_TO_BLOCK_GROUP_SAMPLE.PUBLIC.LU_GeographyExpanded
+  STR cols: PreferredCity, PreferredCityStateAbbrev, PreferredStateAbbrev, PreferredStateName, ZipCode, ZipCodeCentroidLat, ZipCodeCentroidLon, ZipCodeCentroidPoint, ZipCodePolygon, ZipCodeType
+
+CENSUS_GALAXY__ZIP_CODE_TO_BLOCK_GROUP_SAMPLE.PUBLIC.Xref_TractToZip_Residential
+  NUM cols: ResidentialMappingRatioTZ
+  STR cols: FromStateCountyTractID, ToZipCode
+
+CENSUS_GALAXY__ZIP_CODE_TO_BLOCK_GROUP_SAMPLE.PUBLIC.Xref_ZipToTract_Residential
+  NUM cols: ResidentialMappingRatioZT
+  STR cols: FromZipCode, ToStateCountyTractID

@@ -1,0 +1,109 @@
+[DATASET=new_york_plus]
+bigquery-public-data.new_york_311.311_service_requests
+  NUM cols: unique_key, x_coordinate, y_coordinate, bbl, latitude, longitude
+  STR cols: agency, agency_name, complaint_type, descriptor, location_type, incident_zip, incident_address, street_name, cross_street_1, cross_street_2, intersection_street_1, intersection_street_2, address_type, city, landmark, facility_type, status, resolution_description, community_board, borough, park_facility_name, park_borough, open_data_channel_type, vehicle_type, taxi_company_borough, taxi_pickup_location, bridge_highway_name, bridge_highway_direction, road_ramp, bridge_highway_segment, location
+  TIME cols: created_date, closed_date, due_date, resolution_action_updated_date
+
+bigquery-public-data.new_york_citibike.citibike_stations
+  NUM cols: latitude, longitude, region_id, capacity, num_bikes_available, num_bikes_disabled, num_docks_available, num_docks_disabled
+  STR cols: station_id, name, short_name, rental_methods
+  TIME cols: last_reported
+  BOOL cols: eightd_has_key_dispenser, is_installed, is_renting, is_returning, eightd_has_available_keys
+
+bigquery-public-data.new_york_citibike.citibike_trips
+  NUM cols: tripduration, start_station_id, start_station_latitude, start_station_longitude, end_station_id, end_station_latitude, end_station_longitude, bikeid, birth_year
+  STR cols: start_station_name, end_station_name, usertype, gender, customer_plan
+  TIME cols: starttime, stoptime
+
+bigquery-public-data.new_york_subway.geo_nyc_borough_boundaries
+  NUM cols: borough_area, borough_len
+  STR cols: borough_code, borough_name
+  OTHER cols: borough_geom, PARTITION
+
+bigquery-public-data.new_york_mv_collisions.nypd_mv_collisions
+  NUM cols: latitude, longitude, number_of_cyclist_injured, number_of_cyclist_killed, number_of_motorist_injured, number_of_motorist_killed, number_of_pedestrians_injured, number_of_pedestrians_killed, number_of_persons_injured, number_of_persons_killed, unique_key, zip_code
+  STR cols: borough, contributing_factor_vehicle_1, contributing_factor_vehicle_2, contributing_factor_vehicle_3, contributing_factor_vehicle_4, contributing_factor_vehicle_5, cross_street_name, location, off_street_name, on_street_name, vehicle_type_code1, vehicle_type_code2, vehicle_type_code_3, vehicle_type_code_4, vehicle_type_code_5
+  TIME cols: timestamp
+
+bigquery-public-data.new_york_subway.routes
+  STR cols: route_id, route_short_name, route_long_name, route_describe, route_type
+  OTHER cols: PARTITION
+
+bigquery-public-data.new_york_subway.station_complexes
+  STR cols: complex_id, complex_name
+  OTHER cols: PARTITION
+
+bigquery-public-data.new_york_subway.station_entrances
+  NUM cols: station_lat, station_lon, entrance_lat, entrance_lon
+  STR cols: division, line, station_name, route_1, route_2, route_3, route_4, route_5, route_6, route_7, route_8, route_9, route_10, route_11, entrance_type, staff, staff_hours, ada_notes, north_south_street, east_west_street, corner
+  BOOL cols: free_crossover, entry, exit_only, vending, ada_compliant
+  OTHER cols: station_geom, entrance_geom, PARTITION
+
+bigquery-public-data.new_york_subway.stations
+  NUM cols: station_lat, station_lon
+  STR cols: station_id, complex_id, gtfs_stop_id, division, line, station_name, borough_name, daytime_routes, structure, north_direction_label, south_direction_label
+  OTHER cols: station_geom, PARTITION
+
+bigquery-public-data.new_york_subway.stop_times
+  STR cols: trip_id, arrival_time, departure_time, stop_id, stop_sequence, stop_headsign, pickup_type, dropoff_type, shape_dist_traveled
+  OTHER cols: PARTITION
+
+bigquery-public-data.new_york_subway.subway_ridership_2013_present
+  NUM cols: ridership_2013, ridership_2014, ridership_2015, ridership_2016, ridership_2017, ridership_2018, change_2018_raw, change_2018_percent, rank_ridership_2018
+  STR cols: station_name, routes
+  OTHER cols: PARTITION
+
+bigquery-public-data.new_york_taxi_trips.taxi_zone_geom
+  STR cols: zone_id, zone_name, borough
+  OTHER cols: zone_geom
+
+bigquery-public-data.new_york_taxi_trips.[tlc_fhv_trips_2015 | tlc_fhv_trips_2016]
+  NUM cols: location_id
+  STR cols: dispatching_base_num, borough, zone, service_zone
+  TIME cols: pickup_datetime
+
+bigquery-public-data.new_york_taxi_trips.tlc_fhv_trips_2017
+  NUM cols: location_id, dropoff_location_id
+  STR cols: dispatching_base_num, borough, zone, service_zone, dropoff_borough, dropoff_zone, dropoff_service_zone
+  TIME cols: pickup_datetime, dropoff_datetime
+
+bigquery-public-data.new_york_taxi_trips.tlc_green_trips_20* (9 tables)
+  NUM cols: passenger_count, trip_distance, fare_amount, extra, mta_tax, tip_amount, tolls_amount, ehail_fee, airport_fee, total_amount, distance_between_service, time_between_service, imp_surcharge, data_file_year, data_file_month
+  STR cols: vendor_id, store_and_fwd_flag, rate_code, payment_type, trip_type, pickup_location_id, dropoff_location_id
+  TIME cols: pickup_datetime, dropoff_datetime
+
+bigquery-public-data.new_york_taxi_trips.tlc_green_trips_2023
+  NUM cols: passenger_count, trip_distance, fare_amount, extra, mta_tax, tip_amount, tolls_amount, ehail_fee, total_amount, distance_between_service, time_between_service, imp_surcharge, data_file_year, data_file_month
+  STR cols: vendor_id, store_and_fwd_flag, rate_code, payment_type, trip_type, pickup_location_id, dropoff_location_id
+  TIME cols: pickup_datetime, dropoff_datetime
+
+bigquery-public-data.new_york_taxi_trips.tlc_yellow_trips_20* (12 tables)
+  NUM cols: passenger_count, trip_distance, fare_amount, extra, mta_tax, tip_amount, tolls_amount, imp_surcharge, airport_fee, total_amount, data_file_year, data_file_month
+  STR cols: vendor_id, rate_code, store_and_fwd_flag, payment_type, pickup_location_id, dropoff_location_id
+  TIME cols: pickup_datetime, dropoff_datetime
+
+bigquery-public-data.new_york_taxi_trips.tlc_yellow_trips_2023
+  NUM cols: passenger_count, trip_distance, fare_amount, extra, mta_tax, tip_amount, tolls_amount, imp_surcharge, total_amount, data_file_year, data_file_month
+  STR cols: vendor_id, rate_code, store_and_fwd_flag, payment_type, pickup_location_id, dropoff_location_id
+  TIME cols: pickup_datetime, dropoff_datetime
+
+bigquery-public-data.new_york_trees.tree_census_1995
+  NUM cols: recordid, zip_original, cb_original, diameter, x, y, longitude, latitude, cb_new, zip_new, segmentid
+  STR cols: address, house_number, street, site, species, status, wires, sidewalk_condition, support_structure, borough, censustract_2010, censusblock_2010, nta_2010, spc_common, spc_latin, location
+
+bigquery-public-data.new_york_trees.tree_census_2005
+  NUM cols: objectid, cen_year, tree_dbh, cb_num, borocode, cncldist, st_assem, st_senate, boro_ct, x_sp, y_sp, objectid_1, latitude, longitude, census_tract, bin, bbl
+  STR cols: tree_loc, pit_type, soil_lvl, status, spc_latin, spc_common, trunk_dmg, zipcode, zip_city, boroname, nta, nta_name, location_1, state, address
+  BOOL cols: vert_other, vert_pgrd, vert_tgrd, vert_wall, horz_blck, horz_grate, horz_plant, horz_other, sidw_crack, sidw_raise, wire_htap, wire_prime, wire_2nd, wire_other, inf_canopy, inf_guard, inf_wires, inf_paving, inf_outlet, inf_shoes, inf_lights, inf_other
+
+bigquery-public-data.new_york_trees.tree_census_2015
+  NUM cols: tree_id, block_id, tree_dbh, stump_diam, zipcode, cb_num, borocode, cncldist, st_assem, st_senate, boro_ct, latitude, longitude, x_sp, y_sp
+  STR cols: curb_loc, status, health, spc_latin, spc_common, steward, guards, sidewalk, user_type, problems, root_stone, root_grate, root_other, trunk_wire, trnk_light, trnk_other, brch_light, brch_shoe, brch_other, address, zip_city, boroname, nta, nta_name, state
+  TIME cols: created_at
+
+bigquery-public-data.new_york_trees.tree_species
+  STR cols: species_scientific_name, species_common_name, form, growth_rate, fall_color, environmental_tolerances, location_tolerances, notes_suggested_cultivars, tree_size, comments
+
+bigquery-public-data.new_york_subway.trips
+  STR cols: route_id, service_id, trip_id, trip_headsign, direction_id, block_id, shape_id
+  OTHER cols: PARTITION

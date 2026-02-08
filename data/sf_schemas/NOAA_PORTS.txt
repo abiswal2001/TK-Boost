@@ -1,0 +1,82 @@
+[DB=NOAA_PORTS | SCHEMA=GEO_INTERNATIONAL_PORTS]
+NOAA_PORTS.GEO_INTERNATIONAL_PORTS.WORLD_PORT_INDEX
+  NUM cols: port_latitude, port_longitude, tide_range
+  STR cols: anchorage_depth, cargo_oil_depth, cargo_pier_depth, channel_depth, chart_number, country, dry_dock_types, harbor_size, harbor_type, index_number, max_vessel_size, port_name, publication_number, railway_types, region_number, repair_types, shelter_afforded
+  OTHER cols: cargo_anchor, cargo_beach_moor, cargo_ice_moor, cargo_med_moor, cargo_wharf, comms_air, comms_fax, comms_phone, comms_radio, comms_rail, comms_vhf, crane_fixed, crane_float, crane_mobile, deck_supplies, degauss, diesel, dirty_ballast, eng_supplies, entry_ice, entry_other, entry_swell, entry_tide, eta_message_required, fuel_oil, garbage_dispose, good_holding_ground, lift_0_24_tons, lift_100_tons, lift_25_49_tons, lift_50_100_tons, med_facility, overhead_limit, pilot_advised, pilot_available, pilot_local_assist, pilot_required, port_geom, port_of_entry, provisions, quarantine_other, quarantine_procedures_required, quarantine_sscc_cert_required, services_electrical, services_electrical_repair, services_longshore, services_nav_equip, services_steam, tug_assist, tug_salvage, turning_area, us_representative, water
+
+[DB=NOAA_PORTS | SCHEMA=GEO_US_BOUNDARIES]
+NOAA_PORTS.GEO_US_BOUNDARIES.ADJACENT_COUNTIES
+  STR cols: county, county_fips_code, state
+  OTHER cols: neighbors, neighbors_fips_code, neighbors_state
+
+NOAA_PORTS.GEO_US_BOUNDARIES.ADJACENT_STATES
+  STR cols: state, state_fips_code, state_name
+  OTHER cols: neighbors_fips_code, neighbors_state
+
+NOAA_PORTS.GEO_US_BOUNDARIES.CBSA
+  NUM cols: area_land_meters, area_water_meters, internal_point_latitude, internal_point_longitude
+  STR cols: cbsa_fips_code, csa_geo_id, geo_id, lsad_code, lsad_name, msa_indicator, mtfcc_feature_class_code, name
+  OTHER cols: cbsa_geom, internal_point_geom
+
+NOAA_PORTS.GEO_US_BOUNDARIES.CNECTA
+  NUM cols: area_land_meters, area_water_meters, int_point_lat, int_point_lon
+  STR cols: cnecta_fips_code, geo_id, lsad, mtfcc_feature_class_code, name, name_lsad
+  OTHER cols: cnecta_geom
+
+NOAA_PORTS.GEO_US_BOUNDARIES.COASTLINE
+  STR cols: name
+  OTHER cols: coastline_geom
+
+NOAA_PORTS.GEO_US_BOUNDARIES.CONGRESS_DISTRICT_115
+  NUM cols: area_land_meters, area_water_meters, int_point_lat, int_point_lon
+  STR cols: congress_session, district_fips_code, geo_id, lsad_code, lsad_name, mtfcc_feature_class_code, state_fips_code
+  OTHER cols: district_geom, functional_status, int_point_geom
+  OTHER TABLES WITH IDENTICAL SCHEMA: CONGRESS_DISTRICT_116
+
+NOAA_PORTS.GEO_US_BOUNDARIES.COUNTIES
+  NUM cols: area_land_meters, area_water_meters, int_point_lat, int_point_lon
+  STR cols: cbsa_fips_code, county_fips_code, county_gnis_code, county_name, csa_fips_code, fips_class_code, functional_status, geo_id, lsad_code, lsad_name, met_div_fips_code, mtfcc_feature_class_code, state_fips_code
+  OTHER cols: county_geom, int_point_geom
+
+NOAA_PORTS.GEO_US_BOUNDARIES.CSA
+  NUM cols: area_land_meters, area_water_meters, internal_point_lat, internal_point_lon
+  STR cols: csa_code, geo_id, lsad_name, msa_lsad_code, mtfcc_feature_class_code, name
+  OTHER cols: csa_geom, internal_point_geom
+
+NOAA_PORTS.GEO_US_BOUNDARIES.METROPOLITAN_DIVISIONS
+  NUM cols: area_land_meters, area_water_meters, internal_point_latitude, internal_point_longitude
+  STR cols: cbsa_code, csa_code, geo_id, lsad_code, lsad_name, metdiv_code, mtfcc_feature_class_code, name
+  OTHER cols: internal_point_geom, metdiv_geom
+
+NOAA_PORTS.GEO_US_BOUNDARIES.NATIONAL_OUTLINE
+  STR cols: aff_geo_id, geo_id, name
+  OTHER cols: us_outline_geom
+
+NOAA_PORTS.GEO_US_BOUNDARIES.NWS_FORECAST_REGIONS
+  NUM cols: lat, lon
+  STR cols: cwa, fe_area, name, shortname, state, state_zone, time_zone, zone
+  OTHER cols: shape_geometry
+
+NOAA_PORTS.GEO_US_BOUNDARIES.RAILWAYS
+  NUM cols: geo_id
+  STR cols: full_name, mtfcc_feature_class_code, railway_geom
+
+NOAA_PORTS.GEO_US_BOUNDARIES.STATES
+  NUM cols: area_land_meters, area_water_meters, int_point_lat, int_point_lon
+  STR cols: division_code, functional_status, geo_id, lsad_code, mtfcc_feature_class_code, region_code, state, state_fips_code, state_gnis_code, state_name
+  OTHER cols: int_point_geom, state_geom
+
+NOAA_PORTS.GEO_US_BOUNDARIES.URBAN_AREAS
+  NUM cols: area_land_meters, area_water_meters, internal_point_lat, internal_point_lon
+  STR cols: area_lsad_code, functional_status, geo_id, lsad_name, mtfcc_feature_class_code, name, type, urban_area_code
+  OTHER cols: internal_point_geom, urban_area_geom
+
+NOAA_PORTS.GEO_US_BOUNDARIES.ZIP_CODES
+  NUM cols: area_land_meters, area_water_meters, internal_point_lat, internal_point_lon
+  STR cols: city, county, fips_class_code, functional_status, mtfcc_feature_class_code, state_code, state_fips_code, state_name, zip_code
+  OTHER cols: internal_point_geom, zip_code_geom
+
+[DB=NOAA_PORTS | SCHEMA=NOAA_HURRICANES]
+NOAA_PORTS.NOAA_HURRICANES.HURRICANES
+  NUM cols: bom_ci, bom_eye, bom_latitude, bom_longitude, bom_poci, bom_pos_method, bom_pressure, bom_pressure_method, bom_r34_ne, bom_r34_nw, bom_r34_se, bom_r34_sw, bom_r50_ne, bom_r50_nw, bom_r50_se, bom_r50_sw, bom_r64_ne, bom_r64_nw, bom_r64_se, bom_r64_sw, bom_rmw, bom_roci, bom_tnum, bom_type, bom_wind, cma_cat, cma_latitude, cma_longitude, cma_pressure, cma_wind, dist2land, ds824_latitude, ds824_longitude, ds824_pressure, ds824_wind, etl_timestamp, hko_longitude, hko_pressure, hko_wind, iso_time, landfall, latitude, longitude, mlc_latitude, mlc_longitude, mlc_pressure, mlc_wind, nadi_cat, nadi_latitude, nadi_longitude, nadi_pressure, nadi_wind, neumann_latitude, neumann_longitude, neumann_pressure, neumann_wind, newdelhi_ci, newdelhi_dp, newdelhi_latitude, newdelhi_longitude
+  STR cols: basin, ds824_stage, hko_cat, hko_latitude, iflag, mlc_class, name, nature, neumann_class, newdelhi_grade, season, sid, source_url, subbasin, track_type, usa_agency, usa_atcf_id, usa_eye, usa_record, usa_status, wmo_agency

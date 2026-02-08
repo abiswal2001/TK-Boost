@@ -1,0 +1,103 @@
+[DB=META_KAGGLE | SCHEMA=META_KAGGLE]
+META_KAGGLE.META_KAGGLE.COMPETITIONS
+  NUM cols: CompetitionTypeId, DeadlineDate, EnabledDate, ForumId, Id, LeaderboardPercentage, MaxDailySubmissions, MaxTeamSize, ModelSubmissionDeadlineDate, NumPrizes, NumScoredSubmissions, OrganizationId, ProhibitNewEntrantsDeadlineDate, RewardQuantity, ScoreTruncationNumDecimals, TeamMergerDeadlineDate, TeamModelDeadlineDate, TotalCompetitors, TotalSubmissions, TotalTeams, UserRankMultiplier
+  STR cols: EvaluationAlgorithmAbbreviation, EvaluationAlgorithmDescription, EvaluationAlgorithmName, HostName, HostSegmentTitle, RewardType, Slug, Subtitle, Title, ValidationSetName, ValidationSetValue
+  OTHER cols: BanTeamMergers, CanQualifyTiers, EnableSubmissionModelAttachments, EnableSubmissionModelHashes, EnableTeamModels, EvaluationAlgorithmIsMax, FinalLeaderboardHasBeenVerified, HasKernels, HasLeaderboard, OnlyAllowKernelSubmissions
+
+META_KAGGLE.META_KAGGLE.COMPETITIONTAGS
+  NUM cols: CompetitionId, Id, TagId
+
+META_KAGGLE.META_KAGGLE.DATASETS
+  NUM cols: CreationDate, CreatorUserId, CurrentDatasetVersionId, CurrentDatasourceVersionId, ForumId, Id, OwnerOrganizationId, OwnerUserId, TotalDownloads, TotalKernels, TotalViews, TotalVotes
+  STR cols: Type
+  TIME cols: LastActivityDate
+
+META_KAGGLE.META_KAGGLE.DATASETTAGS
+  NUM cols: DatasetId, Id, TagId
+
+META_KAGGLE.META_KAGGLE.DATASETTASKS
+  NUM cols: CreationDate, DatasetId, Deadline, Id, OwnerUserId, TotalVotes
+  STR cols: Description, ForumId, Subtitle, Title
+
+META_KAGGLE.META_KAGGLE.DATASETTASKSUBMISSIONS
+  NUM cols: AcceptedDate, CreationDate, DatasetId, DatasetTaskId, Id, KernelId, SubmittedUserId
+
+META_KAGGLE.META_KAGGLE.DATASETVOTES
+  NUM cols: DatasetVersionId, Id, UserId
+  TIME cols: VoteDate
+
+META_KAGGLE.META_KAGGLE.EPISODEAGENTS
+  NUM cols: EpisodeId, Id, Index, InitialConfidence, InitialScore, Reward, State, SubmissionId, UpdatedConfidence, UpdatedScore
+
+META_KAGGLE.META_KAGGLE.EPISODES
+  NUM cols: CompetitionId, CreateTime, EndTime, Id, Type
+
+META_KAGGLE.META_KAGGLE.FORUMMESSAGES
+  NUM cols: ForumTopicId, Id, Medal, PostUserId, ReplyToForumMessageId
+  STR cols: MedalAwardDate, Message, PostDate, RawMarkdown
+
+META_KAGGLE.META_KAGGLE.FORUMMESSAGEVOTES
+  NUM cols: ForumMessageId, FromUserId, Id, ToUserId
+  TIME cols: VoteDate
+
+META_KAGGLE.META_KAGGLE.FORUMS
+  NUM cols: Id, ParentForumId
+  STR cols: Title
+
+META_KAGGLE.META_KAGGLE.FORUMTOPICS
+  NUM cols: CreationDate, FirstForumMessageId, ForumId, Id, KernelId, LastCommentDate, LastForumMessageId, Score, TotalMessages, TotalReplies, TotalViews
+  STR cols: Title
+  OTHER cols: IsSticky
+
+META_KAGGLE.META_KAGGLE.KERNELLANGUAGES
+  NUM cols: Id
+  STR cols: DisplayName, Name
+  OTHER cols: IsNotebook
+
+META_KAGGLE.META_KAGGLE.KERNELS
+  NUM cols: AuthorUserId, CreationDate, CurrentKernelVersionId, FirstKernelVersionId, ForkParentKernelVersionId, ForumTopicId, Id, Medal, TotalComments, TotalViews, TotalVotes
+  STR cols: CurrentUrlSlug
+  TIME cols: EvaluationDate, MadePublicDate, MedalAwardDate
+  OTHER cols: IsProjectLanguageTemplate
+
+META_KAGGLE.META_KAGGLE.KERNELVERSIONCOMPETITIONSOURCES
+  NUM cols: Id, KernelVersionId, SourceCompetitionId
+
+META_KAGGLE.META_KAGGLE.KERNELVERSIONDATASETSOURCES
+  NUM cols: Id, KernelVersionId, SourceDatasetVersionId
+
+META_KAGGLE.META_KAGGLE.KERNELVERSIONS
+  NUM cols: AuthorUserId, CreationDate, Id, LinesChangedFromFork, LinesChangedFromPrevious, LinesDeletedFromFork, LinesInsertedFromFork, LinesInsertedFromPrevious, LinesUnchangedFromFork, LinesUnchangedFromPrevious, ScriptId, ScriptLanguageId, TotalLines, TotalVotes, VersionNumber
+  STR cols: ParentScriptVersionId, Title
+  TIME cols: EvaluationDate
+  OTHER cols: IsChange
+
+META_KAGGLE.META_KAGGLE.KERNELVOTES
+  NUM cols: Id, KernelVersionId, UserId
+  TIME cols: VoteDate
+
+META_KAGGLE.META_KAGGLE.SUBMISSIONS
+  NUM cols: Id, PrivateScoreFullPrecision, PrivateScoreLeaderboardDisplay, PublicScoreFullPrecision, PublicScoreLeaderboardDisplay, SubmittedUserId, TeamId
+  STR cols: SourceKernelVersionId
+  TIME cols: ScoreDate, SubmissionDate
+  OTHER cols: IsAfterDeadline
+
+META_KAGGLE.META_KAGGLE.TAGS
+  NUM cols: CompetitionCount, DatasetCount, Id, KernelCount, ParentTagId
+  STR cols: Description, FullPath, Name, Slug
+
+META_KAGGLE.META_KAGGLE.TEAMMEMBERSHIPS
+  NUM cols: Id, TeamId, UserId
+  TIME cols: RequestDate
+
+META_KAGGLE.META_KAGGLE.USERFOLLOWERS
+  NUM cols: FollowingUserId, Id, UserId
+  TIME cols: CreationDate
+
+META_KAGGLE.META_KAGGLE.USERORGANIZATIONS
+  NUM cols: Id, OrganizationId, UserId
+  TIME cols: JoinDate
+
+META_KAGGLE.META_KAGGLE.USERS
+  NUM cols: Id, PerformanceTier
+  STR cols: Country, DisplayName, RegisterDate, UserName

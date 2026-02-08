@@ -1,0 +1,96 @@
+[DB=STACKOVERFLOW_PLUS | SCHEMA=HACKERNEWS]
+STACKOVERFLOW_PLUS.HACKERNEWS.COMMENTS
+  NUM cols: id, parent, ranking, time, time_ts
+  STR cols: author, by, text
+  OTHER cols: dead, deleted
+
+STACKOVERFLOW_PLUS.HACKERNEWS.COMMENTSV2
+  NUM cols: descendants, id, level, parent, ranking, score, story_id, time, timestamp
+  STR cols: by, text, title, type, url
+  TIME cols: fake_date
+  OTHER cols: dead, deleted
+
+STACKOVERFLOW_PLUS.HACKERNEWS.COMMENTS_CONVOLUTION
+  NUM cols: descendants, id, level, parent, post_id, ranking, score, time, timestamp
+  STR cols: by, text, title, type, url
+  TIME cols: month
+  OTHER cols: dead, deleted
+
+STACKOVERFLOW_PLUS.HACKERNEWS.FULL.__[201510-201510]
+  NUM cols: descendants, id, parent, ranking, score, time
+  STR cols: by, text, title, type, url
+  OTHER cols: dead, deleted
+  AVAILABLE MONTHS (YYYYMM): 201510
+
+STACKOVERFLOW_PLUS.HACKERNEWS.FULL_PARTITIONED
+  NUM cols: descendants, id, parent, ranking, score, time, timestamp
+  STR cols: by, text, title, type, url
+  TIME cols: month
+  OTHER cols: dead, deleted
+
+STACKOVERFLOW_PLUS.HACKERNEWS.FULL_PARTITION_EXTRA
+  NUM cols: descendants, id, level, parent, post_id, ranking, score, time, timestamp
+  STR cols: by, text, title, type, url
+  TIME cols: month
+  OTHER cols: dead, deleted, tags
+
+STACKOVERFLOW_PLUS.HACKERNEWS.STORIES
+  NUM cols: descendants, id, score, time, time_ts
+  STR cols: author, by, text, title, url
+  OTHER cols: dead, deleted
+
+STACKOVERFLOW_PLUS.HACKERNEWS.STORIESV2
+  NUM cols: descendants, id, parent, ranking, score, time, timestamp
+  STR cols: by, text, title, type, url
+  TIME cols: fake_date
+  OTHER cols: dead, deleted
+
+[DB=STACKOVERFLOW_PLUS | SCHEMA=STACKOVERFLOW]
+STACKOVERFLOW_PLUS.STACKOVERFLOW.BADGES
+  NUM cols: class, date, id, user_id
+  STR cols: name
+  OTHER cols: tag_based
+
+STACKOVERFLOW_PLUS.STACKOVERFLOW.COMMENTS
+  NUM cols: creation_date, id, post_id, score, user_id
+  STR cols: text, user_display_name
+
+STACKOVERFLOW_PLUS.STACKOVERFLOW.POSTS_ANSWERS
+  NUM cols: comment_count, community_owned_date, creation_date, id, last_activity_date, last_edit_date, last_editor_user_id, owner_user_id, parent_id, post_type_id, score
+  STR cols: accepted_answer_id, answer_count, body, favorite_count, last_editor_display_name, owner_display_name, tags, title, view_count
+
+STACKOVERFLOW_PLUS.STACKOVERFLOW.POSTS_MODERATOR_NOMINATION
+  NUM cols: comment_count, community_owned_date, creation_date, id, last_activity_date, last_edit_date, last_editor_user_id, owner_user_id, post_type_id, score
+  STR cols: accepted_answer_id, answer_count, body, favorite_count, last_editor_display_name, owner_display_name, parent_id, tags, title, view_count
+  OTHER TABLES WITH IDENTICAL SCHEMA: POSTS_ORPHANED_TAG_WIKI, POSTS_TAG_WIKI, POSTS_TAG_WIKI_EXCERPT
+
+STACKOVERFLOW_PLUS.STACKOVERFLOW.POSTS_PRIVILEGE_WIKI
+  NUM cols: comment_count, creation_date, id, last_activity_date, last_edit_date, last_editor_user_id, owner_user_id, post_type_id, score
+  STR cols: accepted_answer_id, answer_count, body, community_owned_date, favorite_count, last_editor_display_name, owner_display_name, parent_id, tags, title, view_count
+  OTHER TABLES WITH IDENTICAL SCHEMA: POSTS_WIKI_PLACEHOLDER
+
+STACKOVERFLOW_PLUS.STACKOVERFLOW.POSTS_QUESTIONS
+  NUM cols: accepted_answer_id, answer_count, comment_count, community_owned_date, creation_date, favorite_count, id, last_activity_date, last_edit_date, last_editor_user_id, owner_user_id, post_type_id, score, view_count
+  STR cols: body, last_editor_display_name, owner_display_name, parent_id, tags, title
+
+STACKOVERFLOW_PLUS.STACKOVERFLOW.POST_HISTORY
+  NUM cols: creation_date, id, post_history_type_id, post_id, user_id
+  STR cols: comment, revision_guid, text
+
+STACKOVERFLOW_PLUS.STACKOVERFLOW.POST_LINKS
+  NUM cols: creation_date, id, link_type_id, post_id, related_post_id
+
+STACKOVERFLOW_PLUS.STACKOVERFLOW.STACKOVERFLOW_POSTS
+  NUM cols: accepted_answer_id, answer_count, comment_count, community_owned_date, creation_date, favorite_count, id, last_activity_date, last_edit_date, last_editor_user_id, owner_user_id, parent_id, post_type_id, score, view_count
+  STR cols: body, last_editor_display_name, owner_display_name, tags, title
+
+STACKOVERFLOW_PLUS.STACKOVERFLOW.TAGS
+  NUM cols: count, excerpt_post_id, id, wiki_post_id
+  STR cols: tag_name
+
+STACKOVERFLOW_PLUS.STACKOVERFLOW.USERS
+  NUM cols: creation_date, down_votes, id, last_access_date, reputation, up_votes, views
+  STR cols: about_me, age, display_name, location, profile_image_url, website_url
+
+STACKOVERFLOW_PLUS.STACKOVERFLOW.VOTES
+  NUM cols: creation_date, id, post_id, vote_type_id

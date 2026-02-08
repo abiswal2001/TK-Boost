@@ -1,0 +1,181 @@
+[DATASET=cms_data]
+bigquery-public-data.cms_synthetic_patient_data_omop.care_site
+  NUM cols: care_site_id, place_of_service_concept_id, location_id
+  STR cols: care_site_name, care_site_source_value, place_of_service_source_value
+
+bigquery-public-data.cms_synthetic_patient_data_omop.concept
+  NUM cols: concept_id
+  STR cols: concept_name, domain_id, vocabulary_id, concept_class_id, standard_concept, concept_code, invalid_reason
+  TIME cols: valid_start_date, valid_end_date
+
+bigquery-public-data.cms_synthetic_patient_data_omop.concept_ancestor
+  NUM cols: ancestor_concept_id, descendant_concept_id, min_levels_of_separation, max_levels_of_separation
+
+bigquery-public-data.cms_synthetic_patient_data_omop.concept_class
+  NUM cols: concept_class_concept_id
+  STR cols: concept_class_id, concept_class_name
+
+bigquery-public-data.cms_synthetic_patient_data_omop.concept_relationship
+  NUM cols: concept_id_1, concept_id_2
+  STR cols: relationship_id, invalid_reason
+  TIME cols: valid_start_date, valid_end_date
+
+bigquery-public-data.cms_synthetic_patient_data_omop.condition_era
+  NUM cols: condition_era_id, person_id, condition_concept_id, condition_occurrence_count
+  TIME cols: condition_era_start_date, condition_era_end_date
+
+bigquery-public-data.cms_synthetic_patient_data_omop.condition_occurrence
+  NUM cols: condition_occurrence_id, person_id, condition_concept_id, condition_type_concept_id, provider_id, visit_occurrence_id, visit_detail_id, condition_source_concept_id, condition_status_concept_id
+  STR cols: stop_reason, condition_source_value, condition_status_source_value
+  TIME cols: condition_start_date, condition_start_datetime, condition_end_date, condition_end_datetime
+
+bigquery-public-data.cms_synthetic_patient_data_omop.cost
+  NUM cols: cost_id, cost_event_id, cost_type_concept_id, currency_concept_id, total_charge, total_cost, total_paid, paid_by_payer, paid_by_patient, paid_patient_copay, paid_patient_coinsurance, paid_patient_deductible, paid_by_primary, paid_ingredient_cost, paid_dispensing_fee, payer_plan_period_id, amount_allowed, revenue_code_concept_id, drg_concept_id
+  STR cols: cost_domain_id, revenue_code_source_value, drg_source_value
+
+bigquery-public-data.cms_synthetic_patient_data_omop.death
+  NUM cols: person_id, death_type_concept_id, cause_concept_id, cause_source_concept_id
+  STR cols: cause_source_value
+  TIME cols: death_date, death_datetime
+
+bigquery-public-data.cms_synthetic_patient_data_omop.device_exposure
+  NUM cols: device_exposure_id, person_id, device_concept_id, device_type_concept_id, quantity, provider_id, visit_occurrence_id, visit_detail_id, device_source_concept_id
+  STR cols: unique_device_id, device_source_value
+  TIME cols: device_exposure_start_date, device_exposure_start_datetime, device_exposure_end_date, device_exposure_end_datetime
+
+bigquery-public-data.cms_synthetic_patient_data_omop.domain
+  NUM cols: domain_concept_id
+  STR cols: domain_id, domain_name
+
+bigquery-public-data.cms_synthetic_patient_data_omop.dose_era
+  NUM cols: dose_era_id, person_id, drug_concept_id, unit_concept_id, dose_value
+  TIME cols: dose_era_start_date, dose_era_end_date
+
+bigquery-public-data.cms_synthetic_patient_data_omop.drug_era
+  NUM cols: drug_era_id, person_id, drug_concept_id, drug_exposure_count, gap_days
+  TIME cols: drug_era_start_date, drug_era_end_date
+
+bigquery-public-data.cms_synthetic_patient_data_omop.drug_exposure
+  NUM cols: drug_type_concept_id, refills, quantity, days_supply, route_concept_id, provider_id, visit_occurrence_id, visit_detail_id, drug_source_concept_id, drug_exposure_id, person_id, drug_concept_id
+  STR cols: stop_reason, sig, lot_number, drug_source_value, route_source_value, dose_unit_source_value
+  TIME cols: drug_exposure_start_date, drug_exposure_start_datetime, drug_exposure_end_date, drug_exposure_end_datetime, verbatim_end_date
+
+bigquery-public-data.cms_synthetic_patient_data_omop.drug_strength
+  NUM cols: drug_concept_id, ingredient_concept_id, amount_value, amount_unit_concept_id, numerator_value, numerator_unit_concept_id, denominator_value, denominator_unit_concept_id, box_size
+  STR cols: invalid_reason
+  TIME cols: valid_start_date, valid_end_date
+
+bigquery-public-data.cms_codes.hcpcs
+  NUM cols: RECID, MCM1, MCM2
+  STR cols: HCPC, SEQNUM, LONG_DESCRIPTION, SHORT_DESCRIPTION, PRICE1, PRICE2, PRICE3, PRICE4, MULT_PI, CIM1, CIM2, CIM3, MCM3, STATUTE, LABCERT1, LABCERT2, LABCERT3, LABCERT4, LABCERT5, LABCERT6, LABCERT7, LABCERT8, XREF1, XREF2, XREF3, XREF4, XREF5, COV, ASC_GRP, ASC_DT, OPPS, OPPS_PI, OPPS_DT, PROCNOTE, BETOS, TOS1, TOS2, TOS3, TOS4, TOS5, ANEST_BU, ADD_DT, ACT_EFF_DT, TERM_DT
+  BOOL cols: ACTION_CD
+
+bigquery-public-data.cms_medicare.home_health_agencies_2013
+  NUM cols: zip_code, total_episodes_non_lupa, distinct_users_non_lupa, total_hha_charge_amount_non_lupa, total_hha_medicare_payment_amount_non_lupa, total_hha_medicare_standard_payment_amount_non_lupa, outlier_payments_as_a_percent_of_medicare_payment_amount_non_lupa, total_lupa_episodes, total_hha_medicare_payment_amount_for_lupas
+  STR cols: provider_id, agency_name, street_address, city, state
+
+bigquery-public-data.cms_medicare.home_health_agencies_2014
+  NUM cols: zip_code, total_episodes_non_lupa, distinct_beneficiaries_non_lupa, average_number_of_total_visits_per_episode_non_lupa, average_number_of_skilled_nursing_visits_per_episode_non_lupa, average_number_of_pt_visits_per_episode_non_lupa, average_number_of_ot_visits_per_episode_non_lupa, average_number_of_st_visits_per_episode_non_lupa, average_number_of_home_health_aide_visits_per_episode_non_lupa, average_number_of_medical_social_visits_per_episode_non_lupa, total_hha_charge_amount_non_lupa, total_hha_medicare_payment_amount_non_lupa, total_hha_medicare_standard_payment_amount_non_lupa, outlier_payments_as_a_percent_of_medicare_payment_amount_non_lupa, total_lupa_episodes, total_hha_medicare_payment_amount_for_lupas, average_age, male_beneficiaries, female_beneficiaries, nondual_beneficiaries, dua_beneficiaries, white_beneficiaries, black_beneficiaries, asian_pacific_islander_beneficiaries, hispanic_beneficiaries, american_indian_or_alaska_native_beneficiaries, other_unknown_beneficiaries, average_hcc_score, percent_of_beneficiaries_with_atrial_fibrillation, percent_of_beneficiaries_with_alzheimers, percent_of_beneficiaries_with_asthma, percent_of_beneficiaries_with_cancer, percent_of_beneficiaries_with_chf, percent_of_beneficiaries_with_chronic_kidney_disease, percent_of_beneficiaries_with_copd, percent_of_beneficiaries_with_depression, percent_of_beneficiaries_with_diabetes, percent_of_beneficiaries_with_hyperlipidemia, percent_of_beneficiaries_with_hypertension, percent_of_beneficiaries_with_ihd, percent_of_beneficiaries_with_osteoporosis, percent_of_beneficiaries_with_ra_oa, percent_of_beneficiaries_with_schizophrenia, percent_of_beneficiaries_with_stroke
+  STR cols: provider_id, agency_name, street_address, city, state
+
+bigquery-public-data.cms_medicare.hospice_providers_2014
+  NUM cols: zip_code, hospice_beneficiaries, total_days, total_medicare_payment_amount, total_medicare_standard_payment_amount, total_charge_amount, percent_routine_home_care_days, physician_services, home_health_visit_hours_per_day, skilled_nursing_visit_hours_per_day, social_service_visit_hours_per_day, total_live_discharges, hospice_beneficiaries_with_seven_or_fewer_hospice_care_days, hospice_beneficiaries_with_more_than_sixty_hospice_care_days, hospice_beneficiaries_with_more_than_one_hundred_eighty_hospice_care_days, home_health_visit_hours_per_day_during_week_prior_to_death, skilled_nursing_visit_hours_per_day_during_week_prior_to_death, social_service_visit_hours_per_day_during_week_prior_to_death, average_age, male_hospice_beneficiaries, female_hospice_beneficiaries, white_hospice_beneficiaries, black_hospice_beneficiaries, asian_hospice_beneficiaries, hispanic_hospice_beneficiaries, other_unknown_race_hospice_beneficiaries, medicare_advantage_hospice_beneficiaries, medicaid_eligible_hospice_beneficiaries, hospice_beneficiaries_with_a_primary_diagnosis_of_cancer, hospice_beneficiaries_with_a_primary_diagnosis_of_dementia, hospice_beneficiaries_with_a_primary_diagnosis_of_stroke, hospice_beneficiaries_with_a_primary_diagnosis_of_circulatory_heart_disease, hospice_beneficiaries_with_a_primary_diagnosis_of_respiratory_disease, hospice_beneficiaries_with_other_primary_diagnoses, site_of_service_home_hospice_beneficiaries, site_of_service_assisted_living_facility_hospice_beneficiaries, site_of_service_long_term_care_or_non_skilled_nursing_facility_hospice_beneficiaries, site_of_service_skilled_nursing_facility_hospice_beneficiaries, site_of_service_inpatient_hospital_hospice_beneficiaries, site_of_service_inpatient_hospice_hospice_beneficiaries, site_of_service_other_facility_hospice_beneficiaries
+  STR cols: provider_id, name, street_address, city, state, hrr
+
+bigquery-public-data.cms_medicare.hospital_general_info
+  STR cols: provider_id, hospital_name, address, city, state, zip_code, county_name, phone_number, hospital_type, hospital_ownership, hospital_overall_rating, hospital_overall_rating_footnote, mortality_group_measure_count, facility_mortaility_measures_count, mortality_measures_better_count, mortality_measures_no_different_count, mortality_measures_worse_count, mortaility_group_footnote, safety_measures_count, facility_care_safety_measures_count, safety_measures_better_count, safety_measures_no_different_count, safety_measures_worse_count, safety_group_footnote, readmission_measures_count, facility_readmission_measures_count, readmission_measures_better_count, readmission_measures_no_different_count, readmission_measures_worse_count, readmission_measures_footnote, patient_experience_measures_count, facility_patient_experience_measures_count, patient_experience_measures_footnote, timely_and_effective_care_measures_count, facility_timely_and_effective_care_measures_count, timely_and_effective_care_measures_footnote
+  BOOL cols: emergency_services, meets_criteria_for_promoting_interoperability_of_ehrs
+
+bigquery-public-data.cms_codes.icd10_diagnoses_2019
+  STR cols: order_number, cm_code, short_description, long_description
+  BOOL cols: is_header_code
+
+bigquery-public-data.cms_codes.icd10_procedures_2019
+  STR cols: order_number, pcs_code, short_description, long_description
+  BOOL cols: is_header_code
+
+bigquery-public-data.cms_codes.icd9_diagnoses
+  STR cols: DIAGNOSIS_CODE, LONG_DESCRIPTION, SHORT_DESCRIPTION
+
+bigquery-public-data.cms_codes.icd9_procedures
+  STR cols: PROCEDURE_CODE, LONG_DESCRIPTION, SHORT_DESCRIPTION
+
+bigquery-public-data.cms_medicare.[inpatient_charges_2011 | inpatient_charges_2012 | inpatient_charges_2013 | inpatient_charges_2014 | inpatient_charges_2015]
+  NUM cols: total_discharges, average_covered_charges, average_total_payments, average_medicare_payments
+  STR cols: provider_id, provider_name, provider_street_address, provider_city, provider_state, provider_zipcode, drg_definition, hospital_referral_region_description
+
+bigquery-public-data.cms_synthetic_patient_data_omop.location
+  NUM cols: location_id
+  STR cols: address_1, address_2, city, state, zip, county, location_source_value
+
+bigquery-public-data.cms_medicare.nursing_facilities_2013
+  NUM cols: zip_code, total_stays, distinct_beneficiaries_per_provider, average_length_of_stay_days, total_snf_charge_amount, total_snf_medicare_allowed_amount, total_snf_medicare_payment_amount, total_snf_medicare_standard_payment_amount
+  STR cols: provider_id, facility_name, street_address, city, state
+
+bigquery-public-data.cms_medicare.nursing_facilities_2014
+  NUM cols: zip_code, total_stays, distinct_beneficiaries_per_provider, average_length_of_stays_days, total_snf_charge_amount, total_snf_medicare_allowed_amount, total_snf_medicare_payment_amount, total_snf_medicare_standard_payment_amount, average_age, male_beneficiaries, female_beneficiaries, nondual_beneficiaries, dual_beneficiaries, white_beneficiaries, black_beneficiaries, asian_pacific_islander_beneficiaries, hispanic_beneficiaries, american_indian_or_alaska_native_beneficiaries, other_unknown_beneficiaries, average_hcc_score, percent_of_beneficiaries_with_atrial_fibrillation, percent_of_beneficiaries_with_alzheimers, percent_of_beneficiaries_with_asthma, percent_of_beneficiaries_with_cancer, percent_of_beneficiaries_with_chf, percent_of_beneficiaries_with_chronic_kidney_disease, percent_of_beneficiaries_with_copd, percent_of_beneficiaries_with_depression, percent_of_beneficiaries_with_diabetes, percent_of_beneficiaries_with_hyperlipidemia, percent_of_beneficiaries_with_hypertension, percent_of_beneficiaries_with_ihd, percent_of_beneficiaries_with_osteoporosis, percent_of_beneficiaries_with_ra_oa, percent_of_beneficiaries_with_schizophrenia, percent_of_beneficiaries_with_stroke
+  STR cols: provider_id, facility_name, street_address, city, state
+
+bigquery-public-data.cms_synthetic_patient_data_omop.observation
+  NUM cols: observation_id, person_id, observation_concept_id, observation_type_concept_id, value_as_number, value_as_concept_id, qualifier_concept_id, unit_concept_id, provider_id, visit_occurrence_id, visit_detail_id, observation_source_concept_id
+  STR cols: value_as_string, observation_source_value, unit_source_value, qualifier_source_value
+  TIME cols: observation_date, observation_datetime
+
+bigquery-public-data.cms_synthetic_patient_data_omop.observation_period
+  NUM cols: observation_period_id, person_id, period_type_concept_id
+  TIME cols: observation_period_start_date, observation_period_end_date
+
+bigquery-public-data.cms_medicare.[outpatient_charges_2011 | outpatient_charges_2012 | outpatient_charges_2013 | outpatient_charges_2014]
+  NUM cols: outpatient_services, average_estimated_submitted_charges, average_total_payments
+  STR cols: provider_id, provider_name, provider_street_address, provider_city, provider_state, provider_zipcode, apc, hospital_referral_region
+
+bigquery-public-data.cms_medicare.outpatient_charges_2015
+  NUM cols: provider_zipcode, outpatient_services, average_estimated_submitted_charges, average_total_payments
+  STR cols: provider_id, provider_name, provider_street_address, provider_city, provider_state, apc, hospital_referral_region
+
+bigquery-public-data.cms_medicare.part_d_prescriber_2014
+  NUM cols: bene_count, total_claim_count, total_day_supply, total_drug_cost, bene_count_ge65, total_claim_count_ge65, total_day_supply_ge65, total_drug_cost_ge65, total_30_day_fill_count, total_30_day_fill_count_ge65
+  STR cols: npi, nppes_provider_last_org_name, nppes_provider_first_name, nppes_provider_city, nppes_provider_state, specialty_description, description_flag, drug_name, generic_name, bene_count_ge65_suppress_flag, ge65_suppress_flag
+
+bigquery-public-data.cms_synthetic_patient_data_omop.payer_plan_period
+  NUM cols: payer_concept_id, payer_source_concept_id, plan_concept_id, plan_source_concept_id, sponsor_concept_id, sponsor_source_concept_id, stop_reason_concept_id, stop_reason_source_concept_id, payer_plan_period_id, person_id
+  STR cols: payer_source_value, plan_source_value, sponsor_source_value, family_source_value, stop_reason_source_value
+  TIME cols: payer_plan_period_start_date, payer_plan_period_end_date
+
+bigquery-public-data.cms_synthetic_patient_data_omop.person
+  NUM cols: race_concept_id, ethnicity_concept_id, location_id, provider_id, care_site_id, gender_source_concept_id, race_source_concept_id, ethnicity_source_concept_id, person_id, gender_concept_id, year_of_birth, month_of_birth, day_of_birth
+  STR cols: person_source_value, gender_source_value, race_source_value, ethnicity_source_value
+  TIME cols: birth_datetime
+
+bigquery-public-data.cms_medicare.[physicians_and_other_supplier_2012 | physicians_and_other_supplier_2013]
+  NUM cols: line_srvc_cnt, bene_unique_cnt, bene_day_srvc_cnt, average_medicare_allowed_amt, stdev_medicare_allowed_amt, average_submitted_chrg_amt, stdev_submitted_chrg_amt, average_medicare_payment_amt, stdev_medicare_payment_amt
+  STR cols: npi, nppes_provider_last_org_name, nppes_provider_first_name, nppes_provider_mi, nppes_credentials, nppes_provider_gender, nppes_entity_code, nppes_provider_street1, nppes_provider_street2, nppes_provider_city, nppes_provider_zip, nppes_provider_state, nppes_provider_country, provider_type, medicare_participation_indicator, place_of_service, hcpcs_code, hcpcs_description, hcpcs_drug_indicator
+
+bigquery-public-data.cms_medicare.[physicians_and_other_supplier_2014 | physicians_and_other_supplier_2015]
+  NUM cols: line_srvc_cnt, bene_unique_cnt, bene_day_srvc_cnt, average_medicare_allowed_amt, average_submitted_chrg_amt, average_medicare_payment_amt, average_medicare_standard_amt
+  STR cols: npi, nppes_provider_last_org_name, nppes_provider_first_name, nppes_provider_mi, nppes_credentials, nppes_provider_gender, nppes_entity_code, nppes_provider_street1, nppes_provider_street2, nppes_provider_city, nppes_provider_zip, nppes_provider_state, nppes_provider_country, provider_type, medicare_participation_indicator, place_of_service, hcpcs_code, hcpcs_description, hcpcs_drug_indicator
+
+bigquery-public-data.cms_synthetic_patient_data_omop.procedure_occurrence
+  NUM cols: procedure_type_concept_id, modifier_concept_id, quantity, provider_id, visit_occurrence_id, visit_detail_id, procedure_source_concept_id, procedure_occurrence_id, person_id, procedure_concept_id
+  STR cols: procedure_source_value, modifier_source_value
+  TIME cols: procedure_dat, procedure_datetime
+
+bigquery-public-data.cms_synthetic_patient_data_omop.provider
+  NUM cols: provider_id, specialty_concept_id, care_site_id, year_of_birth, gender_concept_id, specialty_source_concept_id, gender_source_concept_id
+  STR cols: provider_name, npi, dea, provider_source_value, specialty_source_value, gender_source_value
+
+bigquery-public-data.cms_medicare.referring_durable_medical_equip_2013
+  NUM cols: number_of_suppliers, number_of_supplier_hcpcs, number_of_supplier_beneficiaries, number_of_supplier_claims, number_of_supplier_services, supplier_submitted_charges, supplier_medicare_allowed_amount, supplier_medicare_payment_amount, number_of_durable_medical_equipment_suppliers, number_of_durable_medical_equipment_hcpcs, number_of_durable_medical_equipment_beneficiaries, number_of_durable_medical_equipment_claims, number_of_durable_medical_equipment_services, durable_medical_equipment_submitted_charges, durable_medical_equipment_medicare_allowed_amount, durable_medical_equipment_medicare_payment_amount, number_of_prosthetic_and_orthotic_suppliers, number_of_prosthetic_and_orthotic_hcpcs, number_of_prosthetic_and_orthotic_beneficiaries, number_of_prosthetic_and_orthotic_claims, number_of_prosthetic_and_orthotic_services, prosthetic_and_orthotic_submitted_charges, prosthetic_and_orthotic_medicare_allowed_amount, prosthetic_and_orthotic_medicare_payment_amount, number_of_drug_and_nutritional_products_suppliers, number_of_drug_and_nutritional_products_hcpcs, number_of_drug_and_nutritional_products_beneficiaries, number_of_drug_and_nutritional_products_claims, number_of_drug_and_nutritional_products_services, drug_and_nutritional_products_submitted_charges, drug_and_nutritional_products_medicare_allowed_amount, drug_and_nutritional_products_medicare_payment_amount
+  STR cols: referring_npi, referring_provider_last_name_organization_name, referring_provider_first_name, referring_provider_middle_initial, referring_provider_credentials, referring_provider_gender, referring_provider_entity_code, referring_provider_street_1, referring_provider_street_2, referring_provider_city, referring_provider_state, referring_provider_zip, referring_provider_country, referring_provider_type, referring_provider_type_flag, durable_medical_equipment_suppression_indicator, prosthetic_and_orthotic_suppression_indicator, drug_and_nutritional_suppression_indicator
+
+bigquery-public-data.cms_medicare.referring_durable_medical_equip_2014
+  NUM cols: number_of_suppliers, number_of_supplier_hcpcs, number_of_supplier_beneficiaries, number_of_supplier_claims, number_of_supplier_services, supplier_submitted_charges, supplier_medicare_allowed_amount, supplier_medicare_payment_amount, supplier_medicare_standard_payment_amount, dme_suppliers, dme_hcpcs, dme_beneficiaries, dme_claims, dme_services, dme_submitted_charges, dme_medicare_allowed_amount, dme_medicare_payment_amount, dme_medicare_standard_payment_amount, po_suppliers, po_hcpcs, po_beneficiaries, po_claims, po_services, po_submitted_charges, po_medicare_allowed_amount, po_medicare_payment_amount, po_medicare_standard_payment_amount, number_of_drug_and_nutritional_products_suppliers, number_of_drug_and_nutritional_products_hcpcs, number_of_drug_and_nutritional_products_beneficiaries, number_of_drug_and_nutritional_products_claims, number_of_drug_and_nutritional_products_services, drug_and_nutritional_products_submitted_charges, drug_and_nutritional_products_medicare_allowed_amount, drug_and_nutritional_products_medicare_payment_amount, drug_and_nutritional_products_medicare_standard_payment_amount
+  STR cols: referring_npi, provider_last_name, provider_first_name, provider_middle_initial, provider_credentials, provider_gender, provider_entity_code, provider_street_1, provider_street_2, provider_city, provider_state, provider_zip, provider_country, provider_type, provider_type_flag, durable_medical_equipment_suppression_indicator, prosthetic_and_orthotic_suppression_indicator, drug_and_nutritional_suppression_indicator
+
+bigquery-public-data.cms_synthetic_patient_data_omop.relationship
+  NUM cols: relationship_concept_id
+  STR cols: relationship_id, relationship_name, is_hierarchical, defines_ancestry, reverse_relationship_id
+
+bigquery-public-data.cms_synthetic_patient_data_omop.vocabulary
+  NUM cols: vocabulary_concept_id
+  STR cols: vocabulary_id, vocabulary_name, vocabulary_reference, vocabulary_version

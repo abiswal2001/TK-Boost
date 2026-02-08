@@ -1,0 +1,59 @@
+[DATASET=census_bureau_usa]
+bigquery-public-data.utility_us.country_code_iso
+  STR cols: country_name, fips_code, alpha_2_code, alpha_3_code, numeric_code, stanag_code, cctlds, continent_code, continent_name, sub_continent_name
+
+bigquery-public-data.utility_us.date_greg
+  NUM cols: date_int, day, dow_mon17, dow_mon06, dow_sun17, dow_sun06, week_mon, week_sun, week_iso, month, quarter, half, year, year_iso
+  STR cols: date_str, date_dash, date_slash, day_abbr, month_abbr
+  TIME cols: date, month_first_day, quarter_first_day, half_first_day, year_first_day
+
+bigquery-public-data.utility_us.num_999999
+  NUM cols: num
+
+bigquery-public-data.census_bureau_usa.[population_by_zip_2000 | population_by_zip_2010]
+  NUM cols: population, minimum_age, maximum_age
+  STR cols: geo_id, zipcode, gender
+  OTHER cols: labels=[("freebqcovid",
+
+bigquery-public-data.utility_us.time
+  NUM cols: hour, minute, second, second_in_day, hour_ampm
+  TIME cols: time
+  BOOL cols: is_pm
+
+bigquery-public-data.utility_us.us_border_area
+  STR cols: name, geo_id, aff_geo_id
+  OTHER cols: us_border_geom, description="This
+
+bigquery-public-data.utility_us.us_cities_area
+  NUM cols: area_land_meters, area_water_meters
+  STR cols: urban_area_code, geo_code, name, lsad_name, lsad_code, feature_class_code, area_type, functional_status, int_point_lat, int_point_lon
+  OTHER cols: city_geom, description="This
+
+bigquery-public-data.utility_us.us_coastline_area
+  STR cols: name
+  OTHER cols: coastline_geom, description="This
+
+bigquery-public-data.utility_us.us_county_area
+  NUM cols: area_land_meters, area_water_meters
+  STR cols: state_fips_code, county_fips_code, county_gnis_code, aff_geo_code, geo_id, county_name, legal_area_code
+  OTHER cols: county_geom, description="This
+
+bigquery-public-data.utility_us.us_csa_area
+  NUM cols: area_land_meters, area_water_meters
+  STR cols: csa_code, aff_geo_code, geo_code, name, lsad_code
+  OTHER cols: csa_geom, description="This
+
+bigquery-public-data.utility_us.us_msa_area
+  NUM cols: area_land_meters, area_water_meters
+  STR cols: csa_code, msa_code, geo_code, name, lsad_name, lsad_code, status_indicator, feature_class_code, int_point_lat, int_point_lon
+  OTHER cols: msa_geom, description="This
+
+bigquery-public-data.utility_us.us_states_area
+  NUM cols: area_land_meters, area_water_meters
+  STR cols: region_code, division_code, state_fips_code, state_gnis_code, state_geo_id, state_abbreviation, state_name, legal_area_code, feature_class_code, functional_status_code, internal_point_lat, internal_point_lon
+  OTHER cols: state_geom, description="This
+
+bigquery-public-data.utility_us.zipcode_area
+  NUM cols: area_land_meters, area_water_meters, area_land_miles, area_water_miles, latitude, longitude
+  STR cols: zipcode, state_code, state_name, city, county, state_fips, zipcode_geom
+  OTHER cols: description="This

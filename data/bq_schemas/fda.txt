@@ -1,0 +1,124 @@
+[DATASET=fda]
+bigquery-public-data.geo_us_boundaries.adjacent_counties
+  STR cols: county, state, county_fips_code
+  OTHER cols: neighbors, neighbors_state, neighbors_fips_code
+
+bigquery-public-data.geo_us_boundaries.adjacent_states
+  STR cols: state, state_name, state_fips_code
+  OTHER cols: neighbors_state, neighbors_fips_code
+
+bigquery-public-data.geo_census_blockgroups.blockgroups_* (56 tables)
+  NUM cols: area_land_meters, area_water_meters, internal_point_lat, internal_point_lon
+  STR cols: geo_id, state_fips_code, county_fips_code, tract_ce, blockgroup_ce, lsad_name, mtfcc_feature_class_code, functional_status
+  OTHER cols: internal_point_geom, blockgroup_geom
+
+bigquery-public-data.geo_us_boundaries.cbsa
+  NUM cols: area_land_meters, area_water_meters, internal_point_latitude, internal_point_longitude
+  STR cols: geo_id, csa_geo_id, cbsa_fips_code, name, lsad_name, lsad_code, msa_indicator, mtfcc_feature_class_code
+  OTHER cols: internal_point_geom, cbsa_geom, PARTITION
+
+bigquery-public-data.geo_us_boundaries.cnecta
+  NUM cols: area_land_meters, area_water_meters, int_point_lat, int_point_lon
+  STR cols: geo_id, cnecta_fips_code, name, name_lsad, lsad, mtfcc_feature_class_code
+  OTHER cols: cnecta_geom, PARTITION
+
+bigquery-public-data.geo_us_boundaries.coastline
+  STR cols: name
+  OTHER cols: coastline_geom, PARTITION
+
+bigquery-public-data.geo_us_boundaries.[congress_district_115 | congress_district_116]
+  NUM cols: area_land_meters, area_water_meters, int_point_lat, int_point_lon
+  STR cols: geo_id, state_fips_code, district_fips_code, lsad_name, lsad_code, congress_session, mtfcc_feature_class_code
+  BOOL cols: functional_status
+  OTHER cols: int_point_geom, district_geom, PARTITION
+
+bigquery-public-data.geo_us_boundaries.counties
+  NUM cols: area_land_meters, area_water_meters, int_point_lat, int_point_lon
+  STR cols: geo_id, state_fips_code, county_fips_code, county_gnis_code, county_name, lsad_name, lsad_code, fips_class_code, mtfcc_feature_class_code, csa_fips_code, cbsa_fips_code, met_div_fips_code, functional_status
+  OTHER cols: int_point_geom, county_geom, PARTITION
+
+bigquery-public-data.geo_us_boundaries.csa
+  NUM cols: area_land_meters, area_water_meters, internal_point_lon, internal_point_lat
+  STR cols: geo_id, csa_code, name, lsad_name, msa_lsad_code, mtfcc_feature_class_code
+  OTHER cols: internal_point_geom, csa_geom, PARTITION
+
+bigquery-public-data.census_utility.fips_class_code
+  STR cols: fips_class_code, code_description
+
+bigquery-public-data.census_utility.fips_codes_all
+  STR cols: summary_level, summary_level_name, state_fips_code, county_fips_code, county_subdivision_fips_code, place_fips_code, consolidated_city_fips_code, area_name
+
+bigquery-public-data.census_utility.fips_codes_states
+  STR cols: state_fips_code, state_postal_abbreviation, state_name, state_gnisid
+
+bigquery-public-data.fda_food.food_enforcement
+  NUM cols: event_id
+  STR cols: classification, postal_code, recall_number, city, distribution_pattern, recalling_firm, voluntary_mandated, state, reason_for_recall, initial_firm_notification, status, product_type, country, product_description, code_info, address_1, address_2, product_quantity, more_code_info
+  TIME cols: center_classification_date, report_date, termination_date, recall_initiation_date
+
+bigquery-public-data.fda_food.food_events
+  NUM cols: consumer_age
+  STR cols: report_number, reactions, outcomes, products_brand_name, products_industry_code, products_role, products_industry_name, consumer_gender, consumer_age_unit
+  TIME cols: date_created, date_started
+
+bigquery-public-data.census_utility.functional_status_codes
+  STR cols: functional_status_code, code_description, associated_geographic_entity
+
+bigquery-public-data.fdic_banks.institutions
+  NUM cols: total_assets, total_deposits, equity_capital, return_on_assets, roa_quarterly, roa_pretax, row_pretax_quarterly, return_on_equity, roe_quarterly, offices_count, total_domestic_deposits, net_income, quarterly_net_income, office_count_domestic, office_count_foreign, office_count_us_territories
+  STR cols: fdic_certificate_number, institution_name, state_name, fdic_id, docket, address, bank_charter_class, change_code_1, change_code_2, change_code_3, change_code_4, change_code_5, change_code_6, change_code_7, change_code_8, change_code_9, change_code_10, change_code_11, change_code_12, change_code_13, change_code_14, change_code_15, occ_charter, chartering_agency, city, category_code, county_fips_code, county_name, fdic_geo_region, fdic_supervisory_region, fdic_supervisory_region_code, fed_reserve_district, fed_reserve_district_id, fed_reserve_unique_id, fdic_field_office, insurance_fund_membership, secondary_insurance_fund, new_cert_number, ots_region, qbp_region, regulator, state, state_fips_code, trade_name_1, trade_name_2, trade_name_3, trade_name_4, trade_name_5, trade_name_6, zip_code, occ_district, ultimate_cert_number, parent_fdic_cert, parent_parcert, high_holder_city, ownership_type, top_holder, rssd_id, holding_company_state, trust_powers_status, asset_concentration_hierarchy, primary_specialization, csa_name, csa_fips_code, cbsa_name, cbsa_fips_code, cbsa_division_name, cbsa_division_fips_code
+  TIME cols: established_date, last_updated, effective_date, end_effective_date, deposit_insurance_date, last_structural_change, report_date, reporting_period_end_date, run_date, cfpb_supervisory_start_date, cfpb_supervisory_end_date
+  BOOL cols: active, conservatorship, denovo_institute, federal_charter, iba, inactive_flag, credit_card_institution, bank_insurance_fund_member, insured_commercial_bank, deposit_insurance_fund_member, fdic_insured, saif_insured, insured_savings_institute, oakar_institute, state_chartered, sasser_institute, law_sasser, cfpb_supervisory_flag, ffiec_call_report_filer, holding_company_flag, ag_lending_flag, subchap_s_indicator, csa_indicator, cbsa_metro_flag, cbsa_micro_flag, cbsa_division_flag
+
+bigquery-public-data.fdic_banks.locations
+  NUM cols: cbsa_division_fips_code
+  STR cols: fdic_certificate_number, institution_name, branch_name, branch_number, branch_address, branch_city, zip_code, branch_county, county_fips_code, state, state_name, institution_class, cbsa_fips_code, cbsa_name, cbsa_division_name, cbsa_metro_fips_code, cbsa_metro_name, csa_fips_code, csa_name, fdic_uninum, service_type, branch_fdic_uninum
+  TIME cols: date_established, last_updated
+  BOOL cols: main_office, cbsa_division_flag, cbsa_metro_flag, cbsa_micro_flag, csa_flag
+
+bigquery-public-data.census_utility.lsad_codes
+  STR cols: lsad_code, lsad_description, associated_geographic_entities
+  OTHER cols: description="The
+
+bigquery-public-data.geo_us_boundaries.metropolitan_divisions
+  NUM cols: area_land_meters, area_water_meters, internal_point_latitude, internal_point_longitude
+  STR cols: geo_id, csa_code, cbsa_code, metdiv_code, name, lsad_name, lsad_code, mtfcc_feature_class_code
+  OTHER cols: internal_point_geom, metdiv_geom, PARTITION
+
+bigquery-public-data.census_utility.mtfcc_feature_class_codes
+  STR cols: feature_class_code, feature_class, superclass, description
+  BOOL cols: point, linear, areal
+
+bigquery-public-data.geo_us_boundaries.national_outline
+  STR cols: aff_geo_id, geo_id, name
+  OTHER cols: us_outline_geom
+
+bigquery-public-data.geo_us_boundaries.nws_forecast_regions
+  NUM cols: lon, lat
+  STR cols: state, cwa, time_zone, fe_area, zone, name, state_zone, shortname
+  OTHER cols: shape_geometry
+
+bigquery-public-data.geo_us_boundaries.railways
+  NUM cols: geo_id
+  STR cols: full_name, mtfcc_feature_class_code, railway_geom
+  OTHER cols: PARTITION
+
+bigquery-public-data.geo_us_boundaries.states
+  NUM cols: area_land_meters, area_water_meters, int_point_lat, int_point_lon
+  STR cols: geo_id, region_code, division_code, state_fips_code, state_gnis_code, state, state_name, lsad_code, mtfcc_feature_class_code, functional_status
+  OTHER cols: int_point_geom, state_geom, PARTITION
+
+bigquery-public-data.geo_us_boundaries.urban_areas
+  NUM cols: area_land_meters, area_water_meters, internal_point_lon, internal_point_lat
+  STR cols: geo_id, urban_area_code, name, lsad_name, area_lsad_code, mtfcc_feature_class_code, type, functional_status
+  OTHER cols: internal_point_geom, urban_area_geom, PARTITION
+
+bigquery-public-data.geo_census_blockgroups.us_blockgroups_national
+  NUM cols: area_land_meters, area_water_meters, internal_point_lat, internal_point_lon
+  STR cols: geo_id, state_fips_code, state_name, county_fips_code, county_name, tract_ce, blockgroup_ce, lsad_name, mtfcc_feature_class_code, functional_status
+  OTHER cols: internal_point_geom, blockgroup_geom, PARTITION
+
+bigquery-public-data.geo_us_boundaries.zip_codes
+  NUM cols: area_land_meters, area_water_meters, internal_point_lat, internal_point_lon
+  STR cols: zip_code, city, county, state_fips_code, state_code, state_name, fips_class_code, mtfcc_feature_class_code, functional_status
+  OTHER cols: internal_point_geom, zip_code_geom, PARTITION

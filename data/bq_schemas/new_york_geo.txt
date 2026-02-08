@@ -1,0 +1,125 @@
+[DATASET=new_york_geo]
+bigquery-public-data.new_york.311_service_requests
+  NUM cols: unique_key, x_coordinate, y_coordinate, bbl, latitude, longitude
+  STR cols: agency, agency_name, complaint_type, descriptor, location_type, incident_zip, incident_address, street_name, cross_street_1, cross_street_2, intersection_street_1, intersection_street_2, address_type, city, landmark, facility_type, status, resolution_description, community_board, borough, park_facility_name, park_borough, open_data_channel_type, vehicle_type, taxi_company_borough, taxi_pickup_location, bridge_highway_name, bridge_highway_direction, road_ramp, bridge_highway_segment, location
+  TIME cols: created_date, closed_date, due_date, resolution_action_updated_date
+  OTHER cols: description="NYC
+
+bigquery-public-data.geo_us_boundaries.adjacent_counties
+  STR cols: county, state, county_fips_code
+  OTHER cols: neighbors, neighbors_state, neighbors_fips_code
+
+bigquery-public-data.geo_us_boundaries.adjacent_states
+  STR cols: state, state_name, state_fips_code
+  OTHER cols: neighbors_state, neighbors_fips_code
+
+bigquery-public-data.geo_us_boundaries.cbsa
+  NUM cols: area_land_meters, area_water_meters, internal_point_latitude, internal_point_longitude
+  STR cols: geo_id, csa_geo_id, cbsa_fips_code, name, lsad_name, lsad_code, msa_indicator, mtfcc_feature_class_code
+  OTHER cols: internal_point_geom, cbsa_geom, PARTITION
+
+bigquery-public-data.new_york.citibike_stations
+  NUM cols: latitude, longitude, region_id, capacity, num_bikes_available, num_bikes_disabled, num_docks_available, num_docks_disabled
+  STR cols: station_id, name, short_name, rental_methods
+  TIME cols: last_reported
+  BOOL cols: eightd_has_key_dispenser, is_installed, is_renting, is_returning, eightd_has_available_keys
+
+bigquery-public-data.new_york.citibike_trips
+  NUM cols: tripduration, start_station_id, start_station_latitude, start_station_longitude, end_station_id, end_station_latitude, end_station_longitude, bikeid, birth_year
+  STR cols: start_station_name, end_station_name, usertype, gender
+  TIME cols: starttime, stoptime
+
+bigquery-public-data.geo_us_boundaries.cnecta
+  NUM cols: area_land_meters, area_water_meters, int_point_lat, int_point_lon
+  STR cols: geo_id, cnecta_fips_code, name, name_lsad, lsad, mtfcc_feature_class_code
+  OTHER cols: cnecta_geom, PARTITION
+
+bigquery-public-data.geo_us_boundaries.coastline
+  STR cols: name
+  OTHER cols: coastline_geom, PARTITION
+
+bigquery-public-data.geo_us_boundaries.[congress_district_115 | congress_district_116]
+  NUM cols: area_land_meters, area_water_meters, int_point_lat, int_point_lon
+  STR cols: geo_id, state_fips_code, district_fips_code, lsad_name, lsad_code, congress_session, mtfcc_feature_class_code
+  BOOL cols: functional_status
+  OTHER cols: int_point_geom, district_geom, PARTITION
+
+bigquery-public-data.geo_us_boundaries.counties
+  NUM cols: area_land_meters, area_water_meters, int_point_lat, int_point_lon
+  STR cols: geo_id, state_fips_code, county_fips_code, county_gnis_code, county_name, lsad_name, lsad_code, fips_class_code, mtfcc_feature_class_code, csa_fips_code, cbsa_fips_code, met_div_fips_code, functional_status
+  OTHER cols: int_point_geom, county_geom, PARTITION
+
+bigquery-public-data.geo_us_boundaries.csa
+  NUM cols: area_land_meters, area_water_meters, internal_point_lon, internal_point_lat
+  STR cols: geo_id, csa_code, name, lsad_name, msa_lsad_code, mtfcc_feature_class_code
+  OTHER cols: internal_point_geom, csa_geom, PARTITION
+
+bigquery-public-data.geo_us_boundaries.metropolitan_divisions
+  NUM cols: area_land_meters, area_water_meters, internal_point_latitude, internal_point_longitude
+  STR cols: geo_id, csa_code, cbsa_code, metdiv_code, name, lsad_name, lsad_code, mtfcc_feature_class_code
+  OTHER cols: internal_point_geom, metdiv_geom, PARTITION
+
+bigquery-public-data.geo_us_boundaries.national_outline
+  STR cols: aff_geo_id, geo_id, name
+  OTHER cols: us_outline_geom
+
+bigquery-public-data.geo_us_boundaries.nws_forecast_regions
+  NUM cols: lon, lat
+  STR cols: state, cwa, time_zone, fe_area, zone, name, state_zone, shortname
+  OTHER cols: shape_geometry
+
+bigquery-public-data.new_york.nypd_mv_collisions
+  NUM cols: latitude, longitude, number_of_cyclist_injured, number_of_cyclist_killed, number_of_motorist_injured, number_of_motorist_killed, number_of_pedestrians_injured, number_of_pedestrians_killed, number_of_persons_injured, number_of_persons_killed, unique_key, zip_code
+  STR cols: borough, contributing_factor_vehicle_1, contributing_factor_vehicle_2, contributing_factor_vehicle_3, contributing_factor_vehicle_4, contributing_factor_vehicle_5, cross_street_name, location, off_street_name, on_street_name, vehicle_type_code1, vehicle_type_code2, vehicle_type_code_3, vehicle_type_code_4, vehicle_type_code_5
+  TIME cols: timestamp
+
+bigquery-public-data.geo_us_boundaries.railways
+  NUM cols: geo_id
+  STR cols: full_name, mtfcc_feature_class_code, railway_geom
+  OTHER cols: PARTITION
+
+bigquery-public-data.geo_us_boundaries.states
+  NUM cols: area_land_meters, area_water_meters, int_point_lat, int_point_lon
+  STR cols: geo_id, region_code, division_code, state_fips_code, state_gnis_code, state, state_name, lsad_code, mtfcc_feature_class_code, functional_status
+  OTHER cols: int_point_geom, state_geom, PARTITION
+
+bigquery-public-data.new_york.[tlc_fhv_trips_2015 | tlc_fhv_trips_2016]
+  NUM cols: location_id
+  STR cols: dispatching_base_num, borough, zone, service_zone
+  TIME cols: pickup_datetime
+
+bigquery-public-data.new_york.[tlc_green_trips_2013 | tlc_green_trips_2014 | tlc_green_trips_2015 | tlc_green_trips_2016]
+  NUM cols: rate_code, pickup_longitude, pickup_latitude, dropoff_longitude, dropoff_latitude, passenger_count, trip_distance, fare_amount, extra, mta_tax, tip_amount, tolls_amount, ehail_fee, total_amount, payment_type, distance_between_service, time_between_service, trip_type, imp_surcharge
+  STR cols: vendor_id, store_and_fwd_flag
+  TIME cols: pickup_datetime, dropoff_datetime
+
+bigquery-public-data.new_york.tlc_yellow_trips_20* (8 tables)
+  NUM cols: passenger_count, trip_distance, pickup_longitude, pickup_latitude, rate_code, dropoff_longitude, dropoff_latitude, fare_amount, extra, mta_tax, tip_amount, tolls_amount, imp_surcharge, total_amount
+  STR cols: vendor_id, store_and_fwd_flag, payment_type
+  TIME cols: pickup_datetime, dropoff_datetime
+
+bigquery-public-data.new_york.tree_census_1995
+  NUM cols: recordid, zip_original, cb_original, diameter, x, y, longitude, latitude, cb_new, zip_new, segmentid
+  STR cols: address, house_number, street, site, species, status, wires, sidewalk_condition, support_structure, borough, censustract_2010, censusblock_2010, nta_2010, spc_common, spc_latin, location
+
+bigquery-public-data.new_york.tree_census_2005
+  NUM cols: objectid, cen_year, tree_dbh, zipcode, cb_num, borocode, cncldist, st_assem, st_senate, boro_ct, x_sp, y_sp, objectid_1
+  STR cols: tree_loc, pit_type, soil_lvl, status, spc_latin, spc_common, vert_other, vert_pgrd, vert_tgrd, vert_wall, horz_blck, horz_grate, horz_plant, horz_other, sidw_crack, sidw_raise, wire_htap, wire_prime, wire_2nd, wire_other, inf_canopy, inf_guard, inf_wires, inf_paving, inf_outlet, inf_shoes, inf_lights, inf_other, trunk_dmg, zip_city, boroname, nta, nta_name, location_1
+
+bigquery-public-data.new_york.tree_census_2015
+  NUM cols: tree_id, block_id, tree_dbh, stump_diam, zipcode, cb_num, borocode, cncldist, st_assem, st_senate, boro_ct, latitude, longitude, x_sp, y_sp
+  STR cols: curb_loc, status, health, spc_latin, spc_common, steward, guards, sidewalk, user_type, problems, root_stone, root_grate, root_other, trunk_wire, trnk_light, trnk_other, brch_light, brch_shoe, brch_other, address, zip_city, boroname, nta, nta_name, state
+  TIME cols: created_at
+
+bigquery-public-data.new_york.tree_species
+  STR cols: species_scientific_name, species_common_name, form, growth_rate, fall_color, environmental_tolerances, location_tolerances, notes_suggested_cultivars, tree_size, comments
+
+bigquery-public-data.geo_us_boundaries.urban_areas
+  NUM cols: area_land_meters, area_water_meters, internal_point_lon, internal_point_lat
+  STR cols: geo_id, urban_area_code, name, lsad_name, area_lsad_code, mtfcc_feature_class_code, type, functional_status
+  OTHER cols: internal_point_geom, urban_area_geom, PARTITION
+
+bigquery-public-data.geo_us_boundaries.zip_codes
+  NUM cols: area_land_meters, area_water_meters, internal_point_lat, internal_point_lon
+  STR cols: zip_code, city, county, state_fips_code, state_code, state_name, fips_class_code, mtfcc_feature_class_code, functional_status
+  OTHER cols: internal_point_geom, zip_code_geom, PARTITION

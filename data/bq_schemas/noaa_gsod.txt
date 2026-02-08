@@ -1,0 +1,18 @@
+[DATASET=noaa_gsod]
+bigquery-public-data.noaa_gsod.gsod* (87 tables)
+  NUM cols: temp, count_temp, dewp, count_dewp, slp, count_slp, stp, count_stp, visib, count_visib, gust, max, min, prcp, sndp
+  STR cols: stn, wban, year, mo, da, wdsp, count_wdsp, mxpsd, flag_max, flag_min, flag_prcp, fog, rain_drizzle, snow_ice_pellets, hail, thunder, tornado_funnel_cloud
+  OTHER cols: description="Global
+
+bigquery-public-data.noaa_gsod.[gsod2016 | gsod2017 | gsod2018 | gsod2019]
+  NUM cols: temp, count_temp, dewp, count_dewp, slp, count_slp, stp, count_stp, visib, count_visib, gust, max, min, prcp, sndp
+  STR cols: stn, wban, year, mo, da, wdsp, count_wdsp, mxpsd, flag_max, flag_min, flag_prcp, fog, rain_drizzle, snow_ice_pellets, hail, thunder, tornado_funnel_cloud
+
+bigquery-public-data.noaa_gsod.[gsod2020 | gsod2021 | gsod2022 | gsod2023 | gsod2024]
+  NUM cols: temp, count_temp, dewp, count_dewp, slp, count_slp, stp, count_stp, visib, count_visib, gust, max, min, prcp, sndp
+  STR cols: stn, wban, year, mo, da, wdsp, count_wdsp, mxpsd, flag_max, flag_min, flag_prcp, fog, rain_drizzle, snow_ice_pellets, hail, thunder, tornado_funnel_cloud
+  TIME cols: date
+
+bigquery-public-data.noaa_gsod.stations
+  NUM cols: lat, lon
+  STR cols: usaf, wban, name, country, state, call, elev, begin, end

@@ -1,0 +1,32 @@
+[DATASET=eclipse_megamovie]
+bigquery-public-data.eclipse_megamovie.astrometry_corr_v_0_4
+  NUM cols: index_id, field_ra, field_y, index_dec, field_id, BACKGROUND, field_x, index_x, index_y, FLUX, index_ra, field_dec, match_weight
+  STR cols: id
+
+bigquery-public-data.eclipse_megamovie.astrometry_index_v_0_4
+  NUM cols: X, Y
+  STR cols: id
+
+bigquery-public-data.eclipse_megamovie.astrometry_match_v_0_4
+  NUM cols: NFIELD, CODEERR, QPEERS, QSCALEOK, QUAD, FIELDNUM, LOGODDS, NCONFLICT, QMATCHED, HPNSIDE, QTRIED, NINDEX, RADIUS, NAGREE, WORSTLOGODDS, NVERIFIED, NMATCH, FIELDID, DIMQUADS, NDISTRACT, HEALPIX, TIMEUSED, INDEXID
+  STR cols: FIELDNAME, id
+  BOOL cols: PARITY, WCS_VALID
+  OTHER cols: STARS, CENTERXYZ, CRPIX, CRVAL, QUADPIX, IDS, FIELDOBJS, QUADXYZ, CD
+
+bigquery-public-data.eclipse_megamovie.astrometry_rdls_v_0_4
+  NUM cols: RA, DEC
+  STR cols: id
+
+bigquery-public-data.eclipse_megamovie.[photos_v_0_1 | photos_v_0_2]
+  NUM cols: lon, lat, width, height, aperture_value
+  STR cols: upload_session_id, model, make, id, storage_uri, exposure_time, state, image_bucket, vision_labels, user, image_type
+  TIME cols: uploaded_date, camera_datetime, image_datetime
+  BOOL cols: equatorial_mount, is_mobile, totality, datetime_repaired
+  OTHER cols: detected_circle
+
+bigquery-public-data.eclipse_megamovie.photos_v_0_3
+  NUM cols: aperture_value, lon, lat, width, height
+  STR cols: upload_session_id, model, make, id, storage_uri, exposure_time, state, image_bucket, vision_labels, user, image_type, jpeg_storage_uri
+  TIME cols: uploaded_date, camera_datetime, image_datetime
+  BOOL cols: equatorial_mount, is_mobile, datetime_repaired, totality
+  OTHER cols: detected_circle

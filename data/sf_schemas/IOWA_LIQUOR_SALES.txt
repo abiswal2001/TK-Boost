@@ -1,0 +1,6 @@
+[DB=IOWA_LIQUOR_SALES | SCHEMA=IOWA_LIQUOR_SALES]
+IOWA_LIQUOR_SALES.IOWA_LIQUOR_SALES.SALES
+  NUM cols: bottle_volume_ml, bottles_sold, pack, sale_dollars, state_bottle_cost, state_bottle_retail, volume_sold_gallons, volume_sold_liters
+  STR cols: address, category, category_name, city, county, county_number, invoice_and_item_number, item_description, item_number, store_name, store_number, vendor_name, vendor_number, zip_code
+  TIME cols: date
+  OTHER cols: store_location

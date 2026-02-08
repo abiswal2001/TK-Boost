@@ -1,0 +1,6 @@
+[DATASET=iowa_liquor_sales]
+bigquery-public-data.iowa_liquor_sales.sales
+  NUM cols: pack, bottle_volume_ml, state_bottle_cost, state_bottle_retail, bottles_sold, sale_dollars, volume_sold_liters, volume_sold_gallons
+  STR cols: invoice_and_item_number, store_number, store_name, address, city, zip_code, county_number, county, category, category_name, vendor_number, vendor_name, item_number, item_description
+  TIME cols: date
+  OTHER cols: store_location, description="Sales

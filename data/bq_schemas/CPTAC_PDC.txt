@@ -1,0 +1,305 @@
+[DATASET=CPTAC_PDC]
+isb-cgc-bq.CPTAC.RNAseq_hg38_gdc_current
+  NUM cols: unstranded, stranded_first, stranded_second, tpm_unstranded, fpkm_unstranded, fpkm_uq_unstranded
+  STR cols: project_short_name, primary_site, case_barcode, sample_barcode, aliquot_barcode, gene_name, gene_type, Ensembl_gene_id, Ensembl_gene_id_v, sample_type_name, case_gdc_id, sample_gdc_id, aliquot_gdc_id, file_gdc_id, platform
+  OTHER cols: CLUSTER, friendly_name="CPTAC, description="RNAseq, labels=[("access",
+
+isb-cgc-bq.PDC_metadata.aliquot_to_case_mapping_current
+  NUM cols: time_between_clamping_and_freezing, time_between_excision_and_freezing, days_to_collection, initial_weight, current_weight, shortest_dimension, intermediate_dimension, longest_dimension
+  STR cols: program_name, project_name, case_id, case_submitter_id, sample_id, sample_submitter_id, sample_type, preservation_method, freezing_method, aliquot_id, aliquot_submitter_id
+  OTHER cols: friendly_name="PDC, description="Aliquot, labels=[("access",
+
+isb-cgc-bq.PDC_metadata.case_metadata_current
+  NUM cols: file_count
+  STR cols: case_id, case_submitter_id, primary_site, disease_type, project_name, program_name, project_id
+  OTHER cols: friendly_name="PDC, description="Case, labels=[("access",
+
+isb-cgc-bq.CPTAC.clinical_CPTAC2_other_pdc_current
+  STR cols: case_id, case_submitter_id, project_submitter_id, disease_type, demographic_id, demographic_submitter_id, diagnosis_id, diagnosis_submitter_id
+  OTHER cols: friendly_name="CPTAC2-OTHER, description="Data, labels=[("access",
+
+isb-cgc-bq.CPTAC.clinical_CPTAC3_discovery_and_confirmatory_pdc_current
+  NUM cols: age_at_index, days_to_birth, days_to_death, year_of_birth, year_of_death, age_at_diagnosis, year_of_diagnosis, days_to_last_follow_up, days_to_last_known_disease_status, days_to_recurrence, lymph_nodes_positive
+  STR cols: case_id, case_submitter_id, project_submitter_id, primary_site, disease_type, demographic_id, demographic_submitter_id, race, ethnicity, gender, cause_of_death, vital_status, diagnosis_id, diagnosis_submitter_id, primary_diagnosis, ajcc_clinical_m, ajcc_pathologic_m, ajcc_pathologic_n, ajcc_pathologic_stage, ajcc_pathologic_t, ajcc_staging_system_edition, classification_of_tumor, last_known_disease_status, metastasis_at_diagnosis, metastasis_at_diagnosis_site, morphology, residual_disease, site_of_resection_or_biopsy, sites_of_involvement, tissue_or_organ_of_origin, tumor_focality, tumor_grade
+  BOOL cols: diagnosis_is_primary_disease, lymphatic_invasion_present, prior_malignancy, progression_or_recurrence
+  OTHER cols: friendly_name="CPTAC3-DISCOVERY-AND-CONFIRMATORY, description="Clinical, labels=[("access",
+
+isb-cgc-bq.CPTAC.clinical_CPTAC3_other_pdc_current
+  NUM cols: days_to_birth, days_to_death, year_of_birth, year_of_death, age_at_diagnosis, year_of_diagnosis, days_to_last_follow_up, days_to_last_known_disease_status, days_to_recurrence
+  STR cols: case_id, case_submitter_id, project_submitter_id, primary_site, disease_type, demographic_id, demographic_submitter_id, race, ethnicity, gender, cause_of_death, vital_status, diagnosis_id, diagnosis_submitter_id, primary_diagnosis, ajcc_clinical_m, ajcc_pathologic_m, ajcc_pathologic_n, ajcc_pathologic_stage, ajcc_pathologic_t, ajcc_staging_system_edition, last_known_disease_status, morphology, residual_disease, site_of_resection_or_biopsy, tissue_or_organ_of_origin, tumor_focality, tumor_grade
+  BOOL cols: diagnosis_is_primary_disease, progression_or_recurrence
+  OTHER cols: friendly_name="CPTAC3-OTHER, description="Clinical, labels=[("access",
+
+isb-cgc-bq.CPTAC.clinical_CPTAC_2_pdc_current
+  NUM cols: age_at_diagnosis, days_to_last_follow_up, days_to_last_known_disease_status, days_to_recurrence
+  STR cols: case_id, case_submitter_id, project_submitter_id, primary_site, disease_type, demographic_id, demographic_submitter_id, race, ethnicity, gender, diagnosis_id, diagnosis_submitter_id, primary_diagnosis, ajcc_pathologic_stage, figo_stage, morphology, tissue_or_organ_of_origin, tumor_stage
+  BOOL cols: prior_malignancy
+  OTHER cols: friendly_name="CPTAC2, description="Clinical, labels=[("access",
+
+isb-cgc-bq.CPTAC.clinical_diagnoses_proteogenomic_translational_research_centers_pdc_current
+  NUM cols: age_at_diagnosis, days_to_last_follow_up, days_to_last_known_disease_status, days_to_recurrence
+  STR cols: case_id, case_submitter_id, project_submitter_id, diagnosis_id, diagnosis_submitter_id, primary_diagnosis, classification_of_tumor, last_known_disease_status, morphology, site_of_resection_or_biopsy, tissue_or_organ_of_origin, tumor_grade, tumor_stage
+  BOOL cols: progression_or_recurrence
+  OTHER cols: friendly_name="PROTEOGENOMIC, description="Data, labels=[("access",
+
+isb-cgc-bq.CPTAC.clinical_diagnosis_proteogenomic_translational_research_centers_pdc_current
+  NUM cols: age_at_diagnosis, days_to_last_follow_up, days_to_last_known_disease_status, days_to_recurrence
+  STR cols: case_id, case_submitter_id, project_submitter_id, diagnosis_id, diagnosis_submitter_id, primary_diagnosis, classification_of_tumor, last_known_disease_status, morphology, site_of_resection_or_biopsy, tissue_or_organ_of_origin, tumor_grade, tumor_stage
+  BOOL cols: diagnosis_is_primary_disease, progression_or_recurrence
+  OTHER cols: friendly_name="PROTEOGENOMIC, description="Clinical, labels=[("access",
+
+isb-cgc-bq.CPTAC.clinical_gdc_current
+  NUM cols: days_to_consent, days_to_lost_to_followup, demo__days_to_birth, demo__year_of_birth, demo__age_at_index, demo__year_of_death, demo__days_to_death, exp__tobacco_smoking_onset_year, exp__tobacco_smoking_quit_year, exp__years_smoked, exp__pack_years_smoked, exp__cigarettes_per_day, exp__exposure_duration_years, diag__days_to_last_known_disease_status, diag__year_of_diagnosis, diag__days_to_recurrence, diag__age_at_diagnosis, diag__days_to_last_follow_up, follow__days_to_follow_up, follow__height, follow__weight, follow__bmi, follow__dlco_ref_predictive_percent, follow__fev1_fvc_pre_bronch_percent, follow__fev1_ref_pre_bronch_percent, follow__karnofsky_performance_status, follow__fev1_ref_post_bronch_percent, follow__fev1_fvc_post_bronch_percent, follow__hpv_positive_type, follow__ecog_performance_status, follow__pancreatitis_onset_year, follow__days_to_recurrence, diag__path__lymph_nodes_positive, diag__path__tumor_largest_dimension_diameter
+  STR cols: submitter_id, case_id, primary_site, disease_type, index_date, consent_type, proj__name, proj__project_id, demo__demographic_id, demo__gender, demo__race, demo__ethnicity, demo__vital_status, demo__cause_of_death, demo__state, exp__exposure_id, exp__type_of_tobacco_used, exp__tobacco_smoking_status, exp__exposure_type, exp__type_of_smoke_exposure, exp__alcohol_intensity, exp__state, diag__diagnosis_id, diag__ajcc_clinical_m, diag__primary_diagnosis, diag__figo_stage, diag__ajcc_pathologic_m, diag__site_of_resection_or_biopsy, diag__ajcc_staging_system_edition, diag__ajcc_pathologic_stage, diag__tumor_grade, diag__last_known_disease_status, diag__residual_disease, diag__morphology, diag__ajcc_pathologic_t, diag__classification_of_tumor, diag__tumor_focality, diag__ajcc_pathologic_n, diag__tissue_or_organ_of_origin, diag__state, follow__follow_up_id, follow__comorbidity, follow__hormonal_contraceptive_use, follow__diabetes_treatment_type, follow__aids_risk_factors, follow__disease_response, follow__cdc_hiv_risk_factors, follow__state, diag__path__pathology_detail_id, diag__path__state, follow__mol_test__molecular_test_id, follow__mol_test__laboratory_test, follow__mol_test__test_result, follow__mol_test__gene_symbol, follow__mol_test__state, state
+  TIME cols: demo__created_datetime, demo__updated_datetime, exp__created_datetime, exp__updated_datetime, diag__created_datetime, diag__updated_datetime, follow__created_datetime, follow__updated_datetime, diag__path__created_datetime, diag__path__updated_datetime, follow__mol_test__created_datetime, follow__mol_test__updated_datetime, created_datetime, updated_datetime
+  BOOL cols: lost_to_followup, exp__secondhand_smoke_as_child, exp__alcohol_history, diag__progression_or_recurrence, diag__prior_malignancy, follow__progression_or_recurrence
+  OTHER cols: friendly_name="CPTAC, description="Data, labels=[("access",
+
+isb-cgc-bq.CPTAC.clinical_proteogenomic_translational_research_centers_pdc_current
+  NUM cols: age_at_index, days_to_birth, days_to_death
+  STR cols: case_id, case_submitter_id, project_submitter_id, primary_site, disease_type, demographic_id, demographic_submitter_id, race, ethnicity, country_of_residence_at_enrollment, gender, cause_of_death, cause_of_death_source, vital_status
+  BOOL cols: age_is_obfuscated
+  OTHER cols: friendly_name="PROTEOGENOMIC, description="Clinical, labels=[("access",
+
+isb-cgc-bq.CPTAC.copy_number_gene_level_hg38_gdc_current
+  NUM cols: start_pos, end_pos, copy_number, min_copy_number, max_copy_number
+  STR cols: project_short_name, case_barcode, primary_site, sample_barcode, aliquot_barcode, Ensembl_gene_id, Ensembl_gene_id_v, gene_name, gene_type, chromosome, case_gdc_id, sample_gdc_id, aliquot_gdc_id, file_gdc_id
+  OTHER cols: CLUSTER, friendly_name="CPTAC, description="Data, labels=[("access",
+
+isb-cgc-bq.CPTAC.copy_number_segment_hg38_gdc_current
+  NUM cols: start_pos, end_pos, copy_number, major_copy_number, minor_copy_number
+  STR cols: project_short_name, case_barcode, primary_site, sample_barcode, aliquot_barcode, chromosome, case_gdc_id, sample_gdc_id, aliquot_gdc_id, file_gdc_id
+  OTHER cols: friendly_name="CPTAC, description="Data, labels=[("access",
+
+isb-cgc-bq.PDC_metadata.file_associated_entity_mapping_current
+  STR cols: file_id, case_id, entity_id, entity_submitter_id, entity_type
+  OTHER cols: friendly_name="FILE, description="Data, labels=[("access",
+
+isb-cgc-bq.PDC_metadata.file_metadata_current
+  NUM cols: file_size
+  STR cols: file_id, file_name, pdc_study_ids, study_run_metadata_id, study_run_metadata_submitter_id, file_format, file_type, data_category, fraction_number, experiment_type, plex_or_dataset_name, analyte, instrument, md5sum, access
+  OTHER cols: friendly_name="FILE, description="Data, labels=[("access",
+
+isb-cgc-bq.PDC_metadata.gene_info_current
+  STR cols: gene_id, NCBI_gene_id, organism, chromosome, locus, proteins, assays, authority, authority_gene_id, gene_symbol, gene_description, uniprotkb_id, uniprotkb_ids
+  OTHER cols: friendly_name="GENE, description="Data, labels=[("access",
+
+isb-cgc-bq.CPTAC.masked_somatic_mutation_hg38_gdc_current
+  NUM cols: Entrez_Gene_Id, Start_Position, End_Position, t_depth, t_ref_count, t_alt_count, n_depth, ThousG_AF, ThousG_AFR_AF, ThousG_AMR_AF, ThousG_EAS_AF, ThousG_EUR_AF, ThousG_SAS_AF, ESP_AA_AF, ESP_EA_AF, gnomAD_AF, gnomAD_AFR_AF, gnomAD_AMR_AF, gnomAD_ASJ_AF, gnomAD_EAS_AF, gnomAD_FIN_AF, gnomAD_NFE_AF, gnomAD_OTH_AF, gnomAD_SAS_AF, MAX_AF, gnomAD_non_cancer_AF, gnomAD_non_cancer_AFR_AF, gnomAD_non_cancer_AMI_AF, gnomAD_non_cancer_AMR_AF, gnomAD_non_cancer_ASJ_AF, gnomAD_non_cancer_EAS_AF, gnomAD_non_cancer_FIN_AF, gnomAD_non_cancer_MID_AF, gnomAD_non_cancer_NFE_AF, gnomAD_non_cancer_OTH_AF, gnomAD_non_cancer_SAS_AF, gnomAD_non_cancer_MAX_AF_adj
+  STR cols: project_short_name, case_barcode, primary_site, Hugo_Symbol, Center, NCBI_Build, Chromosome, Strand, Variant_Classification, Variant_Type, Reference_Allele, Tumor_Seq_Allele1, Tumor_Seq_Allele2, dbSNP_RS, dbSNP_Val_Status, Tumor_Aliquot_Barcode, Matched_Norm_Aliquot_Barcode, Match_Norm_Seq_Allele1, Match_Norm_Seq_Allele2, Tumor_Validation_Allele1, Tumor_Validation_Allele2, Match_Norm_Validation_Allele1, Match_Norm_Validation_Allele2, Verification_Status, Validation_Status, Mutation_Status, Sequencing_Phase, Sequence_Source, Validation_Method, Score, BAM_File, Sequencer, Tumor_Aliquot_UUID, Matched_Norm_Aliquot_UUID, HGVSc, HGVSp, HGVSp_Short, Transcript_ID, Exon_Number, n_ref_count, n_alt_count, all_effects, Allele, Gene, Feature, Feature_type, One_Consequence, Consequence, cDNA_position, CDS_position, Protein_position, Amino_acids, Codons, Existing_variation, DISTANCE, TRANSCRIPT_STRAND, SYMBOL, SYMBOL_SOURCE, HGNC_ID, BIOTYPE, CANONICAL, CCDS, ENSP, SWISSPROT, TREMBL, UNIPARC, UNIPROT_ISOFORM, RefSeq, MANE, APPRIS, FLAGS, SIFT, PolyPhen, EXON, INTRON, DOMAINS, MAX_AF_POPS, gnomAD_non_cancer_MAX_AF_POPS_adj, CLIN_SIG, SOMATIC, PUBMED, TRANSCRIPTION_FACTORS, MOTIF_NAME, MOTIF_POS, HIGH_INF_POS, MOTIF_SCORE_CHANGE, miRNA, IMPACT, PICK, VARIANT_CLASS, TSL, HGVS_OFFSET, PHENO, GENE_PHENO, CONTEXT, tumor_submitter_uuid, normal_submitter_uuid, case_id, GDC_FILTER, COSMIC, RNA_Support, RNA_depth, RNA_ref_count, RNA_alt_count, callers, file_gdc_id, muse, mutect2, pindel, varscan2, sample_barcode_tumor, sample_barcode_normal, aliquot_barcode_tumor, aliquot_barcode_normal
+  BOOL cols: hotspot
+  OTHER cols: friendly_name="CPTAC, description="Data, labels=[("access",
+
+isb-cgc-bq.CPTAC.miRNAseq_hg38_gdc_current
+  NUM cols: read_count, reads_per_million_miRNA_mapped
+  STR cols: project_short_name, case_barcode, sample_barcode, aliquot_barcode, primary_site, miRNA_id, cross_mapped, sample_type_name, case_gdc_id, sample_gdc_id, aliquot_gdc_id, file_gdc_id
+  OTHER cols: friendly_name="CPTAC, description="Data, labels=[("access",
+
+isb-cgc-bq.CPTAC.miRNAseq_isoform_hg38_gdc_current
+  NUM cols: start_pos, end_pos, read_count, reads_per_million_miRNA_mapped
+  STR cols: project_short_name, case_barcode, sample_barcode, aliquot_barcode, primary_site, miRNA_id, chromosome, strand, cross_mapped, sample_type_name, case_gdc_id, sample_gdc_id, aliquot_gdc_id, file_gdc_id, miRNA_transcript, miRNA_accession
+  OTHER cols: friendly_name="CPTAC, description="Data, labels=[("access",
+
+isb-cgc-bq.CPTAC.per_sample_file_metadata_CPTAC2_other_pdc_current
+  NUM cols: file_size
+  STR cols: file_id, case_id, case_submitter_id, sample_id, sample_submitter_id, sample_type, project_short_name, project_submitter_id, program_short_name, program_name, data_category, experiment_type, file_type, file_format, instrument, file_name, file_location, access
+  OTHER cols: friendly_name="CPTAC2-OTHER, description="Per-sample, labels=[("access",
+
+isb-cgc-bq.CPTAC.per_sample_file_metadata_CPTAC3_discovery_and_confirmatory_pdc_current
+  NUM cols: file_size
+  STR cols: file_id, case_id, case_submitter_id, sample_id, sample_submitter_id, sample_type, project_short_name, project_submitter_id, program_short_name, program_name, data_category, experiment_type, file_type, file_format, instrument, file_name, file_location, access
+  OTHER cols: friendly_name="CPTAC3-DISCOVERY-AND-CONFIRMATORY, description="Per-sample, labels=[("access",
+
+isb-cgc-bq.CPTAC.per_sample_file_metadata_CPTAC3_other_pdc_current
+  NUM cols: file_size
+  STR cols: file_id, case_id, case_submitter_id, sample_id, sample_submitter_id, sample_type, project_short_name, project_submitter_id, program_short_name, program_name, data_category, experiment_type, file_type, file_format, instrument, file_name, file_location, access
+  OTHER cols: friendly_name="CPTAC3-OTHER, description="Per-sample, labels=[("access",
+
+isb-cgc-bq.CPTAC.per_sample_file_metadata_CPTAC_2_pdc_current
+  NUM cols: file_size
+  STR cols: file_id, case_id, case_submitter_id, sample_id, sample_submitter_id, sample_type, project_short_name, project_submitter_id, program_short_name, program_name, data_category, experiment_type, file_type, file_format, instrument, file_name, file_location, access
+  OTHER cols: friendly_name="CPTAC2, description="Per-sample, labels=[("access",
+
+isb-cgc-bq.CPTAC.per_sample_file_metadata_hg38_gdc_current
+  NUM cols: file_size, index_file_size
+  STR cols: file_gdc_id, case_gdc_id, case_barcode, sample_gdc_id, sample_barcode, sample_type_name, project_short_name, project_short_name_suffix, program_name, data_type, data_category, experimental_strategy, file_type, data_format, platform, file_name_key, index_file_id, index_file_name_key, access, acl
+  OTHER cols: friendly_name="CPTAC, description="Data, labels=[("access",
+
+isb-cgc-bq.CPTAC.per_sample_file_metadata_proteogenomic_translational_research_centers_pdc_current
+  NUM cols: file_size
+  STR cols: file_id, case_id, case_submitter_id, sample_id, sample_submitter_id, sample_type, project_short_name, project_submitter_id, program_short_name, program_name, data_category, experiment_type, file_type, file_format, instrument, file_name, file_location, access
+  OTHER cols: friendly_name="PROTEOGENOMIC, description="Per-sample, labels=[("access",
+
+isb-cgc-bq.CPTAC.quant_acetylome_CPTAC_GBM_discovery_study_pdc_current
+  NUM cols: protein_abundance_log2ratio
+  STR cols: case_id, sample_id, aliquot_id, aliquot_submitter_id, aliquot_run_metadata_id, study_name, refseq_id, acetylation_sites
+  OTHER cols: friendly_name="CPTAC3-DISCOVERY, description="Normalized, labels=[("access",
+
+isb-cgc-bq.CPTAC.[quant_acetylome_CPTAC_LSCC_discovery_study_pdc_current | quant_acetylome_CPTAC_LUAD_discovery_study_pdc_current]
+  NUM cols: protein_abundance_log2ratio
+  STR cols: case_id, sample_id, aliquot_id, aliquot_submitter_id, aliquot_run_metadata_id, study_name, refseq_id, acetylation_sites
+  OTHER cols: friendly_name="CPTAC3-DISCOVERY, description="Normalized, labels=[("access",
+
+isb-cgc-bq.CPTAC.quant_acetylome_CPTAC_UCEC_confirmatory_study_pdc_current
+  NUM cols: protein_abundance_log2ratio
+  STR cols: case_id, sample_id, aliquot_id, aliquot_submitter_id, aliquot_run_metadata_id, study_name, refseq_id, acetylation_sites
+  OTHER cols: friendly_name="CPTAC, description="Normalized, labels=[("access",
+
+isb-cgc-bq.CPTAC.quant_acetylome_CPTAC_UCEC_discovery_study_pdc_current
+  NUM cols: protein_abundance_log2ratio
+  STR cols: case_id, sample_id, aliquot_id, aliquot_submitter_id, aliquot_run_metadata_id, study_name, refseq_id, acetylation_sites
+  OTHER cols: friendly_name="CPTAC3-DISCOVERY, description="Normalized, labels=[("access",
+
+isb-cgc-bq.CPTAC.quant_acetylome_prospective_breast_BI_pdc_current
+  NUM cols: protein_abundance_log2ratio
+  STR cols: case_id, sample_id, aliquot_id, aliquot_submitter_id, aliquot_run_metadata_id, study_name, refseq_id, acetylation_sites
+  OTHER cols: friendly_name="CPTAC2-CONFIRMATORY, description="Normalized, labels=[("access",
+
+isb-cgc-bq.CPTAC.quant_glycoproteome_prospective_ovarian_JHU_N_linked_glycosite_containing_peptide_pdc_current
+  NUM cols: protein_abundance_log2ratio
+  STR cols: case_id, sample_id, aliquot_id, aliquot_submitter_id, aliquot_run_metadata_id, study_name, refseq_id, glycosylation_sites
+  OTHER cols: friendly_name="CPTAC2-CONFIRMATORY, description="Normalized, labels=[("access",
+
+isb-cgc-bq.CPTAC.[quant_phosphoproteome_AML_ex_vivo_drug_response_combination_treatment_pdc_current | quant_phosphoproteome_AML_ex_vivo_drug_response_primary_cohort_pdc_current | quant_phosphoproteome_AML_ex_vivo_drug_response_sorafenib_treatment_pdc_current]
+  NUM cols: protein_abundance_log2ratio
+  STR cols: case_id, sample_id, aliquot_id, aliquot_submitter_id, aliquot_run_metadata_id, study_name, refseq_id, phosphorylation_sites
+  OTHER cols: friendly_name="AML, description="Normalized, labels=[("access",
+
+isb-cgc-bq.CPTAC.[quant_phosphoproteome_AML_gilteritinib_resistance_pdc_current | quant_phosphoproteome_AML_gilteritinib_timecourse_pdc_current]
+  NUM cols: protein_abundance_log2ratio
+  STR cols: case_id, sample_id, aliquot_id, aliquot_submitter_id, aliquot_run_metadata_id, study_name, refseq_id, phosphorylation_sites
+  OTHER cols: friendly_name="AML, description="Normalized, labels=[("access",
+
+isb-cgc-bq.CPTAC.quant_phosphoproteome_AML_quizartinib_resistance_pdc_current
+  NUM cols: protein_abundance_log2ratio
+  STR cols: case_id, sample_id, aliquot_id, aliquot_submitter_id, aliquot_run_metadata_id, study_name, refseq_id, phosphorylation_sites
+  OTHER cols: friendly_name="AML, description="Normalized, labels=[("access",
+
+isb-cgc-bq.CPTAC.quant_phosphoproteome_CPTAC_CCRCC_discovery_study_pdc_current
+  NUM cols: protein_abundance_log2ratio
+  STR cols: case_id, sample_id, aliquot_id, aliquot_submitter_id, aliquot_run_metadata_id, study_name, refseq_id, phosphorylation_sites
+  OTHER cols: friendly_name="CPTAC3-DISCOVERY, description="Normalized, labels=[("access",
+
+isb-cgc-bq.CPTAC.quant_phosphoproteome_CPTAC_GBM_discovery_study_pdc_current
+  NUM cols: protein_abundance_log2ratio
+  STR cols: case_id, sample_id, aliquot_id, aliquot_submitter_id, aliquot_run_metadata_id, study_name, refseq_id, phosphorylation_sites
+  OTHER cols: friendly_name="CPTAC3-DISCOVERY, description="Normalized, labels=[("access",
+
+isb-cgc-bq.CPTAC.quant_phosphoproteome_CPTAC_HNSCC_discovery_study_pdc_current
+  NUM cols: protein_abundance_log2ratio
+  STR cols: case_id, sample_id, aliquot_id, aliquot_submitter_id, aliquot_run_metadata_id, study_name, refseq_id, phosphorylation_sites
+  OTHER cols: friendly_name="CPTAC3-DISCOVERY, description="Normalized, labels=[("access",
+
+isb-cgc-bq.CPTAC.[quant_phosphoproteome_CPTAC_LSCC_discovery_study_pdc_current | quant_phosphoproteome_CPTAC_LUAD_discovery_study_pdc_current]
+  NUM cols: protein_abundance_log2ratio
+  STR cols: case_id, sample_id, aliquot_id, aliquot_submitter_id, aliquot_run_metadata_id, study_name, refseq_id, phosphorylation_sites
+  OTHER cols: friendly_name="CPTAC3-DISCOVERY, description="Normalized, labels=[("access",
+
+isb-cgc-bq.CPTAC.quant_phosphoproteome_CPTAC_PDA_discovery_study_pdc_current
+  NUM cols: protein_abundance_log2ratio
+  STR cols: case_id, sample_id, aliquot_id, aliquot_submitter_id, aliquot_run_metadata_id, study_name, refseq_id, phosphorylation_sites
+  OTHER cols: friendly_name="CPTAC3-DISCOVERY, description="Normalized, labels=[("access",
+
+isb-cgc-bq.CPTAC.quant_phosphoproteome_CPTAC_UCEC_confirmatory_study_pdc_current
+  NUM cols: protein_abundance_log2ratio
+  STR cols: case_id, sample_id, aliquot_id, aliquot_submitter_id, aliquot_run_metadata_id, study_name, refseq_id, phosphorylation_sites
+  OTHER cols: friendly_name="CPTAC, description="Normalized, labels=[("access",
+
+isb-cgc-bq.CPTAC.quant_phosphoproteome_CPTAC_UCEC_discovery_study_pdc_current
+  NUM cols: protein_abundance_log2ratio
+  STR cols: case_id, sample_id, aliquot_id, aliquot_submitter_id, aliquot_run_metadata_id, study_name, refseq_id, phosphorylation_sites
+  OTHER cols: friendly_name="CPTAC3-DISCOVERY, description="Normalized, labels=[("access",
+
+isb-cgc-bq.CPTAC.[quant_phosphoproteome_PTRC_HGSOC_FFPE_discovery_pdc_current | quant_phosphoproteome_PTRC_HGSOC_FFPE_validation_pdc_current | quant_phosphoproteome_PTRC_HGSOC_frozen_validation_pdc_current]
+  NUM cols: protein_abundance_log2ratio
+  STR cols: case_id, sample_id, aliquot_id, aliquot_submitter_id, aliquot_run_metadata_id, study_name, refseq_id, phosphorylation_sites
+  OTHER cols: friendly_name="PTRC, description="Normalized, labels=[("access",
+
+isb-cgc-bq.CPTAC.quant_phosphoproteome_PTRC_TNBC_pdc_current
+  NUM cols: protein_abundance_log2ratio
+  STR cols: case_id, sample_id, aliquot_id, aliquot_submitter_id, aliquot_run_metadata_id, study_name, refseq_id, phosphorylation_sites
+  OTHER cols: friendly_name="PTRC, description="Normalized, labels=[("access",
+
+isb-cgc-bq.CPTAC.[quant_phosphoproteome_prospective_breast_BI_pdc_current | quant_phosphoproteome_prospective_colon_PNNL_lumos_pdc_current | quant_phosphoproteome_prospective_ovarian_PNNL_lumos_pdc_current]
+  NUM cols: protein_abundance_log2ratio
+  STR cols: case_id, sample_id, aliquot_id, aliquot_submitter_id, aliquot_run_metadata_id, study_name, refseq_id, phosphorylation_sites
+  OTHER cols: friendly_name="CPTAC2-CONFIRMATORY, description="Normalized, labels=[("access",
+
+isb-cgc-bq.CPTAC.[quant_proteome_AML_ex_vivo_drug_response_combination_treatment_pdc_current | quant_proteome_AML_ex_vivo_drug_response_primary_cohort_pdc_current | quant_proteome_AML_ex_vivo_drug_response_sorafenib_treatment_pdc_current]
+  NUM cols: protein_abundance_log2ratio
+  STR cols: case_id, sample_id, aliquot_id, aliquot_submitter_id, aliquot_run_metadata_id, study_name, gene_id, gene_symbol, NCBI_gene_id, authority, authority_gene_id, gene_description, organism, chromosome, locus, uniprotkb_id, uniprotkb_ids, proteins, assays
+  OTHER cols: friendly_name="AML, description="Normalized, labels=[("access",
+
+isb-cgc-bq.CPTAC.[quant_proteome_AML_gilteritinib_resistance_pdc_current | quant_proteome_AML_gilteritinib_timecourse_pdc_current]
+  NUM cols: protein_abundance_log2ratio
+  STR cols: case_id, sample_id, aliquot_id, aliquot_submitter_id, aliquot_run_metadata_id, study_name, gene_id, gene_symbol, NCBI_gene_id, authority, authority_gene_id, gene_description, organism, chromosome, locus, uniprotkb_id, uniprotkb_ids, proteins, assays
+  OTHER cols: friendly_name="AML, description="Normalized, labels=[("access",
+
+isb-cgc-bq.CPTAC.quant_proteome_AML_quizartinib_resistance_pdc_current
+  NUM cols: protein_abundance_log2ratio
+  STR cols: case_id, sample_id, aliquot_id, aliquot_submitter_id, aliquot_run_metadata_id, study_name, gene_id, gene_symbol, NCBI_gene_id, authority, authority_gene_id, gene_description, organism, chromosome, locus, uniprotkb_id, uniprotkb_ids, proteins, assays
+  OTHER cols: friendly_name="AML, description="Normalized, labels=[("access",
+
+isb-cgc-bq.CPTAC.quant_proteome_CPTAC_CCRCC_discovery_study_pdc_current
+  NUM cols: protein_abundance_log2ratio
+  STR cols: case_id, sample_id, aliquot_id, aliquot_submitter_id, aliquot_run_metadata_id, study_name, gene_id, gene_symbol, NCBI_gene_id, authority, authority_gene_id, gene_description, organism, chromosome, locus, uniprotkb_id, uniprotkb_ids, proteins, assays
+  OTHER cols: friendly_name="CPTAC3-DISCOVERY, description="Normalized, labels=[("access",
+
+isb-cgc-bq.CPTAC.quant_proteome_CPTAC_GBM_discovery_study_pdc_current
+  NUM cols: protein_abundance_log2ratio
+  STR cols: case_id, sample_id, aliquot_id, aliquot_submitter_id, aliquot_run_metadata_id, study_name, gene_id, gene_symbol, NCBI_gene_id, authority, authority_gene_id, gene_description, organism, chromosome, locus, uniprotkb_id, uniprotkb_ids, proteins, assays
+  OTHER cols: friendly_name="CPTAC3-DISCOVERY, description="Normalized, labels=[("access",
+
+isb-cgc-bq.CPTAC.quant_proteome_CPTAC_HNSCC_discovery_study_pdc_current
+  NUM cols: protein_abundance_log2ratio
+  STR cols: case_id, sample_id, aliquot_id, aliquot_submitter_id, aliquot_run_metadata_id, study_name, gene_id, gene_symbol, NCBI_gene_id, authority, authority_gene_id, gene_description, organism, chromosome, locus, uniprotkb_id, uniprotkb_ids, proteins, assays
+  OTHER cols: friendly_name="CPTAC3-DISCOVERY, description="Normalized, labels=[("access",
+
+isb-cgc-bq.CPTAC.[quant_proteome_CPTAC_LSCC_discovery_study_pdc_current | quant_proteome_CPTAC_LUAD_discovery_study_pdc_current]
+  NUM cols: protein_abundance_log2ratio
+  STR cols: case_id, sample_id, aliquot_id, aliquot_submitter_id, aliquot_run_metadata_id, study_name, gene_id, gene_symbol, NCBI_gene_id, authority, authority_gene_id, gene_description, organism, chromosome, locus, uniprotkb_id, uniprotkb_ids, proteins, assays
+  OTHER cols: friendly_name="CPTAC3-DISCOVERY, description="Normalized, labels=[("access",
+
+isb-cgc-bq.CPTAC.quant_proteome_CPTAC_PDA_discovery_study_pdc_current
+  NUM cols: protein_abundance_log2ratio
+  STR cols: case_id, sample_id, aliquot_id, aliquot_submitter_id, aliquot_run_metadata_id, study_name, gene_id, gene_symbol, NCBI_gene_id, authority, authority_gene_id, gene_description, organism, chromosome, locus, uniprotkb_id, uniprotkb_ids, proteins, assays
+  OTHER cols: friendly_name="CPTAC3-DISCOVERY, description="Normalized, labels=[("access",
+
+isb-cgc-bq.CPTAC.quant_proteome_CPTAC_UCEC_confirmatory_study_pdc_current
+  NUM cols: protein_abundance_log2ratio
+  STR cols: case_id, sample_id, aliquot_id, aliquot_submitter_id, aliquot_run_metadata_id, study_name, gene_id, gene_symbol, NCBI_gene_id, authority, authority_gene_id, gene_description, organism, chromosome, locus, uniprotkb_id, uniprotkb_ids, proteins, assays
+  OTHER cols: friendly_name="CPTAC, description="Normalized, labels=[("access",
+
+isb-cgc-bq.CPTAC.quant_proteome_CPTAC_UCEC_discovery_study_pdc_current
+  NUM cols: protein_abundance_log2ratio
+  STR cols: case_id, sample_id, aliquot_id, aliquot_submitter_id, aliquot_run_metadata_id, study_name, gene_id, gene_symbol, NCBI_gene_id, authority, authority_gene_id, gene_description, organism, chromosome, locus, uniprotkb_id, uniprotkb_ids, proteins, assays
+  OTHER cols: friendly_name="CPTAC3-DISCOVERY, description="Normalized, labels=[("access",
+
+isb-cgc-bq.CPTAC.[quant_proteome_PTRC_HGSOC_FFPE_discovery_pdc_current | quant_proteome_PTRC_HGSOC_FFPE_validation_pdc_current | quant_proteome_PTRC_HGSOC_frozen_validation_pdc_current]
+  NUM cols: protein_abundance_log2ratio
+  STR cols: case_id, sample_id, aliquot_id, aliquot_submitter_id, aliquot_run_metadata_id, study_name, gene_id, gene_symbol, NCBI_gene_id, authority, authority_gene_id, gene_description, organism, chromosome, locus, uniprotkb_id, uniprotkb_ids, proteins, assays
+  OTHER cols: friendly_name="PTRC, description="Normalized, labels=[("access",
+
+isb-cgc-bq.CPTAC.[quant_proteome_PTRC_TNBC_PDX_pdc_current | quant_proteome_PTRC_TNBC_pdc_current]
+  NUM cols: protein_abundance_log2ratio
+  STR cols: case_id, sample_id, aliquot_id, aliquot_submitter_id, aliquot_run_metadata_id, study_name, gene_id, gene_symbol, NCBI_gene_id, authority, authority_gene_id, gene_description, organism, chromosome, locus, uniprotkb_id, uniprotkb_ids, proteins, assays
+  OTHER cols: friendly_name="PTRC, description="Normalized, labels=[("access",
+
+isb-cgc-bq.CPTAC.[quant_proteome_prospective_breast_BI_pdc_current | quant_proteome_prospective_colon_PNNL_qeplus_pdc_current | quant_proteome_prospective_ovarian_JHU_pdc_current | quant_proteome_prospective_ovarian_PNNL_qeplus_pdc_current]
+  NUM cols: protein_abundance_log2ratio
+  STR cols: case_id, sample_id, aliquot_id, aliquot_submitter_id, aliquot_run_metadata_id, study_name, gene_id, gene_symbol, NCBI_gene_id, authority, authority_gene_id, gene_description, organism, chromosome, locus, uniprotkb_id, uniprotkb_ids, proteins, assays
+  OTHER cols: friendly_name="CPTAC2-CONFIRMATORY, description="Normalized, labels=[("access",
+
+isb-cgc-bq.CPTAC.quant_ubiquitylome_CPTAC_LSCC_discovery_study_pdc_current
+  NUM cols: protein_abundance_log2ratio
+  STR cols: case_id, sample_id, aliquot_id, aliquot_submitter_id, aliquot_run_metadata_id, study_name, refseq_id, ubiquitylation_sites
+  OTHER cols: friendly_name="CPTAC3-DISCOVERY, description="Normalized, labels=[("access",
+
+isb-cgc-bq.PDC_metadata.refseq_mapping_current
+  STR cols: uniprot_id, uniprot_review_status, gene_symbol, refseq_id
+  OTHER cols: friendly_name="REFSEQ, description="Data, labels=[("access",
+
+isb-cgc-bq.PDC_metadata.studies_current
+  STR cols: study_name, study_submitter_id, submitter_id_name, pdc_study_id, study_id, study_friendly_name, study_grouping_name, analytical_fraction, disease_type, primary_site, acquisition_type, experiment_type, project_id, project_submitter_id, project_name, project_short_name, project_friendly_name, program_id, program_submitter_id, program_name, program_short_name, program_manager, program_labels, end_date
+  TIME cols: start_date
+  OTHER cols: friendly_name="STUDIES, description="Study, labels=[("access",

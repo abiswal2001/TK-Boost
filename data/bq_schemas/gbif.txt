@@ -1,0 +1,6 @@
+[DATASET=gbif]
+bigquery-public-data.gbif.occurrences
+  NUM cols: individualcount, decimallatitude, decimallongitude, coordinateuncertaintyinmeters, coordinateprecision, elevation, elevationaccuracy, depth, depthaccuracy, day, month, year, taxonkey, specieskey
+  STR cols: gbifid, datasetkey, occurrenceid, kingdom, phylum, class, order, family, genus, species, infraspecificepithet, taxonrank, scientificname, verbatimscientificname, verbatimscientificnameauthorship, countrycode, locality, stateprovince, occurrencestatus, publishingorgkey, basisofrecord, institutioncode, collectioncode, catalognumber, recordnumber, license, rightsholder, establishmentmeans
+  TIME cols: eventdate, dateidentified, lastinterpreted
+  OTHER cols: identifiedby, recordedby, typestatus, mediatype, issue, description="Evidence

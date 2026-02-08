@@ -1,0 +1,108 @@
+[DB=GEO_OPENSTREETMAP_BOUNDARIES | SCHEMA=GEO_OPENSTREETMAP]
+GEO_OPENSTREETMAP_BOUNDARIES.GEO_OPENSTREETMAP.HISTORY_CHANGESETS
+  NUM cols: id, osm_timestamp_max, osm_timestamp_min
+  OTHER cols: nodes, relations, ways
+
+GEO_OPENSTREETMAP_BOUNDARIES.GEO_OPENSTREETMAP.HISTORY_LAYERS
+  NUM cols: layer_code, osm_id, osm_timestamp, osm_version, osm_way_id
+  STR cols: gdal_type, layer_class, layer_name
+  OTHER cols: all_tags, geometry
+  OTHER TABLES WITH IDENTICAL SCHEMA: PLANET_LAYERS
+
+GEO_OPENSTREETMAP_BOUNDARIES.GEO_OPENSTREETMAP.HISTORY_NODES
+  NUM cols: changeset, id, latitude, longitude, osm_timestamp, version
+  STR cols: username
+  OTHER cols: all_tags, geometry, visible
+  OTHER TABLES WITH IDENTICAL SCHEMA: PLANET_NODES
+
+GEO_OPENSTREETMAP_BOUNDARIES.GEO_OPENSTREETMAP.HISTORY_RELATIONS
+  NUM cols: changeset, id, osm_timestamp, version
+  STR cols: username
+  OTHER cols: all_tags, geometry, members, visible
+  OTHER TABLES WITH IDENTICAL SCHEMA: PLANET_RELATIONS
+
+GEO_OPENSTREETMAP_BOUNDARIES.GEO_OPENSTREETMAP.PLANET_FEATURES
+  NUM cols: osm_id, osm_timestamp, osm_version, osm_way_id
+  STR cols: feature_type
+  OTHER cols: all_tags, geometry
+
+GEO_OPENSTREETMAP_BOUNDARIES.GEO_OPENSTREETMAP.PLANET_FEATURES_POINTS
+  NUM cols: osm_id, osm_timestamp, osm_version, osm_way_id
+  OTHER cols: all_tags, geometry
+
+GEO_OPENSTREETMAP_BOUNDARIES.GEO_OPENSTREETMAP.PLANET_WAYS
+  NUM cols: changeset, id, osm_timestamp, version
+  STR cols: username
+  OTHER cols: all_tags, geometry, nodes, visible
+
+[DB=GEO_OPENSTREETMAP_BOUNDARIES | SCHEMA=GEO_US_BOUNDARIES]
+GEO_OPENSTREETMAP_BOUNDARIES.GEO_US_BOUNDARIES.ADJACENT_COUNTIES
+  STR cols: county, county_fips_code, state
+  OTHER cols: neighbors, neighbors_fips_code, neighbors_state
+
+GEO_OPENSTREETMAP_BOUNDARIES.GEO_US_BOUNDARIES.ADJACENT_STATES
+  STR cols: state, state_fips_code, state_name
+  OTHER cols: neighbors_fips_code, neighbors_state
+
+GEO_OPENSTREETMAP_BOUNDARIES.GEO_US_BOUNDARIES.CBSA
+  NUM cols: area_land_meters, area_water_meters, internal_point_latitude, internal_point_longitude
+  STR cols: cbsa_fips_code, csa_geo_id, geo_id, lsad_code, lsad_name, msa_indicator, mtfcc_feature_class_code, name
+  OTHER cols: cbsa_geom, internal_point_geom
+
+GEO_OPENSTREETMAP_BOUNDARIES.GEO_US_BOUNDARIES.CNECTA
+  NUM cols: area_land_meters, area_water_meters, int_point_lat, int_point_lon
+  STR cols: cnecta_fips_code, geo_id, lsad, mtfcc_feature_class_code, name, name_lsad
+  OTHER cols: cnecta_geom
+
+GEO_OPENSTREETMAP_BOUNDARIES.GEO_US_BOUNDARIES.COASTLINE
+  STR cols: name
+  OTHER cols: coastline_geom
+
+GEO_OPENSTREETMAP_BOUNDARIES.GEO_US_BOUNDARIES.CONGRESS_DISTRICT_115
+  NUM cols: area_land_meters, area_water_meters, int_point_lat, int_point_lon
+  STR cols: congress_session, district_fips_code, geo_id, lsad_code, lsad_name, mtfcc_feature_class_code, state_fips_code
+  OTHER cols: district_geom, functional_status, int_point_geom
+  OTHER TABLES WITH IDENTICAL SCHEMA: CONGRESS_DISTRICT_116
+
+GEO_OPENSTREETMAP_BOUNDARIES.GEO_US_BOUNDARIES.COUNTIES
+  NUM cols: area_land_meters, area_water_meters, int_point_lat, int_point_lon
+  STR cols: cbsa_fips_code, county_fips_code, county_gnis_code, county_name, csa_fips_code, fips_class_code, functional_status, geo_id, lsad_code, lsad_name, met_div_fips_code, mtfcc_feature_class_code, state_fips_code
+  OTHER cols: county_geom, int_point_geom
+
+GEO_OPENSTREETMAP_BOUNDARIES.GEO_US_BOUNDARIES.CSA
+  NUM cols: area_land_meters, area_water_meters, internal_point_lat, internal_point_lon
+  STR cols: csa_code, geo_id, lsad_name, msa_lsad_code, mtfcc_feature_class_code, name
+  OTHER cols: csa_geom, internal_point_geom
+
+GEO_OPENSTREETMAP_BOUNDARIES.GEO_US_BOUNDARIES.METROPOLITAN_DIVISIONS
+  NUM cols: area_land_meters, area_water_meters, internal_point_latitude, internal_point_longitude
+  STR cols: cbsa_code, csa_code, geo_id, lsad_code, lsad_name, metdiv_code, mtfcc_feature_class_code, name
+  OTHER cols: internal_point_geom, metdiv_geom
+
+GEO_OPENSTREETMAP_BOUNDARIES.GEO_US_BOUNDARIES.NATIONAL_OUTLINE
+  STR cols: aff_geo_id, geo_id, name
+  OTHER cols: us_outline_geom
+
+GEO_OPENSTREETMAP_BOUNDARIES.GEO_US_BOUNDARIES.NWS_FORECAST_REGIONS
+  NUM cols: lat, lon
+  STR cols: cwa, fe_area, name, shortname, state, state_zone, time_zone, zone
+  OTHER cols: shape_geometry
+
+GEO_OPENSTREETMAP_BOUNDARIES.GEO_US_BOUNDARIES.RAILWAYS
+  NUM cols: geo_id
+  STR cols: full_name, mtfcc_feature_class_code, railway_geom
+
+GEO_OPENSTREETMAP_BOUNDARIES.GEO_US_BOUNDARIES.STATES
+  NUM cols: area_land_meters, area_water_meters, int_point_lat, int_point_lon
+  STR cols: division_code, functional_status, geo_id, lsad_code, mtfcc_feature_class_code, region_code, state, state_fips_code, state_gnis_code, state_name
+  OTHER cols: int_point_geom, state_geom
+
+GEO_OPENSTREETMAP_BOUNDARIES.GEO_US_BOUNDARIES.URBAN_AREAS
+  NUM cols: area_land_meters, area_water_meters, internal_point_lat, internal_point_lon
+  STR cols: area_lsad_code, functional_status, geo_id, lsad_name, mtfcc_feature_class_code, name, type, urban_area_code
+  OTHER cols: internal_point_geom, urban_area_geom
+
+GEO_OPENSTREETMAP_BOUNDARIES.GEO_US_BOUNDARIES.ZIP_CODES
+  NUM cols: area_land_meters, area_water_meters, internal_point_lat, internal_point_lon
+  STR cols: city, county, fips_class_code, functional_status, mtfcc_feature_class_code, state_code, state_fips_code, state_name, zip_code
+  OTHER cols: internal_point_geom, zip_code_geom

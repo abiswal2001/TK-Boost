@@ -1,0 +1,64 @@
+[DB=TCGA | SCHEMA=TCGA_VERSIONED]
+TCGA.TCGA_VERSIONED.CLINICAL_CPTAC_TCGA_PDC_V2_10
+  NUM cols: age_at_diagnosis, days_to_birth, days_to_death, days_to_last_follow_up, year_of_birth, year_of_death
+  STR cols: ajcc_pathologic_m, ajcc_pathologic_n, ajcc_pathologic_stage, ajcc_pathologic_t, case_id, case_submitter_id, circumferential_resection_margin, colon_polyps_history, days_to_hiv_diagnosis, days_to_new_event, demographic_id, demographic_submitter_id, diagnosis_id, diagnosis_submitter_id, disease_type, ethnicity, figo_stage, gender, hiv_positive, hpv_positive_type, hpv_status, ldh_level_at_diagnosis, ldh_normal_range_upper, lymph_nodes_positive, morphology, new_event_anatomic_site, new_event_type, primary_diagnosis, primary_site, project_submitter_id, race, site_of_resection_or_biopsy, tissue_or_organ_of_origin, tumor_stage, vital_status, year_of_diagnosis
+  OTHER cols: prior_malignancy, prior_treatment
+
+TCGA.TCGA_VERSIONED.CLINICAL_DIAGNOSES_TREATMENTS_GDC_R24
+  STR cols: case_id, diag__diagnosis_id, diag__treat__created_datetime, diag__treat__state, diag__treat__treatment_id, diag__treat__treatment_or_therapy, diag__treat__treatment_type, diag__treat__updated_datetime
+
+TCGA.TCGA_VERSIONED.CLINICAL_GDC_2018_06
+  NUM cols: age_at_diagnosis, age_began_smoking_in_years, batch_number, bmi, days_to_birth, days_to_death, days_to_initial_pathologic_diagnosis, days_to_last_followup, days_to_last_known_alive, days_to_submitted_specimen_dx, gleason_score_combined, height, number_of_lymphnodes_examined, number_of_lymphnodes_positive_by_he, number_pack_years_smoked, psa_value, stopped_smoking_year, tobacco_smoking_history, weight, year_of_initial_pathologic_diagnosis, year_of_tobacco_smoking_onset
+  STR cols: anatomic_neoplasm_subdivision, bcr, case_barcode, case_gdc_id, clinical_M, clinical_N, clinical_stage, clinical_T, colorectal_cancer, country, disease_code, ethnicity, gender, h_pylori_infection, histological_type, history_of_colon_polyps, history_of_neoadjuvant_treatment, hpv_calls, hpv_status, icd_10, icd_o_3_histology, icd_o_3_site, lymphatic_invasion, lymphnodes_examined, lymphovascular_invasion_present, menopause_status, mononucleotide_and_dinucleotide_marker_panel_analysis_status, neoplasm_histologic_grade, new_tumor_event_after_initial_treatment, other_dx, other_malignancy_anatomic_site, other_malignancy_histological_type, other_malignancy_type, pathologic_M, pathologic_N, pathologic_stage, pathologic_T, person_neoplasm_cancer_status, pregnancies, primary_neoplasm_melanoma_dx, primary_therapy_outcome_success, program_dbgap_accession_number, program_name, project_name, project_short_name, race, residual_tumor, tss_code, tumor_tissue_site, tumor_type, venous_invasion, vital_status
+
+TCGA.TCGA_VERSIONED.CLINICAL_GDC_R38
+  NUM cols: created_datetime, demo__age_at_index, demo__created_datetime, demo__days_to_birth, demo__days_to_death, demo__updated_datetime, demo__year_of_birth, demo__year_of_death, diag__age_at_diagnosis, diag__created_datetime, diag__days_to_diagnosis, diag__days_to_last_follow_up, diag__treat__count, diag__updated_datetime, diag__year_of_diagnosis, exp__cigarettes_per_day, exp__created_datetime, exp__pack_years_smoked, exp__updated_datetime, exp__years_smoked, updated_datetime
+  STR cols: case_id, demo__demographic_id, demo__ethnicity, demo__gender, demo__race, demo__state, demo__vital_status, diag__ajcc_clinical_m, diag__ajcc_clinical_n, diag__ajcc_clinical_stage, diag__ajcc_clinical_t, diag__ajcc_pathologic_m, diag__ajcc_pathologic_n, diag__ajcc_pathologic_stage, diag__ajcc_pathologic_t, diag__ajcc_staging_system_edition, diag__ann_arbor_clinical_stage, diag__diagnosis_id, diag__figo_stage, diag__icd_10_code, diag__igcccg_stage, diag__masaoka_stage, diag__morphology, diag__primary_diagnosis, diag__primary_gleason_grade, diag__secondary_gleason_grade, diag__site_of_resection_or_biopsy, diag__state, diag__tissue_or_organ_of_origin, disease_type, exp__exposure_id, exp__state, primary_site, proj__name, proj__project_id, state, submitter_id
+  OTHER cols: diag__ann_arbor_b_symptoms, diag__ann_arbor_extranodal_involvement, diag__prior_malignancy, diag__prior_treatment, diag__synchronous_malignancy, exp__alcohol_history
+
+TCGA.TCGA_VERSIONED.COPY_NUMBER_GENE_LEVEL_HG38_GDC_R36
+  NUM cols: copy_number, end_pos, max_copy_number, min_copy_number, start_pos
+  STR cols: aliquot_barcode, aliquot_gdc_id, case_barcode, case_gdc_id, chromosome, Ensembl_gene_id, Ensembl_gene_id_v, file_gdc_id, gene_name, gene_type, primary_site, project_short_name, sample_barcode, sample_gdc_id
+
+TCGA.TCGA_VERSIONED.COPY_NUMBER_SEGMENT_MASKED_HG19_GDC_2017_02
+  NUM cols: end_pos, num_probes, segment_mean, start_pos
+  STR cols: aliquot_barcode, case_barcode, chromosome, platform, project_short_name, sample_barcode
+
+TCGA.TCGA_VERSIONED.COPY_NUMBER_SEGMENT_MASKED_HG38_GDC_2017_02
+  NUM cols: end_pos, num_probes, segment_mean, start_pos
+  STR cols: aliquot_barcode, aliquot_gdc_id, case_barcode, case_gdc_id, chromosome, file_gdc_id, project_short_name, sample_barcode, sample_gdc_id
+  OTHER TABLES WITH IDENTICAL SCHEMA: COPY_NUMBER_SEGMENT_MASKED_HG38_GDC_R14
+
+TCGA.TCGA_VERSIONED.DNA_METHYLATION_CHR16_HG19_GDC_2017_01
+  NUM cols: beta_value
+  STR cols: aliquot_barcode, case_barcode, platform, probe_id, project_short_name, sample_barcode
+  OTHER TABLES WITH IDENTICAL SCHEMA: DNA_METHYLATION_CHR9_HG19_GDC_2017_1
+
+TCGA.TCGA_VERSIONED.DNA_METHYLATION_CHR17_HG38_GDC_2017_01
+  NUM cols: beta_value
+  STR cols: aliquot_barcode, aliquot_gdc_id, case_barcode, case_gdc_id, file_gdc_id, platform, probe_id, sample_barcode, sample_gdc_id
+  OTHER TABLES WITH IDENTICAL SCHEMA: DNA_METHYLATION_CHR21_HG38_GDC_2017_1, DNA_METHYLATION_CHR22_HG38_GDC_2017_1, DNA_METHYLATION_CHR4_HG38_GDC_2017_1, DNA_METHYLATION_CHR6_HG38_GDC_2017_1, DNA_METHYLATION_CHRX_HG38_GDC_2017_1
+
+TCGA.TCGA_VERSIONED.MIRNASEQ_HG38_GDC_R28
+  NUM cols: read_count, reads_per_million_miRNA_mapped
+  STR cols: aliquot_barcode, aliquot_gdc_id, case_barcode, case_gdc_id, cross_mapped, file_gdc_id, miRNA_id, primary_site, project_short_name, sample_barcode, sample_gdc_id, sample_type_name
+
+TCGA.TCGA_VERSIONED.MIRNASEQ_ISOFORM_HG19_GDC_2017_02
+  NUM cols: end_pos, read_count, reads_per_million_miRNA_mapped, start_pos
+  STR cols: aliquot_barcode, aliquot_gdc_id, case_barcode, case_gdc_id, chromosome, cross_mapped, file_gdc_id, mirna_accession, mirna_id, mirna_transcript, project_short_name, sample_barcode, sample_gdc_id, strand
+
+TCGA.TCGA_VERSIONED.PER_SAMPLE_FILE_METADATA_HG19_GDC_R14
+  NUM cols: file_size, index_file_size
+  STR cols: access, acl, case_barcode, case_gdc_id, data_category, data_format, data_type, disease_code, experimental_strategy, file_gdc_id, file_name_key, index_file_id, index_file_name_key, platform, program_name, project_short_name, sample_barcode, sample_gdc_id, type
+
+TCGA.TCGA_VERSIONED.PER_SAMPLE_FILE_METADATA_HG19_GDC_R25
+  NUM cols: file_size, index_file_size
+  STR cols: access, acl, case_barcode, case_gdc_id, data_category, data_format, data_type, experimental_strategy, file_gdc_id, file_name_key, file_type, index_file_id, index_file_name_key, platform, program_name, project_short_name, project_short_name_suffix, sample_barcode, sample_gdc_id, sample_type_name
+  OTHER TABLES WITH IDENTICAL SCHEMA: PER_SAMPLE_FILE_METADATA_HG19_GDC_R35, PER_SAMPLE_FILE_METADATA_HG38_GDC_R26, PER_SAMPLE_FILE_METADATA_HG38_GDC_R38
+
+TCGA.TCGA_VERSIONED.QUANT_PHOSPHOPROTEOME_TCGA_OVARIAN_PNNL_VELOS_QEXACTIVE_PDC_V1_17
+  STR cols: aliquot_id, aliquot_run_metadata_id, aliquot_submitter_id, case_id, phosphorylation_sites, protein_abundance_log2ratio, refseq_id, sample_id, study_name
+
+TCGA.TCGA_VERSIONED.QUANT_PROTEOME_TCGA_OVARIAN_JHU_PDC_V1_21
+  NUM cols: protein_abundance_log2ratio
+  STR cols: aliquot_id, aliquot_run_metadata_id, aliquot_submitter_id, assays, authority, authority_gene_id, case_id, chromosome, gene_description, gene_id, gene_symbol, locus, NCBI_gene_id, organism, proteins, sample_id, study_name, uniprotkb_id, uniprotkb_ids

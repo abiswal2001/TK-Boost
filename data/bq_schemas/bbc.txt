@@ -1,0 +1,3 @@
+[DATASET=bbc]
+bigquery-public-data.bbc_news.fulltext
+  STR cols: body, title, filename, category

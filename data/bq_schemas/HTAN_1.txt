@@ -1,0 +1,759 @@
+[DATASET=HTAN_1]
+isb-cgc-bq.HTAN_versioned.10xvisium_spatialtranscriptomics_auxiliaryfiles_metadata_r3
+  NUM cols: Manifest_Version, File_Size
+  STR cols: Component, Filename, File_Format, HTAN_Data_File_ID, HTAN_Parent_Biospecimen_ID, HTAN_Parent_Data_File_ID, Run_ID, Visium_File_Type, Slide_ID, Capture_Area, Workflow_Version, Workflow_Link, entityId, HTAN_Center, Data_Release, Uuid, md5, CDS_Release
+  OTHER cols: friendly_name="HTAN, description="This, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.[10xvisium_spatialtranscriptomics_auxiliaryfiles_metadata_r4 | 10xvisium_spatialtranscriptomics_auxiliaryfiles_metadata_r5]
+  NUM cols: Manifest_Version, File_Size
+  STR cols: entityId, Capture_Area, Workflow_Version, Slide_ID, HTAN_Data_File_ID, Id, HTAN_Parent_Biospecimen_ID, Component, Visium_File_Type, Workflow_Link, File_Format, Run_ID, Filename, HTAN_Parent_Data_File_ID, HTAN_Center, Manifest_Id, md5, Data_Release, CDS_Release
+  OTHER cols: friendly_name="HTAN, description="This, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.10xvisium_spatialtranscriptomics_scRNAseq_level1_metadata_r3
+  NUM cols: Manifest_Version, File_Size
+  STR cols: Component, Filename, Run_ID, File_Format, HTAN_Data_File_ID, HTAN_Parent_Biospecimen_ID, Read_Indicator, Spatial_Read1, Spatial_Read2, Spatial_Library_Construction_Method, Library_Preparation_Days_from_Index, Sequencing_Library_Construction_Days_from_Index, End_Bias, Reverse_Transcription_Primer, Sequencing_Platform, Capture_Area, Protocol_Link, Slide_Version, Slide_ID, Image_Re_orientation, Permeabilization_Time, RIN, DV200, entityId, HTAN_Center, Data_Release, Uuid, md5, CDS_Release
+  OTHER cols: friendly_name="HTAN, description="This, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.[10xvisium_spatialtranscriptomics_scRNAseq_level1_metadata_r4 | 10xvisium_spatialtranscriptomics_scRNAseq_level1_metadata_r5]
+  NUM cols: Manifest_Version, File_Size
+  STR cols: Permeabilization_Time, HTAN_Data_File_ID, Spatial_Read1, Id, Sequencing_Library_Construction_Days_from_Index, Protocol_Link, Capture_Area, entityId, Feature_Reference_Id, Spatial_Library_Construction_Method, Component, Image_Re_orientation, cDNA_Offset, Spatial_Read2, End_Bias, Library_Preparation_Days_from_Index, cDNA_Length, UMI_Barcode_Length, HTAN_Parent_Biospecimen_ID, Spatial_Barcode_Offset, File_Format, Run_ID, Filename, Reverse_Transcription_Primer, Read_Indicator, RIN, Sequencing_Platform, DV200, UMI_Barcode_Offset, Slide_ID, Slide_Version, Spatial_Barcode_Length, HTAN_Center, Manifest_Id, md5, Data_Release, CDS_Release
+  OTHER cols: friendly_name="HTAN, description="This, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.10xvisium_spatialtranscriptomics_scRNAseq_level2_metadata_r3
+  NUM cols: Manifest_Version, File_Size
+  STR cols: Component, Filename, Checksum, HTAN_Data_File_ID, HTAN_Parent_Data_File_ID, UMI_Tag, Whitelist_Spatial_Barcode_File_Link, Spatial_Barcode_Tag, Applied_Hard_Trimming, Workflow_Version, Workflow_Link, Genomic_Reference, Genomic_Reference_URL, Genome_Annotation_URL, HTAN_Parent_Biospecimen_ID, Run_ID, Capture_Area, entityId, HTAN_Center, Data_Release, Uuid, md5, CDS_Release
+  OTHER cols: friendly_name="HTAN, description="This, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.[10xvisium_spatialtranscriptomics_scRNAseq_level2_metadata_r4 | 10xvisium_spatialtranscriptomics_scRNAseq_level2_metadata_r5]
+  NUM cols: Manifest_Version, File_Size
+  STR cols: HTAN_Data_File_ID, Whitelist_Spatial_Barcode_File_Link, Id, Aligned_Read_Length, Capture_Area, entityId, Genomic_Reference, Component, Applied_Hard_Trimming, Checksum, HTAN_Parent_Biospecimen_ID, Spatial_Barcode_Tag, UMI_Tag, Workflow_Link, File_Format, Run_ID, Filename, HTAN_Parent_Data_File_ID, Workflow_Version, Genome_Annotation_URL, Genomic_Reference_URL, HTAN_Center, Manifest_Id, md5, Data_Release, CDS_Release
+  OTHER cols: friendly_name="HTAN, description="This, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.10xvisium_spatialtranscriptomics_scRNAseq_level3_metadata_r3
+  NUM cols: Manifest_Version, File_Size
+  STR cols: Component, Filename, File_Format, HTAN_Data_File_ID, HTAN_Parent_Biospecimen_ID, HTAN_Parent_Data_File_ID, Run_ID, Visium_File_Type, Workflow_Version, Workflow_Link, Capture_Area, Spots_under_tissue, Mean_Reads_per_Spatial_Spot, Median_Number_Genes_per_Spatial_Spot, Sequencing_Saturation, Proportion_Reads_Mapped, Proportion_Reads_Mapped_to_Transcriptome, Median_UMI_Counts_per_Spot, entityId, HTAN_Center, Data_Release, Uuid, md5, CDS_Release
+  OTHER cols: friendly_name="HTAN, description="This, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.[10xvisium_spatialtranscriptomics_scRNAseq_level3_metadata_r4 | 10xvisium_spatialtranscriptomics_scRNAseq_level3_metadata_r5]
+  NUM cols: Manifest_Version, File_Size
+  STR cols: Workflow_Link, Visium_File_Type, HTAN_Data_File_ID, Component, Median_Number_Genes_per_Spatial_Spot, File_Format, Run_ID, HTAN_Parent_Data_File_ID, Proportion_Reads_Mapped, Median_UMI_Counts_per_Spot, Workflow_Version, HTAN_Parent_Biospecimen_ID, Filename, Spots_under_tissue, Proportion_Reads_Mapped_to_Transcriptome, entityId, Capture_Area, Id, Sequencing_Saturation, Mean_Reads_per_Spatial_Spot, HTAN_Center, Manifest_Id, md5, Data_Release, CDS_Release
+  OTHER cols: friendly_name="HTAN, description="This, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.10xvisium_spatialtranscriptomics_scRNAseq_level4_metadata_r5
+  NUM cols: Manifest_Version, File_Size
+  STR cols: Workflow_Link, Run_ID, HTAN_Parent_Biospecimen_ID, Filename, Visium_Workflow_Type, HTAN_Parent_Data_File_ID, entityId, Id, HTAN_Data_File_ID, Visium_Workflow_Parameters_Description, Component, File_Format, Workflow_Version, HTAN_Center, Manifest_Id, md5, Data_Release, CDS_Release
+  OTHER cols: friendly_name="HTAN, description="This, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.accessory_manifest_r5
+  NUM cols: Manifest_Version
+  STR cols: Data_Type, HTAN_Parent_Biospecimen_ID, HTAN_Center_ID, Accessory_Description, Id, Accessory_associated_HTAN_Parent_Data_File_ID, Component, Accessory_Synapse_ID, Dataset_Name, HTAN_Center, Manifest_Id, entityId, Data_Release
+  OTHER cols: friendly_name="HTAN, description="This, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.biospecimen_r2
+  STR cols: HTAN_Biospecimen_ID, HTAN_Parent_ID, HTAN_Parent_Biospecimen_ID, Component, Source_HTAN_Biospecimen_ID, Timepoint_Label, Collection_Days_from_Index, Adjacent_Biospecimen_IDs, Biospecimen_Type, Acquisition_Method_Type, Fixative_Type, Site_of_Resection_or_Biopsy, Storage_Method, Processing_Days_from_Index, Protocol_Link, Site_Data_Source, Collection_Media, Mounting_Medium, Processing_Location, Histology_Assessment_By, Histology_Assessment_Medium, Preinvasive_Morphology, Tumor_Infiltrating_Lymphocytes, Degree_of_Dysplasia, Dysplasia_Fraction, Number_Proliferating_Cells, Percent_Eosinophil_Infiltration, Percent_Granulocyte_Infiltration, Percent_Inflam_Infiltration, Percent_Lymphocyte_Infiltration, Percent_Monocyte_Infiltration, Percent_Necrosis, Percent_Neutrophil_Infiltration, Percent_Normal_Cells, Percent_Stromal_Cells, Percent_Tumor_Cells, Percent_Tumor_Nuclei, Fiducial_Marker, Slicing_Method, Lysis_Buffer, Method_of_Nucleic_Acid_Isolation, Analyte_Type, Acquisition_Method_Other_Specify, Preservation_Method, Fixation_Duration, Ischemic_Time, Ischemic_Temperature, Specimen_Laterality, Portion_Weight, Total_Volume, Total_Volume_Unit, Tumor_Tissue_Type, Histologic_Morphology_Code, Slide_Charge_Type, Section_Thickness_Value, Sectioning_Days_from_Index, Shipping_Condition_Type, Antigen_Retrieval, Biospecimen_Slide_Location, Staining_Markers, Biospecimen_Dimension_1, Biospecimen_Dimension_2, Biospecimen_Dimension_3, Dimensions_Unit, Section_Number_in_Sequence, entityId, HTAN_Center, Data_Release
+  OTHER cols: friendly_name="HTAN, description="Data, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.biospecimen_r3
+  NUM cols: Manifest_Version
+  STR cols: HTAN_Biospecimen_ID, HTAN_Parent_ID, HTAN_Parent_Biospecimen_ID, Component, Source_HTAN_Biospecimen_ID, Timepoint_Label, Collection_Days_from_Index, Adjacent_Biospecimen_IDs, Biospecimen_Type, Acquisition_Method_Type, Fixative_Type, Storage_Method, Processing_Days_from_Index, Protocol_Link, Site_Data_Source, Collection_Media, Mounting_Medium, Processing_Location, Histology_Assessment_By, Histology_Assessment_Medium, Preinvasive_Morphology, Tumor_Infiltrating_Lymphocytes, Degree_of_Dysplasia, Dysplasia_Fraction, Number_Proliferating_Cells, Percent_Eosinophil_Infiltration, Percent_Granulocyte_Infiltration, Percent_Inflam_Infiltration, Percent_Lymphocyte_Infiltration, Percent_Monocyte_Infiltration, Percent_Necrosis, Percent_Neutrophil_Infiltration, Percent_Normal_Cells, Percent_Stromal_Cells, Percent_Tumor_Cells, Percent_Tumor_Nuclei, Fiducial_Marker, Slicing_Method, Lysis_Buffer, Method_of_Nucleic_Acid_Isolation, Analyte_Type, Acquisition_Method_Other_Specify, Preservation_Method, Fixation_Duration, Ischemic_Time, Ischemic_Temperature, Specimen_Laterality, Portion_Weight, Total_Volume, Total_Volume_Unit, Tumor_Tissue_Type, Histologic_Morphology_Code, Slide_Charge_Type, Section_Thickness_Value, Sectioning_Days_from_Index, Shipping_Condition_Type, Antigen_Retrieval, Biospecimen_Slide_Location, Staining_Markers, Biospecimen_Dimension_1, Biospecimen_Dimension_2, Biospecimen_Dimension_3, Dimensions_Unit, Section_Number_in_Sequence, entityId, HTAN_Center, Data_Release, Uuid
+  OTHER cols: friendly_name="HTAN, description="This, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.[biospecimen_r4 | biospecimen_r5]
+  NUM cols: Manifest_Version
+  STR cols: Biospecimen_Dimension_1, Id, Histology_Assessment_By, Dysplasia_Fraction, Analyte_Type, Sectioning_Days_from_Index, Percent_Lymphocyte_Infiltration, Lysis_Buffer, Slide_Charge_Type, Timepoint_Label, Preinvasive_Morphology, Collection_Days_from_Index, Tumor_Infiltrating_Lymphocytes, Percent_Monocyte_Infiltration, Specimen_Laterality, HTAN_Parent_ID, Protocol_Link, Slicing_Method, Percent_Neutrophil_Infiltration, Percent_Inflam_Infiltration, Biospecimen_Dimension_2, entityId, Percent_Stromal_Cells, Percent_Tumor_Cells, Portion_Weight, Total_Volume, Acquisition_Method_Other_Specify, Method_of_Nucleic_Acid_Isolation, Collection_Media, Component, Percent_Eosinophil_Infiltration, Preservation_Method, Shipping_Condition_Type, Section_Thickness_Value, Percent_Granulocyte_Infiltration, HTAN_Biospecimen_ID, Percent_Normal_Cells, Degree_of_Dysplasia, Ischemic_Temperature, Storage_Method, Processing_Days_from_Index, Percent_Necrosis, Site_of_Resection_or_Biopsy, Fixation_Duration, Ischemic_Time, Histologic_Morphology_Code, Biospecimen_Dimension_3, Site_Data_Source, Adjacent_Biospecimen_IDs, Biospecimen_Type, Mounting_Medium, Histology_Assessment_Medium, Number_Proliferating_Cells, Section_Number_in_Sequence, Acquisition_Method_Type, Fiducial_Marker, Percent_Tumor_Nuclei, Fixative_Type, Tumor_Tissue_Type, Source_HTAN_Biospecimen_ID, Processing_Location, HTAN_Center, Manifest_Id
+  OTHER cols: friendly_name="HTAN, description="This, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.[bulkMethylationseq_level1_metadata_r4 | bulkMethylationseq_level1_metadata_r5]
+  NUM cols: Manifest_Version, File_Size
+  STR cols: HTAN_Parent_Biospecimen_ID, Total_DNA_Input, Nucleic_Acid_Source, Filename, Replicate_Type, entityId, Id, HTAN_Data_File_ID, Component, Bulk_Methylation_Assay_Type, Bisulfite_Conversion, File_Format, Sequencing_Platform, HTAN_Center, Manifest_Id, md5, Data_Release, CDS_Release
+  OTHER cols: friendly_name="HTAN, description="This, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.[bulkMethylationseq_level2_metadata_r4 | bulkMethylationseq_level2_metadata_r5]
+  NUM cols: Manifest_Version, File_Size
+  STR cols: HTAN_Data_File_ID, Id, Trimmer, Proportion_Coverage_30X, Average_Base_Quality, Proportion_Reads_Mapped, Mean_Coverage, entityId, Bulk_Methylation_Genomic_Reference, Alignment_Workflow_Type, Index_File_Name, Pairs_On_Diff_CHR, Component, Average_Read_Length, Proportion_of_Minimum_CpG_Coverage_10X, Total_Unmapped_reads, Contamination_Error, Proportion_Targets_No_Coverage, Proportion_Reads_Duplicated, Alignment_Workflow_Url, Short_Reads, Total_Uniquely_Mapped, Contamination, Custom_Alignment_Workflow, Average_Insert_Size, File_Format, Duplicate_Removal_Software, Filename, HTAN_Parent_Data_File_ID, Library_Layout, Proportion_Base_Mismatch, Genomic_Reference_URL, Total_Reads, HTAN_Center, Manifest_Id, md5, Data_Release, CDS_Release
+  OTHER cols: friendly_name="HTAN, description="This, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.bulkRNAseq_level1_metadata_r2_v2
+  NUM cols: File_Size
+  STR cols: Component, Filename, File_Format, HTAN_Parent_Biospecimen_ID, HTAN_Data_File_ID, Library_Layout, Read_Indicator, Nucleic_Acid_Source, Sequencing_Platform, Sequencing_Batch_ID, Read_Length, Library_Selection_Method, Library_Preparation_Kit_Name, Library_Preparation_Kit_Vendor, Library_Preparation_Kit_Version, Library_Preparation_Days_from_Index, Spike_In, Adapter_Name, Adapter_Sequence, Base_Caller_Name, Base_Caller_Version, Flow, Cell_Barcode, Fragment_Maximum_Length, Fragment_Mean_Length, Fragment_Minimum_Length, Fragment_Standard_Deviation_Length, Lane_Number, Library_Strand, Multiplex_Barcode, Size_Selection_Range, Target_Depth, To_Trim_Adapter_Sequence, Transcript_Integrity_Number, RIN, DV200, Adapter_Content, Basic_Statistics, Encoding, Kmer_Content, Overrepresented_Sequences, Per_Base_N_Content, Per_Base_Sequence_Content, Per_Base_Sequence_Quality, Per_Sequence_GC_Content, Per_Sequence_Quality_Score, Per_Tile_Sequence_Quality, Percent_GC_Content, Sequence_Duplication_Levels, Sequence_Length_Distribution, Total_Reads, QC_Workflow_Type, QC_Workflow_Version, QC_Workflow_Link, entityId, HTAN_Center, Data_Release, Base_Filename, md5
+  OTHER cols: friendly_name="HTAN, description="Data, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.bulkRNAseq_level1_metadata_r3
+  NUM cols: Manifest_Version, File_Size
+  STR cols: Component, Filename, File_Format, HTAN_Parent_Biospecimen_ID, HTAN_Data_File_ID, Library_Layout, Read_Indicator, Nucleic_Acid_Source, Sequencing_Platform, Sequencing_Batch_ID, Read_Length, Library_Selection_Method, Library_Preparation_Kit_Name, Library_Preparation_Kit_Vendor, Library_Preparation_Kit_Version, Library_Preparation_Days_from_Index, Spike_In, Adapter_Name, Adapter_Sequence, Base_Caller_Name, Base_Caller_Version, Flow, Cell_Barcode, Fragment_Maximum_Length, Fragment_Mean_Length, Fragment_Minimum_Length, Fragment_Standard_Deviation_Length, Lane_Number, Library_Strand, Multiplex_Barcode, Size_Selection_Range, Target_Depth, To_Trim_Adapter_Sequence, Transcript_Integrity_Number, RIN, DV200, Adapter_Content, Basic_Statistics, Encoding, Kmer_Content, Overrepresented_Sequences, Per_Base_N_Content, Per_Base_Sequence_Content, Per_Base_Sequence_Quality, Per_Sequence_GC_Content, Per_Sequence_Quality_Score, Per_Tile_Sequence_Quality, Percent_GC_Content, Sequence_Duplication_Levels, Sequence_Length_Distribution, Total_Reads, QC_Workflow_Type, QC_Workflow_Version, QC_Workflow_Link, entityId, HTAN_Center, Data_Release, Uuid, md5, CDS_Release
+  OTHER cols: friendly_name="HTAN, description="This, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.[bulkRNAseq_level1_metadata_r4 | bulkRNAseq_level1_metadata_r5]
+  NUM cols: Manifest_Version, File_Size
+  STR cols: Micro_region_Seq_Platform, Nucleic_Acid_Source, Adapter_Name, Library_Layout, Library_Strand, Adapter_Content, HTAN_Data_File_ID, Per_Base_Sequence_Content, Basic_Statistics, Component, Target_Depth, Total_Reads, Base_Caller_Name, QC_Workflow_Link, ROI_Tag, QC_Workflow_Version, Read_Length, Fragment_Maximum_Length, DV200, Size_Selection_Range, Multiplex_Barcode, Library_Preparation_Kit_Version, Fragment_Minimum_Length, Base_Caller_Version, Library_Preparation_Kit_Vendor, Library_Selection_Method, To_Trim_Adapter_Sequence, RIN, Per_Sequence_GC_Content, Sequencing_Platform, Overrepresented_Sequences, HTAN_Parent_Biospecimen_ID, Sequence_Length_Distribution, Sequence_Duplication_Levels, Filename, Library_Preparation_Kit_Name, entityId, Percent_GC_Content, Per_Tile_Sequence_Quality, Adapter_Sequence, Per_Base_N_Content, Library_Preparation_Days_from_Index, QC_Workflow_Type, Kmer_Content, Per_Base_Sequence_Quality, Fragment_Mean_Length, Flow_Cell_Barcode, Fragment_Standard_Deviation_Length, Id, Lane_Number, Per_Sequence_Quality_Score, Encoding, Read_Indicator, Spike_In_Concentration, Transcript_Integrity_Number, Spike_In, File_Format, Sequencing_Batch_ID, HTAN_Center, Manifest_Id, md5, Data_Release, CDS_Release
+  OTHER cols: friendly_name="HTAN, description="This, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.bulkRNAseq_level2_metadata_r2
+  NUM cols: File_Size
+  STR cols: Component, Filename, File_Format, HTAN_Parent_Data_File_ID, HTAN_Data_File_ID, Alignment_Workflow_Url, Alignment_Workflow_Type, Genomic_Reference, Genomic_Reference_URL, Index_File_Name, Average_Base_Quality, Average_Insert_Size, Average_Read_Length, Contamination, Contamination_Error, Mean_Coverage, MSI_Workflow_Link, MSI_Score, MSI_Status, Pairs_On_Diff_CHR, Total_Reads, Total_Uniquely_Mapped, Total_Unmapped_reads, Proportion_Reads_Duplicated, Proportion_Reads_Mapped, Proportion, Targets_No_Coverage, Proportion_Base_Mismatch, Short_Reads, entityId, HTAN_Center, Data_Release, Base_Filename, md5
+  OTHER cols: friendly_name="HTAN, description="Data, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.bulkRNAseq_level2_metadata_r3
+  NUM cols: Manifest_Version, File_Size
+  STR cols: Component, Filename, File_Format, HTAN_Parent_Data_File_ID, HTAN_Data_File_ID, Alignment_Workflow_Url, Alignment_Workflow_Type, Genomic_Reference, Genomic_Reference_URL, Index_File_Name, Average_Base_Quality, Average_Insert_Size, Average_Read_Length, Contamination, Contamination_Error, Mean_Coverage, MSI_Workflow_Link, MSI_Score, MSI_Status, Pairs_On_Diff_CHR, Total_Reads, Total_Uniquely_Mapped, Total_Unmapped_reads, Proportion_Reads_Duplicated, Proportion_Reads_Mapped, Proportion, Targets_No_Coverage, Proportion_Base_Mismatch, Short_Reads, Is_lowest_level, entityId, HTAN_Center, Data_Release, Uuid, HTAN_Parent_Biospecimen_ID, md5, CDS_Release
+  OTHER cols: friendly_name="HTAN, description="This, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.[bulkRNAseq_level2_metadata_r4 | bulkRNAseq_level2_metadata_r5]
+  NUM cols: Manifest_Version, File_Size
+  STR cols: HTAN_Data_File_ID, Id, MSI_Score, Average_Base_Quality, Proportion_Reads_Mapped, Mean_Coverage, entityId, MSI_Status, Is_lowest_level, Genomic_Reference, Alignment_Workflow_Type, Index_File_Name, Pairs_On_Diff_CHR, Component, Average_Read_Length, Total_Unmapped_reads, Contamination_Error, MSI_Workflow_Link, Proportion_Reads_Duplicated, Proportion_Targets_No_Coverage, Alignment_Workflow_Url, HTAN_Parent_Biospecimen_ID, Short_Reads, Total_Uniquely_Mapped, Contamination, Custom_Alignment_Workflow, Average_Insert_Size, File_Format, Filename, HTAN_Parent_Data_File_ID, Proportion_Base_Mismatch, Genomic_Reference_URL, Total_Reads, HTAN_Center, Manifest_Id, md5, Data_Release, CDS_Release
+  OTHER cols: friendly_name="HTAN, description="This, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.bulkRNAseq_level3_metadata_r2
+  NUM cols: File_Size
+  STR cols: Component, Filename, File_Format, HTAN_Parent_Data_File_ID, HTAN_Data_File_ID, Pseudo_Alignment_Used, Data_Category, Expression_Units, Matrix_Type, Fusion_Gene_Detected, Fusion_Gene_Identity, entityId, HTAN_Center, Data_Release, Base_Filename, md5
+  OTHER cols: friendly_name="HTAN, description="Data, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.bulkRNAseq_level3_metadata_r3
+  NUM cols: Manifest_Version, File_Size
+  STR cols: Component, Filename, File_Format, HTAN_Parent_Data_File_ID, HTAN_Data_File_ID, Pseudo_Alignment_Used, Data_Category, Expression_Units, Matrix_Type, Fusion_Gene_Detected, Fusion_Gene_Identity, entityId, HTAN_Center, Data_Release, Uuid, md5, CDS_Release
+  OTHER cols: friendly_name="HTAN, description="This, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.[bulkRNAseq_level3_metadata_r4 | bulkRNAseq_level3_metadata_r5]
+  NUM cols: Manifest_Version, File_Size
+  STR cols: Workflow_Link, Matrix_Type, Specify_Other_Fusion_Gene, HTAN_Data_File_ID, Fusion_Gene_Identity, Component, HTAN_Parent_Data_File_ID, Genomic_Reference_URL, Pseudo_Alignment_Used, Fusion_Gene_Detected, Genomic_Reference, Data_Category, Filename, entityId, Expression_Units, Id, Software_and_Version, File_Format, HTAN_Center, Manifest_Id, md5, Data_Release, CDS_Release
+  OTHER cols: friendly_name="HTAN, description="This, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.bulkWES_level1_metadata_r2_v2
+  NUM cols: File_Size
+  STR cols: Component, Filename, File_Format, HTAN_Parent_Biospecimen_ID, HTAN_Data_File_ID, Sequencing_Batch_ID, Library_Layout, Read_Indicator, Library_Selection_Method, Read_Length, Target_Capture_Kit, Library_Preparation_Kit_Name, Library_Preparation_Kit_Vendor, Library_Preparation_Kit_Version, Sequencing_Platform, Adapter_Name, Adapter_Sequence, Base_Caller_Name, Base_Caller_Version, Flow_Cell_Barcode, Fragment_Maximum_Length, Fragment_Mean_Length, Fragment_Minimum_Length, Fragment_Standard_Deviation_Length, Lane_Number, Multiplex_Barcode, Library_Preparation_Days_from_Index, Size_Selection_Range, Target_Depth, To_Trim_Adapter_Sequence, entityId, HTAN_Center, Data_Release, Base_Filename, md5
+  OTHER cols: friendly_name="HTAN, description="Data, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.bulkWES_level1_metadata_r3
+  NUM cols: Manifest_Version, File_Size
+  STR cols: Component, Filename, File_Format, HTAN_Parent_Biospecimen_ID, HTAN_Data_File_ID, Sequencing_Batch_ID, Library_Layout, Read_Indicator, Library_Selection_Method, Read_Length, Target_Capture_Kit, Library_Preparation_Kit_Name, Library_Preparation_Kit_Vendor, Library_Preparation_Kit_Version, Sequencing_Platform, Adapter_Name, Adapter_Sequence, Base_Caller_Name, Base_Caller_Version, Flow_Cell_Barcode, Fragment_Maximum_Length, Fragment_Mean_Length, Fragment_Minimum_Length, Fragment_Standard_Deviation_Length, Lane_Number, Multiplex_Barcode, Library_Preparation_Days_from_Index, Size_Selection_Range, Target_Depth, To_Trim_Adapter_Sequence, entityId, HTAN_Center, Data_Release, Uuid, md5, CDS_Release
+  OTHER cols: friendly_name="HTAN, description="This, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.[bulkWES_level1_metadata_r4 | bulkWES_level1_metadata_r5]
+  NUM cols: Manifest_Version, File_Size
+  STR cols: HTAN_Data_File_ID, Id, Adapter_Sequence, Library_Selection_Method, entityId, Adapter_Name, Flow_Cell_Barcode, Fragment_Maximum_Length, Component, Library_Preparation_Kit_Vendor, Size_Selection_Range, To_Trim_Adapter_Sequence, Library_Preparation_Days_from_Index, Fragment_Standard_Deviation_Length, Multiplex_Barcode, HTAN_Parent_Biospecimen_ID, File_Format, Sequencing_Batch_ID, Library_Preparation_Kit_Version, Library_Layout, Filename, Base_Caller_Version, Lane_Number, Read_Indicator, Base_Caller_Name, Sequencing_Platform, Fragment_Minimum_Length, Fragment_Mean_Length, Target_Capture_Kit, Library_Preparation_Kit_Name, Read_Length, Target_Depth, HTAN_Center, Manifest_Id, md5, Data_Release, CDS_Release
+  OTHER cols: friendly_name="HTAN, description="This, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.bulkWES_level2_metadata_r2
+  NUM cols: File_Size
+  STR cols: Component, Filename, File_Format, HTAN_Parent_Data_File_ID, HTAN_Data_File_ID, Alignment_Workflow_Type, Genomic_Reference, Genomic_Reference_URL, Index_File_Name, Average_Base_Quality, Average_Insert_Size, Average_Read_Length, Contamination, Contamination_Error, Mean_Coverage, Adapter_Content, Basic_Statistics, Encoding, Overrepresented_Sequences, Per_Base_N_Content, Per_Base_Sequence_Content, Per_Base_Sequence_Quality, Per_Sequence_GC_Content, Per_Sequence_Quality_Score, Per_Tile_Sequence_Quality, Percent_GC_Content, Sequence_Duplication_Levels, Sequence_Length_Distribution, QC_Workflow_Type, QC_Workflow_Version, QC_Workflow_Link, MSI_Workflow_Link, MSI_Score, MSI_Status, Pairs_On_Diff_CHR, Total_Reads, Total_Uniquely_Mapped, Total_Unmapped_reads, Proportion_Reads_Duplicated, Proportion_Reads_Mapped, Proportion_Targets_No_Coverage, Proportion_Base_Mismatch, Short_Reads, Proportion_Coverage_10x, Proportion_Coverage_30X, entityId, HTAN_Center, Data_Release, Base_Filename, md5
+  OTHER cols: friendly_name="HTAN, description="Data, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.bulkWES_level2_metadata_r3
+  NUM cols: Manifest_Version, File_Size
+  STR cols: Component, Filename, File_Format, HTAN_Parent_Data_File_ID, HTAN_Data_File_ID, Alignment_Workflow_Type, Genomic_Reference, Genomic_Reference_URL, Index_File_Name, Average_Base_Quality, Average_Insert_Size, Average_Read_Length, Contamination, Contamination_Error, Mean_Coverage, Adapter_Content, Basic_Statistics, Encoding, Overrepresented_Sequences, Per_Base_N_Content, Per_Base_Sequence_Content, Per_Base_Sequence_Quality, Per_Sequence_GC_Content, Per_Sequence_Quality_Score, Per_Tile_Sequence_Quality, Percent_GC_Content, Sequence_Duplication_Levels, Sequence_Length_Distribution, QC_Workflow_Type, QC_Workflow_Version, QC_Workflow_Link, MSI_Workflow_Link, MSI_Score, MSI_Status, Pairs_On_Diff_CHR, Total_Reads, Total_Uniquely_Mapped, Total_Unmapped_reads, Proportion_Reads_Duplicated, Proportion_Reads_Mapped, Proportion_Targets_No_Coverage, Proportion_Base_Mismatch, Short_Reads, Proportion_Coverage_10x, Proportion_Coverage_30X, Is_lowest_level, entityId, HTAN_Center, Data_Release, Uuid, HTAN_Parent_Biospecimen_ID, md5, CDS_Release
+  OTHER cols: friendly_name="HTAN, description="This, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.[bulkWES_level2_metadata_r4 | bulkWES_level2_metadata_r5]
+  NUM cols: Manifest_Version, File_Size
+  STR cols: Total_Unmapped_reads, Adapter_Content, Proportion_Base_Mismatch, Custom_Alignment_Workflow, HTAN_Data_File_ID, Average_Read_Length, Contamination, Basic_Statistics, Component, Per_Base_Sequence_Content, Proportion_Reads_Duplicated, MSI_Workflow_Link, Total_Reads, QC_Workflow_Link, Pairs_On_Diff_CHR, QC_Workflow_Version, MSI_Score, Total_Uniquely_Mapped, Short_Reads, Proportion_Coverage_10x, HTAN_Parent_Data_File_ID, Proportion_Reads_Mapped, Genomic_Reference_URL, Genomic_Reference, Per_Sequence_GC_Content, Overrepresented_Sequences, HTAN_Parent_Biospecimen_ID, Alignment_Workflow_Type, Sequence_Length_Distribution, Average_Insert_Size, MSI_Status, Sequence_Duplication_Levels, Filename, entityId, Average_Base_Quality, Percent_GC_Content, Per_Tile_Sequence_Quality, Index_File_Name, Proportion_Coverage_30X, Per_Base_N_Content, QC_Workflow_Type, Is_lowest_level, Per_Base_Sequence_Quality, Contamination_Error, Proportion_Targets_No_Coverage, Id, Per_Sequence_Quality_Score, Encoding, Mean_Coverage, File_Format, HTAN_Center, Manifest_Id, md5, Data_Release, CDS_Release
+  OTHER cols: friendly_name="HTAN, description="This, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.bulkWES_level3_metadata_r3
+  NUM cols: Manifest_Version, File_Size
+  STR cols: Component, Filename, File_Format, HTAN_Parent_Data_File_ID, HTAN_Data_File_ID, Genomic_Reference, Genomic_Reference_URL, Germline_Variants_Workflow_URL, Germline_Variants_Workflow_Type, Somatic_Variants_Workflow_URL, Somatic_Variants_Workflow_Type, Somatic_Variants_Sample_Type, Structural_Variant_Workflow_URL, Structural_Variant_Workflow_Type, entityId, HTAN_Center, Data_Release, Uuid, md5, CDS_Release
+  OTHER cols: friendly_name="HTAN, description="This, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.[bulkWES_level3_metadata_r4 | bulkWES_level3_metadata_r5]
+  NUM cols: Manifest_Version, File_Size
+  STR cols: Structural_Variant_Workflow_URL, Germline_Variants_Workflow_URL, Custom_Germline_Variants_Workflow_Type, HTAN_Data_File_ID, Component, Somatic_Variants_Workflow_Type, HTAN_Parent_Data_File_ID, Genomic_Reference_URL, Custom_Structural_Variant_Workflow_Type, Genomic_Reference, Structural_Variant_Workflow_Type, Germline_Variants_Workflow_Type, Filename, Custom_Somatic_Variants_Workflow_Type, entityId, Somatic_Variants_Workflow_URL, Somatic_Variants_Sample_Type, Id, File_Format, HTAN_Center, Manifest_Id, md5, Data_Release, CDS_Release
+  OTHER cols: friendly_name="HTAN, description="This, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.cds_drs_map_r5
+  STR cols: name, entityId, HTAN_Data_File_ID, drs_uri
+  OTHER cols: friendly_name="HTAN, description="This, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.clinical_tier1_demographics_r2
+  STR cols: Component, HTAN_Participant_ID, Ethnicity, Gender, Race, Vital_Status, Days_to_Birth, Country_of_Residence, Age_Is_Obfuscated, Year_Of_Birth, Occupation_Duration_Years, Premature_At_Birth, Weeks_Gestation_at_Birth, Year_of_Death, Age_at_Index, Cause_of_Death, Cause_of_Death_Source, Days_to_Death, entityId, HTAN_Center, Data_Release
+  OTHER cols: friendly_name="HTAN, description="Data, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.clinical_tier1_demographics_r3
+  NUM cols: Manifest_Version
+  STR cols: Component, HTAN_Participant_ID, Ethnicity, Gender, Race, Vital_Status, Days_to_Birth, Country_of_Residence, Age_Is_Obfuscated, Year_Of_Birth, Occupation_Duration_Years, Premature_At_Birth, Weeks_Gestation_at_Birth, Year_of_Death, Age_at_Index, Cause_of_Death, Cause_of_Death_Source, Days_to_Death, entityId, HTAN_Center, Data_Release, Uuid
+  OTHER cols: friendly_name="HTAN, description="This, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.[clinical_tier1_demographics_r4 | clinical_tier1_demographics_r5]
+  NUM cols: Manifest_Version
+  STR cols: Year_of_Death, Premature_At_Birth, Component, Race, Days_to_Death, Year_Of_Birth, Days_to_Birth, Ethnicity, Cause_of_Death_Source, Occupation_Duration_Years, Weeks_Gestation_at_Birth, Vital_Status, Country_of_Residence, entityId, Gender, Age_Is_Obfuscated, HTAN_Participant_ID, Id, Cause_of_Death, HTAN_Center, Manifest_Id
+  OTHER cols: friendly_name="HTAN, description="This, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.clinical_tier1_diagnosis_r2
+  STR cols: Component, HTAN_Participant_ID, Age_at_Diagnosis, Year_of_Diagnosis, Primary_Diagnosis, Site_of_Resection_or_Biopsy, Tissue_or_Organ_of_Origin, Morphology, Tumor_Grade, Progression_or_Recurrence, Last_Known_Disease_Status, Days_to_Last_Follow_up, Days_to_Last_Known_Disease_Status, Method_of_Diagnosis, Prior_Malignancy, Prior_Treatment, Metastasis_at_Diagnosis, Metastasis_at_Diagnosis_Site, First_Symptom_Prior_to_Diagnosis, Days_to_Diagnosis, Percent_Tumor_Invasion, Residual_Disease, Synchronous_Malignancy, Tumor_Confined_to_Organ_of_Origin, Tumor_Focality, Tumor_Largest_Dimension_Diameter, Gross_Tumor_Weight, Breslow_Thickness, Vascular_Invasion_Present, Vascular_Invasion_Type, Anaplasia_Present, Anaplasia_Present_Type, Laterality, Perineural_Invasion_Present, Lymphatic_Invasion_Present, Lymph_Nodes_Positive, Lymph_Nodes_Tested, Peritoneal_Fluid_Cytological_Status, Classification_of_Tumor, Best_Overall_Response, Mitotic_Count, AJCC_Clinical_M, AJCC_Clinical_N, AJCC_Clinical_Stage, AJCC_Clinical_T, AJCC_Pathologic_M, AJCC_Pathologic_N, AJCC_Pathologic_Stage, AJCC_Pathologic_T, AJCC_Staging_System_Edition, Cog_Neuroblastoma_Risk_Group, Cog_Rhabdomyosarcoma_Risk_Group, Gleason_Grade_Group, Gleason_Grade_Tertiary, Gleason_Patterns_Percent, Greatest_Tumor_Dimension, IGCCCG_Stage, INPC_Grade, INPC_Histologic_Group, INRG_Stage, INSS_Stage, International_Prognostic_Index, IRS_Group, IRS_Stage, ISS_Stage, Lymph_Node_Involved_Site, Margin_Distance, Margins_Involved_Site, Medulloblastoma_Molecular_Classification, Micropapillary_Features, Mitosis_Karyorrhexis_Index, Non_Nodal_Regional_Disease, Non_Nodal_Tumor_Deposits, Ovarian_Specimen_Status, Ovarian_Surface_Involvement, Pregnant_at_Diagnosis, Primary_Gleason_Grade, Secondary_Gleason_Grade, Supratentorial_Localization, Tumor_Depth, WHO_CNS_Grade, WHO_NTE_Grade, Days_to_Progression, Days_to_Progression_Free, NCI_Atlas_Cancer_Site, Progression_or_Recurrence_Type, Sentinel_Lymph_Node_Count, Sentinel_Node_Positive_Assessment_Count, Tumor_Extranodal_Extension_Indicator, Satellite_Metastasis_Present_Indicator, Other_Biopsy_Resection_Site, Extent_of_Tumor_Resection, Precancerous_Condition_Type, Mode_of_Cancer_Detection, Topography_Code, Additional_Topography, entityId, HTAN_Center, Data_Release
+  OTHER cols: friendly_name="HTAN, description="Data, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.clinical_tier1_diagnosis_r3
+  NUM cols: Manifest_Version
+  STR cols: Component, HTAN_Participant_ID, Age_at_Diagnosis, Year_of_Diagnosis, Primary_Diagnosis, Site_of_Resection_or_Biopsy, Tissue_or_Organ_of_Origin, Morphology, Tumor_Grade, Progression_or_Recurrence, Last_Known_Disease_Status, Days_to_Last_Follow_up, Days_to_Last_Known_Disease_Status, Method_of_Diagnosis, Prior_Malignancy, Prior_Treatment, Metastasis_at_Diagnosis, Metastasis_at_Diagnosis_Site, First_Symptom_Prior_to_Diagnosis, Days_to_Diagnosis, Percent_Tumor_Invasion, Residual_Disease, Synchronous_Malignancy, Tumor_Confined_to_Organ_of_Origin, Tumor_Focality, Tumor_Largest_Dimension_Diameter, Gross_Tumor_Weight, Breslow_Thickness, Vascular_Invasion_Present, Vascular_Invasion_Type, Anaplasia_Present, Anaplasia_Present_Type, Laterality, Perineural_Invasion_Present, Lymphatic_Invasion_Present, Lymph_Nodes_Positive, Lymph_Nodes_Tested, Peritoneal_Fluid_Cytological_Status, Classification_of_Tumor, Best_Overall_Response, Mitotic_Count, AJCC_Clinical_M, AJCC_Clinical_N, AJCC_Clinical_Stage, AJCC_Clinical_T, AJCC_Pathologic_M, AJCC_Pathologic_N, AJCC_Pathologic_Stage, AJCC_Pathologic_T, AJCC_Staging_System_Edition, Cog_Neuroblastoma_Risk_Group, Cog_Rhabdomyosarcoma_Risk_Group, Gleason_Grade_Group, Gleason_Grade_Tertiary, Gleason_Patterns_Percent, Greatest_Tumor_Dimension, IGCCCG_Stage, INPC_Grade, INPC_Histologic_Group, INRG_Stage, INSS_Stage, International_Prognostic_Index, IRS_Group, IRS_Stage, ISS_Stage, Lymph_Node_Involved_Site, Margin_Distance, Margins_Involved_Site, Medulloblastoma_Molecular_Classification, Micropapillary_Features, Mitosis_Karyorrhexis_Index, Non_Nodal_Regional_Disease, Non_Nodal_Tumor_Deposits, Ovarian_Specimen_Status, Ovarian_Surface_Involvement, Pregnant_at_Diagnosis, Primary_Gleason_Grade, Secondary_Gleason_Grade, Supratentorial_Localization, Tumor_Depth, WHO_CNS_Grade, WHO_NTE_Grade, Days_to_Progression, Days_to_Progression_Free, NCI_Atlas_Cancer_Site, Progression_or_Recurrence_Type, Sentinel_Lymph_Node_Count, Sentinel_Node_Positive_Assessment_Count, Tumor_Extranodal_Extension_Indicator, Satellite_Metastasis_Present_Indicator, Other_Biopsy_Resection_Site, Extent_of_Tumor_Resection, Precancerous_Condition_Type, Mode_of_Cancer_Detection, Topography_Code, Additional_Topography, entityId, HTAN_Center, Data_Release, Uuid
+  OTHER cols: friendly_name="HTAN, description="This, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.clinical_tier1_diagnosis_r4
+  NUM cols: Manifest_Version
+  STR cols: ISS_Stage, Tumor_Depth, Residual_Disease, International_Prognostic_Index, Days_to_Last_Known_Disease_Status, Primary_Gleason_Grade, IRS_Group, AJCC_Clinical_M, Lymphatic_Invasion_Present, Lymph_Nodes_Tested, Anaplasia_Present, Gleason_Grade_Tertiary, AJCC_Clinical_N, Breslow_Thickness, Progression_or_Recurrence_Type, Days_to_Progression, Margin_Distance, Cog_Neuroblastoma_Risk_Group, Prior_Treatment, INSS_Stage, Days_to_Last_Follow_up, Greatest_Tumor_Dimension, Synchronous_Malignancy, Tumor_Largest_Dimension_Diameter, Prior_Malignancy, Days_to_Recurrence, Tumor_Confined_to_Organ_of_Origin, INPC_Histologic_Group, Micropapillary_Features, Ovarian_Specimen_Status, entityId, Margins_Involved_Site, Metastasis_at_Diagnosis, IGCCCG_Stage, Primary_Diagnosis, Laterality, Morphology, Cog_Rhabdomyosarcoma_Risk_Group, Tumor_Grade, Gross_Tumor_Weight, Perineural_Invasion_Present, Ovarian_Surface_Involvement, Method_of_Diagnosis, Pregnant_at_Diagnosis, Mitosis_Karyorrhexis_Index, AJCC_Clinical_T, Secondary_Gleason_Grade, Id, Lymph_Node_Involved_Site, Metastasis_at_Diagnosis_Site, Tumor_Focality, First_Symptom_Prior_to_Diagnosis, Last_Known_Disease_Status, Progression_or_Recurrence_Anatomic_Site, Vascular_Invasion_Present, Component, Vascular_Invasion_Type, AJCC_Pathologic_N, INRG_Stage, WHO_NTE_Grade, Site_of_Resection_or_Biopsy, Anaplasia_Present_Type, AJCC_Pathologic_Stage, AJCC_Clinical_Stage, Year_of_Diagnosis, Non_Nodal_Tumor_Deposits, Tissue_or_Organ_of_Origin, Age_at_Diagnosis, AJCC_Staging_System_Edition, INPC_Grade, Best_Overall_Response, Medulloblastoma_Molecular_Classification, AJCC_Pathologic_M, Gleason_Grade_Group, Lymph_Nodes_Positive, Gleason_Patterns_Percent, WHO_CNS_Grade, AJCC_Pathologic_T, Days_to_Diagnosis, HTAN_Participant_ID, Progression_or_Recurrence, IRS_Stage, Percent_Tumor_Invasion, Non_Nodal_Regional_Disease, Days_to_Progression_Free, Classification_of_Tumor, Peritoneal_Fluid_Cytological_Status, Mitotic_Count, Supratentorial_Localization, HTAN_Center, Manifest_Id
+  OTHER cols: friendly_name="HTAN, description="This, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.clinical_tier1_diagnosis_r5
+  NUM cols: Manifest_Version
+  STR cols: Last_Known_Disease_Status, Days_to_Last_Known_Disease_Status, Metastasis_at_Diagnosis_Site, Best_Overall_Response, Tumor_Confined_to_Organ_of_Origin, Supratentorial_Localization, Percent_Tumor_Invasion, Days_to_Progression_Free, Component, Mitotic_Count, Pregnant_at_Diagnosis, Age_at_Diagnosis, IRS_Group, Classification_of_Tumor, Greatest_Tumor_Dimension, IRS_Stage, WHO_NTE_Grade, AJCC_Pathologic_Stage, INPC_Grade, INRG_Stage, Vascular_Invasion_Present, Gleason_Patterns_Percent, entityId, Mitosis_Karyorrhexis_Index, Ovarian_Specimen_Status, Margins_Involved_Site, Site_of_Resection_or_Biopsy, Prior_Treatment, AJCC_Clinical_M, Gleason_Grade_Tertiary, Days_to_Diagnosis, Anaplasia_Present_Type, Tumor_Grade, Lymph_Nodes_Positive, AJCC_Clinical_Stage, INPC_Histologic_Group, Residual_Disease, Synchronous_Malignancy, Margin_Distance, Laterality, AJCC_Pathologic_T, IGCCCG_Stage, WHO_CNS_Grade, Days_to_Progression, Progression_or_Recurrence_Type, AJCC_Pathologic_M, AJCC_Clinical_N, Progression_or_Recurrence, Anaplasia_Present, AJCC_Clinical_T, Morphology, Primary_Gleason_Grade, Non_Nodal_Regional_Disease, Cog_Neuroblastoma_Risk_Group, International_Prognostic_Index, Vascular_Invasion_Type, Cog_Rhabdomyosarcoma_Risk_Group, AJCC_Staging_System_Edition, Breslow_Thickness, ISS_Stage, Medulloblastoma_Molecular_Classification, Lymph_Node_Involved_Site, Primary_Diagnosis, Tumor_Depth, Days_to_Recurrence, Lymphatic_Invasion_Present, Gross_Tumor_Weight, Id, First_Symptom_Prior_to_Diagnosis, Peritoneal_Fluid_Cytological_Status, Precancerous_Condition_Type, AJCC_Pathologic_N, Prior_Malignancy, Ovarian_Surface_Involvement, Progression_or_Recurrence_Anatomic_Site, Secondary_Gleason_Grade, Metastasis_at_Diagnosis, Micropapillary_Features, Gleason_Grade_Group, Tumor_Focality, Perineural_Invasion_Present, Method_of_Diagnosis, INSS_Stage, Lymph_Nodes_Tested, Tumor_Largest_Dimension_Diameter, HTAN_Participant_ID, Year_of_Diagnosis, Tissue_or_Organ_of_Origin, Non_Nodal_Tumor_Deposits, Days_to_Last_Follow_up, HTAN_Center, Manifest_Id
+  OTHER cols: friendly_name="HTAN, description="This, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.clinical_tier1_exposure_r2
+  STR cols: Component, HTAN_Participant_ID, Start_Days_from_Index, Smoking_Exposure, Alcohol_Exposure, Asbestos_Exposure, Coal_Dust_Exposure, Environmental_Tobacco_Smoke_Exposure, Radon_Exposure, Respirable_Crystalline_Silica_Exposure, Pack_Years_Smoked, Years_Smoked, Alcohol_Days_Per_Week, Alcohol_Drinks_Per_Day, Alcohol_History, Alcohol_Intensity, Alcohol_Type, Cigarettes_per_Day, Smoking_Frequency, Secondhand_Smoke_as_Child, Smoke_Exposure_Duration, Type_of_Smoke_Exposure, Marijuana_Use_Per_Week, Tobacco_Use_per_Day, Smokeless_Tobacco_Quit_Age, Time_Between_Waking_and_First_Smoke, Tobacco_Smoking_Onset_Year, Tobacco_Smoking_Quit_Year, Tobacco_Smoking_Status, Type_of_Tobacco_Used, COVID19_Occurrence_Indicator, COVID19_Current_Status, COVID19_Positive_Lab_Test_Indicator, COVID19_Antibody_Testing, COVID19_Complications_Severity, COVID19_Cancer_Treatment_Followup, Ecig_vape_use, Ecig_vape_30_day_use_num, Ecig_vape_times_per_day, Type_of_smoke_exposure_cumulative_years, Chewing_tobacco_daily_use_count, Second_hand_smoke_exposure_years, entityId, HTAN_Center, Data_Release
+  OTHER cols: friendly_name="HTAN, description="Data, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.clinical_tier1_exposure_r3
+  NUM cols: Manifest_Version
+  STR cols: Component, HTAN_Participant_ID, Start_Days_from_Index, Smoking_Exposure, Alcohol_Exposure, Asbestos_Exposure, Coal_Dust_Exposure, Environmental_Tobacco_Smoke_Exposure, Radon_Exposure, Respirable_Crystalline_Silica_Exposure, Pack_Years_Smoked, Years_Smoked, Alcohol_Days_Per_Week, Alcohol_Drinks_Per_Day, Alcohol_History, Alcohol_Intensity, Alcohol_Type, Cigarettes_per_Day, Smoking_Frequency, Secondhand_Smoke_as_Child, Smoke_Exposure_Duration, Type_of_Smoke_Exposure, Marijuana_Use_Per_Week, Tobacco_Use_per_Day, Smokeless_Tobacco_Quit_Age, Time_Between_Waking_and_First_Smoke, Tobacco_Smoking_Onset_Year, Tobacco_Smoking_Quit_Year, Tobacco_Smoking_Status, Type_of_Tobacco_Used, COVID19_Occurrence_Indicator, COVID19_Current_Status, COVID19_Positive_Lab_Test_Indicator, COVID19_Antibody_Testing, COVID19_Complications_Severity, COVID19_Cancer_Treatment_Followup, Ecig_vape_use, Ecig_vape_30_day_use_num, Ecig_vape_times_per_day, Type_of_smoke_exposure_cumulative_years, Chewing_tobacco_daily_use_count, Second_hand_smoke_exposure_years, entityId, HTAN_Center, Data_Release, Uuid
+  OTHER cols: friendly_name="HTAN, description="This, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.[clinical_tier1_exposure_r4 | clinical_tier1_exposure_r5]
+  NUM cols: Manifest_Version
+  STR cols: Smoke_Exposure_Duration, Type_of_Tobacco_Used, Component, Alcohol_Type, Alcohol_Intensity, Respirable_Crystalline_Silica_Exposure, Smokeless_Tobacco_Quit_Age, Type_of_Smoke_Exposure, Years_Smoked, Alcohol_Exposure, Coal_Dust_Exposure, Smoking_Frequency, entityId, Time_between_Waking_and_First_Smoke, Alcohol_Drinks_Per_Day, Cigarettes_per_Day, HTAN_Participant_ID, Smoking_Exposure, Tobacco_Smoking_Status, Start_Days_from_Index, Radon_Exposure, Environmental_Tobacco_Smoke_Exposure, Pack_Years_Smoked, Tobacco_Smoking_Onset_Year, Id, Alcohol_History, Asbestos_Exposure, Tobacco_Use_per_Day, Tobacco_Smoking_Quit_Year, Alcohol_Days_Per_Week, Secondhand_Smoke_as_Child, HTAN_Center, Manifest_Id
+  OTHER cols: friendly_name="HTAN, description="This, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.clinical_tier1_familyhistory_r2
+  STR cols: Relationship_Type, Component, HTAN_Participant_ID, Relative_with_Cancer_History, Relationship_Gender, Relationship_Age_at_Diagnosis, Relationship_Primary_Diagnosis, Relatives_with_Cancer_History_Count, Family_Member_Vital_Status_Indicator, Known_Genetic_Predisposition_Mutation, Hereditary_Cancer_Predisposition_Syndrome, Cancer_Associated_Gene_Mutations, entityId, HTAN_Center, Data_Release
+  OTHER cols: friendly_name="HTAN, description="Data, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.clinical_tier1_familyhistory_r3
+  NUM cols: Manifest_Version
+  STR cols: Relationship_Type, Component, HTAN_Participant_ID, Relative_with_Cancer_History, Relationship_Gender, Relationship_Age_at_Diagnosis, Relationship_Primary_Diagnosis, Relatives_with_Cancer_History_Count, Family_Member_Vital_Status_Indicator, Known_Genetic_Predisposition_Mutation, Hereditary_Cancer_Predisposition_Syndrome, Cancer_Associated_Gene_Mutations, entityId, HTAN_Center, Data_Release, Uuid
+  OTHER cols: friendly_name="HTAN, description="This, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.[clinical_tier1_familyhistory_r4 | clinical_tier1_familyhistory_r5]
+  NUM cols: Manifest_Version
+  STR cols: entityId, HTAN_Participant_ID, Relationship_Gender, Relationship_Age_at_Diagnosis, Id, Relationship_Type, Relative_with_Cancer_History, Component, Relationship_Primary_Diagnosis, Relatives_with_Cancer_History_Count, HTAN_Center, Manifest_Id
+  OTHER cols: friendly_name="HTAN, description="This, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.clinical_tier1_followup_r2
+  STR cols: Component, HTAN_Participant_ID, Days_to_Follow_Up, Adverse_Event, Progression_or_Recurrence, Barretts_Esophagus_Goblet_Cells_Present, BMI, Cause_of_Response, Comorbidity, Comorbidity_Method_of_Diagnosis, Days_to_Adverse_Event, Days_to_Comorbidity, Diabetes_Treatment_Type, Disease_Response, DLCO_Ref_Predictive_Percent, ECOG_Performance_Status, FEV1_FVC_Post_Bronch_Percent, FEV_1_FVC_Pre_Bronch_Percent, FEV1_Ref_Post_Bronch_Percent, FEV1_Ref_Pre_Bronch_Percent, Height, Hepatitis_Sustained_Virological_Response, HPV_Positive_Type, Karnofsky_Performance_Status, Menopause_Status, Pancreatitis_Onset_Year, Reflux_Treatment_Type, Risk_Factor, Risk_Factor_Treatment, Viral_Hepatitis_Serologies, Weight, Adverse_Event_Grade, AIDS_Risk_Factors, Body_Surface_Area, CD4_Count, CDC_HIV_Risk_Factors, Days_to_Imaging, Evidence_of_Recurrence_Type, HAART_Treatment_Indicator, HIV_Viral_Load, Hormonal_Contraceptive_Use, Hysterectomy_Margins_Involved, Hysterectomy_Type, Imaging_Result, Imaging_Type, Immunosuppressive_Treatment_Type, Nadir_CD4_Count, Pregnancy_Outcome, Recist_Targeted_Regions_Number, Recist_Targeted_Regions_Sum, Scan_Tracer_Used, Days_to_Recurrence, Progression_or_Recurrence_Anatomic_Site, Anatomic_Site, Treatment_Anatomic_Site, entityId, HTAN_Center, Data_Release
+  OTHER cols: friendly_name="HTAN, description="Data, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.clinical_tier1_followup_r3_v2
+  NUM cols: Manifest_Version
+  STR cols: Component, HTAN_Participant_ID, Days_to_Follow_Up, Adverse_Event, Progression_or_Recurrence, Barretts_Esophagus_Goblet_Cells_Present, BMI, Cause_of_Response, Comorbidity, Comorbidity_Method_of_Diagnosis, Days_to_Adverse_Event, Days_to_Comorbidity, Diabetes_Treatment_Type, Disease_Response, DLCO_Ref_Predictive_Percent, ECOG_Performance_Status, FEV1_FVC_Post_Bronch_Percent, FEV_1_FVC_Pre_Bronch_Percent, FEV1_Ref_Post_Bronch_Percent, FEV1_Ref_Pre_Bronch_Percent, Height, Hepatitis_Sustained_Virological_Response, HPV_Positive_Type, Karnofsky_Performance_Status, Menopause_Status, Pancreatitis_Onset_Year, Reflux_Treatment_Type, Risk_Factor, Risk_Factor_Treatment, Viral_Hepatitis_Serologies, Weight, Adverse_Event_Grade, AIDS_Risk_Factors, Body_Surface_Area, CD4_Count, CDC_HIV_Risk_Factors, Days_to_imaging, Evidence_of_Recurrence_Type, HAART_Treatment_Indicator, HIV_Viral_Load, Hormonal_Contraceptive_Use, Hysterectomy_Margins_Involved, Hysterectomy_Type, Imaging_Result, Imaging_Type, Immunosuppressive_Treatment_Type, Nadir_CD4_Count, Pregnancy_Outcome, Recist_Targeted_Regions_Number, Recist_Targeted_Regions_Sum, Scan_Tracer_Used, Days_to_Recurrence, Progression_or_Recurrence_Anatomic_Site, Anatomic_Site, Treatment_Anatomic_Site, entityId, HTAN_Center, Data_Release, Uuid
+  OTHER cols: friendly_name="HTAN, description="This, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.[clinical_tier1_followup_r4_v2 | clinical_tier1_followup_r5_v2]
+  NUM cols: Manifest_Version
+  STR cols: Hepatitis_Sustained_Virological_Response, Immunosuppressive_Treatment_Type, Progression_or_Recurrence_Type, Reflux_Treatment_Type, Nadir_CD4_Count, Days_to_Progression, Hysterectomy_Margins_Involved, Progression_or_Recurrence, Imaging_Type, Days_to_Progression_Free, Component, Risk_Factor_Treatment, Days_to_Comorbidity, Scan_Tracer_Used, Progression_or_Recurrence_Anatomic_Site, ECOG_Performance_Status, Imaging_Result, CDC_HIV_Risk_Factors, Cause_of_Response, Height, Days_to_Adverse_Event, FEV1_Ref_Pre_Bronch_Percent, Comorbidity_Method_of_Diagnosis, HPV_Positive_Type, Comorbidity, HIV_Viral_Load, Disease_Response, Days_to_Follow_Up, Adverse_Event, Barretts_Esophagus_Goblet_Cells_Present, AIDS_Risk_Factors, Hysterectomy_Type, Pregnancy_Outcome, entityId, Weight, DLCO_Ref_Predictive_Percent, FEV1_FVC_Post_Bronch_Percent, Viral_Hepatitis_Serologies, Diabetes_Treatment_Type, FEV_1_FVC_Pre_Bronch_Percent, Karnofsky_Performance_Status, Risk_Factor, Body_Surface_Area, HTAN_Participant_ID, Pancreatitis_Onset_Year, Evidence_of_Recurrence_Type, HAART_Treatment_Indicator, Recist_Targeted_Regions_Sum, CD4_Count, Days_to_Recurrence, Adverse_Event_Grade, Id, FEV1_Ref_Post_Bronch_Percent, Hormonal_Contraceptive_Use, Menopause_Status, Recist_Targeted_Regions_Number, Days_to_imaging, BMI, HTAN_Center, Manifest_Id
+  OTHER cols: friendly_name="HTAN, description="This, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.clinical_tier1_moleculartest_r2
+  STR cols: Component, HTAN_Participant_ID, Timepoint_Label, Start_Days_from_Index, Stop_Days_from_Index, Gene_Symbol, Molecular_Analysis_Method, Test_Result, AA_Change, Antigen, Clinical_Biospecimen_Type, Blood_Test_Normal_Range_Upper, Blood_Test_Normal_Range_Lower, Cell_Count, Chromosome, Clonality, Copy_Number, Cytoband, Exon, Histone_Family, Histone_Variant, Intron, Laboratory_Test, Loci_Abnormal_Count, Loci_Count, Locus, Mismatch_Repair_Mutation, Molecular_Consequence, Pathogenicity, Ploidy, Second_Exon, Second_Gene_Symbol, Specialized_Molecular_Test, Test_Analyte_Type, Test_Units, Test_Value, Transcript, Variant_Origin, Variant_Type, Zygosity, Mutational_Signatures, Mismatch_Repair_System_Status, Lab_Tests_for_MMR_Status, entityId, HTAN_Center, Data_Release
+  OTHER cols: friendly_name="HTAN, description="Data, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.clinical_tier1_moleculartest_r3
+  NUM cols: Manifest_Version
+  STR cols: Component, HTAN_Participant_ID, Timepoint_Label, Start_Days_from_Index, Stop_Days_from_Index, Gene_Symbol, Molecular_Analysis_Method, Test_Result, AA_Change, Antigen, Clinical_Biospecimen_Type, Blood_Test_Normal_Range_Upper, Blood_Test_Normal_Range_Lower, Cell_Count, Chromosome, Clonality, Copy_Number, Cytoband, Exon, Histone_Family, Histone_Variant, Intron, Laboratory_Test, Loci_Abnormal_Count, Loci_Count, Locus, Mismatch_Repair_Mutation, Molecular_Consequence, Pathogenicity, Ploidy, Second_Exon, Second_Gene_Symbol, Specialized_Molecular_Test, Test_Analyte_Type, Test_Units, Test_Value, Transcript, Variant_Origin, Variant_Type, Zygosity, Mutational_Signatures, Mismatch_Repair_System_Status, Lab_Tests_for_MMR_Status, entityId, HTAN_Center, Data_Release, Uuid
+  OTHER cols: friendly_name="HTAN, description="This, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.[clinical_tier1_moleculartest_r4 | clinical_tier1_moleculartest_r5]
+  NUM cols: Manifest_Version
+  STR cols: Molecular_Analysis_Method, Id, Clinical_Biospecimen_Type, Timepoint_Label, Exon, Transcript, Antigen, entityId, Locus, Ploidy, Zygosity, Component, Molecular_Consequence, Specialized_Molecular_Test, Blood_Test_Normal_Range_Upper, Pathogenicity, Blood_Test_Normal_Range_Lower, HTAN_Participant_ID, Histone_Family, Variant_Type, Copy_Number, Loci_Abnormal_Count, Test_Units, Variant_Origin, AA_Change, Chromosome, Laboratory_Test, Gene_Symbol, Intron, Stop_Days_from_Index, Histone_Variant, Test_Result, Loci_Count, Second_Gene_Symbol, Test_Analyte_Type, Cell_Count, Second_Exon, Test_Value, Mismatch_Repair_Mutation, Clonality, Start_Days_from_Index, Cytoband, HTAN_Center, Manifest_Id
+  OTHER cols: friendly_name="HTAN, description="This, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.clinical_tier1_therapy_r2
+  STR cols: Component, HTAN_Participant_ID, Treatment_or_Therapy, Treatment_Type, Treatment_Effect, Treatment_Outcome, Days_to_Treatment_End, Treatment_Anatomic_Site, Days_to_Treatment_Start, Initial_Disease_Status, Regimen_or_Line_of_Therapy, Therapeutic_Agents, Treatment_Intent_Type, Chemo_Concurrent_to_Radiation, Number_of_Cycles, Reason_Treatment_Ended, Treatment_Arm, Treatment_Dose, Treatment_Dose_Units, Treatment_Effect_Indicator, Treatment_Frequency, Prior_Sites_of_Radiation, Immunosuppression, Concomitant_Medication_Received_Type, entityId, HTAN_Center, Data_Release
+  OTHER cols: friendly_name="HTAN, description="Data, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.clinical_tier1_therapy_r3
+  NUM cols: Manifest_Version
+  STR cols: Component, HTAN_Participant_ID, Treatment_or_Therapy, Treatment_Type, Treatment_Effect, Treatment_Outcome, Days_to_Treatment_End, Treatment_Anatomic_Site, Days_to_Treatment_Start, Initial_Disease_Status, Regimen_or_Line_of_Therapy, Therapeutic_Agents, Treatment_Intent_Type, Chemo_Concurrent_to_Radiation, Number_of_Cycles, Reason_Treatment_Ended, Treatment_Arm, Treatment_Dose, Treatment_Dose_Units, Treatment_Effect_Indicator, Treatment_Frequency, Prior_Sites_of_Radiation, Immunosuppression, Concomitant_Medication_Received_Type, entityId, HTAN_Center, Data_Release, Uuid
+  OTHER cols: friendly_name="HTAN, description="This, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.[clinical_tier1_therapy_r4 | clinical_tier1_therapy_r5]
+  NUM cols: Manifest_Version
+  STR cols: Id, Treatment_Type, Treatment_Dose_Units, Chemo_Concurrent_to_Radiation, Treatment_Frequency, entityId, Reason_Treatment_Ended, Component, Days_to_Treatment_Start, Treatment_Arm, HTAN_Participant_ID, Treatment_Dose, Treatment_Outcome, Treatment_Anatomic_Site, Number_of_Cycles, Initial_Disease_Status, Therapeutic_Agents, Treatment_or_Therapy, Treatment_Effect, Treatment_Intent_Type, Regimen_or_Line_of_Therapy, Days_to_Treatment_End, Treatment_Effect_Indicator, HTAN_Center, Manifest_Id
+  OTHER cols: friendly_name="HTAN, description="This, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.clinical_tier2_r2
+  STR cols: Component, HTAN_Participant_ID, Timepoint_Label, Start_Days_from_Index, Stop_Days_from_Index, Sentinel_Lymph_Node_Count, Sentinel_Node_Positive_Assessment_Count, Tumor_Extranodal_Extension_Indicator, Satellite_Metastasis_Present_Indicator, Other_Biopsy_Resection_Site, Extent_of_Tumor_Resection, Precancerous_Condition_Type, Prior_Sites_of_Radiation, Immunosuppression, Concomitant_Medication_Received_Type, Family_Member_Vital_Status_Indicator, COVID19_Occurrence_Indicator, COVID19_Current_Status, COVID19_Positive_Lab_Test_Indicator, COVID19_Antibody_Testing, COVID19_Complications_Severity, COVID19_Cancer_Treatment_Followup, Ecig_vape_use, Ecig_vape_30_day_use_num, Ecig_vape_times_per_day, Type_of_smoke_exposure_cumulative_years, Chewing_tobacco_daily_use_count, Second_hand_smoke_exposure_years, Known_Genetic_Predisposition_Mutation, Hereditary_Cancer_Predisposition_Syndrome, Cancer_Associated_Gene_Mutations, Mutational_Signatures, Mismatch_Repair_System_Status, Lab_Tests_for_MMR_Status, Mode_of_Cancer_Detection, Education_Level, Country_of_Birth, Medically_Underserved_Area, Rural_vs_Urban, Cancer_Incidence, Cancer_Incidence_Location, entityId, HTAN_Center, Data_Release
+  OTHER cols: friendly_name="HTAN, description="Data, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.clinical_tier2_r3
+  NUM cols: Manifest_Version
+  STR cols: Component, HTAN_Participant_ID, Timepoint_Label, Start_Days_from_Index, Stop_Days_from_Index, Sentinel_Lymph_Node_Count, Sentinel_Node_Positive_Assessment_Count, Tumor_Extranodal_Extension_Indicator, Satellite_Metastasis_Present_Indicator, Other_Biopsy_Resection_Site, Extent_of_Tumor_Resection, Precancerous_Condition_Type, Prior_Sites_of_Radiation, Immunosuppression, Concomitant_Medication_Received_Type, Family_Member_Vital_Status_Indicator, COVID19_Occurrence_Indicator, COVID19_Current_Status, COVID19_Positive_Lab_Test_Indicator, COVID19_Antibody_Testing, COVID19_Complications_Severity, COVID19_Cancer_Treatment_Followup, Ecig_vape_use, Ecig_vape_30_day_use_num, Ecig_vape_times_per_day, Type_of_smoke_exposure_cumulative_years, Chewing_tobacco_daily_use_count, Second_hand_smoke_exposure_years, Known_Genetic_Predisposition_Mutation, Hereditary_Cancer_Predisposition_Syndrome, Cancer_Associated_Gene_Mutations, Mutational_Signatures, Mismatch_Repair_System_Status, Lab_Tests_for_MMR_Status, Mode_of_Cancer_Detection, Education_Level, Country_of_Birth, Medically_Underserved_Area, Rural_vs_Urban, Cancer_Incidence, Cancer_Incidence_Location, entityId, HTAN_Center, Data_Release, Uuid
+  OTHER cols: friendly_name="HTAN, description="This, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.clinical_tier2_r4
+  NUM cols: Manifest_Version
+  STR cols: Sentinel_Lymph_Node_Count, COVID19_Positive_Lab_Test_Indicator, Id, Known_Genetic_Predisposition_Mutation, Timepoint_Label, Extent_of_Tumor_Resection, Prior_Sites_of_Radiation, Cancer_Incidence_Location, Ecig_vape_use, Ecig_vape_times_per_day, Cancer_Incidence, COVID19_Current_Status, Mode_of_Cancer_Detection, Tumor_Extranodal_Extension_Indicator, entityId, Cancer_Associated_Gene_Mutations, Second_hand_smoke_exposure_years, Other_Biopsy_Resection_Site, Concomitant_Medication_Received_Type, COVID19_Cancer_Treatment_Followup, COVID19_Complications_Severity, Component, Precancerous_Condition_Type, COVID19_Antibody_Testing, Mismatch_Repair_System_Status, Immunosuppression, HTAN_Participant_ID, Hereditary_Cancer_Predisposition_Syndrome, Lab_Tests_for_MMR_Status, Medically_Underserved_Area, Family_Member_Vital_Status_Indicator, Country_of_Birth, Stop_Days_from_Index, Rural_vs_Urban, Medically_Underserved_Score, Sentinel_Node_Positive_Assessment_Count, Education_Level, Satellite_Metastasis_Present_Indicator, COVID19_Occurrence_Indicator, Chewing_tobacco_daily_use_count, Ecig_vape_30_day_use_num, Start_Days_from_Index, Mutational_Signatures, Type_of_smoke_exposure_cumulative_years, HTAN_Center, Manifest_Id
+  OTHER cols: friendly_name="HTAN, description="This, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.clinical_tier2_r5
+  NUM cols: Manifest_Version
+  STR cols: COVID19_Current_Status, Cancer_Incidence_Location, COVID19_Occurrence_Indicator, Timepoint_Label, COVID19_Positive_Lab_Test_Indicator, Component, Lab_Tests_for_MMR_Status, Stop_Days_from_Index, Cancer_Incidence, Sentinel_Node_Positive_Assessment_Count, Ecig_vape_times_per_day, Known_Genetic_Predisposition_Mutation, COVID19_Cancer_Treatment_Followup, Prior_Sites_of_Radiation, Mutational_Signatures, Hereditary_Cancer_Predisposition_Syndrome, COVID19_Antibody_Testing, Sentinel_Lymph_Node_Count, COVID19_Complications_Severity, Satellite_Metastasis_Present_Indicator, Concomitant_Medication_Received_Type, Medically_Underserved_Area, Family_Member_Vital_Status_Indicator, Tumor_Extranodal_Extension_Indicator, entityId, Medically_Underserved_Score, Country_of_Birth, Second_hand_smoke_exposure_years, Cancer_Associated_Gene_Mutations, HTAN_Participant_ID, Ecig_vape_30_day_use_num, Type_of_smoke_exposure_cumulative_years, Extent_of_Tumor_Resection, Other_Biopsy_Resection_Site, Mismatch_Repair_System_Status, Start_Days_from_Index, Chewing_tobacco_daily_use_count, Immunosuppression, Mode_of_Cancer_Detection, Id, Education_Level, Ecig_vape_use, Rural_vs_Urban, HTAN_Center, Manifest_Id
+  OTHER cols: friendly_name="HTAN, description="This, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.[clinical_tier3_brain_r4 | clinical_tier3_brain_r5]
+  NUM cols: Manifest_Version
+  STR cols: Start_Days_from_Index, Infra_Tentorial_Ependymoma_Molecular_Subgroup, Neuroblastoma_MYCN_Gene_Amplification_Status, Supra_Tentorial_Ependymoma_Molecular_Subgroup, CNS_Tumor_Primary_Anatomic_Site, entityId, Id, Timepoint_Label, Component, Stop_Days_from_Index, Glioma_Specific_Metastasis_Sites, Glioma_Specific_Radiation_Field, HTAN_Participant_ID, HTAN_Center, Manifest_Id
+  OTHER cols: friendly_name="HTAN, description="This, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.clinical_tier3_breast_r2
+  STR cols: Component, HTAN_Participant_ID, Timepoint_Label, Start_Days_from_Index, Stop_Days_from_Index, Breast_Carcinoma_Detection_Method_Type, Breast_Carcinoma_Histology_Category, Invasive_Lobular_Breast_Carcinoma_Histologic_Category, Invasive_Ductal_Breast_Carcinoma_Histologic_Category, Breast_Biopsy_Procedure_Finding_Type, Breast_Quadrant_Site, Breast_Cancer_Assessment_Tests, Breast_Cancer_Genomic_Test_Performed, Mammaprint_Risk_Group, Oncotype_Risk_Group, Breast_Carcinoma_Estrogen_Receptor_Status, Breast_Carcinoma_Progesteroner_Receptor_Status, Breast_Cancer_Allred_Estrogen_Receptor_Score, Prior_Invasive_Breast_Disease, Breast_Carcinoma_ER_Status_Percentage_Value, Breast_Carcinoma_PR_Status_Percentage_Value, HER2_Breast_Carcinoma_Copy_Number_Total, Breast_Carcinoma_Centromere_17_Copy_Number, Breast_Carcinoma_HER2_Centromere17_Copynumber_Total, Breast_Carcinoma_HER2_Chromosome17_Ratio, Breast_Carcinoma_Surgical_Procedure_Name, Breast_Carcinoma_HER2_Ratio_Diagnosis, Breast_Carcinoma_HER2_Status, Hormone_Therapy_Breast_Cancer_Prevention_Indicator, Breast_Carcinoma_ER_Staining_Intensity, Breast_Carcinoma_PR_Staining_Intensity, Oncotype_Score, Breast_Imaging_Performed_Type, Multifocal_Breast_Carcinoma_Present_Indicator, Multicentric_Breast_Carcinoma_Present_Indicator, BIRADS_Mammography_Breast_Density_Category, entityId, HTAN_Center, Data_Release
+  OTHER cols: friendly_name="HTAN, description="Data, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.clinical_tier3_breast_r3
+  NUM cols: Manifest_Version
+  STR cols: Component, HTAN_Participant_ID, Timepoint_Label, Start_Days_from_Index, Stop_Days_from_Index, Breast_Carcinoma_Detection_Method_Type, Breast_Carcinoma_Histology_Category, Invasive_Lobular_Breast_Carcinoma_Histologic_Category, Invasive_Ductal_Breast_Carcinoma_Histologic_Category, Breast_Biopsy_Procedure_Finding_Type, Breast_Quadrant_Site, Breast_Cancer_Assessment_Tests, Breast_Cancer_Genomic_Test_Performed, Mammaprint_Risk_Group, Oncotype_Risk_Group, Breast_Carcinoma_Estrogen_Receptor_Status, Breast_Carcinoma_Progesteroner_Receptor_Status, Breast_Cancer_Allred_Estrogen_Receptor_Score, Prior_Invasive_Breast_Disease, Breast_Carcinoma_ER_Status_Percentage_Value, Breast_Carcinoma_PR_Status_Percentage_Value, HER2_Breast_Carcinoma_Copy_Number_Total, Breast_Carcinoma_Centromere_17_Copy_Number, Breast_Carcinoma_HER2_Centromere17_Copynumber_Total, Breast_Carcinoma_HER2_Chromosome17_Ratio, Breast_Carcinoma_Surgical_Procedure_Name, Breast_Carcinoma_HER2_Ratio_Diagnosis, Breast_Carcinoma_HER2_Status, Hormone_Therapy_Breast_Cancer_Prevention_Indicator, Breast_Carcinoma_ER_Staining_Intensity, Breast_Carcinoma_PR_Staining_Intensity, Oncotype_Score, Breast_Imaging_Performed_Type, Multifocal_Breast_Carcinoma_Present_Indicator, Multicentric_Breast_Carcinoma_Present_Indicator, BIRADS_Mammography_Breast_Density_Category, entityId, HTAN_Center, Data_Release, Uuid
+  OTHER cols: friendly_name="HTAN, description="This, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.[clinical_tier3_breast_r4 | clinical_tier3_breast_r5]
+  NUM cols: Manifest_Version
+  STR cols: Breast_Carcinoma_Estrogen_Receptor_Status, Breast_Cancer_Allred_Estrogen_Receptor_Score, Breast_Quadrant_Site, Breast_Carcinoma_HER2_Ratio_Diagnosis, Breast_Carcinoma_PR_Status_Percentage_Value, Timepoint_Label, Breast_Carcinoma_Histology_Category, Component, Stop_Days_from_Index, Breast_Carcinoma_Progesteroner_Receptor_Status, Breast_Carcinoma_Surgical_Procedure_Name, Breast_Imaging_Performed_Type, Prior_Invasive_Breast_Disease, Breast_Carcinoma_HER2_Status, HER2_Breast_Carcinoma_Copy_Number_Total, Breast_Carcinoma_HER2_Centromere17_Copynumber_Total, Breast_Carcinoma_ER_Status_Percentage_Value, Breast_Carcinoma_ER_Staining_Intensity, Breast_Carcinoma_Centromere_17_Copy_Number, Breast_Cancer_Genomic_Test_Performed, Breast_Carcinoma_Detection_Method_Type, Oncotype_Score, Breast_Cancer_Assessment_Tests, Invasive_Lobular_Breast_Carcinoma_Histologic_Category, Mammaprint_Risk_Group, entityId, Breast_Carcinoma_HER2_Chromosome17_Ratio, Multifocal_Breast_Carcinoma_Present_Indicator, Oncotype_Risk_Group, HTAN_Participant_ID, Breast_Carcinoma_PR_Staining_Intensity, BIRADS_Mammography_Breast_Density_Category, Start_Days_from_Index, Invasive_Ductal_Breast_Carcinoma_Histologic_Category, Breast_Biopsy_Procedure_Finding_Type, Multicentric_Breast_Carcinoma_Present_Indicator, Id, Hormone_Therapy_Breast_Cancer_Prevention_Indicator, HTAN_Center, Manifest_Id
+  OTHER cols: friendly_name="HTAN, description="This, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.clinical_tier3_colorectal_r5
+  NUM cols: Manifest_Version
+  STR cols: Timepoint_Label, Component, Stop_Days_from_Index, Family_Colon_Cancer_History_Indicator, History_of_Prior_Colon_Polyps, Colorectal_Cancer_Tumor_Border_Configuration, Immediate_Family_History_Ovarian_Cancer, MLH1_Promoter_Methylation_Status, Size_of_Polyp_Removed, Family_History_Colorectal_Polyp, Colorectal_Polyp_New_Indicator, Colorectal_Cancer_KRAS_Indicator, Colorectal_Polyp_Type, entityId, Colorectal_Cancer_Detection_Method_Type, Colorectal_Polyp_Adenoma_Type, Colon_Polyp_Occurence_Indicator, Colorectal_Polyp_Shape, Immediate_Family_History_Endometrial_Cancer, HTAN_Participant_ID, Patient_Colonoscopy_Performed_Indicator, Start_Days_from_Index, Colorectal_Polyp_Count, Family_Medical_History_Colorectal_Polyp_Diagnosis, Patient_Inflammatory_Bowel_Disease_Personal_Medica_History, Id, HTAN_Center, Manifest_Id
+  OTHER cols: friendly_name="HTAN, description="This, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.clinical_tier3_lung_r2
+  STR cols: Component, HTAN_Participant_ID, Timepoint_Label, Start_Days_from_Index, Stop_Days_from_Index, Lung_Cancer_Detection_Method_Type, Lung_Cancer_Participant_Procedure_History, Lung_Adjacent_Histology_Type, Lung_Tumor_Location_Anatomic_Site, Lung_Tumor_Lobe_Bronchial_Location, Current_Lung_Cancer_Symptoms, Lung_Topography, Lung_Cancer_Harboring_Genomic_Aberrations, entityId, HTAN_Center, Data_Release
+  OTHER cols: friendly_name="HTAN, description="Data, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.clinical_tier3_lung_r3
+  NUM cols: Manifest_Version
+  STR cols: Component, HTAN_Participant_ID, Timepoint_Label, Start_Days_from_Index, Stop_Days_from_Index, Lung_Cancer_Detection_Method_Type, Lung_Cancer_Participant_Procedure_History, Lung_Adjacent_Histology_Type, Lung_Tumor_Location_Anatomic_Site, Lung_Tumor_Lobe_Bronchial_Location, Current_Lung_Cancer_Symptoms, Lung_Topography, Lung_Cancer_Harboring_Genomic_Aberrations, entityId, HTAN_Center, Data_Release, Uuid
+  OTHER cols: friendly_name="HTAN, description="This, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.[clinical_tier3_lung_r4 | clinical_tier3_lung_r5]
+  NUM cols: Manifest_Version
+  STR cols: entityId, Stop_Days_from_Index, HTAN_Participant_ID, Current_Lung_Cancer_Symptoms, Id, Lung_Adjacent_Histology_Type, Lung_Cancer_Harboring_Genomic_Aberrations, Timepoint_Label, Component, Lung_Cancer_Participant_Procedure_History, Lung_Tumor_Location_Anatomic_Site, Lung_Tumor_Lobe_Bronchial_Location, Lung_Topography, Start_Days_from_Index, Lung_Cancer_Detection_Method_Type, HTAN_Center, Manifest_Id
+  OTHER cols: friendly_name="HTAN, description="This, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.clinical_tier3_melanoma_r5
+  NUM cols: Manifest_Version
+  STR cols: History_of_Chronic_UV_Exposure, Cutaneous_Melanoma_Tumor_Regression_Range, Melanoma_Lesion_Size, Timepoint_Label, Component, Stop_Days_from_Index, Cutaneous_Melanoma_Surgical_Margins, Fitzpatrick_Skin_Tone, Cutaneous_Melanoma_Tumor_Infiltrating_Lymphocytes, Cutaneous_Melanoma_Additional_Findings, entityId, Melanoma_Biopsy_Resection_Sites, History_of_Atypical_Nevi, Cutaneous_Melanoma_Ulceration, Immediate_Family_History_Melanoma, Melanoma_Specimen_Clark_Level_Value, HTAN_Participant_ID, Start_Days_from_Index, History_of_Blistering_Sunburn, History_of_Tanning_Bed_Use, Id, HTAN_Center, Manifest_Id
+  OTHER cols: friendly_name="HTAN, description="This, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.dataFileSynapseID_to_BigQueryTableID_map_r5
+  STR cols: entityId, bq_table_id
+  OTHER cols: friendly_name="HTAN, description="This, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.electron_microscopy_level1_metadata_r5
+  NUM cols: Manifest_Version, File_Size
+  STR cols: EM_voltage, EM_beam_current, HTAN_Data_File_ID, Component, EM_dwell_or_exposure_time, SizeC, PhysicalSizeY, SizeX, EM_stage_tilt, EM_spot_size, HTAN_Parent_Biospecimen_ID, EM_signal_processing, Filename, PhysicalSizeX, EM_method, entityId, PhysicalSizeZ, EM_instrument, Protocol_Link, EM_signal_or_contrast_mech, SizeY, SizeZ, Id, EM_contrast_type, Software_and_Version, File_Format, HTAN_Center, Manifest_Id, md5, Data_Release, CDS_Release
+  OTHER cols: friendly_name="HTAN, description="This, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.electron_microscopy_level2_metadata_r5
+  NUM cols: Manifest_Version, File_Size
+  STR cols: Filename, HTAN_Parent_Data_File_ID, Tile_overlap_Y, entityId, Id, HTAN_Data_File_ID, Component, EM_contrast_type, Tile_overlap_X, File_Format, HTAN_Center, Manifest_Id, md5, Data_Release, CDS_Release
+  OTHER cols: friendly_name="HTAN, description="This, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.[hiCseq_level1_metadata_r4 | hiCseq_level1_metadata_r5]
+  NUM cols: Manifest_Version, File_Size
+  STR cols: Nucleic_Acid_Source, Ligation_Condition, HTAN_Data_File_ID, Component, Total_Reads, Nuclei_Permeabilization_Method, Transposition_Reaction, Technical_Replicate_Group, Genomic_Reference, Sequencing_Platform, HTAN_Parent_Biospecimen_ID, Biotin_Enrichment, Filename, entityId, DNA_Digestion_Condition, Protocol_Link, DNA_Input_Amount, Id, File_Format, Crosslinking_Condtion, HTAN_Center, Manifest_Id, md5, Data_Release, CDS_Release
+  OTHER cols: friendly_name="HTAN, description="This, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.[hiCseq_level2_metadata_r4 | hiCseq_level2_metadata_r5]
+  NUM cols: Manifest_Version, File_Size
+  STR cols: Tool, Aligned_Read_Length, Filename, HTAN_Parent_Data_File_ID, entityId, Id, HTAN_Data_File_ID, Resolution, Component, Normalization_Method, Genomic_Reference, File_Format, HTAN_Center, Manifest_Id, md5, Data_Release, CDS_Release
+  OTHER cols: friendly_name="HTAN, description="This, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.[id_provenance_r3 | id_provenance_r4]
+  STR cols: HTAN_Data_File_ID, HTAN_Assayed_Biospecimen_ID, HTAN_Parent_Data_File_ID, Filename, entityId, Component, Data_Release, CDS_Release, HTAN_Center, HTAN_Originating_Biospecimen_ID, HTAN_Participant_ID, Biospecimen_Path
+  OTHER cols: friendly_name="ID, description="This, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.id_provenance_r5
+  STR cols: HTAN_Data_File_ID, Filename, entityId, Component, Data_Release, CDS_Release, HTAN_Center, HTAN_Assayed_Biospecimen_ID, HTAN_Parent_Data_File_ID, HTAN_Originating_Biospecimen_ID, HTAN_Participant_ID, Biospecimen_Path
+  OTHER cols: friendly_name="HTAN, description="This, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.imaging_channel_metadata_r3
+  NUM cols: lineNum
+  STR cols: HTAN_Center, Imaging_Assay_Type, HTAN_Image_File_ID, image_synapseID, image_filename, Channel_Metadata_Filename, metadata_synapse_file_path, metadata_synapseID
+  OTHER cols: channel_attributes, friendly_name="HTAN, description="Data, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.[imaging_channel_metadata_r4 | imaging_channel_metadata_r5]
+  NUM cols: lineNum
+  STR cols: HTAN_Center, Imaging_Assay_Type, Channel_Metadata_Filename, Channel_Metadata_ID
+  OTHER cols: channel_attributes, friendly_name="HTAN, description="Data, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.imaging_level1_metadata_r5
+  NUM cols: Manifest_Version, File_Size
+  STR cols: Pre_processing_Completed, HTAN_Parent_Biospecimen_ID, Commit_SHA, Pre_processing_Required, Filename, Comment, entityId, Id, HTAN_Data_File_ID, Component, Imaging_Assay_Type, Software_and_Version, File_Format, Protocol_Link, HTAN_Center, Manifest_Id, md5, Data_Release, CDS_Release
+  OTHER cols: friendly_name="HTAN, description="This, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.imaging_level2_metadata_r2
+  NUM cols: File_Size
+  STR cols: Component, Filename, File_Format, HTAN_Participant_ID, HTAN_Parent_Biospecimen_ID, HTAN_Data_File_ID, Channel_Metadata_Filename, Imaging_Assay_Type, Protocol_Link, Software_and_Version, Microscope, Objective, NominalMagnification, LensNA, WorkingDistance, WorkingDistanceUnit, Immersion, Pyramid, Zstack, Tseries, Passed_QC, Comment, FOV_number, FOVX, FOVXUnit, FOVY, FOVYUnit, Frame_Averaging, Image_ID, DimensionOrder, PhysicalSizeX, PhysicalSizeXUnit, PhysicalSizeY, PhysicalSizeYUnit, PhysicalSizeZ, PhysicalSizeZUnit, Pixels_BigEndian, PlaneCount, SizeC, SizeT, SizeX, SizeY, SizeZ, PixelType, Imaging_Level_2_Channels, Image_Acquisition_Date, entityId, HTAN_Center, Data_Release, Base_Filename, md5
+  OTHER cols: friendly_name="HTAN, description="Data, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.imaging_level2_metadata_r3
+  NUM cols: Manifest_Version, File_Size
+  STR cols: Component, Filename, File_Format, HTAN_Participant_ID, HTAN_Parent_Biospecimen_ID, HTAN_Data_File_ID, Channel_Metadata_Filename, Imaging_Assay_Type, Protocol_Link, Software_and_Version, Microscope, Objective, NominalMagnification, LensNA, WorkingDistance, WorkingDistanceUnit, Immersion, Pyramid, Zstack, Tseries, Passed_QC, Comment, FOV_number, FOVX, FOVXUnit, FOVY, FOVYUnit, Frame_Averaging, Image_ID, DimensionOrder, PhysicalSizeX, PhysicalSizeXUnit, PhysicalSizeY, PhysicalSizeYUnit, PhysicalSizeZ, PhysicalSizeZUnit, Pixels_BigEndian, PlaneCount, SizeC, SizeT, SizeX, SizeY, SizeZ, PixelType, MERFISH_Positions_File, MERFISH_Codebook_File, entityId, HTAN_Center, Data_Release, Uuid, md5, CDS_Release
+  OTHER cols: friendly_name="HTAN, description="This, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.[imaging_level2_metadata_r4 | imaging_level2_metadata_r5]
+  NUM cols: Manifest_Version, File_Size
+  STR cols: Pyramid, Channel_Metadata_Filename, Frame_Averaging, PlaneCount, PhysicalSizeXUnit, MERFISH_Codebook_File, Objective, DimensionOrder, WorkingDistanceUnit, Image_ID, HTAN_Data_File_ID, Component, FOVX, Imaging_Assay_Type, Comment, FOV_number, FOVY, Zstack, SizeC, PhysicalSizeY, SizeX, HTAN_Parent_Data_File_ID, HTAN_Parent_Biospecimen_ID, Passed_QC, Filename, PhysicalSizeX, Microscope, entityId, SizeT, PixelType, PhysicalSizeZ, Protocol_Link, SizeY, Pixels_BigEndian, HTAN_Participant_ID, PhysicalSizeYUnit, FOVYUnit, LensNA, NominalMagnification, SizeZ, Id, Immersion, FOVXUnit, PhysicalSizeZUnit, MERFISH_Positions_File, WorkingDistance, Tseries, Software_and_Version, File_Format, HTAN_Center, Manifest_Id, md5, Data_Release, CDS_Release
+  OTHER cols: friendly_name="HTAN, description="This, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.imaging_level3_segmentation_metadata_r3
+  NUM cols: Manifest_Version, File_Size
+  STR cols: Component, Filename, File_Format, HTAN_Parent_Data_File_ID, HTAN_Data_File_ID, Imaging_Segmentation_Data_Type, Parameter_file, Software_and_Version, Commit_SHA, Imaging_Object_Class, Number_of_Objects, entityId, HTAN_Center, Data_Release, Uuid, md5, CDS_Release
+  OTHER cols: friendly_name="HTAN, description="This, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.[imaging_level3_segmentation_metadata_r4 | imaging_level3_segmentation_metadata_r5]
+  NUM cols: Manifest_Version, File_Size
+  STR cols: Imaging_Object_Class, Parameter_file, Filename, HTAN_Parent_Data_File_ID, entityId, Id, HTAN_Data_File_ID, Imaging_Segmentation_Data_Type, Component, Imaging_Object_Class_Description, Number_of_Objects, Commit_SHA, Software_and_Version, File_Format, HTAN_Center, Manifest_Id, md5, Data_Release, CDS_Release
+  OTHER cols: friendly_name="HTAN, description="This, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.imaging_level4_Duke_mibi_r4
+  NUM cols: Point_Num, event, CohortNumber, cell_size, COLI, CD14, P63, Background, pS6, Ta, CD4, Au, HLADRDPDQ, ECADKRTCD45, Nuc, GZMB, ECADKRTCD45GLUT1CD44, Tryptase, ECAD, ECADKRTCD45GLUT1, AR, GLUT1, MPO, VIM, CD3, SMA, CD56, PanKRT, CD11c, HER2, CD68, P, CK7, CD8, Na, C, PD1, CD44, HIF1a, CD45, X140empty, FAP, PDL1, MMP9, Ki67, CK5, COX2, CD20, FOXP3, IDO1, CD36, ECADKRT, HH3, ER, Ca40, CD31, CK5norm, label, area, eccentricity, major_axis_length, minor_axis_length, perimeter, sublineage_code, phenotype_code, compartment_code, celllineage_code, innerduct_mask, distal_mask, stroma_mask, periph_mask, epi_mask, duct_mask, myoep_mask, ERstatus, HER2status, ARstatus, Ki67status, pS6status, GLUT1status, HIF1astatus, COX2status, CD36status, CD44status, PD1status, PDL1status, IDO1status, GZMBstatus, ECADstatus, MMP9status, VIMstatus, FAPstatus, HLADRstatus, CD3status, SMAstatus, COLIstatus, CK5status, CK7status, P63status, myoep_dist_label, myoep_dist_MinDist, myoep_dist_MaxDist, myoep_dist_MedDist, myoep_dist_MeanDist, celltype_code, myoep_dist_MinDist1, Neighbor_dist_TUMOR, Neighbor_dist_MYOEP, Neighbor_dist_FIBROBLAST, Neighbor_dist_ENDO, Neighbor_dist_MONODC, Neighbor_dist_MONO, Neighbor_dist_MACS, Neighbor_dist_DC, Neighbor_dist_APC, Neighbor_dist_MAST, Neighbor_dist_CD8T, Neighbor_dist_CD4T, Neighbor_dist_BCELL, Neighbor_dist_TCELL, Neighbor_dist_NEUT, Neighbor_dist_IMMUNEOTHER, K10_cluster, duct_edge_mask, duct_mid_mask, duct_core_mask
+  STR cols: HTAN_Parent_Data_File_ID, Tissue_Type, Status, Tissue, sublineage, phenotype, compartment, celllineage, manual_gating_cellineage, manual_gating_subineage, manual_gating_phenotype, Source_filename, Source_entityId, HTAN_Center, HTAN_Biospecimen_ID
+  OTHER cols: friendly_name="HTAN, description="Data, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.imaging_level4_HMS_crc_mask_r3
+  NUM cols: CellID, Hoechst1_cellRingMask, A488_cellRingMask, A555_cellRingMask, A647_cellRingMask, Hoechst2_cellRingMask, anti_CD3_cellRingMask, anti_NaKATPase_cellRingMask, anti_CD45RO_cellRingMask, Hoechst3_cellRingMask, Ki67_488_cellRingMask, Keratin_570_cellRingMask, aSMA_660_cellRingMask, Hoechst4_cellRingMask, CD4_488_cellRingMask, CD45_PE_cellRingMask, PD1_647_cellRingMask, Hoechst5_cellRingMask, CD20_488_cellRingMask, CD68_555_cellRingMask, CD8a_660_cellRingMask, Hoechst6_cellRingMask, CD163_488_cellRingMask, FOXP3_570_cellRingMask, PDL1_647_cellRingMask, Hoechst7_cellRingMask, Ecad_488_cellRingMask, Vimentin_555_cellRingMask, CDX2_647_cellRingMask, Hoechst8_cellRingMask, LaminABC_488_cellRingMask, Desmin_555_cellRingMask, CD31_647_cellRingMask, Hoechst9_cellRingMask, PCNA_488_cellRingMask, Ki67_570_cellRingMask, CollagenIV_647_cellRingMask, X_centroid, Y_centroid, column_centroid, row_centroid, Area, MajorAxisLength, MinorAxisLength, Eccentricity, Solidity, Extent, Orientation, Hoechst1_cytoRingMask, A488_cytoRingMask, A555_cytoRingMask, A647_cytoRingMask, Hoechst2_cytoRingMask, anti_CD3_cytoRingMask, anti_NaKATPase_cytoRingMask, anti_CD45RO_cytoRingMask, Hoechst3_cytoRingMask, Ki67_488_cytoRingMask, Keratin_570_cytoRingMask, aSMA_660_cytoRingMask, Hoechst4_cytoRingMask, CD4_488_cytoRingMask, CD45_PE_cytoRingMask, PD1_647_cytoRingMask, Hoechst5_cytoRingMask, CD20_488_cytoRingMask, CD68_555_cytoRingMask, CD8a_660_cytoRingMask, Hoechst6_cytoRingMask, CD163_488_cytoRingMask, FOXP3_570_cytoRingMask, PDL1_647_cytoRingMask, Hoechst7_cytoRingMask, Ecad_488_cytoRingMask, Vimentin_555_cytoRingMask, CDX2_647_cytoRingMask, Hoechst8_cytoRingMask, LaminABC_488_cytoRingMask, Desmin_555_cytoRingMask, CD31_647_cytoRingMask, Hoechst9_cytoRingMask, PCNA_488_cytoRingMask, Ki67_570_cytoRingMask, CollagenIV_647_cytoRingMask, Hoechst1_nucleiRingMask, A488_nucleiRingMask, A555_nucleiRingMask, A647_nucleiRingMask, Hoechst2_nucleiRingMask, anti_CD3_nucleiRingMask, anti_NaKATPase_nucleiRingMask, anti_CD45RO_nucleiRingMask, Hoechst3_nucleiRingMask, Ki67_488_nucleiRingMask, Keratin_570_nucleiRingMask, aSMA_660_nucleiRingMask, Hoechst4_nucleiRingMask, CD4_488_nucleiRingMask, CD45_PE_nucleiRingMask, PD1_647_nucleiRingMask, Hoechst5_nucleiRingMask, CD20_488_nucleiRingMask, CD68_555_nucleiRingMask, CD8a_660_nucleiRingMask, Hoechst6_nucleiRingMask, CD163_488_nucleiRingMask, FOXP3_570_nucleiRingMask, PDL1_647_nucleiRingMask, Hoechst7_nucleiRingMask, Ecad_488_nucleiRingMask, Vimentin_555_nucleiRingMask, CDX2_647_nucleiRingMask, Hoechst8_nucleiRingMask, LaminABC_488_nucleiRingMask, Desmin_555_nucleiRingMask, CD31_647_nucleiRingMask, Hoechst9_nucleiRingMask, PCNA_488_nucleiRingMask, Ki67_570_nucleiRingMask, CollagenIV_647_nucleiRingMask, Hoechst0_cellRingMask, AF488_cellRingMask, AF555_cellRingMask, AF647_cellRingMask, Hoechst0_cytoRingMask, AF488_cytoRingMask, AF555_cytoRingMask, AF647_cytoRingMask, Hoechst0_nucleiRingMask, AF488_nucleiRingMask, AF555_nucleiRingMask, AF647_nucleiRingMask
+  STR cols: Source_filename, Source_entityId, HTAN_Center, HTAN_Data_File_ID, HTAN_Biospecimen_ID
+  OTHER cols: friendly_name="HTAN, description="Data, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.imaging_level4_HMS_crc_r3
+  NUM cols: CellID, DNA_1, A488, A555, A647, DNA_2, CD3, CD11c, GranzymeB, DNA_3, Ki67, panCK, CD45, DNA_4, CD11b, CD68, CD14, DNA_5, CD163, FOXP3, CD8a, DNA_6, CD15, CD44, PD_L1, DNA_7, CD4, p_TBK1, PD_1, DNA_8, CD57, HLA_DR, LAG3, DNA_9, CD20, TIM3, HLA_A, DNA_10, CD16, pSRC, pSTAT1, DNA_11, CD24, Desmin, PDPN, DNA_12, STING, pRB, pTyr, X_centroid, Y_centroid, column_centroid, row_centroid, Area, MajorAxisLength, MinorAxisLength, Eccentricity, Solidity, Extent, Orientation, Hoechst1, Hoechst2, NaKATPase, MCM6, p53, Hoechst3, PCNA, SMA_1, Hoechst4, E_Cad, SMA_2, Vimentin, Hoechst5, EGFR, CDX2, Hoechst6, pERK, H3K27me3, H3K27ac, Hoechst7, beta_Catenin, Hoechst8, N_Cadherin, H2ax, ZEB1, Hoechst9, Nestin, CD31, Hoechst10, S100a, GFAP, IRF_1, Hoechst11, pS6_235, cPARP, p21, Hoechst12, Unnamed_46, KAP1, Hoechst13, FN3, VEGFR2, NGFR
+  STR cols: Source_filename, Source_entityId, HTAN_Center, HTAN_Data_File_ID, HTAN_Biospecimen_ID
+  OTHER cols: friendly_name="HTAN, description="This, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.imaging_level4_HMS_mel_mask_r3
+  NUM cols: CellID, DNA_1_cellRingMask, bg2a_cellRingMask, bg3a_cellRingMask, bg4a_cellRingMask, DNA_2_cellRingMask, pERK_cellRingMask, CD207_cellRingMask, SOX10_cellRingMask, DNA_3_cellRingMask, CD45RO_cellRingMask, SOX2_cellRingMask, CD25_cellRingMask, DNA_4_cellRingMask, CD4_cellRingMask, pan_CK_cellRingMask, CD8A_cellRingMask, DNA_5_cellRingMask, CD163_cellRingMask, FOXP3_cellRingMask, CD3D_cellRingMask, DNA_6_cellRingMask, pS6_cellRingMask, CD11C_cellRingMask, PDL1_cellRingMask, DNA_7_cellRingMask, MCAM_cellRingMask, CD68_cellRingMask, PD1_cellRingMask, DNA_8_cellRingMask, S100A_cellRingMask, ICOS_cellRingMask, OX40_cellRingMask, DNA_9_cellRingMask, CD40L_cellRingMask, HLADR_cellRingMask, HLAA_cellRingMask, DNA_10_cellRingMask, NCAD_cellRingMask, LAG3_cellRingMask, CD31_cellRingMask, DNA_11_cellRingMask, CD73_cellRingMask, CD90_cellRingMask, TIM3_cellRingMask, DNA_12_cellRingMask, C_Kit_cellRingMask, CD40_cellRingMask, Granz_B_cellRingMask, DNA_13_cellRingMask, HLADRB1_cellRingMask, GITR_cellRingMask, HLADPB1_cellRingMask, MART1_cellRingMask, DNA_14_cellRingMask, CCND1_cellRingMask, MYC_cellRingMask, CD56_cellRingMask, DNA_15_cellRingMask, LAMP1_cellRingMask, NOS2_cellRingMask, CD16_cellRingMask, X_centroid, Y_centroid, column_centroid, row_centroid, Area, MajorAxisLength, MinorAxisLength, Eccentricity, Solidity, Extent, Orientation, DNA0_cellRingMask, HHLA2_cellRingMask, CMA1_cellRingMask, DNA1_cellRingMask, S100B_cellRingMask, KERATIN_cellRingMask, CD1A_cellRingMask, DNA2_cellRingMask, C8A_cellRingMask, DNA3_cellRingMask, MITF_cellRingMask, DNA4_cellRingMask, KI67_cellRingMask, DNA5_cellRingMask, PCNA_cellRingMask, pSTAT1_cellRingMask, cPARP_cellRingMask, DNA6_cellRingMask, SNAIL_cellRingMask, aSMA_cellRingMask, DNA8_cellRingMask, DNA9_cellRingMask, LDH_cellRingMask, PANCK_cellRingMask, CCNA2_cellRingMask, DNA10_cellRingMask, CD63_cellRingMask, DNA1_cellMask, CD163_cellMask, CD11C_cellMask, FOXP3_cellMask, DNA2_cellMask, ECAD_cellMask, pan_CK_cellMask, CD3D_cellMask, DNA3_cellMask, PCNA_cellMask, KI67_cellMask, CD45_cellMask, DNA4_cellMask, MITF_cellMask, PDGFRa_cellMask, aSMA_cellMask, DNA5_cellMask, MCAM_cellMask, CD90_cellMask, MCM2_cellMask, DNA6_cellMask, KIT_cellMask, CD40_cellMask, CCNE1_cellMask, DNA7_cellMask, CCND1_cellMask, CCNB1_cellMask, CCNA2_cellMask, DNA8_cellMask, NCR1_cellMask, HLADR_cellMask, GM130_cellMask, DNA9_cellMask, CD15_cellMask, pRB_cellMask, CD20_cellMask, DNA10_cellMask, Geminin_cellMask, COX4_cellMask, BRD2_cellMask, DNA11_cellMask, GLUD1_cellMask, LC3_cellMask, HIF1A_cellMask, DNA12_cellMask, GAPDH_cellMask, pH3_cellMask, ZEB1_cellMask, DNA13_cellMask, TCF1_7_cellMask, B_Catenin_cellMask, SOX4_cellMask, DNA14_cellMask, CD141_cellMask, HER3_cellMask, GLUT1_cellMask, DNA15_cellMask, CD11B_cellMask, CD66B_cellMask, TBX21_cellMask, IFITM3_cellRingMask, IFNG_cellRingMask, bg2c_cellRingMask, HMB45_cellRingMask, IFI16_cellRingMask, MX1_cellRingMask, CD11B_cellRingMask, pTBK1_cellRingMask, IRF4_cellRingMask, DNA7_cellRingMask, STING_cellRingMask, IRF5_cellRingMask, IRF1_cellRingMask, CD20_cellRingMask, SREBP1_cellRingMask, pSTAT3_cellRingMask, CD59_cellRingMask, CD46_cellRingMask, CD55_cellRingMask, SMAD1_cellRingMask, DNA11_cellRingMask, CPT1A_cellRingMask, SMAD5_cellRingMask, SMAD2_cellRingMask, DNA12_cellRingMask, SMAD3_cellRingMask, _5hmC_cellRingMask, p14ARF_cellRingMask, CDKN1A_cellRingMask, HMB45_1_cellRingMask, CD45_cellRingMask, Nestin_cellRingMask, CCNB1_cellRingMask, CDKN1B_cellRingMask, pRB_cellRingMask, NGFR_abcam_cellRingMask, p14ARF_AF488_cellRingMask, Hes1_cellRingMask, pH3_cellRingMask, P16_AF488_cellRingMask, CCNA_cellRingMask, CDKN1C_cellRingMask, FN1_cellRingMask, HMB45_2_cellRingMask, Podoplanin_cellRingMask, MAF_cellRingMask, DNA13_cellRingMask, HMOX1_cellRingMask, H3K27M3_cellRingMask
+  STR cols: Source_filename, Source_entityId, HTAN_Center, HTAN_Data_File_ID, HTAN_Biospecimen_ID
+  OTHER cols: friendly_name="HTAN, description="Data, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.imaging_level4_HMS_mel_r3
+  NUM cols: CellID, DNA_1, bg_488, bg_555, bg_647, DNA_2, CD74, CD3_rat, SOX10, DNA_3, IFNb, CD11c, CD31, DNA_4, CD163, S100b, CD20, X_centroid, Y_centroid, Area, MajorAxisLength, MinorAxisLength, Eccentricity, Solidity, Extent, Orientation, MIF, CCR7
+  STR cols: Source_filename, Source_entityId, HTAN_Center, HTAN_Data_File_ID, HTAN_Biospecimen_ID
+  OTHER cols: friendly_name="HTAN, description="This, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.imaging_level4_HMS_orion_r4
+  NUM cols: CellID, Hoechst, AF1, CD31, Ki_67, CD68, CD163, CD20, CD4, CD8a, CD45RO, PD_L1, CD3e, E_Cadherin, PD_1, FOXP3, CD45, Pan_CK, Blank, SMA, X_centroid, Y_centroid, Area, MajorAxisLength, MinorAxisLength, Eccentricity, Solidity, Extent, Orientation, Argo550
+  STR cols: Source_filename, Source_entityId, HTAN_Center, HTAN_Data_File_ID, HTAN_Biospecimen_ID
+  OTHER cols: friendly_name="HTAN, description="Data, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.imaging_level4_HTAPP_merfish_r4
+  NUM cols: iObs, iVar, X_value
+  STR cols: featureID, index, Source_filename, Source_entityId, HTAN_Center, HTAN_Data_File_ID, HTAN_Biospecimen_ID
+  OTHER cols: friendly_name="HTAN, description="Data, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.imaging_level4_OHSU_r5
+  NUM cols: CellID, DNA1, goat_anti_rabbit, A555, donkey_anti_mouse, DNA2, pERK, pERK_555, Rad51, DNA3, CCND1, Vimentin, aSMA, DNA4, Ecad, ER, PR, DNA5, EGFR, pRB, CD45, DNA6, Ki67, CK19, p21, DNA7, CK14, AR, cPARP, DNA8, CK17, CK7, HER2, X_centroid, Y_centroid, Area, MajorAxisLength, MinorAxisLength, Eccentricity, Solidity, Extent, Orientation, LAG3, LAG3_555, GranB, Pan_CK, CD68, CD3d, CD8a, CD163, CD14, CD4, FOXP3, PD_L1, CD11b, PD_1, CD45RO, HLAA, CD20, Hoechst1, AF488, AF555, AF647, Hoechst2, Hoechst3, CD3, Hoechst4, Hoechst5, Hoechst6, Hoechst7, Hoechst8, Hoechst9, LaminABC, H2Ax, Hoechst10, PCNA, PanCK, CD31, PD_L1__SP142_, PD1, HLA_DPB1, LAG_3, CD45R, CD3_Rat_, CD11c, PDL1, CD57, PD_L1_, HLA_DR, CD15, CD44, PDPN, PolICTD, p53, SMA, LaminA_C, CK5, ZEB1, pH3, CK18, TMEM173, pTBK1, pSTAT3, CD45_1, CD16, IBA1, CD45_2, anti_Goat, anti_Rabbit, anti_Mouse, NKP46, GZMB
+  STR cols: Source_filename, Source_entityId, HTAN_Center, HTAN_Data_File_ID, HTAN_Biospecimen_ID
+  OTHER cols: A488, A647, Cytochrome, friendly_name="HTAN, description="Data, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.imaging_level4_TNP_TMA_phase1_r4
+  NUM cols: CellID, DNA, Autofluorescence_488nm, Autofluorescence_555nm, Autofluorescence_647nm, DNA_2, Control_488nm, Control_555nm, Control_647nm, DNA_3, CD3, ERK_1_pT202_pY204, hRAD51, DNA_4, G1_S_specific_cyclin_D1, Vimentin, Aortic_smooth_muscle_actin, DNA_5, E_cadherin, ER, PR, DNA_6, Epidermal_growth_factor_receptor, Rb_pS807_pS811, HER2, DNA_7, Antigen_Ki67, CD45, p21, DNA_8, CK_14, CK_19, CK_17, DNA_9, Lamin_A_B_C, Androgen_Receptor, Histone_H2AX, DNA_10, PCNA, Pan_cytokeratin, CD31, X_centroid, Y_centroid, Area, MajorAxisLength, MinorAxisLength, Eccentricity, Solidity, Extent, Orientation, PD_L1_SP142, Granzyme_B, CD68, CD3d, CD8a, CD163, CD14, CD4, FOXP3, PD_L1_E1L3N, CD11b, PD_1, PD_L1_28_8, LAG_3, CD20, HLA_A, MHC_class_II_antigen_DPB1
+  STR cols: Source_filename, Source_entityId, HTAN_Center, HTAN_Data_File_ID, HTAN_Biospecimen_ID
+  OTHER cols: friendly_name="HTAN, description="Data, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.imaging_level4_TNP_TMA_phase3_r4
+  NUM cols: CellID, Hoechst1, A488, A555, A647, Hoechst2, CD3_Rat, CD11c, GranB, Hoechst3, Ki67, panCK, CD45, Hoechst4, CD4, CD68, CD8a, Hoechst5, CD11b, FOXP3, PDL1_1, Hoechst6, PCNA, ER, HER2, Hoechst7, CD20, aSMA, PD1, Hoechst8, CD57, PDL1_2, CD3d, Hoechst9, CD163, HLA_DR, HLA_DPB1, Hoechst10, CD15, CD44, PDPN, X_centroid, Y_centroid, Area, MajorAxisLength, MinorAxisLength, Eccentricity, Solidity, Extent, Orientation, PolICTD, pERK, p53, Ecad, SMA, Vimentin, EGFR, pRB, p21, CK14, CK19, CK17, LaminA_C, AR, H2ax, PR, HLAA, CK5
+  STR cols: Source_filename, Source_entityId, HTAN_Center, HTAN_Data_File_ID, HTAN_Biospecimen_ID
+  OTHER cols: friendly_name="HTAN, description="Data, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.imaging_level4_metadata_r3
+  NUM cols: Manifest_Version, File_Size
+  STR cols: Component, Filename, File_Format, HTAN_Parent_Data_File_ID, HTAN_Parent_Channel_Metadata_ID, HTAN_Data_File_ID, Parameter_file, Software_and_Version, Commit_SHA, Number_of_Objects, Number_of_Features, Imaging_Object_Class, Imaging_Summary_Statistic, entityId, HTAN_Center, Data_Release, Uuid, md5, CDS_Release
+  OTHER cols: friendly_name="HTAN, description="This, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.[imaging_level4_metadata_r4 | imaging_level4_metadata_r5]
+  NUM cols: Manifest_Version, File_Size
+  STR cols: entityId, Commit_SHA, Number_of_Objects, HTAN_Parent_Channel_Metadata_ID, HTAN_Data_File_ID, Id, Software_and_Version, Imaging_Object_Class, Parameter_file, Number_of_Features, Component, Imaging_Summary_Statistic, Imaging_Object_Class_Description, File_Format, Filename, HTAN_Parent_Data_File_ID, HTAN_Center, Manifest_Id, md5, Data_Release, CDS_Release
+  OTHER cols: friendly_name="HTAN, description="This, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.lipidomics_metadata_r2_v2
+  NUM cols: File_Size
+  STR cols: Component, Filename, File_Format, HTAN_Parent_Biospecimen_ID, HTAN_Data_File_ID, Assay_Type, entityId, HTAN_Center, Data_Release, Base_Filename, md5
+  OTHER cols: friendly_name="HTAN, description="Data, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.[massSpectrometry_level1_metadata_r4 | massSpectrometry_level1_metadata_r5]
+  NUM cols: Manifest_Version, File_Size
+  STR cols: HTAN_Data_File_ID, Id, Analyte_Type, Software_and_Version, LC_Flow_Rate, Protocol_Link, Mass_Range_High_Value, entityId, LC_Temp_Value, LC_Mobile_Phase_A, MS_Scan_Mode, Data_Collection_Mode, MS_Source, Component, MS_Instrument_Metadata_File, MS_Instrument_Vendor_and_Model, LC_Column_Vendor_and_Model, Polarity, HTAN_Parent_Biospecimen_ID, LC_ID_Value, MS_Labeling, LC_Length_Value, LC_Gradient, LC_Mobile_Phase_B, MS_based_Assay_Type, File_Format, Filename, LC_Resin, MS_based_Targeted, MS_Batch_ID, LC_Instrument_Vendor_and_Model, Mass_Range_Low_Value, HTAN_Center, Manifest_Id, md5, Data_Release, CDS_Release
+  OTHER cols: friendly_name="HTAN, description="This, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.[massSpectrometry_level3_metadata_r4 | massSpectrometry_level3_metadata_r5 | massSpectrometry_level4_metadata_r4 | massSpectrometry_level4_metadata_r5]
+  NUM cols: Manifest_Version, File_Size
+  STR cols: HTAN_Parent_Biospecimen_ID, Filename, Mass_Spectrometry_Auxiliary_File, HTAN_Parent_Data_File_ID, entityId, Id, HTAN_Data_File_ID, Component, MS_Assay_Category, Software_and_Version, File_Format, HTAN_Center, Manifest_Id, md5, Data_Release, CDS_Release
+  OTHER cols: friendly_name="HTAN, description="This, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.metabolomics_metadata_r2_v2
+  NUM cols: File_Size
+  STR cols: Component, Filename, File_Format, HTAN_Parent_Biospecimen_ID, HTAN_Data_File_ID, Assay_Type, entityId, HTAN_Center, Data_Release, Base_Filename, md5
+  OTHER cols: friendly_name="HTAN, description="Data, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.other_assay_metadata_r5
+  NUM cols: Manifest_Version, File_Size
+  STR cols: HTAN_Parent_Biospecimen_ID, Filename, entityId, Id, HTAN_Data_File_ID, Assay_Type, Component, File_Format, HTAN_Center, Manifest_Id, md5, Data_Release, CDS_Release
+  OTHER cols: friendly_name="HTAN, description="This, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.proteomics_metadata_r2
+  NUM cols: File_Size
+  STR cols: Component, Filename, File_Format, HTAN_Parent_Biospecimen_ID, HTAN_Data_File_ID, Assay_Type, entityId, HTAN_Center, Data_Release, Base_Filename, md5
+  OTHER cols: friendly_name="HTAN, description="Data, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.publication_manifest_metadata_r5
+  NUM cols: Manifest_Version
+  STR cols: Tool, PMID, Component, Corresponding_Author_ORCID, Publication_Content_Type, Corresponding_Author, Location_of_Publication, Publication_associated_HTAN_Parent_Data_File_ID, HTAN_Center_ID, Publication_contains_HTAN_ID, Authors, License, entityId, Title, HTAN_Grant_ID, Supporting_Link, Data_Type, Publication_Abstract, Supporting_Link_Description, Id, DOI, Year_of_Publication, HTAN_Center, Manifest_Id
+  OTHER cols: friendly_name="HTAN, description="This, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.rppa_level2_metadata_r5
+  NUM cols: Manifest_Version, File_Size
+  STR cols: HTAN_Parent_Biospecimen_ID, Filename, HTAN_Parent_Data_File_ID, HTAN_RPPA_Antibody_Table, entityId, Id, HTAN_Data_File_ID, Assay_Type, Component, Protocol_Link, Software_and_Version, File_Format, HTAN_Participant_ID, HTAN_Center, Manifest_Id, md5, Data_Release, CDS_Release
+  OTHER cols: friendly_name="HTAN, description="This, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.rppa_level3_metadata_r5
+  NUM cols: Manifest_Version, File_Size
+  STR cols: HTAN_Parent_Biospecimen_ID, Filename, HTAN_Parent_Data_File_ID, entityId, Id, HTAN_Data_File_ID, Assay_Type, Component, Normalization_Method, Software_and_Version, File_Format, HTAN_Participant_ID, HTAN_Center, Manifest_Id, md5, Data_Release, CDS_Release
+  OTHER cols: friendly_name="HTAN, description="This, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.rppa_level4_metadata_r5
+  NUM cols: Manifest_Version, File_Size
+  STR cols: HTAN_Parent_Biospecimen_ID, Filename, HTAN_Parent_Data_File_ID, entityId, Id, HTAN_Data_File_ID, Assay_Type, Component, Batch_Correction_Method, File_Format, HTAN_Participant_ID, HTAN_Center, Manifest_Id, md5, Data_Release, CDS_Release
+  OTHER cols: friendly_name="HTAN, description="This, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.scATACseq_level1_metadata_r2_v3
+  NUM cols: File_Size
+  STR cols: Component, Filename, File_Format, HTAN_Parent_Biospecimen_ID, HTAN_Data_File_ID, Nucleic_Acid_Source, Dissociation_Method, Single_Nucleus_Buffer, Single_Cell_Isolation_Method, Transposition_Reaction, scATACseq_Library_Layout, Nucleus_Identifier, scATACseq_Read3, Library_Construction_Method, Sequencing_Platform, Threshold_for_Minimum_Passing_Reads, Total_Number_of_Passing_Nuclei, Median_Fraction_of_Reads_in_Peaks, Median_Fraction_of_Reads_in_Annotated_cis_DNA_Elements, Median_Passing_Read_Percentage, Median_Percentage_of_Mitochondrial_Reads_per_Nucleus, Technical_Replicate_Group, Total_Reads, Protocol_Link, Peaks_Calling_Software, entityId, HTAN_Center, Data_Release, md5
+  OTHER cols: friendly_name="HTAN, description="Data, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.scATACseq_level1_metadata_r3
+  NUM cols: Manifest_Version, File_Size
+  STR cols: Component, Filename, File_Format, HTAN_Parent_Biospecimen_ID, HTAN_Data_File_ID, Nucleic_Acid_Source, Dissociation_Method, Single_Nucleus_Buffer, Single_Cell_Isolation_Method, Transposition_Reaction, scATACseq_Library_Layout, Nucleus_Identifier, scATACseq_Read3, Library_Construction_Method, Sequencing_Platform, Threshold_for_Minimum_Passing_Reads, Total_Number_of_Passing_Nuclei, Median_Fraction_of_Reads_in_Peaks, Median_Fraction_of_Reads_in_Annotated_cis_DNA_Elements, Median_Passing_Read_Percentage, Median_Percentage_of_Mitochondrial_Reads_per_Nucleus, Technical_Replicate_Group, Total_Reads, Protocol_Link, Peaks_Calling_Software, MapQ30, entityId, HTAN_Center, Data_Release, Uuid, md5, CDS_Release
+  OTHER cols: friendly_name="HTAN, description="This, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.[scATACseq_level1_metadata_r4 | scATACseq_level1_metadata_r5]
+  NUM cols: Manifest_Version, File_Size
+  STR cols: HTAN_Data_File_ID, Id, scATACseq_Library_Layout, Total_Number_of_Passing_Nuclei, Empty_Well_Barcode, Single_Cell_Isolation_Method, scATACseq_Read2, Technical_Replicate_Group, Nuclei_Barcode_Read, Dissociation_Method, Protocol_Link, Well_Index, entityId, scATACseq_Read3, Single_Nucleus_Buffer, Component, Transposition_Reaction, Threshold_for_Minimum_Passing_Reads, scATACseq_Read1, Median_Fraction_of_Reads_in_Annotated_cis_DNA_Elements, Nucleic_Acid_Source, HTAN_Parent_Biospecimen_ID, Library_Construction_Method, Median_Fraction_of_Reads_in_Peaks, Median_Percentage_of_Mitochondrial_Reads_per_Nucleus, Median_Passing_Read_Percentage, File_Format, Nuclei_Barcode_Length, Filename, Nucleus_Identifier, Sequencing_Platform, Total_Reads, HTAN_Center, Manifest_Id, md5, Data_Release, CDS_Release
+  OTHER cols: friendly_name="HTAN, description="This, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.[scATACseq_level2_metadata_r4 | scATACseq_level2_metadata_r5]
+  NUM cols: Manifest_Version, File_Size
+  STR cols: HTAN_Data_File_ID, Id, Proportion_Coverage_30X, Average_Base_Quality, Proportion_Reads_Mapped, Mean_Coverage, entityId, Genomic_Reference, Alignment_Workflow_Type, MapQ30, Index_File_Name, Pairs_On_Diff_CHR, Component, Proportion_Coverage_10x, Average_Read_Length, Total_Unmapped_reads, Contamination_Error, Proportion_Targets_No_Coverage, Proportion_Reads_Duplicated, Alignment_Workflow_Url, Short_Reads, Total_Uniquely_Mapped, Contamination, Custom_Alignment_Workflow, Median_Percentage_of_Mitochondrial_Reads_per_Nucleus, Average_Insert_Size, File_Format, Filename, HTAN_Parent_Data_File_ID, Proportion_Base_Mismatch, Genomic_Reference_URL, Total_Reads, HTAN_Center, Manifest_Id, md5, Data_Release, CDS_Release
+  OTHER cols: friendly_name="HTAN, description="This, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.scATACseq_level3_metadata_r2
+  NUM cols: File_Size
+  STR cols: Component, Filename, File_Format, HTAN_Parent_Biospecimen_ID, HTAN_Data_File_ID, Assay_Type, entityId, HTAN_Center, Data_Release, Base_Filename, md5
+  OTHER cols: friendly_name="HTAN, description="Data, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.[scATACseq_level3_metadata_r4 | scATACseq_level3_metadata_r5]
+  NUM cols: Manifest_Version, File_Size
+  STR cols: LowMapQ, TSS_Fragments, TSS_Enrichment, Passed_Filters, TSS_Percentile, HTAN_Data_File_ID, Peak_Region_Fragments, Component, Promoter_Region_Fragments, Unmapped_Read_Pairs, MACS2_Name, Total_Read_Pairs, Seurat_Clusters, Nucleosome_Signal, Nucleosome_Percentile, Mitochondrial_Read_Pairs, nFeature_RNA, HTAN_Parent_Data_File_ID, MACS2_Start, MACS2_Neg_Log10_qvalue_Summit, Blacklist_Region_Fragments, MACS2_Neg_Log10_pvalue_Summit, Duplicate_Read_Pairs, On_Target_Fragments, MACS2_Relative_Summit_Position, DNase_Sensitive_Region_Fragments, Filename, entityId, MACS2_Score, scATAC_seq_Object_ID, MACS2_Seqnames, MACS2_End, Enhancer_Region_Fragments, MACS2_Width, nFeature_Peaks, nCount_RNA, Chimeric_Read_Pairs, Pct_Reads_in_Peaks, Blacklist_Ratio, Id, MACS2_Fold_Change, nCount_Peaks, Peak_Region_Cutsites, File_Format, MACS2_Strand, HTAN_Center, Manifest_Id, md5, Data_Release, CDS_Release
+  OTHER cols: friendly_name="HTAN, description="This, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.scATACseq_level4_metadata_r2
+  NUM cols: File_Size
+  STR cols: Component, Filename, File_Format, HTAN_Parent_Data_File_ID, HTAN_Data_File_ID, scATACseq_Workflow_Type, scATACseq_Workflow_Parameters_Description, Workflow_Version, Workflow_Link, entityId, HTAN_Center, Data_Release, Base_Filename, md5
+  OTHER cols: friendly_name="HTAN, description="Data, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.scATACseq_level4_metadata_r3
+  NUM cols: Manifest_Version, File_Size
+  STR cols: Component, Filename, File_Format, HTAN_Parent_Data_File_ID, HTAN_Data_File_ID, scATACseq_Workflow_Type, scATACseq_Workflow_Parameters_Description, Workflow_Version, Workflow_Link, entityId, HTAN_Center, Data_Release, Uuid, md5, CDS_Release
+  OTHER cols: friendly_name="HTAN, description="This, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.[scATACseq_level4_metadata_r4 | scATACseq_level4_metadata_r5]
+  NUM cols: Manifest_Version, File_Size
+  STR cols: entityId, Workflow_Version, HTAN_Data_File_ID, Id, scATACseq_Workflow_Parameters_Description, Component, scATACseq_Workflow_Type, Workflow_Link, File_Format, Filename, HTAN_Parent_Data_File_ID, HTAN_Center, Manifest_Id, md5, Data_Release, CDS_Release
+  OTHER cols: friendly_name="HTAN, description="This, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.scRNAseq_CHOP_seurat_pool_logNorm_gini_FiveHD_10Xv3_downsample10000HSPC_r2
+  NUM cols: iObs, iVar, X_value, nCount_RNA, nFeature_RNA, Perc_mito, Seurat_Clusters, Pseudotime, S_Score, G2M_Score, HeatShock_Score
+  STR cols: Cell_Name, Sample, Phase, Cell_Type, Gene_Name
+  OTHER cols: friendly_name="HTAN, description="Data, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.scRNAseq_HTAPP_level4_r3
+  NUM cols: X, Y
+  STR cols: NAME, Cell_Subset, Biospecimen, Source_filename, Source_entityId, HTAN_Center, CellType, HTAPP_ID, Top_Level_Cell_Subset, batchID
+  OTHER cols: friendly_name="HTAPP, description="Data, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.scRNAseq_MSK_Myeloid_SCLC_samples_only_r3
+  NUM cols: iObs, iVar, X_value, n_genes_by_counts, log1p_n_genes_by_counts, total_counts, log1p_total_counts, mito_frac, RBP_frac, clusters, IPF_a1, IPF_a2, IPF_a3, IPF_associated, IPF_Monocytic, IPF_Fibrotic
+  STR cols: batch, donor_id, treatment, procedure, author_cell_type, cell_type_cluster, PLCG2_Tumor_Subclone, Mo_M_metacluster, cell_type_ontology_term_id, tissue_ontology_term_id, disease_ontology_term_id, assay_ontology_term_id, sex_ontology_term_id, self_reported_ethnicity_ontology_term_id, organism_ontology_term_id, development_stage_ontology_term_id, suspension_type, HTAN_Biospecimen_ID, HTAN_Participant_ID, cell_type, assay, disease, organism, sex, tissue, self_reported_ethnicity, development_stage, feature_name, feature_reference, feature_biotype
+  BOOL cols: is_primary_data, feature_is_filtered
+  OTHER cols: friendly_name="MSK, description="Data, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.scRNAseq_MSK_NSCLC_epithelial_cells_r3
+  NUM cols: iObs, iVar, X_value, n_genes_by_counts, log1p_n_genes_by_counts, total_counts, log1p_total_counts, mito_frac, RBP_frac
+  STR cols: batch, donor_id, treatment, histo, procedure, author_cell_type, clusters, clusters_fine, cell_type_ontology_term_id, tissue_ontology_term_id, disease_ontology_term_id, organism_ontology_term_id, development_stage_ontology_term_id, assay_ontology_term_id, sex_ontology_term_id, self_reported_ethnicity_ontology_term_id, suspension_type, HTAN_Biospecimen_ID, HTAN_Participant_ID, cell_type, assay, disease, organism, sex, tissue, self_reported_ethnicity, development_stage, feature_name, feature_reference, feature_biotype
+  BOOL cols: is_primary_data, feature_is_filtered
+  OTHER cols: friendly_name="MSK, description="Data, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.scRNAseq_MSK_SCLC_Mesenchymal_cells_r3
+  NUM cols: iObs, iVar, X_value, n_genes_by_counts, log1p_n_genes_by_counts, total_counts, log1p_total_counts, mito_frac, RBP_frac
+  STR cols: batch, donor_id, treatment, histo, procedure, clusters, author_cell_type, clusters_fine, cell_type_ontology_term_id, disease_ontology_term_id, tissue_ontology_term_id, organism_ontology_term_id, development_stage_ontology_term_id, assay_ontology_term_id, sex_ontology_term_id, self_reported_ethnicity_ontology_term_id, suspension_type, HTAN_Biospecimen_ID, HTAN_Participant_ID, cell_type, assay, disease, organism, sex, tissue, self_reported_ethnicity, development_stage, feature_name, feature_reference, feature_biotype
+  BOOL cols: is_primary_data, feature_is_filtered
+  OTHER cols: friendly_name="MSK, description="Data, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.scRNAseq_MSK_SCLC_RU1215_epithelial_cells_r3
+  NUM cols: iObs, iVar, X_value, n_genes_by_counts, log1p_n_genes_by_counts, total_counts, log1p_total_counts, mito_frac, RBP_frac, clusters
+  STR cols: batch, donor_id, procedure, recurrent_cluster, SCLC_subtype, clusters_fine, disease_ontology_term_id, tissue_ontology_term_id, cell_type_ontology_term_id, organism_ontology_term_id, assay_ontology_term_id, sex_ontology_term_id, self_reported_ethnicity_ontology_term_id, development_stage_ontology_term_id, suspension_type, HTAN_Biospecimen_ID, HTAN_Participant_ID, cell_type, assay, disease, organism, sex, tissue, self_reported_ethnicity, development_stage, feature_name, feature_reference, feature_biotype
+  BOOL cols: is_primary_data, feature_is_filtered
+  OTHER cols: friendly_name="MSK, description="Data, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.scRNAseq_MSK_SCLC_combined_samples_r3
+  NUM cols: iObs, iVar, X_value, ngenes, libsize, mito_frac, RBP_frac, H_knn
+  STR cols: batch, donor_id, treatment, procedure, histo, cell_type_coarse, cell_type_fine, cell_type_general, clusters, cell_type_med, development_stage_ontology_term_id, sex_ontology_term_id, self_reported_ethnicity_ontology_term_id, assay_ontology_term_id, tissue_ontology_term_id, disease_ontology_term_id, organism_ontology_term_id, cell_type_ontology_term_id, suspension_type, HTAN_Biospecimen_ID, HTAN_Participant_ID, cell_type, assay, disease, organism, sex, tissue, self_reported_ethnicity, development_stage, feature_name, feature_reference, feature_biotype
+  BOOL cols: is_primary_data, feature_is_filtered
+  OTHER cols: friendly_name="MSK, description="Data, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.scRNAseq_MSK_SCLC_epithelial_cells_r3
+  NUM cols: iObs, iVar, X_value, n_genes_by_counts, log1p_n_genes_by_counts, total_counts, log1p_total_counts, mito_frac, RBP_frac, pval_SCLC_A, pval_SCLC_N, pval_SCLC_P, NEUROD_genes, MHCI_PRESENTATION, MHCII_PRESENTATION, clusters
+  STR cols: batch, donor_id, treatment, procedure, SCLC_subtype, SCLC_subtype_plus_TP53_RB1_wt, SCLC_major_subtype_of_sample, treatment_categorized, histo, clusters_fine, disease_ontology_term_id, tissue_ontology_term_id, cell_type_ontology_term_id, organism_ontology_term_id, assay_ontology_term_id, sex_ontology_term_id, self_reported_ethnicity_ontology_term_id, development_stage_ontology_term_id, suspension_type, HTAN_Biospecimen_ID, HTAN_Participant_ID, cell_type, assay, disease, organism, sex, tissue, self_reported_ethnicity, development_stage, feature_name, feature_reference, feature_biotype
+  BOOL cols: recurrent_cluster, is_primary_data, feature_is_filtered
+  OTHER cols: friendly_name="MSK, description="Data, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.scRNAseq_MSK_SCLC_immune_cells_r3
+  NUM cols: iObs, iVar, X_value, n_genes_by_counts, log1p_n_genes_by_counts, total_counts, log1p_total_counts, mito_frac, RBP_frac, clusters, H_treatment, H_subtype
+  STR cols: batch, donor_id, treatment, procedure, author_cell_type, cell_type_broad, treatment_categorized, subtype, cell_type_ontology_term_id, tissue_ontology_term_id, disease_ontology_term_id, organism_ontology_term_id, development_stage_ontology_term_id, assay_ontology_term_id, sex_ontology_term_id, self_reported_ethnicity_ontology_term_id, suspension_type, HTAN_Biospecimen_ID, HTAN_Participant_ID, cell_type, assay, disease, organism, sex, tissue, self_reported_ethnicity, development_stage, feature_name, feature_reference, feature_biotype
+  BOOL cols: is_primary_data, feature_is_filtered
+  OTHER cols: friendly_name="MSK, description="Data, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.scRNAseq_MSK_SCLC_myeloid_cells_r3
+  NUM cols: iObs, iVar, X_value, n_genes_by_counts, log1p_n_genes_by_counts, total_counts, log1p_total_counts, mito_frac, RBP_frac
+  STR cols: batch, donor_id, treatment, procedure, author_cell_type, clusters, histo, histo_tissue, cell_type_ontology_term_id, disease_ontology_term_id, tissue_ontology_term_id, development_stage_ontology_term_id, assay_ontology_term_id, sex_ontology_term_id, self_reported_ethnicity_ontology_term_id, organism_ontology_term_id, suspension_type, HTAN_Biospecimen_ID, HTAN_Participant_ID, cell_type, assay, disease, organism, sex, tissue, self_reported_ethnicity, development_stage, feature_name, feature_reference, feature_biotype
+  BOOL cols: is_primary_data, feature_is_filtered
+  OTHER cols: friendly_name="MSK, description="Data, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.scRNAseq_MSK_SCLC_tcell_r3
+  NUM cols: iObs, iVar, X_value, n_genes_by_counts, log1p_n_genes_by_counts, total_counts, log1p_total_counts, mito_frac, RBP_frac
+  STR cols: batch, donor_id, treatment, procedure, author_cell_type, clusters, cell_type_cluster, histology_subtype, cell_type_ontology_term_id, tissue_ontology_term_id, disease_ontology_term_id, assay_ontology_term_id, sex_ontology_term_id, self_reported_ethnicity_ontology_term_id, organism_ontology_term_id, development_stage_ontology_term_id, suspension_type, HTAN_Biospecimen_ID, HTAN_Participant_ID, cell_type, assay, disease, organism, sex, tissue, self_reported_ethnicity, development_stage, feature_name, feature_reference, feature_biotype
+  BOOL cols: is_primary_data, feature_is_filtered
+  OTHER cols: friendly_name="MSK, description="Data, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.scRNAseq_MSK_epithelial_cells_r3
+  NUM cols: iObs, iVar, X_value, n_genes_by_counts, log1p_n_genes_by_counts, total_counts, log1p_total_counts, mito_frac, RBP_frac
+  STR cols: batch, donor_id, treatment, procedure, author_cell_type, clusters, cell_type_ontology_term_id, tissue_ontology_term_id, disease_ontology_term_id, organism_ontology_term_id, development_stage_ontology_term_id, assay_ontology_term_id, sex_ontology_term_id, self_reported_ethnicity_ontology_term_id, suspension_type, HTAN_Biospecimen_ID, HTAN_Participant_ID, cell_type, assay, disease, organism, sex, tissue, self_reported_ethnicity, development_stage, feature_name, feature_reference, feature_biotype
+  BOOL cols: is_primary_data, feature_is_filtered
+  OTHER cols: friendly_name="MSK, description="Data, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.scRNAseq_MSK_immune_cells_r3
+  NUM cols: iObs, iVar, X_value, n_genes_by_counts, log1p_n_genes_by_counts, total_counts, log1p_total_counts, mito_frac, RBP_frac
+  STR cols: batch, donor_id, treatment, procedure, histo, histology_subtype, author_cell_type, clusters, clusters_fine, tissue_ontology_term_id, disease_ontology_term_id, cell_type_ontology_term_id, organism_ontology_term_id, development_stage_ontology_term_id, assay_ontology_term_id, sex_ontology_term_id, self_reported_ethnicity_ontology_term_id, suspension_type, HTAN_Biospecimen_ID, HTAN_Participant_ID, cell_type, assay, disease, organism, sex, tissue, self_reported_ethnicity, development_stage, feature_name, feature_reference, feature_biotype
+  BOOL cols: is_primary_data, feature_is_filtered
+  OTHER cols: friendly_name="MSK, description="Data, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.scRNAseq_VUMC_ABNORMALS_EPI_V2_r2
+  NUM cols: iObs, iVar, X_value
+  STR cols: Cell_Barcode_Number, HTAN_Parent_Data_File_ID, HTAN_Biospecimen_ID, Tissue_Subtype, Tissue_Type, Gene_Name
+  OTHER cols: friendly_name="HTAN, description="Data, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.[scRNAseq_VUMC_HTAN_DIS_EPI_V2_r2 | scRNAseq_VUMC_HTAN_VAL_DIS_NONEPI_V2_r2 | scRNAseq_VUMC_HTAN_VAL_EPI_V2_r2]
+  NUM cols: iObs, iVar, X_value
+  STR cols: Cell_Barcode_Number, HTAN_Parent_Data_File_ID, HTAN_Biospecimen_ID, Cell_Type, Tissue_Subtype, Tissue_Type, Gene_Name
+  OTHER cols: friendly_name="HTAN, description="Data, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.[scRNAseq_VUMC_HTAN_DIS_EPI_cellxgene_r3 | scRNAseq_VUMC_HTAN_VAL_EPI_cellxgene_r3]
+  NUM cols: iObs, iVar, X_value
+  STR cols: HTAN_Parent_Data_File_ID, HTAN_Specimen_ID, author_cell_type, Polyp_Type, Sample_Classification, cell_type_ontology_term_id, disease_ontology_term_id, donor_id, assay_ontology_term_id, tissue_ontology_term_id, sex_ontology_term_id, development_stage_ontology_term_id, self_reported_ethnicity_ontology_term_id, suspension_type, organism_ontology_term_id, cell_type, assay, disease, organism, sex, tissue, self_reported_ethnicity, development_stage, feature_name, feature_reference, feature_biotype
+  BOOL cols: is_primary_data, feature_is_filtered
+  OTHER cols: friendly_name="HTAN, description="Data, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.scRNAseq_VUMC_VAL_DIS_NOEPI_cellxgene_r3
+  NUM cols: iObs, iVar, X_value
+  STR cols: HTAN_Parent_Data_File_ID, HTAN_Specimen_ID, author_cell_type, Tumor_Type, Sample_Classification, cell_type_ontology_term_id, disease_ontology_term_id, donor_id, assay_ontology_term_id, tissue_ontology_term_id, sex_ontology_term_id, development_stage_ontology_term_id, self_reported_ethnicity_ontology_term_id, organism_ontology_term_id, suspension_type, cell_type, assay, disease, organism, sex, tissue, self_reported_ethnicity, development_stage, feature_name, feature_reference, feature_biotype
+  BOOL cols: is_primary_data, feature_is_filtered
+  OTHER cols: friendly_name="HTAN, description="Data, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.scRNAseq_level1_metadata_r2_v2
+  NUM cols: File_Size
+  STR cols: Component, Filename, File_Format, HTAN_Parent_Biospecimen_ID, HTAN_Data_File_ID, Nucleic_Acid_Source, Cryopreserved_Cells_in_Sample, Single_Cell_Isolation_Method, Dissociation_Method, Library_Construction_Method, Read_Indicator, Read1, Read2, End_Bias, Reverse_Transcription_Primer, Spike_In, Sequencing_Platform, Total_Number_of_Input_Cells, Input_Cells_and_Nuclei, Library_Preparation_Days_from_Index, Single_Cell_Dissociation_Days_from_Index, Sequencing_Library_Construction_Days_from_Index, Nucleic_Acid_Capture_Days_from_Index, Protocol_Link, Technical_Replicate_Group, Cell_Barcode_Offset, Cell_Barcode_Length, Valid_Barcodes_Cell_Number, UMI_Barcode_Offset, UMI_Barcode_Length, Median_UMIs_per_Cell_Number, Empty_Well_Barcode, Well_Index, Feature_Reference_Id, entityId, HTAN_Center, Data_Release, Base_Filename, md5
+  OTHER cols: friendly_name="HTAN, description="Data, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.scRNAseq_level1_metadata_r3
+  NUM cols: Manifest_Version, File_Size
+  STR cols: Component, Filename, File_Format, HTAN_Parent_Biospecimen_ID, HTAN_Data_File_ID, Nucleic_Acid_Source, Cryopreserved_Cells_in_Sample, Single_Cell_Isolation_Method, Dissociation_Method, Library_Construction_Method, Read_Indicator, Read1, Read2, End_Bias, Reverse_Transcription_Primer, Spike_In, Sequencing_Platform, Total_Number_of_Input_Cells, Input_Cells_and_Nuclei, Library_Preparation_Days_from_Index, Single_Cell_Dissociation_Days_from_Index, Sequencing_Library_Construction_Days_from_Index, Nucleic_Acid_Capture_Days_from_Index, Protocol_Link, Technical_Replicate_Group, Cell_Barcode_Offset, Cell_Barcode_Length, Valid_Barcodes_Cell_Number, UMI_Barcode_Offset, UMI_Barcode_Length, Median_UMIs_per_Cell_Number, Empty_Well_Barcode, Well_Index, Feature_Reference_Id, entityId, HTAN_Center, Data_Release, Uuid, md5, CDS_Release
+  OTHER cols: friendly_name="HTAN, description="This, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.[scRNAseq_level1_metadata_r4 | scRNAseq_level1_metadata_r5]
+  NUM cols: Manifest_Version, File_Size
+  STR cols: HTAN_Data_File_ID, Id, Empty_Well_Barcode, Single_Cell_Isolation_Method, Technical_Replicate_Group, Sequencing_Library_Construction_Days_from_Index, Nucleic_Acid_Capture_Days_from_Index, Dissociation_Method, Protocol_Link, Well_Index, Cell_Barcode_Offset, entityId, Feature_Reference_Id, Total_Number_of_Input_Cells, Spike_In_Concentration, Component, cDNA_Offset, End_Bias, Library_Preparation_Days_from_Index, Nucleic_Acid_Source, cDNA_Length, UMI_Barcode_Length, HTAN_Parent_Biospecimen_ID, Input_Cells_and_Nuclei, Library_Construction_Method, Cell_Barcode_Length, Valid_Barcodes_Cell_Number, File_Format, Filename, Single_Cell_Dissociation_Days_from_Index, Read1, Read2, Reverse_Transcription_Primer, Read_Indicator, Sequencing_Platform, Median_UMIs_per_Cell_Number, UMI_Barcode_Offset, Cryopreserved_Cells_in_Sample, Spike_In, HTAN_Center, Manifest_Id, md5, Data_Release, CDS_Release
+  OTHER cols: friendly_name="HTAN, description="This, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.scRNAseq_level2_metadata_r2
+  NUM cols: File_Size
+  STR cols: Component, Filename, File_Format, HTAN_Parent_Data_File_ID, HTAN_Data_File_ID, scRNAseq_Workflow_Type, Workflow_Version, scRNAseq_Workflow_Parameters_Description, Workflow_Link, Genomic_Reference, Genomic_Reference_URL, Genome_Annotation_URL, Checksum, Whitelist_Cell_Barcode_File_Link, Cell_Barcode_Tag, UMI_Tag, Applied_Hard_Trimming, entityId, HTAN_Center, Data_Release, Base_Filename, md5
+  OTHER cols: friendly_name="HTAN, description="Data, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.scRNAseq_level2_metadata_r3
+  NUM cols: Manifest_Version, File_Size
+  STR cols: Component, Filename, File_Format, HTAN_Parent_Data_File_ID, HTAN_Data_File_ID, scRNAseq_Workflow_Type, Workflow_Version, scRNAseq_Workflow_Parameters_Description, Workflow_Link, Genomic_Reference, Genomic_Reference_URL, Genome_Annotation_URL, Checksum, Whitelist_Cell_Barcode_File_Link, Cell_Barcode_Tag, UMI_Tag, Applied_Hard_Trimming, Is_lowest_level, entityId, HTAN_Center, Data_Release, Uuid, md5, CDS_Release
+  OTHER cols: friendly_name="HTAN, description="This, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.[scRNAseq_level2_metadata_r4 | scRNAseq_level2_metadata_r5]
+  NUM cols: Manifest_Version, File_Size
+  STR cols: Workflow_Link, UMI_Tag, HTAN_Data_File_ID, Component, scRNAseq_Workflow_Type, Aligned_Read_Length, Cell_Barcode_Tag, HTAN_Parent_Data_File_ID, Genomic_Reference_URL, Checksum, Genomic_Reference, Workflow_Version, Genome_Annotation_URL, Filename, entityId, Applied_Hard_Trimming, scRNAseq_Workflow_Parameters_Description, Id, Whitelist_Cell_Barcode_File_Link, File_Format, HTAN_Center, Manifest_Id, md5, Data_Release, CDS_Release
+  OTHER cols: friendly_name="HTAN, description="This, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.scRNAseq_level3_metadata_r2
+  NUM cols: File_Size
+  STR cols: Component, Filename, File_Format, HTAN_Parent_Data_File_ID, HTAN_Data_File_ID, Data_Category, Matrix_Type, Linked_Matrices, Cell_Median_Number_Reads, Cell_Median_Number_Genes, Cell_Total, scRNAseq_Workflow_Type, scRNAseq_Workflow_Parameters_Description, Workflow_Link, Workflow_Version, entityId, HTAN_Center, Data_Release, Base_Filename, md5
+  OTHER cols: friendly_name="HTAN, description="Data, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.scRNAseq_level3_metadata_r3
+  NUM cols: Manifest_Version, File_Size
+  STR cols: Component, Filename, File_Format, HTAN_Parent_Data_File_ID, HTAN_Data_File_ID, Data_Category, Matrix_Type, Linked_Matrices, Cell_Median_Number_Reads, Cell_Median_Number_Genes, Cell_Total, scRNAseq_Workflow_Type, scRNAseq_Workflow_Parameters_Description, Workflow_Link, Workflow_Version, entityId, HTAN_Center, Data_Release, Uuid, md5, CDS_Release
+  OTHER cols: friendly_name="HTAN, description="This, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.[scRNAseq_level3_metadata_r4 | scRNAseq_level3_metadata_r5]
+  NUM cols: Manifest_Version, File_Size
+  STR cols: Workflow_Link, Data_Category, Filename, HTAN_Parent_Data_File_ID, scRNAseq_Workflow_Parameters_Description, Cell_Total, entityId, Id, HTAN_Data_File_ID, Cell_Median_Number_Reads, Component, Cell_Median_Number_Genes, scRNAseq_Workflow_Type, Linked_Matrices, Matrix_Type, File_Format, Workflow_Version, HTAN_Center, Manifest_Id, md5, Data_Release, CDS_Release
+  OTHER cols: friendly_name="HTAN, description="This, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.scRNAseq_level4_metadata_r2
+  NUM cols: File_Size
+  STR cols: Component, Filename, File_Format, HTAN_Parent_Data_File_ID, HTAN_Data_File_ID, scRNAseq_Workflow_Type, scRNAseq_Workflow_Parameters_Description, Workflow_Version, Workflow_Link, entityId, HTAN_Center, Data_Release, Base_Filename, md5
+  OTHER cols: friendly_name="HTAN, description="Data, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.scRNAseq_level4_metadata_r3
+  NUM cols: Manifest_Version, File_Size
+  STR cols: Component, Filename, File_Format, HTAN_Parent_Data_File_ID, HTAN_Data_File_ID, scRNAseq_Workflow_Type, scRNAseq_Workflow_Parameters_Description, Workflow_Version, Workflow_Link, entityId, HTAN_Center, Data_Release, Uuid, md5, CDS_Release
+  OTHER cols: friendly_name="HTAN, description="This, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.[scRNAseq_level4_metadata_r4 | scRNAseq_level4_metadata_r5]
+  NUM cols: Manifest_Version, File_Size
+  STR cols: Workflow_Link, Filename, HTAN_Parent_Data_File_ID, scRNAseq_Workflow_Parameters_Description, entityId, Id, HTAN_Data_File_ID, Component, scRNAseq_Workflow_Type, File_Format, Workflow_Version, HTAN_Center, Manifest_Id, md5, Data_Release, CDS_Release
+  OTHER cols: friendly_name="HTAN, description="This, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.[schema_r2 | schema_r3 | schema_r4 | schema_r5]
+  STR cols: Attribute, Description, Valid_Values, DependsOn, Properties, Required, Parent, DependsOn_Component, Source, Validation_Rules
+  OTHER cols: friendly_name="HTAN, description="Data, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.srrs_biospecimen_r2
+  STR cols: Component, HTAN_Biospecimen_ID, Source_HTAN_Biospecimen_ID, HTAN_Parent_ID, Adjacent_Biospecimen_IDs, Biospecimen_Type, Assay_Type, Timepoint_Label, Collection_Days_from_Index, Acquisition_Method_Type, Ischemic_Time, Ischemic_Temperature, Collection_Media, Topography_Code, Additional_Topography, Fixative_Type, Storage_Method, Preinvasive_Morphology, Histologic_Morphology_Code, Preservation_Method, Processing_Days_from_Index, Protocol_Link, entityId, HTAN_Center, Data_Release
+  OTHER cols: friendly_name="HTAN, description="Data, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.srrs_biospecimen_r3
+  NUM cols: Manifest_Version
+  STR cols: Component, HTAN_Biospecimen_ID, Source_HTAN_Biospecimen_ID, HTAN_Parent_ID, Adjacent_Biospecimen_IDs, Biospecimen_Type, Timepoint_Label, Collection_Days_from_Index, Acquisition_Method_Type, Ischemic_Time, Ischemic_Temperature, Collection_Media, Topography_Code, Additional_Topography, Fixative_Type, Storage_Method, Preinvasive_Morphology, Histologic_Morphology_Code, Preservation_Method, Processing_Days_from_Index, Protocol_Link, entityId, HTAN_Center, Data_Release, Uuid
+  OTHER cols: friendly_name="HTAN, description="This, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.srrs_biospecimen_r5
+  NUM cols: Manifest_Version
+  STR cols: Collection_Media, Fixation_Duration, Biospecimen_Dimension_2, Histologic_Morphology_Code, Acquisition_Method_Other_Specify, Preinvasive_Morphology, Timepoint_Label, Component, Site_of_Resection_or_Biopsy, Fixative_Type, Shipping_Condition_Type, Analyte_Type, Collection_Days_from_Index, Biospecimen_Dimension_1, HTAN_Parent_ID, Additional_Topography, Processing_Days_from_Index, Ischemic_Time, Total_Volume, HTAN_Biospecimen_ID, Storage_Method, Portion_Weight, Acquisition_Method_Type, Source_HTAN_Biospecimen_ID, entityId, Sectioning_Days_from_Index, Topography_Code, Ischemic_Temperature, Tumor_Tissue_Type, Slide_Charge_Type, Protocol_Link, Preservation_Method, Section_Number_in_Sequence, Id, Section_Thickness_Value, Specimen_Laterality, Biospecimen_Type, Adjacent_Biospecimen_IDs, Biospecimen_Dimension_3, HTAN_Center, Manifest_Id
+  OTHER cols: friendly_name="HTAN, description="This, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.srrs_clinical_tier2_r2
+  STR cols: Component, HTAN_Participant_ID, Timepoint_Label, Start_Days_from_Index, Stop_Days_from_Index, Education_Level, Country_of_Birth, Medically_Underserved_Area, Rural_vs_Urban, Cancer_Incidence, Cancer_Incidence_Location, Ethnicity, Gender, Race, Vital_Status, Age_at_Diagnosis, Days_to_Last_Follow_up, Days_to_Last_Known_Disease_Status, Days_to_Recurrence, Last_Known_Disease_Status, Morphology, Primary_Diagnosis, Progression_or_Recurrence, Site_of_Resection_or_Biopsy, Tissue_or_Organ_of_Origin, NCI_Atlas_Cancer_Site, Tumor_Grade, Pack_Years_Smoked, Years_Smoked, Days_to_Follow_Up, Gene_Symbol, Molecular_Analysis_Method, Test_Result, Treatment_Type, Tumor_Largest_Dimension_Diameter, entityId, HTAN_Center, Data_Release
+  OTHER cols: friendly_name="HTAN, description="Data, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.srrs_clinical_tier2_r5
+  NUM cols: Manifest_Version
+  STR cols: Days_to_Progression, Last_Known_Disease_Status, Days_to_Last_Known_Disease_Status, Year_of_Death, Progression_or_Recurrence_Type, Progression_or_Recurrence, Cancer_Incidence_Location, Morphology, Days_to_Progression_Free, Timepoint_Label, Component, Race, Site_of_Resection_or_Biopsy, Stop_Days_from_Index, NCI_Atlas_Cancer_Site, Cancer_Incidence, Progression_or_Recurrence_Anatomic_Site, Days_to_Death, Age_at_Diagnosis, Ethnicity, Cause_of_Death_Source, Treatment_Type, Tumor_Grade, Test_Result, Years_Smoked, Medically_Underserved_Area, Days_to_Follow_Up, Vital_Status, entityId, Primary_Diagnosis, Country_of_Birth, Tumor_Largest_Dimension_Diameter, Medically_Underserved_Score, Gender, Molecular_Analysis_Method, Days_to_Recurrence, HTAN_Participant_ID, Gene_Symbol, Start_Days_from_Index, Pack_Years_Smoked, Tissue_or_Organ_of_Origin, Days_to_Last_Follow_up, Id, Education_Level, Cause_of_Death, Rural_vs_Urban, HTAN_Center, Manifest_Id
+  OTHER cols: friendly_name="HTAN, description="This, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.srrs_imaging_level2_metadata_r2
+  NUM cols: File_Size
+  STR cols: Component, Filename, File_Format, HTAN_Participant_ID, HTAN_Parent_Biospecimen_ID, HTAN_Data_File_ID, Channel_Metadata_Filename, Imaging_Assay_Type, Protocol_Link, Software_and_Version, Microscope, Objective, NominalMagnification, Pyramid, Zstack, Tseries, Passed_QC, Frame_Averaging, Image_ID, DimensionOrder, PhysicalSizeX, PhysicalSizeXUnit, PhysicalSizeY, PhysicalSizeYUnit, Pixels_BigEndian, PlaneCount, SizeC, SizeT, SizeX, SizeY, SizeZ, PixelType, Imaging_Level_2_Channels, entityId, HTAN_Center, Data_Release, Base_Filename, md5
+  OTHER cols: friendly_name="HTAN, description="Data, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.srrs_imaging_level2_metadata_r3
+  NUM cols: Manifest_Version, File_Size
+  STR cols: Component, Filename, File_Format, HTAN_Participant_ID, HTAN_Parent_Biospecimen_ID, HTAN_Data_File_ID, Channel_Metadata_Filename, Imaging_Assay_Type, Protocol_Link, Software_and_Version, Microscope, Objective, NominalMagnification, Pyramid, Zstack, Tseries, Passed_QC, Frame_Averaging, Image_ID, DimensionOrder, PhysicalSizeX, PhysicalSizeXUnit, PhysicalSizeY, PhysicalSizeYUnit, Pixels_BigEndian, PlaneCount, SizeC, SizeT, SizeX, SizeY, SizeZ, PixelType, entityId, HTAN_Center, Data_Release, Uuid, md5, CDS_Release
+  OTHER cols: friendly_name="HTAN, description="This, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.srrs_imaging_level2_metadata_r5
+  NUM cols: Manifest_Version, File_Size
+  STR cols: Channel_Metadata_Filename, Frame_Averaging, PlaneCount, PhysicalSizeXUnit, Objective, DimensionOrder, Image_ID, HTAN_Data_File_ID, Component, File_Format, Imaging_Assay_Type, Comment, Zstack, SizeC, PhysicalSizeY, SizeX, HTAN_Parent_Biospecimen_ID, Passed_QC, Filename, PhysicalSizeX, Microscope, entityId, SizeT, PixelType, Protocol_Link, SizeY, Pixels_BigEndian, HTAN_Participant_ID, PhysicalSizeYUnit, SizeZ, NominalMagnification, Id, Tseries, Software_and_Version, Pyramid, HTAN_Center, Manifest_Id, md5, Data_Release, CDS_Release
+  OTHER cols: friendly_name="HTAN, description="This, labels=[("access",
+
+isb-cgc-bq.HTAN_versioned.tissueOrOrganOfOrigin_to_wholeOrgan_mapping_r4
+  STR cols: Whole_Organ, Tissue_or_Organ_of_Origin
+  OTHER cols: friendly_name="TISSUE, description="Mapping, labels=[("access",

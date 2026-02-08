@@ -1,0 +1,16 @@
+[DATASET=open_images]
+bigquery-public-data.open_images.annotations_bbox
+  NUM cols: confidence, x_min, x_max, y_min, y_max
+  STR cols: image_id, source, label_name
+  BOOL cols: is_occluded, is_truncated, is_group_of, is_depiction, is_inside
+
+bigquery-public-data.open_images.dict
+  STR cols: label_name, label_display_name
+
+bigquery-public-data.open_images.images
+  NUM cols: original_size
+  STR cols: image_id, subset, original_url, original_landing_url, license, author_profile_url, author, title, original_md5, thumbnail_300k_url
+
+bigquery-public-data.open_images.labels
+  NUM cols: confidence
+  STR cols: image_id, source, label_name

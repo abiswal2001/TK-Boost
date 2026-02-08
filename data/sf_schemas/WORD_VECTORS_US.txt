@@ -1,0 +1,12 @@
+[DB=WORD_VECTORS_US | SCHEMA=WORD_VECTORS_US]
+WORD_VECTORS_US.WORD_VECTORS_US.GLOVE_VECTORS
+  STR cols: word
+  OTHER cols: vector
+
+WORD_VECTORS_US.WORD_VECTORS_US.NATURE
+  STR cols: abstract, authors, body, category, citations, doi, id, keywords, link, nature_source, organization_affiliated, pdf_link, title
+  TIME cols: acquisition_date, date
+
+WORD_VECTORS_US.WORD_VECTORS_US.WORD_FREQUENCIES
+  NUM cols: frequency
+  STR cols: word

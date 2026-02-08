@@ -1,0 +1,15 @@
+[DATASET=ga360]
+bigquery-public-data.google_analytics_sample.ga_sessions_201* (334 tables)
+  NUM cols: visitorId, visitNumber, visitId, visitStartTime
+  STR cols: date, fullVisitorId, userId, channelGrouping, socialEngagementType
+  OTHER cols: totals, trafficSource, device, geoNetwork, customDimensions, hits
+
+bigquery-public-data.google_analytics_sample.ga_sessions_201707* (31 tables)
+  NUM cols: visitorId, visitNumber, visitId, visitStartTime
+  STR cols: date, fullVisitorId, userId, clientId, channelGrouping, socialEngagementType
+  OTHER cols: totals, trafficSource, device, geoNetwork, customDimensions, hits
+
+bigquery-public-data.google_analytics_sample.ga_sessions_20170801
+  NUM cols: visitorId, visitNumber, visitId, visitStartTime
+  STR cols: date, fullVisitorId, userId, clientId, channelGrouping, socialEngagementType
+  OTHER cols: totals, trafficSource, device, geoNetwork, customDimensions, hits, description="Obfuscated

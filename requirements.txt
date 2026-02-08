@@ -1,0 +1,23 @@
+# Core LLM and API
+litellm>=1.0.0
+
+# Database connectors
+pandas>=2.0.0
+snowflake-connector-python>=3.0.0
+google-cloud-bigquery>=3.0.0
+
+# SQL parsing and analysis
+sqlglot>=20.0.0
+duckdb>=0.9.0
+
+# Data processing
+datasets>=2.0.0
+tqdm>=4.65.0
+
+# Web scraping (if needed for schema generation)
+beautifulsoup4>=4.12.0
+requests>=2.31.0
+
+# Type hints (Python < 3.9)
+typing-extensions>=4.5.0
+

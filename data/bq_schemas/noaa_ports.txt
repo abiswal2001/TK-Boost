@@ -1,0 +1,83 @@
+[DATASET=noaa_ports]
+bigquery-public-data.geo_us_boundaries.adjacent_counties
+  STR cols: county, state, county_fips_code
+  OTHER cols: neighbors, neighbors_state, neighbors_fips_code
+
+bigquery-public-data.geo_us_boundaries.adjacent_states
+  STR cols: state, state_name, state_fips_code
+  OTHER cols: neighbors_state, neighbors_fips_code
+
+bigquery-public-data.geo_us_boundaries.cbsa
+  NUM cols: area_land_meters, area_water_meters, internal_point_latitude, internal_point_longitude
+  STR cols: geo_id, csa_geo_id, cbsa_fips_code, name, lsad_name, lsad_code, msa_indicator, mtfcc_feature_class_code
+  OTHER cols: internal_point_geom, cbsa_geom, PARTITION
+
+bigquery-public-data.geo_us_boundaries.cnecta
+  NUM cols: area_land_meters, area_water_meters, int_point_lat, int_point_lon
+  STR cols: geo_id, cnecta_fips_code, name, name_lsad, lsad, mtfcc_feature_class_code
+  OTHER cols: cnecta_geom, PARTITION
+
+bigquery-public-data.geo_us_boundaries.coastline
+  STR cols: name
+  OTHER cols: coastline_geom, PARTITION
+
+bigquery-public-data.geo_us_boundaries.[congress_district_115 | congress_district_116]
+  NUM cols: area_land_meters, area_water_meters, int_point_lat, int_point_lon
+  STR cols: geo_id, state_fips_code, district_fips_code, lsad_name, lsad_code, congress_session, mtfcc_feature_class_code
+  BOOL cols: functional_status
+  OTHER cols: int_point_geom, district_geom, PARTITION
+
+bigquery-public-data.geo_us_boundaries.counties
+  NUM cols: area_land_meters, area_water_meters, int_point_lat, int_point_lon
+  STR cols: geo_id, state_fips_code, county_fips_code, county_gnis_code, county_name, lsad_name, lsad_code, fips_class_code, mtfcc_feature_class_code, csa_fips_code, cbsa_fips_code, met_div_fips_code, functional_status
+  OTHER cols: int_point_geom, county_geom, PARTITION
+
+bigquery-public-data.geo_us_boundaries.csa
+  NUM cols: area_land_meters, area_water_meters, internal_point_lon, internal_point_lat
+  STR cols: geo_id, csa_code, name, lsad_name, msa_lsad_code, mtfcc_feature_class_code
+  OTHER cols: internal_point_geom, csa_geom, PARTITION
+
+bigquery-public-data.noaa_hurricanes.hurricanes
+  NUM cols: number, latitude, longitude, wmo_wind, wmo_pressure, dist2land, landfall, usa_latitude, usa_longitude, usa_wind, usa_pressure, usa_sshs, usa_r34_ne, usa_r34_se, usa_r34_sw, usa_r34_nw, usa_r50_ne, usa_r50_se, usa_r50_sw, usa_r50_nw, usa_r64_ne, usa_r64_se, usa_r64_sw, usa_r64_nw, usa_poci, usa_roci, usa_rmw, tokyo_latitude, tokyo_longitude, tokyo_grade, tokyo_wind, tokyo_pressure, tokyo_r50_dir, tokyo_r50_longitude, tokyo_r50_short, tokyo_r30_dir, tokyo_r30_long, tokyo_r30_short, tokyo_land, cma_latitude, cma_longitude, cma_cat, cma_wind, cma_pressure, hko_longitude, hko_wind, hko_pressure, newdelhi_latitude, newdelhi_longitude, newdelhi_wind, newdelhi_pressure, newdelhi_ci, newdelhi_dp, newdelhi_poci, reunion_latitude, reunion_longitude, reunion_type, reunion_wind, reunion_pressure, reunion_tnum, reunion_ci, reunion_rmw, reunion_r34_ne, reunion_r34_se, reunion_r34_sw, reunion_r34_nw, reunion_r50_ne, reunion_r50_se, reunion_r50_sw, reunion_r50_nw, reunion_r64_ne, reunion_r64_se, reunion_r64_sw, reunion_r64_nw, bom_latitude, bom_longitude, bom_type, bom_wind, bom_pressure, bom_tnum, bom_ci, bom_rmw, bom_r34_ne, bom_r34_se, bom_r34_sw, bom_r34_nw, bom_r50_ne, bom_r50_se, bom_r50_sw, bom_r50_nw, bom_r64_ne, bom_r64_se, bom_r64_sw, bom_r64_nw, bom_roci, bom_poci, bom_eye, bom_pos_method, bom_pressure_method, wellington_latitude, wellington_longitude, wellington_wind, wellington_pressure, nadi_latitude, nadi_longitude, nadi_cat, nadi_wind, nadi_pressure, ds824_latitude, ds824_longitude, ds824_wind, ds824_pressure, td9636_latitude, td9636_longitude, td9636_stage, td9636_wind, td9636_pressure, td9635_latitude, td9635_longitude, td9635_wind, td9635_pressure, td9635_roci, neumann_latitude, neumann_longitude, neumann_wind, neumann_pressure, mlc_latitude, mlc_longitude, mlc_wind, mlc_pressure
+  STR cols: sid, season, basin, subbasin, name, nature, wmo_agency, track_type, iflag, usa_agency, usa_record, usa_status, usa_eye, hko_latitude, hko_cat, newdelhi_grade, ds824_stage, neumann_class, mlc_class, usa_atcf_id, source_url
+  TIME cols: iso_time, etl_timestamp
+
+bigquery-public-data.geo_us_boundaries.metropolitan_divisions
+  NUM cols: area_land_meters, area_water_meters, internal_point_latitude, internal_point_longitude
+  STR cols: geo_id, csa_code, cbsa_code, metdiv_code, name, lsad_name, lsad_code, mtfcc_feature_class_code
+  OTHER cols: internal_point_geom, metdiv_geom, PARTITION
+
+bigquery-public-data.geo_us_boundaries.national_outline
+  STR cols: aff_geo_id, geo_id, name
+  OTHER cols: us_outline_geom
+
+bigquery-public-data.geo_us_boundaries.nws_forecast_regions
+  NUM cols: lon, lat
+  STR cols: state, cwa, time_zone, fe_area, zone, name, state_zone, shortname
+  OTHER cols: shape_geometry
+
+bigquery-public-data.geo_us_boundaries.railways
+  NUM cols: geo_id
+  STR cols: full_name, mtfcc_feature_class_code, railway_geom
+  OTHER cols: PARTITION
+
+bigquery-public-data.geo_us_boundaries.states
+  NUM cols: area_land_meters, area_water_meters, int_point_lat, int_point_lon
+  STR cols: geo_id, region_code, division_code, state_fips_code, state_gnis_code, state, state_name, lsad_code, mtfcc_feature_class_code, functional_status
+  OTHER cols: int_point_geom, state_geom, PARTITION
+
+bigquery-public-data.geo_us_boundaries.urban_areas
+  NUM cols: area_land_meters, area_water_meters, internal_point_lon, internal_point_lat
+  STR cols: geo_id, urban_area_code, name, lsad_name, area_lsad_code, mtfcc_feature_class_code, type, functional_status
+  OTHER cols: internal_point_geom, urban_area_geom, PARTITION
+
+bigquery-public-data.geo_international_ports.world_port_index
+  NUM cols: port_latitude, port_longitude, tide_range
+  STR cols: index_number, region_number, port_name, country, publication_number, chart_number, harbor_size, harbor_type, shelter_afforded, channel_depth, anchorage_depth, cargo_pier_depth, cargo_oil_depth, max_vessel_size, repair_types, dry_dock_types, railway_types
+  BOOL cols: entry_tide, entry_swell, entry_ice, entry_other, overhead_limit, good_holding_ground, turning_area, port_of_entry, us_representative, eta_message_required, pilot_required, pilot_available, pilot_local_assist, pilot_advised, tug_salvage, tug_assist, quarantine_procedures_required, quarantine_sscc_cert_required, quarantine_other, comms_phone, comms_fax, comms_radio, comms_vhf, comms_air, comms_rail, cargo_wharf, cargo_anchor, cargo_med_moor, cargo_beach_moor, cargo_ice_moor, med_facility, garbage_dispose, degauss, dirty_ballast, crane_fixed, crane_mobile, crane_float, lift_100_tons, lift_50_100_tons, lift_25_49_tons, lift_0_24_tons, services_longshore, services_electrical, services_steam, services_nav_equip, services_electrical_repair, provisions, water, fuel_oil, diesel, deck_supplies, eng_supplies
+  OTHER cols: port_geom, PARTITION
+
+bigquery-public-data.geo_us_boundaries.zip_codes
+  NUM cols: area_land_meters, area_water_meters, internal_point_lat, internal_point_lon
+  STR cols: zip_code, city, county, state_fips_code, state_code, state_name, fips_class_code, mtfcc_feature_class_code, functional_status
+  OTHER cols: internal_point_geom, zip_code_geom, PARTITION

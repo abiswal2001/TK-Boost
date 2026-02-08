@@ -1,0 +1,121 @@
+[DB=PATENTS_USPTO | SCHEMA=PATENTS]
+PATENTS_USPTO.PATENTS.CPC_DEFINITION
+  NUM cols: dateRevised, level
+  STR cols: ipcConcordant, status, symbol, titleFull
+  OTHER cols: applicationReferences, breakdownCode, childGroups, children, definition, glossary, informativeReferences, limitingReferences, notAllocatable, parents, precedenceLimitingReferences, residualReferences, rules, scopeLimitingReferences, synonyms, titlePart
+
+PATENTS_USPTO.PATENTS.DISCLOSURES_13
+  NUM cols: date
+  STR cols: blanket_scope, blanket_type, committee_project, copyright, disclosure_event, family_id, licensing_commitment, patent_owner_harmonized, patent_owner_unharmonized, pub_cleaned, reciprocity, record_id, sc_name, serial_cleaned, sso, standard, tc_name, third_party, wg_name
+
+PATENTS_USPTO.PATENTS.PUBLICATIONS
+  NUM cols: filing_date, grant_date, priority_date, publication_date
+  STR cols: application_kind, application_number, application_number_formatted, art_unit, country_code, entity_status, family_id, kind_code, pct_number, publication_number, spif_application_number, spif_publication_number
+  OTHER cols: abstract_localized, assignee, assignee_harmonized, child, citation, claims_localized, claims_localized_html, cpc, description_localized, description_localized_html, examiner, fi, fterm, inventor, inventor_harmonized, ipc, locarno, parent, priority_claim, title_localized, uspc
+
+[DB=PATENTS_USPTO | SCHEMA=USPTO_OCE_ASSIGNMENT]
+PATENTS_USPTO.USPTO_OCE_ASSIGNMENT.ASSIGNEE
+  STR cols: ee_address_[1-2], ee_city, ee_country, ee_name, ee_postcode, ee_state, rf_id
+  OTHER TABLES WITH IDENTICAL SCHEMA: ASSIGNEE.__[2016-2016]
+
+PATENTS_USPTO.USPTO_OCE_ASSIGNMENT.ASSIGNMENT
+  STR cols: caddress_[1-4], cname, convey_text, file_id, frame_no, last_update_dt, page_count, purge_in, record_dt, reel_no, rf_id
+  OTHER TABLES WITH IDENTICAL SCHEMA: ASSIGNMENT.__[2016-2016]
+
+PATENTS_USPTO.USPTO_OCE_ASSIGNMENT.ASSIGNMENT_CONVEYANCE
+  STR cols: convey_ty, employer_assign, rf_id
+  OTHER TABLES WITH IDENTICAL SCHEMA: ASSIGNMENT_CONVEYANCE.__[2016-2016]
+
+PATENTS_USPTO.USPTO_OCE_ASSIGNMENT.ASSIGNOR
+  STR cols: ack_dt, exec_dt, or_name, rf_id
+  OTHER TABLES WITH IDENTICAL SCHEMA: ASSIGNOR.__[2016-2016]
+
+PATENTS_USPTO.USPTO_OCE_ASSIGNMENT.DOCUMENTID
+  STR cols: appno_country, appno_date, appno_doc_num, grant_country, grant_date, grant_doc_num, lang, pgpub_country, pgpub_date, pgpub_doc_num, rf_id, title
+  OTHER TABLES WITH IDENTICAL SCHEMA: DOCUMENTID.__[2016-2016]
+
+PATENTS_USPTO.USPTO_OCE_ASSIGNMENT.DOCUMENTID_ADMIN
+  STR cols: admin_appl_id_for_grant, admin_pat_no_for_appno, appno_doc_num, error, grant_doc_num, rf_id
+  OTHER TABLES WITH IDENTICAL SCHEMA: DOCUMENTID_ADMIN.__[2016-2016]
+
+PATENTS_USPTO.USPTO_OCE_ASSIGNMENT.MATCH
+  STR cols: grant_doc_num, pgpub_doc_num, publication_number
+  OTHER TABLES WITH IDENTICAL SCHEMA: MATCH.__[2016-2016]
+
+[DB=PATENTS_USPTO | SCHEMA=USPTO_OCE_CANCER]
+PATENTS_USPTO.USPTO_OCE_CANCER.MATCH
+  STR cols: Patent_or_Publication_ID, publication_number
+
+PATENTS_USPTO.USPTO_OCE_CANCER.PUBLICATIONS
+  STR cols: Application_Number, Cells_and_Enzymes, CPC_Additional, CPC_Inventive, Data_Science, Diagnostic_and_Surgical_Devices, DNA_RNA_or_Protein_Sequence, Drugs_and_Chemistry, Family_ID, FDA_Applicant, FDA_Application_Number, FDA_Approval_Date, FDA_Drug_Trade_Name, FDA_Ingredient, Filing_Date, Food_and_Nutrition, Grant_or_Publication_Date, IPC_Primary, IPC_Secondary, Model_Systems_and_Animals, NIH_Federal_Grant_Number, NIH_Grant_Recipient_Organization, Other_and_Preclassification, Patent_or_Publication_ID, Patent_Title, Radiation_Measurement, TBD, USPC_Current_Cross_Reference, USPC_Current_Original
+
+[DB=PATENTS_USPTO | SCHEMA=USPTO_OCE_CLAIMS]
+PATENTS_USPTO.USPTO_OCE_CLAIMS.MATCH
+  STR cols: pat_no, pub_no, publication_number
+  OTHER TABLES WITH IDENTICAL SCHEMA: MATCH.__[2014-2014]
+
+PATENTS_USPTO.USPTO_OCE_CLAIMS.PATENT_CLAIMS_FULLTEXT
+  STR cols: appl_id, claim_no, claim_txt, dependencies, ind_flg, pat_no
+  OTHER TABLES WITH IDENTICAL SCHEMA: PATENT_CLAIMS_FULLTEXT.__[2014-2014]
+
+PATENTS_USPTO.USPTO_OCE_CLAIMS.PATENT_CLAIMS_STATS
+  STR cols: appl_id, char_ct, claim_no, cns_ct, ind_flg, or_ct, pat_no, sf_ct, word_ct
+  OTHER TABLES WITH IDENTICAL SCHEMA: PATENT_CLAIMS_STATS.__[2014-2014]
+
+PATENTS_USPTO.USPTO_OCE_CLAIMS.PATENT_DOCUMENT_STATS
+  STR cols: appl_id, pat_clm_ct, pat_dep_clm_ct, pat_dep_wrd_avg, pat_dep_wrd_ct, pat_dep_wrd_min, pat_no, pat_wrd_avg, pat_wrd_ct, pat_wrd_min
+  OTHER TABLES WITH IDENTICAL SCHEMA: PATENT_DOCUMENT_STATS.__[2014-2014]
+
+PATENTS_USPTO.USPTO_OCE_CLAIMS.PGPUB_CLAIMS_FULLTEXT
+  STR cols: appl_id, claim_no, claim_txt, dependencies, ind_flg, pub_no
+  OTHER TABLES WITH IDENTICAL SCHEMA: PGPUB_CLAIMS_FULLTEXT.__[2014-2014]
+
+PATENTS_USPTO.USPTO_OCE_CLAIMS.PGPUB_DOCUMENT_STATS
+  STR cols: appl_id, pub_clm_ct, pub_dep_clm_ct, pub_dep_wrd_avg, pub_dep_wrd_ct, pub_dep_wrd_min, pub_no, pub_wrd_avg, pub_wrd_ct, pub_wrd_min
+  OTHER TABLES WITH IDENTICAL SCHEMA: PGPUB_DOCUMENT_STATS.__[2014-2014]
+
+[DB=PATENTS_USPTO | SCHEMA=USPTO_OCE_LITIGATION]
+PATENTS_USPTO.USPTO_OCE_LITIGATION.ATTORNEYS
+  STR cols: attorney_row_count, case_number, case_row_id, contactinfo, name, party_row_count, party_type, position
+  OTHER TABLES WITH IDENTICAL SCHEMA: ATTORNEYS.__[2015-2015]
+
+PATENTS_USPTO.USPTO_OCE_LITIGATION.CASES
+  STR cols: assigned_to, case_cause, case_name, case_number, case_row_id, court_name, date_closed, date_filed, date_last_filed, demand, jurisdictional_basis, jury_demand, lead_case, pacer_id, referred_to, related_case, settlement
+  OTHER TABLES WITH IDENTICAL SCHEMA: CASES.__[2015-2015]
+
+PATENTS_USPTO.USPTO_OCE_LITIGATION.DOCUMENTS
+  STR cols: attachment, case_number, case_row_id, date_filed, doc_count, doc_number, long_description, short_description, upload_date
+  OTHER TABLES WITH IDENTICAL SCHEMA: DOCUMENTS.__[2015-2015]
+
+PATENTS_USPTO.USPTO_OCE_LITIGATION.NAMES
+  STR cols: case_number, case_row_id, name, name_row_count, party_row_count, party_type
+  OTHER TABLES WITH IDENTICAL SCHEMA: NAMES.__[2015-2015]
+
+PATENTS_USPTO.USPTO_OCE_LITIGATION.PACER_CASES
+  STR cols: case_name, case_number, court_code, court_name, date_closed, date_filed, pacer_id
+  OTHER TABLES WITH IDENTICAL SCHEMA: PACER_CASES.__[2015-2015]
+
+[DB=PATENTS_USPTO | SCHEMA=USPTO_OCE_OFFICE_ACTIONS]
+PATENTS_USPTO.USPTO_OCE_OFFICE_ACTIONS.MATCH_APP
+  STR cols: app_id, application_number
+
+PATENTS_USPTO.USPTO_OCE_OFFICE_ACTIONS.OFFICE_ACTIONS
+  STR cols: allowed_claims, app_id, art_unit, cite102_gt1, cite103_eq1, cite103_gt3, cite103_max, closing_missing, document_cd, fp_missing, header_missing, ifw_number, mail_dt, objection, rejection_112, rejection_[101-103], rejection_dp, rejection_fp_mismatch, signature_type, uspc_class, uspc_subclass
+
+[DB=PATENTS_USPTO | SCHEMA=USPTO_PTAB]
+PATENTS_USPTO.USPTO_PTAB.MATCH.__[201710-201710]
+  Note: Actual table name: MATCH_201710
+  Example: SELECT * FROM PATENTS_USPTO.USPTO_PTAB.MATCH_201710
+  STR cols: application_number, ApplicationNumber
+  AVAILABLE MONTHS (YYYYMM): 201710
+
+PATENTS_USPTO.USPTO_PTAB.TRIALS
+  STR cols: AccordedFilingDate, ApplicationNumber, FilingDate, InstitutionDecisionDate, InventorName, LastModifiedDatetime, PatentNumber, PatentOwnerName, PetitionerPartyName, ProsecutionStatus, publication_number, TrialNumber
+  OTHER cols: Documents
+
+PATENTS_USPTO.USPTO_PTAB.TRIALS.__[201710-201710]
+  Note: Available tables: TRIALS, TRIALS_201710
+  Example: SELECT * FROM PATENTS_USPTO.USPTO_PTAB.TRIALS
+  STR cols: AccordedFilingDate, ApplicationNumber, FilingDate, InstitutionDecisionDate, InventorName, LastModifiedDatetime, PatentNumber, PatentOwnerName, PetitionerPartyName, ProsecutionStatus, TrialNumber
+  OTHER cols: Documents
+  AVAILABLE MONTHS (YYYYMM): 201710

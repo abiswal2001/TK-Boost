@@ -1,0 +1,100 @@
+[DB=CENSUS_BUREAU_ACS_2 | SCHEMA=CENSUS_BUREAU_ACS]
+CENSUS_BUREAU_ACS_2.CENSUS_BUREAU_ACS.BLOCKGROUP_2010_5YR
+  NUM cols: aggregate_travel_time_to_work, amerindian_including_hispanic, amerindian_pop, armed_forces, asian_including_hispanic, asian_pop, associates_degree, bachelors_degree, black_including_hispanic, black_pop, civilian_labor_force, commute_10_14_mins, commute_15_19_mins, commute_20_24_mins, commute_25_29_mins, commute_30_34_mins, commute_35_39_mins, commute_35_44_mins, commute_40_44_mins, commute_45_59_mins, commute_5_9_mins, commute_60_89_mins, commute_60_more_mins, commute_90_more_mins, commute_less_10_mins, commuters_16_over, commuters_by_public_transportation, dwellings_10_to_19_units, dwellings_1_units_attached, dwellings_1_units_detached, dwellings_20_to_49_units, dwellings_2_units, dwellings_3_to_4_units, dwellings_50_or_more_units, dwellings_5_to_9_units, employed_pop, families_with_young_children, family_households, father_in_labor_force_one_parent_families_with_young_children, father_one_parent_families_with_young_children, female_10_to_14, female_15_to_17, female_18_to_19, female_22_to_24, female_25_to_29, female_30_to_34, female_35_to_39, female_40_to_44, female_45_to_49, female_50_to_54, female_55_to_59, female_5_to_9, female_60_to_61, female_62_to_64, female_65_to_66, female_67_to_69, female_70_to_74, female_75_to_79, female_80_to_84, female_85_and_over
+  STR cols: do_date, geo_id
+  OTHER TABLES WITH IDENTICAL SCHEMA: BLOCKGROUP_2013_5YR, BLOCKGROUP_2014_5YR
+
+CENSUS_BUREAU_ACS_2.CENSUS_BUREAU_ACS.CBSA_2007_1YR
+  NUM cols: aggregate_travel_time_to_work, amerindian_including_hispanic, amerindian_pop, armed_forces, asian_including_hispanic, asian_male_45_54, asian_male_55_64, asian_pop, associates_degree, bachelors_degree, bachelors_degree_2, bachelors_degree_or_higher_25_64, black_including_hispanic, black_male_45_54, black_male_55_64, black_pop, children, children_in_single_female_hh, civilian_labor_force, commute_10_14_mins, commute_15_19_mins, commute_20_24_mins, commute_25_29_mins, commute_30_34_mins, commute_35_39_mins, commute_35_44_mins, commute_40_44_mins, commute_45_59_mins, commute_5_9_mins, commute_60_89_mins, commute_60_more_mins, commute_90_more_mins, commute_less_10_mins, commuters_16_over, commuters_by_bus, commuters_by_car_truck_van, commuters_by_carpool, commuters_by_public_transportation, commuters_by_subway_or_elevated, commuters_drove_alone, different_house_year_ago_different_city, different_house_year_ago_same_city, dwellings_10_to_19_units, dwellings_1_units_attached, dwellings_1_units_detached, dwellings_20_to_49_units, dwellings_2_units, dwellings_3_to_4_units, dwellings_50_or_more_units, dwellings_5_to_9_units, employed_agriculture_forestry_fishing_hunting_mining, employed_arts_entertainment_recreation_accommodation_food, employed_construction, employed_education_health_social, employed_finance_insurance_real_estate, employed_information, employed_manufacturing, employed_other_services_not_public_admin, employed_pop, employed_public_administration
+  STR cols: do_date, geo_id
+  OTHER TABLES WITH IDENTICAL SCHEMA: CBSA_2013_5YR, CBSA_2015_5YR, CENSUSTRACT_2011_5YR, CENSUSTRACT_2016_5YR, CONGRESSIONALDISTRICT_2010_3YR, CONGRESSIONALDISTRICT_2010_5YR, CONGRESSIONALDISTRICT_2012_1YR, CONGRESSIONALDISTRICT_2013_3YR, CONGRESSIONALDISTRICT_2016_5YR, COUNTY_2013_5YR, COUNTY_2016_5YR, PLACE_2011_3YR, PLACE_2018_1YR, STATE_2013_1YR, STATE_2014_1YR
+
+CENSUS_BUREAU_ACS_2.CENSUS_BUREAU_ACS.CBSA_2019_1YR
+  NUM cols: aggregate_travel_time_to_work, amerindian_including_hispanic, amerindian_pop, armed_forces, asian_including_hispanic, asian_male_45_54, asian_male_55_64, asian_pop, associates_degree, bachelors_degree, bachelors_degree_2, bachelors_degree_or_higher_25_64, black_including_hispanic, black_male_45_54, black_male_55_64, black_pop, children, children_in_single_female_hh, civilian_labor_force, commute_10_14_mins, commute_15_19_mins, commute_20_24_mins, commute_25_29_mins, commute_30_34_mins, commute_35_39_mins, commute_35_44_mins, commute_40_44_mins, commute_45_59_mins, commute_5_9_mins, commute_60_89_mins, commute_60_more_mins, commute_90_more_mins, commute_less_10_mins, commuters_16_over, commuters_by_bus, commuters_by_car_truck_van, commuters_by_carpool, commuters_by_public_transportation, commuters_by_subway_or_elevated, commuters_drove_alone, different_house_year_ago_different_city, different_house_year_ago_same_city, dwellings_10_to_19_units, dwellings_1_units_attached, dwellings_1_units_detached, dwellings_20_to_49_units, dwellings_2_units, dwellings_3_to_4_units, dwellings_50_or_more_units, dwellings_5_to_9_units, employed_agriculture_forestry_fishing_hunting_mining, employed_arts_entertainment_recreation_accommodation_food, employed_construction, employed_education_health_social, employed_finance_insurance_real_estate, employed_information, employed_manufacturing, employed_other_services_not_public_admin, employed_pop, employed_public_administration
+  STR cols: geo_id
+  OTHER TABLES WITH IDENTICAL SCHEMA: CONGRESSIONALDISTRICT_2019_1YR, COUNTY_2020_5YR, SCHOOLDISTRICTUNIFIED_2018_1YR, SCHOOLDISTRICTUNIFIED_2020_5YR
+
+CENSUS_BUREAU_ACS_2.CENSUS_BUREAU_ACS.SCHOOLDISTRICTSECONDARY_2010_5YR
+  NUM cols: aggregate_travel_time_to_work, amerindian_including_hispanic, amerindian_pop, asian_including_hispanic, asian_male_45_54, asian_male_55_64, asian_pop, bachelors_degree_2, bachelors_degree_or_higher_25_64, black_including_hispanic, black_male_45_54, black_male_55_64, black_pop, children, children_in_single_female_hh, commute_10_14_mins, commute_15_19_mins, commute_20_24_mins, commute_25_29_mins, commute_30_34_mins, commute_35_39_mins, commute_40_44_mins, commute_45_59_mins, commute_5_9_mins, commute_60_89_mins, commute_90_more_mins, commuters_by_bus, commuters_by_car_truck_van, commuters_by_carpool, commuters_by_public_transportation, commuters_by_subway_or_elevated, commuters_drove_alone, different_house_year_ago_different_city, different_house_year_ago_same_city, dwellings_10_to_19_units, dwellings_1_units_attached, dwellings_1_units_detached, dwellings_20_to_49_units, dwellings_2_units, dwellings_3_to_4_units, dwellings_50_or_more_units, dwellings_5_to_9_units, employed_agriculture_forestry_fishing_hunting_mining, employed_arts_entertainment_recreation_accommodation_food, employed_construction, employed_education_health_social, employed_finance_insurance_real_estate, employed_information, employed_manufacturing, employed_other_services_not_public_admin, employed_public_administration, employed_retail_trade, employed_science_management_admin_waste, employed_transportation_warehousing_utilities, employed_wholesale_trade, families_with_young_children, family_households, father_in_labor_force_one_parent_families_with_young_children, father_one_parent_families_with_young_children, female_10_to_14
+  STR cols: do_date, geo_id
+
+[DB=CENSUS_BUREAU_ACS_2 | SCHEMA=CYCLISTIC]
+CENSUS_BUREAU_ACS_2.CYCLISTIC.STATE_FIPS
+  NUM cols: fips
+  STR cols: postal_code, state
+
+CENSUS_BUREAU_ACS_2.CYCLISTIC.ZIP_CODES
+  NUM cols: zip
+  STR cols: borough, neighborhood
+
+[DB=CENSUS_BUREAU_ACS_2 | SCHEMA=GEO_US_BOUNDARIES]
+CENSUS_BUREAU_ACS_2.GEO_US_BOUNDARIES.ADJACENT_COUNTIES
+  STR cols: county, county_fips_code, state
+  OTHER cols: neighbors, neighbors_fips_code, neighbors_state
+
+CENSUS_BUREAU_ACS_2.GEO_US_BOUNDARIES.ADJACENT_STATES
+  STR cols: state, state_fips_code, state_name
+  OTHER cols: neighbors_fips_code, neighbors_state
+
+CENSUS_BUREAU_ACS_2.GEO_US_BOUNDARIES.CBSA
+  NUM cols: area_land_meters, area_water_meters, internal_point_latitude, internal_point_longitude
+  STR cols: cbsa_fips_code, csa_geo_id, geo_id, lsad_code, lsad_name, msa_indicator, mtfcc_feature_class_code, name
+  OTHER cols: cbsa_geom, internal_point_geom
+
+CENSUS_BUREAU_ACS_2.GEO_US_BOUNDARIES.CNECTA
+  NUM cols: area_land_meters, area_water_meters, int_point_lat, int_point_lon
+  STR cols: cnecta_fips_code, geo_id, lsad, mtfcc_feature_class_code, name, name_lsad
+  OTHER cols: cnecta_geom
+
+CENSUS_BUREAU_ACS_2.GEO_US_BOUNDARIES.COASTLINE
+  STR cols: name
+  OTHER cols: coastline_geom
+
+CENSUS_BUREAU_ACS_2.GEO_US_BOUNDARIES.CONGRESS_DISTRICT_115
+  NUM cols: area_land_meters, area_water_meters, int_point_lat, int_point_lon
+  STR cols: congress_session, district_fips_code, geo_id, lsad_code, lsad_name, mtfcc_feature_class_code, state_fips_code
+  OTHER cols: district_geom, functional_status, int_point_geom
+  OTHER TABLES WITH IDENTICAL SCHEMA: CONGRESS_DISTRICT_116
+
+CENSUS_BUREAU_ACS_2.GEO_US_BOUNDARIES.COUNTIES
+  NUM cols: area_land_meters, area_water_meters, int_point_lat, int_point_lon
+  STR cols: cbsa_fips_code, county_fips_code, county_gnis_code, county_name, csa_fips_code, fips_class_code, functional_status, geo_id, lsad_code, lsad_name, met_div_fips_code, mtfcc_feature_class_code, state_fips_code
+  OTHER cols: county_geom, int_point_geom
+
+CENSUS_BUREAU_ACS_2.GEO_US_BOUNDARIES.CSA
+  NUM cols: area_land_meters, area_water_meters, internal_point_lat, internal_point_lon
+  STR cols: csa_code, geo_id, lsad_name, msa_lsad_code, mtfcc_feature_class_code, name
+  OTHER cols: csa_geom, internal_point_geom
+
+CENSUS_BUREAU_ACS_2.GEO_US_BOUNDARIES.METROPOLITAN_DIVISIONS
+  NUM cols: area_land_meters, area_water_meters, internal_point_latitude, internal_point_longitude
+  STR cols: cbsa_code, csa_code, geo_id, lsad_code, lsad_name, metdiv_code, mtfcc_feature_class_code, name
+  OTHER cols: internal_point_geom, metdiv_geom
+
+CENSUS_BUREAU_ACS_2.GEO_US_BOUNDARIES.NATIONAL_OUTLINE
+  STR cols: aff_geo_id, geo_id, name
+  OTHER cols: us_outline_geom
+
+CENSUS_BUREAU_ACS_2.GEO_US_BOUNDARIES.NWS_FORECAST_REGIONS
+  NUM cols: lat, lon
+  STR cols: cwa, fe_area, name, shortname, state, state_zone, time_zone, zone
+  OTHER cols: shape_geometry
+
+CENSUS_BUREAU_ACS_2.GEO_US_BOUNDARIES.RAILWAYS
+  NUM cols: geo_id
+  STR cols: full_name, mtfcc_feature_class_code, railway_geom
+
+CENSUS_BUREAU_ACS_2.GEO_US_BOUNDARIES.STATES
+  NUM cols: area_land_meters, area_water_meters, int_point_lat, int_point_lon
+  STR cols: division_code, functional_status, geo_id, lsad_code, mtfcc_feature_class_code, region_code, state, state_fips_code, state_gnis_code, state_name
+  OTHER cols: int_point_geom, state_geom
+
+CENSUS_BUREAU_ACS_2.GEO_US_BOUNDARIES.URBAN_AREAS
+  NUM cols: area_land_meters, area_water_meters, internal_point_lat, internal_point_lon
+  STR cols: area_lsad_code, functional_status, geo_id, lsad_name, mtfcc_feature_class_code, name, type, urban_area_code
+  OTHER cols: internal_point_geom, urban_area_geom
+
+CENSUS_BUREAU_ACS_2.GEO_US_BOUNDARIES.ZIP_CODES
+  NUM cols: area_land_meters, area_water_meters, internal_point_lat, internal_point_lon
+  STR cols: city, county, fips_class_code, functional_status, mtfcc_feature_class_code, state_code, state_fips_code, state_name, zip_code
+  OTHER cols: internal_point_geom, zip_code_geom

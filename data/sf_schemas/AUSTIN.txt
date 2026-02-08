@@ -1,0 +1,33 @@
+[DB=AUSTIN | SCHEMA=AUSTIN_311]
+AUSTIN.AUSTIN_311._311_SERVICE_REQUESTS
+  NUM cols: close_date, council_district_code, created_date, last_update_date, latitude, longitude, state_plane_y_coordinate, status_change_date
+  STR cols: city, complaint_description, county, incident_address, incident_zip, location, map_page, map_tile, source, state_plane_x_coordinate, status, street_name, street_number, unique_key
+
+[DB=AUSTIN | SCHEMA=AUSTIN_BIKESHARE]
+AUSTIN.AUSTIN_BIKESHARE.BIKESHARE_STATIONS
+  NUM cols: city_asset_number, council_district, footprint_length, footprint_width, modified_date, number_of_docks, station_id
+  STR cols: address, alternate_name, image, location, name, notes, power_type, property_type, status
+
+AUSTIN.AUSTIN_BIKESHARE.BIKESHARE_TRIPS
+  NUM cols: duration_minutes, start_station_id, start_time
+  STR cols: bike_id, bike_type, end_station_id, end_station_name, start_station_name, subscriber_type, trip_id
+
+[DB=AUSTIN | SCHEMA=AUSTIN_CRIME]
+AUSTIN.AUSTIN_CRIME.CRIME
+  NUM cols: census_tract, clearance_date, council_district_code, latitude, longitude, timestamp, unique_key, x_coordinate, y_coordinate, year
+  STR cols: address, clearance_status, description, district, location, location_description, primary_type, zipcode
+
+[DB=AUSTIN | SCHEMA=AUSTIN_INCIDENTS]
+AUSTIN.AUSTIN_INCIDENTS.INCIDENTS.__[2008-2016]
+  Note: Tables have year suffixes (e.g., INCIDENTS_2008, INCIDENTS_2016). Query with specific year.
+  Example: SELECT * FROM AUSTIN.AUSTIN_INCIDENTS.INCIDENTS_2008
+  NUM cols: latitude, longitude, timestamp, unique_key
+  STR cols: address, descript, location
+  TIME cols: date, time
+  AVAILABLE YEARS (YYYY): 2008, 2009, 2010, 2011, 2016
+
+[DB=AUSTIN | SCHEMA=AUSTIN_WASTE]
+AUSTIN.AUSTIN_WASTE.WASTE_AND_DIVERSION
+  NUM cols: load_id, load_time, load_weight
+  STR cols: dropoff_site, load_type, route_number, route_type
+  TIME cols: report_date

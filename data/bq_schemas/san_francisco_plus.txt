@@ -1,0 +1,99 @@
+[DATASET=san_francisco_plus]
+bigquery-public-data.san_francisco_311.311_service_requests
+  NUM cols: unique_key, supervisor_district, latitude, longitude
+  STR cols: status, status_notes, agency_name, category, complaint_type, descriptor, incident_address, neighborhood, location, source, media_url, police_district
+  TIME cols: created_date, closed_date, resolution_action_updated_date
+
+bigquery-public-data.san_francisco_bikeshare.bikeshare_regions
+  NUM cols: region_id
+  STR cols: name
+
+bigquery-public-data.san_francisco_bikeshare.bikeshare_station_info
+  NUM cols: lat, lon, region_id, capacity
+  STR cols: station_id, name, short_name, rental_methods, external_id
+  BOOL cols: eightd_has_key_dispenser, has_kiosk
+  OTHER cols: station_geom
+
+bigquery-public-data.san_francisco_bikeshare.bikeshare_station_status
+  NUM cols: num_bikes_available, num_bikes_disabled, num_docks_available, num_docks_disabled, last_reported, num_ebikes_available
+  STR cols: station_id
+  BOOL cols: is_installed, is_renting, is_returning, eightd_has_available_keys
+
+bigquery-public-data.san_francisco_bikeshare.bikeshare_trips
+  NUM cols: duration_sec, start_station_id, end_station_id, bike_number, start_station_latitude, start_station_longitude, end_station_latitude, end_station_longitude, member_birth_year
+  STR cols: trip_id, start_station_name, end_station_name, zip_code, subscriber_type, c_subscription_type, member_gender, bike_share_for_all_trip
+  TIME cols: start_date, end_date
+  OTHER cols: start_station_geom, end_station_geom
+
+bigquery-public-data.san_francisco_neighborhoods.boundaries
+  NUM cols: internal_point_latitude, internal_point_longitude
+  STR cols: neighborhood
+  OTHER cols: internal_point_geom, neighborhood_geom
+
+bigquery-public-data.san_francisco_transit_muni.calendar
+  STR cols: service_id, service_desc
+  TIME cols: exceptions
+  BOOL cols: sunday, monday, tuesday, wednesday, thursday, friday, saturday, exception_type
+
+bigquery-public-data.san_francisco_transit_muni.fares
+  NUM cols: price, transfer_duration
+  STR cols: fare_id, rider_id, rider_desc, payment_method, transfers_permitted
+
+bigquery-public-data.san_francisco_film_locations.film_locations
+  NUM cols: release_year
+  STR cols: title, locations, fun_facts, production_company, distributor, director, writer, actor_1, actor_2, actor_3
+  OTHER cols: description="If
+
+bigquery-public-data.san_francisco_transit_muni.routes
+  STR cols: route_id, route_short_name, route_long_name, route_type
+
+bigquery-public-data.san_francisco_sffd_service_calls.sffd_service_calls
+  NUM cols: call_number, incident_number, final_priority, number_of_alarms, unit_sequence_in_call_dispatch, latitude, longitude
+  STR cols: unit_id, call_type, call_final_disposition, address, city, zipcode_of_incident, battalion, station_area, box, original_priority, priority, call_type_group, unit_type, fire_prevention_district, supervisor_district, row_id, neighborhood_name
+  TIME cols: call_date, watch_date, received_timestamp, entry_timestamp, dispatch_timestamp, response_timestamp, on_scene_timestamp, transport_timestamp, hospital_timestamp, available_timestamp
+  BOOL cols: als_unit
+  OTHER cols: location_geom
+
+bigquery-public-data.san_francisco_sfpd_incidents.sfpd_incidents
+  NUM cols: unique_key, longitude, latitude, pdid
+  STR cols: category, descript, dayofweek, pddistrict, resolution, address, location
+  TIME cols: timestamp
+
+bigquery-public-data.san_francisco_transit_muni.shapes
+  NUM cols: shape_point_sequence, shape_point_lat, shape_point_lon, shape_distance_traveled
+  STR cols: shape_id
+  OTHER cols: shape_point_geom
+
+bigquery-public-data.san_francisco_transit_muni.stop_monitoring
+  NUM cols: vehicle_location_lat, vehicle_location_lon
+  STR cols: stop_id, stop_name, route_id, direction, trip_id, route_long_name, vehicle_id
+  TIME cols: time_recorded, trip_date, aimed_arrival_time, aimed_departure_time
+  BOOL cols: vehicle_at_stop
+  OTHER cols: vehicle_location
+
+bigquery-public-data.san_francisco_transit_muni.stop_times
+  NUM cols: stop_id, trip_id, stop_sequence
+  STR cols: dropoff_type
+  TIME cols: arrival_time, departure_time
+  BOOL cols: arrives_next_day, departs_next_day, exact_timepoint
+
+bigquery-public-data.san_francisco_transit_muni.stops
+  NUM cols: stop_lat, stop_lon
+  STR cols: stop_id, stop_name
+  OTHER cols: stop_geom
+
+bigquery-public-data.san_francisco_trees.street_trees
+  NUM cols: tree_id, site_order, x_coordinate, y_coordinate, latitude, longitude
+  STR cols: legal_status, species, address, site_info, plant_type, care_taker, care_assistant, dbh, plot_size, permit_notes, location
+  TIME cols: plant_date
+  OTHER cols: description="San
+
+bigquery-public-data.san_francisco_transit_muni.trips
+  STR cols: trip_id, route_id, direction, block_id, service_category, trip_headsign, shape_id
+  OTHER cols: trip_shape
+
+bigquery-public-data.san_francisco_transit_muni.vehicle_monitoring
+  NUM cols: vehicle_location_lat, vehicle_location_lon
+  STR cols: route_id, direction, trip_id, route_long_name, vehicle_id, next_stop_id, next_stop_name, onward_stop_id_1, onward_stop_name_1, onward_stop_id_2, onward_stop_name_2, onward_stop_id_3, onward_stop_name_3, onward_stop_id_4, onward_stop_name_4, onward_stop_id_5, onward_stop_name_5, onward_stop_id_6, onward_stop_name_6, onward_stop_id_7, onward_stop_name_7, onward_stop_id_8, onward_stop_name_8, onward_stop_id_9, onward_stop_name_9, onward_stop_id_10, onward_stop_name_10
+  TIME cols: time_recorded, trip_date, next_stop_expected_arrival_time, next_stop_aimed_arrival_time, next_stop_expected_departure_time, next_stop_aimed_departure_time, onward_stop_expected_arrival_time_1, onward_stop_aimed_arrival_time_1, onward_stop_aimed_departure_time_1, onward_stop_expected_arrival_time_2, onward_stop_aimed_arrival_time_2, onward_stop_aimed_departure_time_2, onward_stop_expected_arrival_time_3, onward_stop_aimed_arrival_time_3, onward_stop_aimed_departure_time_3, onward_stop_expected_arrival_time_4, onward_stop_aimed_arrival_time_4, onward_stop_aimed_departure_time_4, onward_stop_expected_arrival_time_5, onward_stop_aimed_arrival_time_5, onward_stop_aimed_departure_time_5, onward_stop_expected_arrival_time_6, onward_stop_aimed_arrival_time_6, onward_stop_aimed_departure_time_6, onward_stop_expected_arrival_time_7, onward_stop_aimed_arrival_time_7, onward_stop_aimed_departure_time_7, onward_stop_expected_arrival_time_8, onward_stop_aimed_arrival_time_8, onward_stop_aimed_departure_time_8, onward_stop_expected_arrival_time_9, onward_stop_aimed_arrival_time_9, onward_stop_aimed_departure_time_9, onward_stop_expected_arrival_time_10, onward_stop_aimed_arrival_time_10, onward_stop_aimed_departure_time_10
+  OTHER cols: vehicle_location

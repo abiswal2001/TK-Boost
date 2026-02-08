@@ -1,0 +1,71 @@
+[DATASET=new_york_noaa]
+bigquery-public-data.new_york.311_service_requests
+  NUM cols: unique_key, x_coordinate, y_coordinate, bbl, latitude, longitude
+  STR cols: agency, agency_name, complaint_type, descriptor, location_type, incident_zip, incident_address, street_name, cross_street_1, cross_street_2, intersection_street_1, intersection_street_2, address_type, city, landmark, facility_type, status, resolution_description, community_board, borough, park_facility_name, park_borough, open_data_channel_type, vehicle_type, taxi_company_borough, taxi_pickup_location, bridge_highway_name, bridge_highway_direction, road_ramp, bridge_highway_segment, location
+  TIME cols: created_date, closed_date, due_date, resolution_action_updated_date
+  OTHER cols: description="NYC
+
+bigquery-public-data.new_york.citibike_stations
+  NUM cols: latitude, longitude, region_id, capacity, num_bikes_available, num_bikes_disabled, num_docks_available, num_docks_disabled
+  STR cols: station_id, name, short_name, rental_methods
+  TIME cols: last_reported
+  BOOL cols: eightd_has_key_dispenser, is_installed, is_renting, is_returning, eightd_has_available_keys
+
+bigquery-public-data.new_york.citibike_trips
+  NUM cols: tripduration, start_station_id, start_station_latitude, start_station_longitude, end_station_id, end_station_latitude, end_station_longitude, bikeid, birth_year
+  STR cols: start_station_name, end_station_name, usertype, gender
+  TIME cols: starttime, stoptime
+
+bigquery-public-data.noaa_gsod.gsod* (87 tables)
+  NUM cols: temp, count_temp, dewp, count_dewp, slp, count_slp, stp, count_stp, visib, count_visib, gust, max, min, prcp, sndp
+  STR cols: stn, wban, year, mo, da, wdsp, count_wdsp, mxpsd, flag_max, flag_min, flag_prcp, fog, rain_drizzle, snow_ice_pellets, hail, thunder, tornado_funnel_cloud
+  OTHER cols: description="Global
+
+bigquery-public-data.noaa_gsod.[gsod2016 | gsod2017 | gsod2018 | gsod2019]
+  NUM cols: temp, count_temp, dewp, count_dewp, slp, count_slp, stp, count_stp, visib, count_visib, gust, max, min, prcp, sndp
+  STR cols: stn, wban, year, mo, da, wdsp, count_wdsp, mxpsd, flag_max, flag_min, flag_prcp, fog, rain_drizzle, snow_ice_pellets, hail, thunder, tornado_funnel_cloud
+
+bigquery-public-data.noaa_gsod.[gsod2020 | gsod2021 | gsod2022 | gsod2023 | gsod2024]
+  NUM cols: temp, count_temp, dewp, count_dewp, slp, count_slp, stp, count_stp, visib, count_visib, gust, max, min, prcp, sndp
+  STR cols: stn, wban, year, mo, da, wdsp, count_wdsp, mxpsd, flag_max, flag_min, flag_prcp, fog, rain_drizzle, snow_ice_pellets, hail, thunder, tornado_funnel_cloud
+  TIME cols: date
+
+bigquery-public-data.new_york.nypd_mv_collisions
+  NUM cols: latitude, longitude, number_of_cyclist_injured, number_of_cyclist_killed, number_of_motorist_injured, number_of_motorist_killed, number_of_pedestrians_injured, number_of_pedestrians_killed, number_of_persons_injured, number_of_persons_killed, unique_key, zip_code
+  STR cols: borough, contributing_factor_vehicle_1, contributing_factor_vehicle_2, contributing_factor_vehicle_3, contributing_factor_vehicle_4, contributing_factor_vehicle_5, cross_street_name, location, off_street_name, on_street_name, vehicle_type_code1, vehicle_type_code2, vehicle_type_code_3, vehicle_type_code_4, vehicle_type_code_5
+  TIME cols: timestamp
+
+bigquery-public-data.noaa_gsod.stations
+  NUM cols: lat, lon
+  STR cols: usaf, wban, name, country, state, call, elev, begin, end
+
+bigquery-public-data.new_york.[tlc_fhv_trips_2015 | tlc_fhv_trips_2016]
+  NUM cols: location_id
+  STR cols: dispatching_base_num, borough, zone, service_zone
+  TIME cols: pickup_datetime
+
+bigquery-public-data.new_york.[tlc_green_trips_2013 | tlc_green_trips_2014 | tlc_green_trips_2015 | tlc_green_trips_2016]
+  NUM cols: rate_code, pickup_longitude, pickup_latitude, dropoff_longitude, dropoff_latitude, passenger_count, trip_distance, fare_amount, extra, mta_tax, tip_amount, tolls_amount, ehail_fee, total_amount, payment_type, distance_between_service, time_between_service, trip_type, imp_surcharge
+  STR cols: vendor_id, store_and_fwd_flag
+  TIME cols: pickup_datetime, dropoff_datetime
+
+bigquery-public-data.new_york.tlc_yellow_trips_20* (8 tables)
+  NUM cols: passenger_count, trip_distance, pickup_longitude, pickup_latitude, rate_code, dropoff_longitude, dropoff_latitude, fare_amount, extra, mta_tax, tip_amount, tolls_amount, imp_surcharge, total_amount
+  STR cols: vendor_id, store_and_fwd_flag, payment_type
+  TIME cols: pickup_datetime, dropoff_datetime
+
+bigquery-public-data.new_york.tree_census_1995
+  NUM cols: recordid, zip_original, cb_original, diameter, x, y, longitude, latitude, cb_new, zip_new, segmentid
+  STR cols: address, house_number, street, site, species, status, wires, sidewalk_condition, support_structure, borough, censustract_2010, censusblock_2010, nta_2010, spc_common, spc_latin, location
+
+bigquery-public-data.new_york.tree_census_2005
+  NUM cols: objectid, cen_year, tree_dbh, zipcode, cb_num, borocode, cncldist, st_assem, st_senate, boro_ct, x_sp, y_sp, objectid_1
+  STR cols: tree_loc, pit_type, soil_lvl, status, spc_latin, spc_common, vert_other, vert_pgrd, vert_tgrd, vert_wall, horz_blck, horz_grate, horz_plant, horz_other, sidw_crack, sidw_raise, wire_htap, wire_prime, wire_2nd, wire_other, inf_canopy, inf_guard, inf_wires, inf_paving, inf_outlet, inf_shoes, inf_lights, inf_other, trunk_dmg, zip_city, boroname, nta, nta_name, location_1
+
+bigquery-public-data.new_york.tree_census_2015
+  NUM cols: tree_id, block_id, tree_dbh, stump_diam, zipcode, cb_num, borocode, cncldist, st_assem, st_senate, boro_ct, latitude, longitude, x_sp, y_sp
+  STR cols: curb_loc, status, health, spc_latin, spc_common, steward, guards, sidewalk, user_type, problems, root_stone, root_grate, root_other, trunk_wire, trnk_light, trnk_other, brch_light, brch_shoe, brch_other, address, zip_city, boroname, nta, nta_name, state
+  TIME cols: created_at
+
+bigquery-public-data.new_york.tree_species
+  STR cols: species_scientific_name, species_common_name, form, growth_rate, fall_color, environmental_tolerances, location_tolerances, notes_suggested_cultivars, tree_size, comments

@@ -1,0 +1,10 @@
+[DATASET=london]
+bigquery-public-data.london_crime.crime_by_lsoa
+  NUM cols: value, year, month
+  STR cols: lsoa_code, borough, major_category, minor_category
+  OTHER cols: description="This
+
+bigquery-public-data.london_fire_brigade.fire_brigade_service_calls
+  NUM cols: cal_year, hour_of_call, easting_m, northing_m, easting_rounded, northing_rounded, first_pump_arriving_attendance_time, second_pump_arriving_attendance_time, num_stations_with_pumps_attending, num_pumps_attending
+  STR cols: incident_number, incident_group, stop_code_description, special_service_type, property_category, property_type, address_qualifier, postcode_full, postcode_district, borough_code, borough_name, proper_case, ward_code, ward_name, ward_name_new, frs, incident_station_ground, first_pump_arriving_deployed_from_station, second_pump_arriving_deployed_from_station
+  TIME cols: date_of_call, time_of_call, timestamp_of_call

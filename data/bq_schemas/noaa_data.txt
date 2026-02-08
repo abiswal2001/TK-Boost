@@ -1,0 +1,164 @@
+[DATASET=noaa_data]
+bigquery-public-data.noaa_pifsc_metadata.dclde_2020_1705_array
+  NUM cols: hp1_dist, hp1_ad, hp2_dist, hp2_ad, hp3_dist, hp3_ad, hp4_dist, hp4_ad, hp5_dist, hp5_ad, hp6_dist, hp6_ad
+  STR cols: array1, array2
+  TIME cols: array_start_local, array_end_local, array_start_utc, array_end_utc
+
+bigquery-public-data.noaa_pifsc_metadata.dclde_2020_1705_minke_detections
+  NUM cols: latitude, longitude
+  TIME cols: detection_time_start_local, detection_time_start_utc, detection_time_end_utc
+  OTHER cols: point
+
+bigquery-public-data.noaa_pifsc_metadata.dclde_2020_1705_odontocete_detections
+  NUM cols: latitude, longitude, first_angle, first_distance, beam_distance, detection_distance
+  STR cols: acoustic_detection_number, sighting_number, species1_id, species2_id, species3_id
+  TIME cols: detection_time_start_local, detection_time_start_utc, detection_time_end_utc, beam_time_utc
+  OTHER cols: point
+
+bigquery-public-data.noaa_pifsc_metadata.[dclde_2020_1705_visual_sightings | dclde_2020_1706_visual_sightings]
+  NUM cols: latitude, longitude, bearing, distance, total_best, total_high, total_low
+  STR cols: sighting_number, species_id, effort, effort_type
+  TIME cols: local_ship_date, sighting_local_time
+  OTHER cols: point
+
+bigquery-public-data.noaa_pifsc_metadata.dclde_2020_1706_array
+  NUM cols: hp1_dist, hp1_ad, hp2_dist, hp2_ad, hp3_dist, hp3_ad
+  STR cols: array1, array2, hp4_dist, hp4_ad, hp5_dist, hp5_ad, hp6_dist, hp6_ad
+  TIME cols: array_start_local, array_end_local, array_start_utc, array_end_utc
+
+bigquery-public-data.noaa_pifsc_metadata.dclde_2020_1706_odontocete_detections
+  NUM cols: sighting_number, latitude, longitude, first_angle, first_distance, beam_distance, detection_distance
+  STR cols: acoustic_detection_number, species1_id, species2_id, species3_id
+  TIME cols: detection_time_start_local, detection_time_start_utc, detection_time_end_utc, beam_time_utc
+  OTHER cols: point
+
+bigquery-public-data.noaa_pifsc_metadata.dclde_2020_detection_readme
+  STR cols: table, field, description
+
+bigquery-public-data.noaa_pifsc_metadata.dclde_2020_species_lookup
+  STR cols: code, common_name, species_name
+
+bigquery-public-data.noaa_pifsc_metadata.dclde_lasker_array_depth
+  NUM cols: inline_depth, end_depth
+  TIME cols: utc_time, local_time
+  OTHER cols: PARTITION
+
+bigquery-public-data.noaa_pifsc_metadata.dclde_lasker_gps
+  NUM cols: latitude, longitude, speed, effort
+  TIME cols: utc_time, local_time
+
+bigquery-public-data.noaa_pifsc_metadata.dclde_sette_array_depth
+  NUM cols: inline_depth, end_depth
+  TIME cols: utc_time, local_time
+
+bigquery-public-data.noaa_pifsc_metadata.dclde_sette_gps
+  NUM cols: latitude, longitude, speed, effort
+  TIME cols: utc_time, local_time
+  OTHER cols: point
+
+bigquery-public-data.noaa_significant_earthquakes.earthquakes
+  NUM cols: id, year, month, day, hour, minute, second, focal_depth, eq_primary, eq_mag_mw, eq_mag_ms, eq_mag_mb, eq_mag_ml, eq_mag_mfa, eq_mag_unk, intensity, latitude, longitude, region_code, deaths, deaths_description, missing, missing_description, injuries, injuries_description, damage_millions_dollars, damage_description, houses_destroyed, houses_destroyed_description, houses_damaged, houses_damaged_description, total_deaths, total_deaths_description, total_missing, total_missing_description, total_injuries, total_injuries_description, total_damage_millions_dollars, total_damage_description, total_houses_destroyed, total_houses_destroyed_description, total_houses_damaged, total_houses_damaged_description
+  STR cols: flag_tsunami, country, state, location_name
+  OTHER cols: description="The
+
+bigquery-public-data.noaa_gsod.gsod* (87 tables)
+  NUM cols: temp, count_temp, dewp, count_dewp, slp, count_slp, stp, count_stp, visib, count_visib, gust, max, min, prcp, sndp
+  STR cols: stn, wban, year, mo, da, wdsp, count_wdsp, mxpsd, flag_max, flag_min, flag_prcp, fog, rain_drizzle, snow_ice_pellets, hail, thunder, tornado_funnel_cloud
+  OTHER cols: description="Global
+
+bigquery-public-data.noaa_gsod.[gsod2016 | gsod2017 | gsod2018 | gsod2019]
+  NUM cols: temp, count_temp, dewp, count_dewp, slp, count_slp, stp, count_stp, visib, count_visib, gust, max, min, prcp, sndp
+  STR cols: stn, wban, year, mo, da, wdsp, count_wdsp, mxpsd, flag_max, flag_min, flag_prcp, fog, rain_drizzle, snow_ice_pellets, hail, thunder, tornado_funnel_cloud
+
+bigquery-public-data.noaa_gsod.[gsod2020 | gsod2021 | gsod2022 | gsod2023 | gsod2024]
+  NUM cols: temp, count_temp, dewp, count_dewp, slp, count_slp, stp, count_stp, visib, count_visib, gust, max, min, prcp, sndp
+  STR cols: stn, wban, year, mo, da, wdsp, count_wdsp, mxpsd, flag_max, flag_min, flag_prcp, fog, rain_drizzle, snow_ice_pellets, hail, thunder, tornado_funnel_cloud
+  TIME cols: date
+
+bigquery-public-data.noaa_preliminary_severe_storms.hail_reports
+  NUM cols: size, latitude, longitude
+  STR cols: time, location, county, state, comments
+  TIME cols: timestamp
+  OTHER cols: report_point
+
+bigquery-public-data.noaa_tsunami.historical_runups
+  NUM cols: id, tsevent_id, year, month, day, latitude, longitude, region_code, distance_from_source, arr_day, arr_hour, arr_min, travel_time_hours, travel_time_minutes, water_ht, horizontal_inundation, type_measurement_id, period, deaths, deaths_description, injuries, injuries_description, damage_millions_dollars, damage_description, houses_damaged, houses_damaged_description, houses_destroyed, houses_destroyed_description
+  STR cols: doubtful, country, state, location_name, first_motion
+  TIME cols: timestamp
+
+bigquery-public-data.noaa_tsunami.historical_source_event
+  NUM cols: id, year, month, day, event_validity, cause_code, focal_depth, primary_magnitude, latitude, longitude, region_code, maximum_water_height, abe, iida, soloviev, warning_status, deaths, deaths_description, missing, missing_description, injuries, injuries_description, damage_millions_dollars, damage_description, houses_destroyed, houses_destroyed_description, houses_damaged, houses_damaged_description, total_deaths, total_deaths_description, total_missing, total_missing_description, total_injuries, total_injuries_description, total_damage_in_millions_dollars, total_damage_description, total_houses_destroyed, total_houses_destroyed_description, total_houses_damaged, total_houses_damaged_description
+  STR cols: country, state, location_name
+  TIME cols: timestamp
+
+bigquery-public-data.noaa_hurricanes.hurricanes
+  NUM cols: number, latitude, longitude, wmo_wind, wmo_pressure, dist2land, landfall, usa_latitude, usa_longitude, usa_wind, usa_pressure, usa_sshs, usa_r34_ne, usa_r34_se, usa_r34_sw, usa_r34_nw, usa_r50_ne, usa_r50_se, usa_r50_sw, usa_r50_nw, usa_r64_ne, usa_r64_se, usa_r64_sw, usa_r64_nw, usa_poci, usa_roci, usa_rmw, tokyo_latitude, tokyo_longitude, tokyo_grade, tokyo_wind, tokyo_pressure, tokyo_r50_dir, tokyo_r50_longitude, tokyo_r50_short, tokyo_r30_dir, tokyo_r30_long, tokyo_r30_short, tokyo_land, cma_latitude, cma_longitude, cma_cat, cma_wind, cma_pressure, hko_longitude, hko_wind, hko_pressure, newdelhi_latitude, newdelhi_longitude, newdelhi_wind, newdelhi_pressure, newdelhi_ci, newdelhi_dp, newdelhi_poci, reunion_latitude, reunion_longitude, reunion_type, reunion_wind, reunion_pressure, reunion_tnum, reunion_ci, reunion_rmw, reunion_r34_ne, reunion_r34_se, reunion_r34_sw, reunion_r34_nw, reunion_r50_ne, reunion_r50_se, reunion_r50_sw, reunion_r50_nw, reunion_r64_ne, reunion_r64_se, reunion_r64_sw, reunion_r64_nw, bom_latitude, bom_longitude, bom_type, bom_wind, bom_pressure, bom_tnum, bom_ci, bom_rmw, bom_r34_ne, bom_r34_se, bom_r34_sw, bom_r34_nw, bom_r50_ne, bom_r50_se, bom_r50_sw, bom_r50_nw, bom_r64_ne, bom_r64_se, bom_r64_sw, bom_r64_nw, bom_roci, bom_poci, bom_eye, bom_pos_method, bom_pressure_method, wellington_latitude, wellington_longitude, wellington_wind, wellington_pressure, nadi_latitude, nadi_longitude, nadi_cat, nadi_wind, nadi_pressure, ds824_latitude, ds824_longitude, ds824_wind, ds824_pressure, td9636_latitude, td9636_longitude, td9636_stage, td9636_wind, td9636_pressure, td9635_latitude, td9635_longitude, td9635_wind, td9635_pressure, td9635_roci, neumann_latitude, neumann_longitude, neumann_wind, neumann_pressure, mlc_latitude, mlc_longitude, mlc_wind, mlc_pressure
+  STR cols: sid, season, basin, subbasin, name, nature, wmo_agency, track_type, iflag, usa_agency, usa_record, usa_status, usa_eye, hko_latitude, hko_cat, newdelhi_grade, ds824_stage, neumann_class, mlc_class, usa_atcf_id, source_url
+  TIME cols: iso_time, etl_timestamp
+
+bigquery-public-data.noaa_icoads.icoads_core_* (15 tables)
+  NUM cols: year, month, day, hour, latitude, longitude, imma_version, attm_count, time_indicator, latlong_indicator, ship_course, ship_speed, national_source_indicator, id_indicator, wind_direction_indicator, wind_direction_true, wind_speed_indicator, wind_speed, visibility_indicator, visibility, present_weather, past_weather, sea_level_pressure, characteristic_of_ppp, amt_pressure_tend, indicator_for_temp, air_temperature, wbt_indicator, wetbulb_temperature, dpt_indicator, dewpoint_temperature, sst_measurement_method, sea_surface_temp, total_cloud_amount, lower_cloud_amount, cloud_height_indicator, wave_direction, wave_period, wave_height, swell_direction, swell_period, swell_height, ten_degree_box_number, one_degree_box_number, deck, source_id, platform_type, dup_status, dup_check, track_check, pressure_bias, wave_period_indicator, swell_period_indicator, second_country_code, nightday_flag, external, landlocked_flag, source_exclusion_flags, release_no_primary, release_no_secondary, release_no_tertiary, release_status_indicator, intermediate_reject_flag
+  STR cols: callsign, country_code, low_cloud_type, cloud_height, middle_cloud_type, high_cloud_type, box_system_indicator, adaptive_qc_flags, trimming_flags, ncdc_qc_flags, unique_report_id
+  TIME cols: timestamp
+
+bigquery-public-data.noaa_passive_bioacoustic.ncei_afsc_pad_metadata
+  STR cols: cloud_path, file_name, start_date, start_time, data_collection_name, source_organization, funding_organization, project_name, sensor_depth, sample_rate, duration, platform_name, shape
+
+bigquery-public-data.noaa_passive_bioacoustic.ncei_nefsc_pad_metadata
+  STR cols: cloud_path, file_name, start_date, start_time, data_collection_name, source_organization, funding_organization, project_name, sensor_depth, sample_rate, duration, platform_name, shape1, shape2, shape3, shape4, shape5, shape6, shape7, shape8, shape9, shape10
+
+bigquery-public-data.noaa_passive_bioacoustic.ncei_nrs_pad_metadata
+  STR cols: file_name, deployment_name, start_date, start_time, source_organization, funding_organization, project_name, sensor_depth, sample_rate_hz, recording, platform_name, lon, lat
+
+bigquery-public-data.noaa_passive_bioacoustic.ncei_sanctsound_pad_metadata
+  STR cols: file_name, data_collection_name, start_date, start_time, source_organization, funding_organization, project_name, sensor_depth, sample_rate_hz, recording, platform_name, lon, lat
+
+bigquery-public-data.noaa_passive_acoustic_index.nrs_metadata
+  NUM cols: sensor_depth, sample_rate, duration, lon, lat
+  STR cols: file_name, deployment_name, source_organization, funding_organization, project_name, platform_name, file_link
+  TIME cols: start_date, start_time
+  OTHER cols: point_geom
+
+bigquery-public-data.noaa_historic_severe_storms.nws_forecast_regions
+  NUM cols: lon, lat
+  STR cols: state, cwa, time_zone, fe_area, zone, name, state_zone, shortname
+  OTHER cols: shape_geometry
+
+bigquery-public-data.noaa_passive_acoustic_index.sanctsound_metadata
+  NUM cols: sensor_depth, sample_rate, recording_percent, longitude, latitude
+  STR cols: file_name, data_collection_name, source_organization, funding_organization, project_name, platform_name, file_link
+  TIME cols: start_date, start_time
+
+bigquery-public-data.noaa_gsod.stations
+  NUM cols: lat, lon
+  STR cols: usaf, wban, name, country, state, call, elev, begin, end
+
+bigquery-public-data.noaa_historic_severe_storms.storms_* (74 tables)
+  NUM cols: injuries_direct, injuries_indirect, deaths_direct, deaths_indirect, damage_property, damage_crops, magnitude, event_range, event_latitude, event_longitude
+  STR cols: episode_id, event_id, state, state_fips_code, event_type, cz_type, cz_fips_code, cz_name, wfo, event_timezone, source, magnitude_type, flood_cause, tor_f_scale, tor_length, tor_width, tor_other_wfo, location_index, event_azimuth, reference_location
+  TIME cols: event_begin_time, event_end_time
+  OTHER cols: event_point
+
+bigquery-public-data.noaa_historic_severe_storms.storms_2020
+  NUM cols: injuries_direct, injuries_indirect, deaths_direct, deaths_indirect, damage_property, damage_crops, magnitude, event_range, event_latitude, event_longitude
+  STR cols: episode_id, event_id, state, state_fips_code, event_type, cz_type, cz_fips_code, cz_name, wfo, event_timezone, source, magnitude_type, flood_cause, tor_f_scale, tor_length, tor_width, tor_other_wfo, location_index, event_azimuth, reference_location
+  TIME cols: event_begin_time, event_end_time
+  OTHER cols: event_point, PARTITION
+
+bigquery-public-data.noaa_historic_severe_storms.tornado_paths
+  NUM cols: injured_count, fatality_count, start_lon, start_lat, end_long, end_lat, length, width
+  STR cols: time_zone_offset, state_abbreviation, state_name, state_fips_code, magnitude, property_loss, crop_loss, yearly_tornado_count
+  TIME cols: storm_date, storm_time
+  OTHER cols: tornado_path_geom, PARTITION
+
+bigquery-public-data.noaa_preliminary_severe_storms.tornado_reports
+  NUM cols: latitude, longitude
+  STR cols: time, f_scale, location, county, state, comments
+  TIME cols: timestamp
+  OTHER cols: report_point
+
+bigquery-public-data.noaa_preliminary_severe_storms.wind_reports
+  NUM cols: speed, latitude, longitude
+  STR cols: time, location, county, state, comments
+  TIME cols: timestamp
+  OTHER cols: report_point

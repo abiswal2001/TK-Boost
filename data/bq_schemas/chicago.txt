@@ -1,0 +1,12 @@
+[DATASET=chicago]
+bigquery-public-data.chicago_crime.crime
+  NUM cols: unique_key, beat, district, ward, community_area, x_coordinate, y_coordinate, year, latitude, longitude
+  STR cols: case_number, block, iucr, primary_type, description, location_description, fbi_code, location
+  TIME cols: date, updated_on
+  BOOL cols: arrest, domestic
+  OTHER cols: description="Chicago
+
+bigquery-public-data.chicago_taxi_trips.taxi_trips
+  NUM cols: trip_seconds, trip_miles, pickup_census_tract, dropoff_census_tract, pickup_community_area, dropoff_community_area, fare, tips, tolls, extras, trip_total, pickup_latitude, pickup_longitude, dropoff_latitude, dropoff_longitude
+  STR cols: unique_key, taxi_id, payment_type, company, pickup_location, dropoff_location
+  TIME cols: trip_start_timestamp, trip_end_timestamp

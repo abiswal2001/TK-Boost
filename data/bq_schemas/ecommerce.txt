@@ -1,0 +1,59 @@
+[DATASET=ecommerce]
+data-to-insights.ecommerce.[all_sessions | all_sessions_raw]
+  NUM cols: time, totalTransactionRevenue, transactions, timeOnSite, pageviews, sessionQualityDim, visitId, productRefundAmount, productQuantity, productPrice, productRevenue, itemQuantity, itemRevenue, transactionRevenue, eCommerceAction_step
+  STR cols: fullVisitorId, channelGrouping, country, city, date, type, productSKU, v2ProductName, v2ProductCategory, productVariant, currencyCode, transactionId, pageTitle, searchKeyword, pagePathLevel1, eCommerceAction_type, eCommerceAction_option
+
+data-to-insights.ecommerce.categories
+  STR cols: productSKU, category
+
+data-to-insights.ecommerce.checkout_nudge
+  NUM cols: number_of_sessions, number_of_products_viewed, session_time_on_site_minutes_max
+  STR cols: fullVisitorID, eCommerceAction_type_max
+
+data-to-insights.ecommerce.classification_model_2_results
+  NUM cols: predicted_will_buy_on_return_visit, will_buy_on_return_visit, latest_ecommerce_progress, bounces, time_on_site, pageviews
+  STR cols: unique_session_id, source, medium, channelGrouping, deviceCategory, country
+  OTHER cols: predicted_will_buy_on_return_visit_probs
+
+data-to-insights.ecommerce.days_with_rain
+  NUM cols: prcp
+  STR cols: station_name
+  TIME cols: date
+  OTHER cols: PARTITION, description="weather
+
+data-to-insights.ecommerce.partition_by_day
+  STR cols: fullvisitorId
+  TIME cols: date_formatted
+  OTHER cols: PARTITION, description="a
+
+data-to-insights.ecommerce.partitions
+  NUM cols: total_transactions
+  TIME cols: date_formatted
+  OTHER cols: PARTITION, description="a
+
+data-to-insights.ecommerce.product_list
+  STR cols: productSKU, v2ProductName
+
+data-to-insights.ecommerce.products
+  NUM cols: orderedQuantity, stockLevel, restockingLeadTime, sentimentScore, sentimentMagnitude
+  STR cols: SKU, name
+
+data-to-insights.ecommerce.rev_transactions
+  NUM cols: hits_time, totals_totalTransactionRevenue, totals_transactions, totals_timeOnSite, totals_pageviews, visitId, hits_product_productRefundAmount, hits_product_productQuantity, hits_product_productPrice, hits_product_productRevenue, hits_item_itemQuantity, hits_item_itemRevenue, hits_transaction_transactionRevenue
+  STR cols: fullVisitorId, channelGrouping, geoNetwork_country, geoNetwork_city, date, hits_type, hits_product_productSKU, hits_product_v2ProductName, hits_product_v2ProductCategory, hits_product_productVariant, hits_item_currencyCode, hits_transaction_transactionId, hits_page_pageTitle, hits_page_searchKeyword, hits_page_pagePathLevel1
+
+data-to-insights.ecommerce.sales_by_sku
+  NUM cols: total_ordered
+  STR cols: productSKU
+
+data-to-insights.ecommerce.sales_report
+  NUM cols: total_ordered, stockLevel, restockingLeadTime, sentimentScore, sentimentMagnitude, ratio
+  STR cols: productSKU, name
+
+data-to-insights.ecommerce.site_wide_promotion
+  NUM cols: discount
+
+data-to-insights.ecommerce.web_analytics
+  NUM cols: visitorId, visitNumber, visitId, visitStartTime
+  STR cols: date, fullVisitorId, userId, channelGrouping, socialEngagementType
+  OTHER cols: totals, trafficSource, device, geoNetwork, customDimensions, hits

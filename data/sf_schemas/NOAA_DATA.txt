@@ -1,0 +1,141 @@
+[DB=NOAA_DATA | SCHEMA=NOAA_GSOD]
+NOAA_DATA.NOAA_GSOD.GSOD.__[1930-2020]
+  Note: Tables have year suffixes (e.g., GSOD1929, GSOD2020). Query with specific year.
+  Example: SELECT * FROM NOAA_DATA.NOAA_GSOD.GSOD2020
+  NUM cols: count_dewp, count_slp, count_stp, count_temp, count_visib, dewp, gust, max, min, prcp, slp, sndp, stp, temp, visib
+  STR cols: count_wdsp, da, flag_max, flag_min, flag_prcp, fog, hail, mo, mxpsd, rain_drizzle, snow_ice_pellets, stn, thunder, tornado_funnel_cloud, wban, wdsp, year
+  AVAILABLE YEARS (YYYY): 1930, 1931, 1932, 1933, 1934, 1938, 1946, 1949, 1950, 1951, 1955, 1959, 1961, 1973, 1974, 1984, 1985, 1990, 1998, 2001, 2002, 2006, 2010, 2020
+
+NOAA_DATA.NOAA_GSOD.STATIONS
+  NUM cols: lat, lon
+  STR cols: begin, call, country, elev, end, name, state, usaf, wban
+
+[DB=NOAA_DATA | SCHEMA=NOAA_HISTORIC_SEVERE_STORMS]
+NOAA_DATA.NOAA_HISTORIC_SEVERE_STORMS.NWS_FORECAST_REGIONS
+  NUM cols: lat, lon
+  STR cols: cwa, fe_area, name, shortname, state, state_zone, time_zone, zone
+  OTHER cols: shape_geometry
+
+NOAA_DATA.NOAA_HISTORIC_SEVERE_STORMS.STORMS.__[1951-2023]
+  Note: Tables have year suffixes (e.g., STORMS_1950, STORMS_2020).
+  Example: SELECT * FROM NOAA_DATA.NOAA_HISTORIC_SEVERE_STORMS.STORMS_2020
+  NUM cols: damage_crops, damage_property, deaths_direct, deaths_indirect, event_begin_time, event_end_time, event_latitude, event_longitude, event_range, injuries_direct, injuries_indirect, magnitude
+  STR cols: cz_fips_code, cz_name, cz_type, episode_id, event_azimuth, event_id, event_timezone, event_type, flood_cause, location_index, magnitude_type, reference_location, source, state, state_fips_code, tor_f_scale, tor_length, tor_other_wfo, tor_width, wfo
+  OTHER cols: event_point
+  AVAILABLE YEARS (YYYY): 1951, 1953, 1954, 1955, 1956, 1957, 1962, 1963, 1966, 1968, 1969, 1971, 1977, 1978, 1979, 1982, 1984, 1990, 1992, 2001, 2017, 2020, 2022, 2023
+
+[DB=NOAA_DATA | SCHEMA=NOAA_HURRICANES]
+NOAA_DATA.NOAA_HURRICANES.HURRICANES
+  NUM cols: bom_ci, bom_eye, bom_latitude, bom_longitude, bom_poci, bom_pos_method, bom_pressure, bom_pressure_method, bom_r34_ne, bom_r34_nw, bom_r34_se, bom_r34_sw, bom_r50_ne, bom_r50_nw, bom_r50_se, bom_r50_sw, bom_r64_ne, bom_r64_nw, bom_r64_se, bom_r64_sw, bom_rmw, bom_roci, bom_tnum, bom_type, bom_wind, cma_cat, cma_latitude, cma_longitude, cma_pressure, cma_wind, dist2land, ds824_latitude, ds824_longitude, ds824_pressure, ds824_wind, etl_timestamp, hko_longitude, hko_pressure, hko_wind, iso_time, landfall, latitude, longitude, mlc_latitude, mlc_longitude, mlc_pressure, mlc_wind, nadi_cat, nadi_latitude, nadi_longitude, nadi_pressure, nadi_wind, neumann_latitude, neumann_longitude, neumann_pressure, neumann_wind, newdelhi_ci, newdelhi_dp, newdelhi_latitude, newdelhi_longitude
+  STR cols: basin, ds824_stage, hko_cat, hko_latitude, iflag, mlc_class, name, nature, neumann_class, newdelhi_grade, season, sid, source_url, subbasin, track_type, usa_agency, usa_atcf_id, usa_eye, usa_record, usa_status, wmo_agency
+
+[DB=NOAA_DATA | SCHEMA=NOAA_ICOADS]
+NOAA_DATA.NOAA_ICOADS.ICOADS_CORE.__[2005-2017]
+  Note: Tables have year/range suffixes (e.g., ICOADS_CORE_2001_2004, ICOADS_CORE_2020).
+  Example: SELECT * FROM NOAA_DATA.NOAA_ICOADS.ICOADS_CORE_2020
+  NUM cols: air_temperature, amt_pressure_tend, attm_count, characteristic_of_ppp, cloud_height_indicator, day, deck, dewpoint_temperature, dpt_indicator, dup_check, dup_status, external, hour, id_indicator, imma_version, indicator_for_temp, intermediate_reject_flag, landlocked_flag, latitude, latlong_indicator, longitude, lower_cloud_amount, month, national_source_indicator, nightday_flag, one_degree_box_number, past_weather, platform_type, present_weather, pressure_bias, release_no_primary, release_no_secondary, release_no_tertiary, release_status_indicator, sea_level_pressure, sea_surface_temp, second_country_code, ship_course, ship_speed, source_exclusion_flags, source_id, sst_measurement_method, swell_direction, swell_height, swell_period, swell_period_indicator, ten_degree_box_number, time_indicator, timestamp, total_cloud_amount, track_check, visibility, visibility_indicator, wave_direction, wave_height, wave_period, wave_period_indicator, wbt_indicator, wetbulb_temperature, wind_direction_indicator
+  STR cols: adaptive_qc_flags, box_system_indicator, callsign, cloud_height, country_code, high_cloud_type, low_cloud_type, middle_cloud_type, ncdc_qc_flags, trimming_flags, unique_report_id
+  AVAILABLE YEARS (YYYY): 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017
+  OTHER TABLES WITH IDENTICAL SCHEMA: ICOADS_CORE_1662.__[2000-2000], ICOADS_CORE_2001.__[2004-2004]
+
+[DB=NOAA_DATA | SCHEMA=NOAA_PASSIVE_ACOUSTIC_INDEX]
+NOAA_DATA.NOAA_PASSIVE_ACOUSTIC_INDEX.NRS_METADATA
+  NUM cols: duration, lat, lon, sample_rate, sensor_depth
+  STR cols: deployment_name, file_link, file_name, funding_organization, platform_name, project_name, source_organization
+  TIME cols: start_date, start_time
+  OTHER cols: point_geom
+
+NOAA_DATA.NOAA_PASSIVE_ACOUSTIC_INDEX.SANCTSOUND_METADATA
+  NUM cols: latitude, longitude, recording_percent, sample_rate, sensor_depth
+  STR cols: data_collection_name, file_link, file_name, funding_organization, platform_name, project_name, source_organization
+  TIME cols: start_date, start_time
+
+[DB=NOAA_DATA | SCHEMA=NOAA_PASSIVE_BIOACOUSTIC]
+NOAA_DATA.NOAA_PASSIVE_BIOACOUSTIC.NCEI_AFSC_PAD_METADATA
+  STR cols: cloud_path, data_collection_name, duration, file_name, funding_organization, platform_name, project_name, sample_rate, sensor_depth, shape, source_organization, start_date, start_time
+
+NOAA_DATA.NOAA_PASSIVE_BIOACOUSTIC.NCEI_NEFSC_PAD_METADATA
+  STR cols: cloud_path, data_collection_name, duration, file_name, funding_organization, platform_name, project_name, sample_rate, sensor_depth, shape[1-10], source_organization, start_date, start_time
+
+NOAA_DATA.NOAA_PASSIVE_BIOACOUSTIC.NCEI_NRS_PAD_METADATA
+  STR cols: deployment_name, file_name, funding_organization, lat, lon, platform_name, project_name, recording, sample_rate_hz, sensor_depth, source_organization, start_date, start_time
+
+NOAA_DATA.NOAA_PASSIVE_BIOACOUSTIC.NCEI_SANCTSOUND_PAD_METADATA
+  STR cols: data_collection_name, file_name, funding_organization, lat, lon, platform_name, project_name, recording, sample_rate_hz, sensor_depth, source_organization, start_date, start_time
+
+[DB=NOAA_DATA | SCHEMA=NOAA_PIFSC_METADATA]
+NOAA_DATA.NOAA_PIFSC_METADATA.DCLDE_2020_1705_ARRAY
+  NUM cols: array_end_local, array_end_utc, array_start_local, array_start_utc, hp1_ad, hp1_dist, hp2_ad, hp2_dist, hp3_ad, hp3_dist, hp4_ad, hp4_dist, hp5_ad, hp5_dist, hp6_ad, hp6_dist
+  STR cols: array[1-2]
+
+NOAA_DATA.NOAA_PIFSC_METADATA.DCLDE_2020_1705_MINKE_DETECTIONS
+  NUM cols: detection_time_end_utc, detection_time_start_local, detection_time_start_utc, latitude, longitude
+  OTHER cols: point
+
+NOAA_DATA.NOAA_PIFSC_METADATA.DCLDE_2020_1705_ODONTOCETE_DETECTIONS
+  NUM cols: beam_distance, beam_time_utc, detection_distance, detection_time_end_utc, detection_time_start_local, detection_time_start_utc, first_angle, first_distance, latitude, longitude
+  STR cols: acoustic_detection_number, sighting_number, species1_id, species2_id, species3_id
+  OTHER cols: point
+
+NOAA_DATA.NOAA_PIFSC_METADATA.DCLDE_2020_1705_VISUAL_SIGHTINGS
+  NUM cols: bearing, distance, latitude, longitude, total_best, total_high, total_low
+  STR cols: effort, effort_type, sighting_number, species_id
+  TIME cols: local_ship_date, sighting_local_time
+  OTHER cols: point
+  OTHER TABLES WITH IDENTICAL SCHEMA: DCLDE_2020_1706_VISUAL_SIGHTINGS
+
+NOAA_DATA.NOAA_PIFSC_METADATA.DCLDE_2020_1706_ARRAY
+  NUM cols: array_end_local, array_end_utc, array_start_local, array_start_utc, hp1_ad, hp1_dist, hp2_ad, hp2_dist, hp3_ad, hp3_dist
+  STR cols: array[1-2], hp4_ad, hp4_dist, hp5_ad, hp5_dist, hp6_ad, hp6_dist
+
+NOAA_DATA.NOAA_PIFSC_METADATA.DCLDE_2020_1706_ODONTOCETE_DETECTIONS
+  NUM cols: beam_distance, beam_time_utc, detection_distance, detection_time_end_utc, detection_time_start_local, detection_time_start_utc, first_angle, first_distance, latitude, longitude, sighting_number
+  STR cols: acoustic_detection_number, species1_id, species2_id, species3_id
+  OTHER cols: point
+
+NOAA_DATA.NOAA_PIFSC_METADATA.DCLDE_2020_DETECTION_README
+  STR cols: description, field, table
+
+NOAA_DATA.NOAA_PIFSC_METADATA.DCLDE_2020_SPECIES_LOOKUP
+  STR cols: code, common_name, species_name
+
+NOAA_DATA.NOAA_PIFSC_METADATA.DCLDE_LASKER_ARRAY_DEPTH
+  NUM cols: end_depth, inline_depth, local_time, utc_time
+  OTHER TABLES WITH IDENTICAL SCHEMA: DCLDE_SETTE_ARRAY_DEPTH
+
+NOAA_DATA.NOAA_PIFSC_METADATA.DCLDE_LASKER_GPS
+  NUM cols: effort, latitude, local_time, longitude, speed, utc_time
+
+NOAA_DATA.NOAA_PIFSC_METADATA.DCLDE_SETTE_GPS
+  NUM cols: effort, latitude, local_time, longitude, speed, utc_time
+  OTHER cols: point
+
+[DB=NOAA_DATA | SCHEMA=NOAA_PRELIMINARY_SEVERE_STORMS]
+NOAA_DATA.NOAA_PRELIMINARY_SEVERE_STORMS.HAIL_REPORTS
+  NUM cols: latitude, longitude, size, timestamp
+  STR cols: comments, county, location, state, time
+  OTHER cols: report_point
+
+NOAA_DATA.NOAA_PRELIMINARY_SEVERE_STORMS.TORNADO_REPORTS
+  NUM cols: latitude, longitude, timestamp
+  STR cols: comments, county, f_scale, location, state, time
+  OTHER cols: report_point
+
+NOAA_DATA.NOAA_PRELIMINARY_SEVERE_STORMS.WIND_REPORTS
+  NUM cols: latitude, longitude, speed, timestamp
+  STR cols: comments, county, location, state, time
+  OTHER cols: report_point
+
+[DB=NOAA_DATA | SCHEMA=NOAA_SIGNIFICANT_EARTHQUAKES]
+NOAA_DATA.NOAA_SIGNIFICANT_EARTHQUAKES.EARTHQUAKES
+  NUM cols: damage_description, damage_millions_dollars, day, deaths, deaths_description, eq_mag_mb, eq_mag_mfa, eq_mag_ml, eq_mag_ms, eq_mag_mw, eq_mag_unk, eq_primary, focal_depth, hour, houses_damaged, houses_damaged_description, houses_destroyed, houses_destroyed_description, id, injuries, injuries_description, intensity, latitude, longitude, minute, missing, missing_description, month, region_code, second, total_damage_description, total_damage_millions_dollars, total_deaths, total_deaths_description, total_houses_damaged, total_houses_damaged_description, total_houses_destroyed, total_houses_destroyed_description, total_injuries, total_injuries_description, total_missing, total_missing_description, year
+  STR cols: country, flag_tsunami, location_name, state
+
+[DB=NOAA_DATA | SCHEMA=NOAA_TSUNAMI]
+NOAA_DATA.NOAA_TSUNAMI.HISTORICAL_RUNUPS
+  NUM cols: arr_day, arr_hour, arr_min, damage_description, damage_millions_dollars, day, deaths, deaths_description, distance_from_source, horizontal_inundation, houses_damaged, houses_damaged_description, houses_destroyed, houses_destroyed_description, id, injuries, injuries_description, latitude, longitude, month, period, region_code, timestamp, travel_time_hours, travel_time_minutes, tsevent_id, type_measurement_id, water_ht, year
+  STR cols: country, doubtful, first_motion, location_name, state
+
+NOAA_DATA.NOAA_TSUNAMI.HISTORICAL_SOURCE_EVENT
+  NUM cols: abe, cause_code, damage_description, damage_millions_dollars, day, deaths, deaths_description, event_validity, focal_depth, houses_damaged, houses_damaged_description, houses_destroyed, houses_destroyed_description, id, iida, injuries, injuries_description, latitude, longitude, maximum_water_height, missing, missing_description, month, primary_magnitude, region_code, soloviev, timestamp, total_damage_description, total_damage_in_millions_dollars, total_deaths, total_deaths_description, total_houses_damaged, total_houses_damaged_description, total_houses_destroyed, total_houses_destroyed_description, total_injuries, total_injuries_description, total_missing, total_missing_description, warning_status, year
+  STR cols: country, location_name, state

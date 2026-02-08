@@ -1,0 +1,96 @@
+[DB=OPEN_TARGETS_PLATFORM_2 | SCHEMA=OPEN_TARGETS_PLATFORM]
+OPEN_TARGETS_PLATFORM_2.OPEN_TARGETS_PLATFORM.ASSOCIATIONBYDATASOURCEDIRECT
+  NUM cols: evidenceCount, score
+  STR cols: datasourceId, datatypeId, diseaseId, targetId
+  OTHER TABLES WITH IDENTICAL SCHEMA: ASSOCIATIONBYDATASOURCEINDIRECT
+
+OPEN_TARGETS_PLATFORM_2.OPEN_TARGETS_PLATFORM.ASSOCIATIONBYDATATYPEDIRECT
+  NUM cols: evidenceCount, score
+  STR cols: datatypeId, diseaseId, targetId
+  OTHER TABLES WITH IDENTICAL SCHEMA: ASSOCIATIONBYDATATYPEINDIRECT
+
+OPEN_TARGETS_PLATFORM_2.OPEN_TARGETS_PLATFORM.ASSOCIATIONBYOVERALLDIRECT
+  NUM cols: evidenceCount, score
+  STR cols: diseaseId, targetId
+  OTHER TABLES WITH IDENTICAL SCHEMA: ASSOCIATIONBYOVERALLINDIRECT
+
+OPEN_TARGETS_PLATFORM_2.OPEN_TARGETS_PLATFORM.BASELINEEXPRESSION
+  STR cols: id
+  OTHER cols: tissues
+
+OPEN_TARGETS_PLATFORM_2.OPEN_TARGETS_PLATFORM.DISEASES
+  STR cols: code, description, id, name
+  OTHER cols: ancestors, children, dbXRefs, descendants, directLocationIds, indirectLocationIds, obsoleteTerms, ontology, parents, synonyms, therapeuticAreas
+
+OPEN_TARGETS_PLATFORM_2.OPEN_TARGETS_PLATFORM.DISEASETOPHENOTYPE
+  STR cols: disease, phenotype
+  OTHER cols: evidence
+
+OPEN_TARGETS_PLATFORM_2.OPEN_TARGETS_PLATFORM.DRUGWARNINGS
+  NUM cols: id, year
+  STR cols: country, description, efo_id, efo_id_for_warning_class, efo_term, toxicityClass, warningType
+  OTHER cols: chemblIds, references
+
+OPEN_TARGETS_PLATFORM_2.OPEN_TARGETS_PLATFORM.EVIDENCE
+  NUM cols: beta, betaConfidenceIntervalLower, betaConfidenceIntervalUpper, clinicalPhase, log2FoldChangePercentileRank, log2FoldChangeValue, oddsRatio, oddsRatioConfidenceIntervalLower, oddsRatioConfidenceIntervalUpper, publicationYear, pValueExponent, pValueMantissa, resourceScore, score, studyCases, studyCasesWithQualifyingVariants, studySampleSize
+  STR cols: _corrupt_record, ancestry, ancestryId, biologicalModelAllelicComposition, biologicalModelGeneticBackground, biologicalModelId, biomarkerName, cellType, clinicalStatus, cohortDescription, cohortId, cohortShortName, confidence, contrast, crisprScreenLibrary, datasourceId, datatypeId, directionOnTrait, diseaseFromSource, diseaseFromSourceId, diseaseFromSourceMappedId, diseaseId, drugFromSource, drugId, drugResponse, geneticBackground, id, projectId, publicationFirstAuthor, reactionId, reactionName, releaseDate, releaseVersion, sourceId, statisticalMethod, statisticalMethodOverview, statisticalTestTail, studyId, studyOverview, studyStartDate, studyStopReason, targetFromSource, targetFromSourceId, targetId, targetInModel, targetInModelEnsemblId, targetInModelMgiId, targetModulation, variantEffect, variantFunctionalConsequenceFromQtlId, variantFunctionalConsequenceId, variantHgvsId, variantId, variantRsId
+  OTHER cols: alleleOrigins, allelicRequirements, biomarkers, biosamplesFromSource, clinicalSignificances, cohortPhenotypes, diseaseCellLines, diseaseModelAssociatedHumanPhenotypes, diseaseModelAssociatedModelPhenotypes, literature, mutatedSamples, pathways, pmcIds, sex, significantDriverMethods, studyStopReasonCategories, textMiningSentences, urls, variantAminoacidDescriptions
+
+OPEN_TARGETS_PLATFORM_2.OPEN_TARGETS_PLATFORM.EXPRESSIONSPECIFICITY
+  STR cols: ensemblGeneId
+  OTHER cols: expression, expressionSpecificity
+
+OPEN_TARGETS_PLATFORM_2.OPEN_TARGETS_PLATFORM.GO
+  STR cols: id, name
+
+OPEN_TARGETS_PLATFORM_2.OPEN_TARGETS_PLATFORM.HPO
+  STR cols: description, id, name
+  OTHER cols: dbXRefs, namespace, obsolete_terms, parents
+
+OPEN_TARGETS_PLATFORM_2.OPEN_TARGETS_PLATFORM.INDICATION
+  NUM cols: indicationCount
+  STR cols: id
+  OTHER cols: approvedIndications, indications
+
+OPEN_TARGETS_PLATFORM_2.OPEN_TARGETS_PLATFORM.INTERACTION
+  NUM cols: count, scoring
+  STR cols: intA, intABiologicalRole, intB, intBBiologicalRole, sourceDatabase, targetA, targetB
+  OTHER cols: speciesA, speciesB
+
+OPEN_TARGETS_PLATFORM_2.OPEN_TARGETS_PLATFORM.KNOWNDRUGSAGGREGATED
+  NUM cols: phase
+  STR cols: approvedName, approvedSymbol, diseaseId, drugId, drugType, label, mechanismOfAction, prefName, status, targetId, targetName
+  OTHER cols: ancestors, synonyms, targetClass, tradeNames, urls
+
+OPEN_TARGETS_PLATFORM_2.OPEN_TARGETS_PLATFORM.MECHANISMOFACTION
+  STR cols: actionType, mechanismOfAction, targetName, targetType
+  OTHER cols: chemblIds, references, targets
+
+OPEN_TARGETS_PLATFORM_2.OPEN_TARGETS_PLATFORM.MOLECULE
+  NUM cols: maximumClinicalTrialPhase, yearOfFirstApproval
+  STR cols: canonicalSmiles, description, drugType, id, inchiKey, name, parentId
+  OTHER cols: blackBoxWarning, childChemblIds, crossReferences, hasBeenWithdrawn, isApproved, linkedDiseases, linkedTargets, synonyms, tradeNames
+
+OPEN_TARGETS_PLATFORM_2.OPEN_TARGETS_PLATFORM.PHARMACOGENOMICS
+  STR cols: datasourceId, datasourceVersion, datatypeId, directionality, evidenceLevel, genotype, genotypeAnnotationText, genotypeId, haplotypeFromSourceId, haplotypeId, pgxCategory, phenotypeFromSourceId, phenotypeText, studyId, targetFromSourceId, variantFunctionalConsequenceId, variantRsId
+  OTHER cols: drugs, isDirectTarget, literature
+
+OPEN_TARGETS_PLATFORM_2.OPEN_TARGETS_PLATFORM.REACTOME
+  STR cols: id, label
+  OTHER cols: ancestors, children, descendants, parents, path
+
+OPEN_TARGETS_PLATFORM_2.OPEN_TARGETS_PLATFORM.SIGNIFICANTADVERSEDRUGREACTIONS
+  NUM cols: count, critval, llr
+  STR cols: chembl_id, event, meddraCode
+
+OPEN_TARGETS_PLATFORM_2.OPEN_TARGETS_PLATFORM.TARGETESSENTIALITY
+  STR cols: id
+  OTHER cols: geneEssentiality
+
+OPEN_TARGETS_PLATFORM_2.OPEN_TARGETS_PLATFORM.TARGETS
+  STR cols: approvedName, approvedSymbol, biotype, id
+  OTHER cols: alternativeGenes, canonicalExons, canonicalTranscript, chemicalProbes, constraint, dbXrefs, functionDescriptions, genomicLocation, go, hallmarks, homologues, nameSynonyms, obsoleteNames, obsoleteSymbols, pathways, proteinIds, safetyLiabilities, subcellularLocations, symbolSynonyms, synonyms, targetClass, tep, tractability, transcriptIds
+
+OPEN_TARGETS_PLATFORM_2.OPEN_TARGETS_PLATFORM.TARGETSPRIORISATION
+  NUM cols: geneticConstraint, hasHighQualityChemicalProbes, hasLigand, hasMouseKO, hasPocket, hasSafetyEvent, hasTEP, isCancerDriverGene, isInMembrane, isSecreted, maxClinicalTrialPhase, mouseOrthologMaxIdentityPercentage, paralogMaxIdentityPercentage, tissueDistribution, tissueSpecificity
+  STR cols: targetId
