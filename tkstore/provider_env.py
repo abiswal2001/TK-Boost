@@ -15,9 +15,12 @@ if USE_OPENAI:
     if OPENAI_API_BASE:
         os.environ["OPENAI_API_BASE"] = OPENAI_API_BASE
 else:
-    os.environ["AZURE_API_KEY"] = AZURE_API_KEY
-    os.environ["AZURE_API_BASE"] = AZURE_API_BASE
-    os.environ["AZURE_API_VERSION"] = AZURE_API_VERSION
+    if AZURE_API_KEY:
+        os.environ["AZURE_API_KEY"] = AZURE_API_KEY
+    if AZURE_API_BASE:
+        os.environ["AZURE_API_BASE"] = AZURE_API_BASE
+    if AZURE_API_VERSION:
+        os.environ["AZURE_API_VERSION"] = AZURE_API_VERSION
 
 
 def provider_info(model: str) -> str:

@@ -603,8 +603,8 @@ def run_refinement_on_existing_outputs(args):
         sys.exit(1)
     
     # Use --output-dir if specified, otherwise default to source + '_withrefined'
-    if args.output_dir:
-        dest_dir = Path(args.output_dir)
+    if args.refine_output_dir:
+        dest_dir = Path(args.refine_output_dir)
     else:
         dest_dir = Path(str(source_dir).rstrip('/') + '_withrefined')
     

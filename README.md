@@ -24,6 +24,10 @@ source env/bin/activate  # On Windows: env\Scripts\activate
 pip install -r requirements.txt
 ```
 
+## Demo
+
+The **`demo.ipynb`** notebook is a short end-to-end walkthrough: it runs the SQL agent on a single SQLite instance (e.g. `local066`) with predicted CTE hints, then inspects the generated SQL and compares the agent result to ground truth. Use it to sanity-check your setup and see the runner in action before using the CLI.
+
 ## Basic Usage
 
 ### Run SQL Agent (Single Instance)
