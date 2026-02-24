@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog — TK-Boost: Arming Data Agents with Tribal Knowledge</title>
+  <meta name="description" content="Why NL2SQL agents fail on real databases and how tribal knowledge fixes them.">
+  <link rel="icon" href="logo.png" type="image/png">
+  <style>
+    :root {
+      --bg: #0a0a0f;
+      --surface: #12121a;
+      --border: #1e1e2e;
+      --border-light: #2a2a3d;
+      --text: #e2e2ef;
+      --text-muted: #8888a0;
+      --text-dim: #5c5c75;
+      --accent: #4f8ff7;
+      --accent-glow: rgba(79, 143, 247, 0.15);
+      --orange: #f59e0b;
+      --green: #34d399;
+      --radius: 10px;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ── Nav ── */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 100;
+      background: rgba(10, 10, 15, 0.82);
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+    nav .inner {
+      max-width: 1080px; margin: 0 auto; padding: 0.75rem 1.5rem;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    nav .brand { display: flex; align-items: center; gap: 0.6rem; font-weight: 700; font-size: 1.05rem; color: var(--text); }
+    nav .brand img { height: 30px; width: auto; }
+    nav .links { display: flex; gap: 1.75rem; font-size: 0.88rem; }
+    nav .links a { color: var(--text-muted); }
+    nav .links a:hover { color: var(--text); }
+
+    /* ── Article ── */
+    .article {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 7rem 1.5rem 4rem;
+    }
+
+    /* ── Hero ── */
+    .article-hero {
+      margin-bottom: 3rem;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .article-hero .tag {
+      display: inline-block; padding: 0.2rem 0.65rem; border-radius: 5px;
+      font-size: 0.72rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.1em; background: var(--accent-glow);
+      color: var(--accent); border: 1px solid rgba(79,143,247,0.2);
+      margin-bottom: 1rem;
+    }
+    .article-hero h1 {
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      font-weight: 800; letter-spacing: -0.03em; line-height: 1.2;
+    }
+    .article-hero .tldr {
+      margin-top: 1.25rem; padding: 1.25rem 1.5rem;
+      background: var(--surface); border: 1px solid var(--border);
+      border-left: 3px solid var(--accent); border-radius: var(--radius);
+      color: var(--text-muted); font-size: 0.95rem; line-height: 1.7;
+    }
+    .article-hero .meta {
+      margin-top: 1.25rem; font-size: 0.85rem; color: var(--text-dim);
+      display: flex; gap: 1.5rem; flex-wrap: wrap;
+    }
+    .article-hero .meta a { color: var(--text-dim); }
+    .article-hero .meta a:hover { color: var(--accent); }
+
+    /* ── Prose ── */
+    .prose h2 {
+      font-size: 1.5rem; font-weight: 700; letter-spacing: -0.02em;
+      margin: 3rem 0 1rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
+    .prose h2:first-child { border-top: none; padding-top: 0; margin-top: 0; }
+    .prose h3 {
+      font-size: 1.15rem; font-weight: 650; margin: 2rem 0 0.75rem;
+    }
+    .prose p { margin-bottom: 1rem; color: var(--text-muted); font-size: 1rem; }
+    .prose strong { color: var(--text); font-weight: 600; }
+    .prose ul, .prose ol {
+      margin: 0.75rem 0 1.25rem 1.25rem; color: var(--text-muted); font-size: 0.95rem;
+    }
+    .prose li { margin-bottom: 0.4rem; }
+    .prose code {
+      font-family: 'JetBrains Mono', 'SF Mono', monospace;
+      font-size: 0.85em; background: var(--surface); padding: 0.15em 0.4em;
+      border-radius: 4px; border: 1px solid var(--border); color: var(--orange);
+    }
+    .prose pre {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.25rem 1.5rem;
+      overflow-x: auto; margin: 1rem 0 1.5rem;
+      font-family: 'JetBrains Mono', 'SF Mono', monospace;
+      font-size: 0.82rem; line-height: 1.7; color: var(--text-muted);
+    }
+    .prose pre code { background: none; border: none; padding: 0; color: inherit; font-size: inherit; }
+    .prose blockquote {
+      margin: 1.5rem 0; padding: 1rem 1.5rem;
+      border-left: 3px solid var(--accent); background: var(--surface);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      color: var(--text-muted); font-size: 0.95rem;
+    }
+
+    /* ── Callout ── */
+    .callout {
+      margin: 2rem 0; padding: 1.5rem;
+      background: linear-gradient(135deg, var(--accent-glow), rgba(245,158,11,0.08));
+      border: 1px solid var(--border-light); border-radius: var(--radius);
+    }
+    .callout h4 { font-size: 1rem; margin-bottom: 0.5rem; color: var(--text); }
+    .callout p { margin: 0; font-size: 0.92rem; color: var(--text-muted); }
+    .callout ul { margin: 0.5rem 0 0 1.25rem; }
+
+    /* ── Stat Row ── */
+    .stat-row {
+      display: flex; gap: 1rem; margin: 1.5rem 0; flex-wrap: wrap;
+    }
+    .stat-pill {
+      flex: 1; min-width: 140px; text-align: center;
+      padding: 1.25rem 1rem;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius);
+    }
+    .stat-pill .num {
+      font-size: 1.75rem; font-weight: 800;
+      background: linear-gradient(135deg, var(--green), var(--accent));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .stat-pill .lbl { font-size: 0.78rem; color: var(--text-dim); margin-top: 0.15rem; }
+
+    /* ── Footer ── */
+    footer {
+      max-width: 700px; margin: 0 auto; padding: 2rem 1.5rem;
+      border-top: 1px solid var(--border);
+      text-align: center; color: var(--text-dim); font-size: 0.82rem;
+    }
+    footer .foot-links { display: flex; gap: 1.5rem; justify-content: center; margin-bottom: 0.75rem; }
+    footer .foot-links a { color: var(--text-muted); }
+  </style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav>
+  <div class="inner">
+    <a href="index.html" class="brand"><img src="logo.png" alt="TK-Boost logo"> TK-Boost</a>
+    <div class="links">
+      <a href="index.html">Home</a>
+      <a href="https://arxiv.org/abs/2602.13521">Paper</a>
+      <a href="https://github.com/abiswal2001/TK-Boost">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<article class="article">
+
+  <!-- Hero -->
+  <div class="article-hero">
+    <div class="tag">Research Blog</div>
+    <h1>Arming Data Agents with Tribal Knowledge</h1>
+    <div class="tldr">
+      Modern NL2SQL agents are fluent but unreliable on real databases.
+      We show that many failures stem from recurring <strong>data misconceptions</strong>, not reasoning ability.
+      TK-Boost teaches agents reusable corrective knowledge learned from experience, improving execution accuracy by up to <strong>+16.9% on Spider&nbsp;2.0</strong> and <strong>+13.7% on BIRD</strong>.
+    </div>
+    <div class="meta">
+      <span>Shubham Agarwal, Asim Biswal, Sepanta Zeighami, Alvin Cheung, Joseph Gonzalez, Aditya G. Parameswaran</span>
+    </div>
+    <div class="meta" style="margin-top: 0.5rem;">
+      <a href="https://arxiv.org/abs/2602.13521">Paper (arXiv)</a>
+      <a href="https://github.com/abiswal2001/TK-Boost">Code (GitHub)</a>
+      <a href="mailto:abiswal@berkeley.edu">Contact</a>
+    </div>
+  </div>
+
+  <!-- Content -->
+  <div class="prose">
+
+    <h2>Fluent SQL &#8800; Correct SQL</h2>
+    <p>
+      NL2SQL agents have made natural-language interfaces to databases far more practical. Today's agents can explore schemas, issue intermediate queries, and iteratively refine SQL before producing a final answer. Despite this progress, execution accuracy on realistic benchmarks remains surprisingly low.
+    </p>
+    <p>
+      The main failure mode is not syntax or query planning, but rather <strong>misunderstanding the data</strong>.
+    </p>
+    <p>
+      Consider a simple example. A <code>purchase</code> table contains both <code>brand</code> and <code>name</code> columns. The <code>brand</code> column was added later and is sparsely populated, while the <code>name</code> column reliably contains the brand as a prefix (e.g., "Nike Air Max"). Humans quickly learn to filter using:
+    </p>
+    <pre><code>WHERE name LIKE 'Nike %'</code></pre>
+    <p>NL2SQL agents repeatedly use:</p>
+    <pre><code>WHERE brand = 'Nike'</code></pre>
+    <p>
+      This error reappears across many queries. These recurring logical errors&mdash;caused by missing knowledge about what data should be selected and how it should be used&mdash;are what we call <strong>misconceptions</strong>.
+    </p>
+
+    <h2>Why Naive Approaches Fall Short</h2>
+    <p>Two natural ideas have emerged to improve agents:</p>
+    <ol>
+      <li><strong>Memory / trajectory reuse</strong> &mdash; Retrieve past queries and include them in the prompt.</li>
+      <li><strong>Facts about the database</strong> &mdash; Ask LLMs to generate natural-language facts that clarify data nuances.</li>
+    </ol>
+    <p>In practice, both approaches fall short.</p>
+    <p>
+      Memory retrieval often surfaces irrelevant past queries and can even introduce new errors. "Facts" about the database restate schema and content but rarely correct how the agent <em>uses</em> the data. Moreover, even if the right information is retrieved, the agent must be properly fed the information in order to correct its mistakes.
+    </p>
+
+    <h2>What Is Tribal Knowledge?</h2>
+    <p>Human analysts learn databases through experience. Over time they accumulate rules like:</p>
+    <ul>
+      <li>"Don't trust this column for filtering&mdash;it has many NULL values."</li>
+      <li>"Column <code>brand_c</code> contains clean data from column <code>brand</code>."</li>
+      <li>"Apply window computation logic after filtering date ranges, not before."</li>
+    </ul>
+    <p>
+      These knowledge statements come from mistakes made in the past and are used to prevent or correct future mistakes on the data.
+      We call this <strong>tribal knowledge</strong>: reusable natural-language statements that correct recurring misconceptions.
+    </p>
+    <p>
+      TK-Boost is a bolt-on framework that allows NL2SQL agents to acquire and use this knowledge. It defines both a mechanism for discovering and applying knowledge for NL2SQL agents.
+    </p>
+
+    <h2>Overview of TK-Boost</h2>
+    <p>TK-Boost operates in two phases.</p>
+
+    <h3>Offline: Knowledge Discovery</h3>
+    <p>
+      Using a small set of labeled queries and the agent's translation attempts, mistakes are identified and iteratively corrected one clause at a time. Each correction is converted into a reusable knowledge statement alongside an <strong>applicability condition</strong> which defines what SQL contexts the statement should be used in.
+    </p>
+
+    <h3>Online: Corrective Augmentation</h3>
+    <p>
+      When answering new queries, the agent first generates a SQL draft. TK-Boost then retrieves relevant knowledge using the current draft and provides targeted feedback to fix errors before the final SQL is produced. Correcting <em>after</em> generation is key: knowledge is applied only when relevant mistakes appear.
+    </p>
+
+    <h2>Retrieval and CTE-Level Correction</h2>
+    <p>Applying knowledge reliably requires precise retrieval.</p>
+    <p>
+      Instead of retrieving knowledge from the natural-language query, TK-Boost retrieves it from the <strong>agent's SQL draft</strong> using structured features that define an applicability condition:
+    </p>
+    <ul>
+      <li>SQL keywords</li>
+      <li>Tables</li>
+      <li>Columns</li>
+      <li>Data types</li>
+    </ul>
+    <p>
+      Knowledge is then applied <strong>one CTE at a time</strong>, enabling precise corrections for complex queries.
+    </p>
+
+    <h2>Results</h2>
+    <p>
+      We evaluate TK-Boost on Spider 2.0 and BIRD across multiple NL2SQL agents and models.
+    </p>
+
+    <div class="stat-row">
+      <div class="stat-pill">
+        <div class="num">+16.9%</div>
+        <div class="lbl">Spider 2.0</div>
+      </div>
+      <div class="stat-pill">
+        <div class="num">+13.7%</div>
+        <div class="lbl">BIRD</div>
+      </div>
+    </div>
+
+    <p>Improvement substantially exceeds memory and naive knowledge baselines.</p>
+
+    <p>
+      In addition, TK-Boost works as a <strong>bolt-on augmentation</strong> for existing agents. We tested on two leading open-source solutions for the Spider 2.0 and BIRD benchmarks&mdash;ReFORCE and Agentar-Scale SQL. For each, we inserted tribal knowledge in a post-generation refinement step:
+    </p>
+
+    <div class="stat-row">
+      <div class="stat-pill">
+        <div class="num">+11.4%</div>
+        <div class="lbl">ReFORCE</div>
+      </div>
+      <div class="stat-pill">
+        <div class="num">+10.2%</div>
+        <div class="lbl">Agentar-Scale SQL</div>
+      </div>
+    </div>
+
+    <p>For more details on our experiment setup and baselines, please refer to our <a href="https://arxiv.org/abs/2602.13521">paper</a>.</p>
+
+    <h2>Takeaway</h2>
+
+    <div class="callout">
+      <h4>The Key Insight</h4>
+      <p>NL2SQL agents already know how to write SQL. What they lack is experience using real databases.</p>
+      <p style="margin-top: 0.5rem;">Tribal knowledge provides a mechanism for agents to learn from past mistakes and reuse those lessons for future queries.</p>
+    </div>
+
+  </div>
+</article>
+
+<!-- Footer -->
+<footer>
+  <div class="foot-links">
+    <a href="index.html">Home</a>
+    <a href="https://arxiv.org/abs/2602.13521">arXiv</a>
+    <a href="https://github.com/abiswal2001/TK-Boost">GitHub</a>
+  </div>
+  <p>TK-Boost &middot; UC Berkeley</p>
+</footer>
+
+</body>
+</html>
