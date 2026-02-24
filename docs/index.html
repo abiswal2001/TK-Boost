@@ -1,433 +1,371 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TK-Boost: Arming Data Agents with Tribal Knowledge</title>
   <meta name="description" content="A bolt-on framework for augmenting NL2SQL agents with tribal knowledge. Up to +16.9% accuracy on Spider 2.0.">
   <link rel="icon" href="logo.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --bg: #0a0a0f;
-      --surface: #12121a;
-      --surface-hover: #1a1a25;
-      --border: #1e1e2e;
-      --border-light: #2a2a3d;
-      --text: #e2e2ef;
-      --text-muted: #8888a0;
-      --text-dim: #5c5c75;
-      --accent: #4f8ff7;
-      --accent-glow: rgba(79, 143, 247, 0.15);
-      --orange: #f59e0b;
-      --orange-glow: rgba(245, 158, 11, 0.12);
-      --green: #34d399;
-      --radius: 10px;
+    /* ── Theme Variables ── */
+    :root[data-theme="light"] {
+      --bg: #ffffff;
+      --bg-alt: #f8f9fb;
+      --surface: #f1f3f7;
+      --surface-hover: #e8ebf0;
+      --border: #e0e3ea;
+      --border-light: #d0d4de;
+      --text: #1a1a2e;
+      --text-muted: #555770;
+      --text-dim: #8a8da6;
+      --accent: #2563eb;
+      --accent-hover: #1d4ed8;
+      --accent-glow: rgba(37, 99, 235, 0.08);
+      --orange: #e67e22;
+      --orange-glow: rgba(230, 126, 34, 0.06);
+      --green: #0d9668;
+      --red: #dc2626;
+      --nav-bg: rgba(255, 255, 255, 0.85);
+      --code-bg: #f4f5f9;
+      --code-border: #e0e3ea;
+      --gradient-stat: linear-gradient(135deg, #0d9668, #2563eb);
+      --gradient-gain: linear-gradient(135deg, #e67e22, #dc2626);
     }
+    :root[data-theme="dark"] {
+      --bg: #0b0b12;
+      --bg-alt: #0f0f1a;
+      --surface: #141420;
+      --surface-hover: #1c1c2e;
+      --border: #222238;
+      --border-light: #2e2e4a;
+      --text: #e6e6f0;
+      --text-muted: #9494b0;
+      --text-dim: #606080;
+      --accent: #5b8def;
+      --accent-hover: #4a7de8;
+      --accent-glow: rgba(91, 141, 239, 0.1);
+      --orange: #f0a050;
+      --orange-glow: rgba(240, 160, 80, 0.08);
+      --green: #3dd9a0;
+      --red: #f06060;
+      --nav-bg: rgba(11, 11, 18, 0.85);
+      --code-bg: #0e0e18;
+      --code-border: #222238;
+      --gradient-stat: linear-gradient(135deg, #3dd9a0, #5b8def);
+      --gradient-gain: linear-gradient(135deg, #f0a050, #f06060);
+    }
+
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.65;
-      -webkit-font-smoothing: antialiased;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg); color: var(--text);
+      line-height: 1.65; -webkit-font-smoothing: antialiased;
+      transition: background 0.3s, color 0.3s;
     }
-    a { color: var(--accent); text-decoration: none; transition: opacity 0.2s; }
-    a:hover { opacity: 0.85; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { color: var(--accent-hover); }
 
     /* ── Nav ── */
     nav {
       position: fixed; top: 0; width: 100%; z-index: 100;
-      background: rgba(10, 10, 15, 0.82);
-      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      background: var(--nav-bg);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--border);
+      transition: background 0.3s, border-color 0.3s;
     }
     nav .inner {
-      max-width: 1080px; margin: 0 auto; padding: 0.75rem 1.5rem;
+      max-width: 960px; margin: 0 auto; padding: 0.7rem 1.5rem;
       display: flex; align-items: center; justify-content: space-between;
     }
-    nav .brand { display: flex; align-items: center; gap: 0.6rem; font-weight: 700; font-size: 1.05rem; color: var(--text); }
-    nav .brand img { height: 30px; width: auto; }
-    nav .links { display: flex; gap: 1.75rem; font-size: 0.88rem; }
-    nav .links a { color: var(--text-muted); }
+    nav .brand {
+      display: flex; align-items: center; gap: 0.5rem;
+      font-weight: 700; font-size: 1rem; color: var(--text); text-decoration: none;
+    }
+    nav .brand img { height: 26px; width: auto; }
+    nav .right { display: flex; align-items: center; gap: 1.5rem; }
+    nav .links { display: flex; gap: 1.5rem; font-size: 0.85rem; }
+    nav .links a { color: var(--text-muted); text-decoration: none; }
     nav .links a:hover { color: var(--text); }
+    .theme-toggle {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 6px; padding: 0.35rem 0.5rem; cursor: pointer;
+      font-size: 0.85rem; line-height: 1; color: var(--text-muted);
+      transition: all 0.2s;
+    }
+    .theme-toggle:hover { border-color: var(--border-light); color: var(--text); }
 
     /* ── Container ── */
-    .container { max-width: 1080px; margin: 0 auto; padding: 0 1.5rem; }
+    .container { max-width: 960px; margin: 0 auto; padding: 0 1.5rem; }
 
     /* ── Hero ── */
-    .hero {
-      padding: 8rem 0 4rem;
-      text-align: center;
-      background: radial-gradient(ellipse 60% 50% at 50% 0%, var(--accent-glow) 0%, transparent 70%);
+    .hero { padding: 7.5rem 0 3.5rem; text-align: center; }
+    .hero img.logo {
+      height: 90px; margin-bottom: 1.25rem;
+      filter: drop-shadow(0 4px 12px rgba(0,0,0,0.08));
     }
-    .hero img.logo { height: 100px; margin-bottom: 1.5rem; filter: drop-shadow(0 0 30px rgba(79,143,247,0.2)); }
     .hero h1 {
-      font-size: clamp(2rem, 5vw, 3rem);
-      font-weight: 800; letter-spacing: -0.03em;
-      line-height: 1.15;
-      max-width: 720px; margin: 0 auto;
+      font-size: clamp(1.8rem, 4.5vw, 2.6rem);
+      font-weight: 800; letter-spacing: -0.03em; line-height: 1.15;
+      max-width: 650px; margin: 0 auto;
     }
-    .hero h1 span { background: linear-gradient(135deg, var(--accent), var(--orange)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero h1 span {
+      background: linear-gradient(135deg, var(--accent), var(--orange));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
     .hero .subtitle {
-      margin-top: 1.25rem; font-size: 1.15rem; color: var(--text-muted);
-      max-width: 600px; margin-left: auto; margin-right: auto; line-height: 1.7;
+      margin-top: 1rem; font-size: 1.05rem; color: var(--text-muted);
+      max-width: 560px; margin-left: auto; margin-right: auto; line-height: 1.65;
     }
     .hero .authors {
-      margin-top: 1rem; font-size: 0.88rem; color: var(--text-dim);
+      margin-top: 0.75rem; font-size: 0.82rem; color: var(--text-dim);
     }
-    .hero .cta-row { margin-top: 2rem; display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; }
+    .hero .cta-row {
+      margin-top: 1.75rem; display: flex; gap: 0.6rem;
+      justify-content: center; flex-wrap: wrap;
+    }
     .btn {
-      display: inline-flex; align-items: center; gap: 0.45rem;
-      padding: 0.65rem 1.4rem; border-radius: 8px;
-      font-size: 0.9rem; font-weight: 600; transition: all 0.2s;
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      padding: 0.55rem 1.2rem; border-radius: 7px;
+      font-size: 0.85rem; font-weight: 600; transition: all 0.2s;
+      text-decoration: none;
     }
     .btn-primary { background: var(--accent); color: #fff; }
-    .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
-    .btn-outline { border: 1px solid var(--border-light); color: var(--text-muted); background: transparent; }
-    .btn-outline:hover { border-color: var(--text-muted); color: var(--text); background: var(--surface); }
-    .btn svg { width: 16px; height: 16px; fill: currentColor; }
+    .btn-primary:hover { background: var(--accent-hover); color: #fff; transform: translateY(-1px); }
+    .btn-ghost {
+      border: 1px solid var(--border); color: var(--text-muted); background: transparent;
+    }
+    .btn-ghost:hover { border-color: var(--border-light); color: var(--text); background: var(--surface); }
 
     /* ── Stats ── */
     .stats {
-      display: flex; justify-content: center; gap: 3rem; padding: 2.5rem 0;
-      border-bottom: 1px solid var(--border);
+      display: flex; justify-content: center; gap: 2.5rem;
+      padding: 2rem 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
       flex-wrap: wrap;
     }
     .stat { text-align: center; }
     .stat .num {
-      font-size: 2rem; font-weight: 800; letter-spacing: -0.02em;
-      background: linear-gradient(135deg, var(--green), var(--accent));
+      font-size: 1.8rem; font-weight: 800; letter-spacing: -0.02em;
+      background: var(--gradient-stat);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
     }
-    .stat .label { font-size: 0.82rem; color: var(--text-dim); margin-top: 0.2rem; }
+    .stat .label { font-size: 0.78rem; color: var(--text-dim); margin-top: 0.15rem; }
 
     /* ── Sections ── */
-    section { padding: 4rem 0; }
+    section { padding: 3.5rem 0; }
     section + section { border-top: 1px solid var(--border); }
-    .section-label {
-      font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
-      letter-spacing: 0.12em; color: var(--accent); margin-bottom: 0.6rem;
+    .section-tag {
+      font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.12em; color: var(--accent); margin-bottom: 0.5rem;
     }
     section h2 {
-      font-size: 1.75rem; font-weight: 700; letter-spacing: -0.02em;
-      margin-bottom: 1rem;
+      font-size: 1.5rem; font-weight: 700; letter-spacing: -0.02em;
+      margin-bottom: 0.75rem;
     }
-    section p.lead { color: var(--text-muted); font-size: 1.05rem; max-width: 640px; }
+    section p.lead { color: var(--text-muted); font-size: 0.98rem; max-width: 580px; }
 
-    /* ── Cards Grid ── */
-    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; margin-top: 2rem; }
-    .card {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--radius); padding: 1.5rem;
-      transition: border-color 0.25s, background 0.25s;
-    }
-    .card:hover { border-color: var(--border-light); background: var(--surface-hover); }
-    .card .icon { font-size: 1.5rem; margin-bottom: 0.6rem; }
-    .card h3 { font-size: 1rem; font-weight: 650; margin-bottom: 0.35rem; }
-    .card p { font-size: 0.87rem; color: var(--text-muted); line-height: 1.55; }
-
-    /* ── How it Works ── */
-    .steps { margin-top: 2rem; display: flex; flex-direction: column; gap: 1.5rem; }
+    /* ── Steps ── */
+    .steps { margin-top: 1.75rem; display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem; }
+    @media (max-width: 600px) { .steps { grid-template-columns: 1fr; } }
     .step {
-      display: flex; gap: 1.25rem; align-items: flex-start;
+      display: flex; gap: 0.9rem; align-items: flex-start;
       background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--radius); padding: 1.5rem;
+      border-radius: 10px; padding: 1.15rem 1.25rem;
+      transition: border-color 0.2s;
     }
+    .step:hover { border-color: var(--border-light); }
     .step-num {
-      flex-shrink: 0; width: 36px; height: 36px;
+      flex-shrink: 0; width: 30px; height: 30px;
       display: flex; align-items: center; justify-content: center;
-      border-radius: 50%; background: var(--accent-glow); border: 1px solid var(--border-light);
-      font-weight: 700; font-size: 0.9rem; color: var(--accent);
+      border-radius: 50%; background: var(--accent-glow); border: 1px solid var(--border);
+      font-weight: 700; font-size: 0.8rem; color: var(--accent);
     }
-    .step h3 { font-size: 1rem; font-weight: 650; margin-bottom: 0.3rem; }
-    .step p { font-size: 0.88rem; color: var(--text-muted); }
+    .step h3 { font-size: 0.9rem; font-weight: 650; margin-bottom: 0.2rem; }
+    .step p { font-size: 0.82rem; color: var(--text-muted); line-height: 1.5; }
 
-    /* ── Results ── */
-    .results-grid { margin-top: 2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-    @media (max-width: 600px) { .results-grid { grid-template-columns: 1fr; } }
+    /* ── Results Grid ── */
+    .results-grid { margin-top: 1.5rem; display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.75rem; }
+    @media (max-width: 700px) { .results-grid { grid-template-columns: 1fr 1fr; } }
     .result-card {
       background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--radius); padding: 1.75rem; text-align: center;
+      border-radius: 10px; padding: 1.25rem; text-align: center;
+      transition: border-color 0.2s;
     }
-    .result-card .bench { font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-dim); }
+    .result-card:hover { border-color: var(--border-light); }
+    .result-card .bench {
+      font-size: 0.7rem; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.06em; color: var(--text-dim);
+    }
     .result-card .gain {
-      font-size: 2.5rem; font-weight: 800; margin: 0.5rem 0 0.25rem;
-      background: linear-gradient(135deg, var(--orange), #ef4444);
+      font-size: 1.8rem; font-weight: 800; margin: 0.3rem 0 0.15rem;
+      background: var(--gradient-gain);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
     }
-    .result-card .desc { font-size: 0.85rem; color: var(--text-muted); }
+    .result-card .desc { font-size: 0.75rem; color: var(--text-dim); }
 
-    /* ── Code block ── */
+    /* ── Code Block ── */
     .code-block {
-      margin-top: 1.5rem; background: var(--surface);
-      border: 1px solid var(--border); border-radius: var(--radius);
+      margin-top: 1.25rem; background: var(--code-bg);
+      border: 1px solid var(--code-border); border-radius: 10px;
       overflow: hidden;
     }
     .code-block .bar {
-      padding: 0.5rem 1rem; font-size: 0.75rem; color: var(--text-dim);
-      background: rgba(255,255,255,0.02); border-bottom: 1px solid var(--border);
+      padding: 0.45rem 1rem; font-size: 0.72rem; color: var(--text-dim);
+      background: var(--surface); border-bottom: 1px solid var(--border);
       display: flex; align-items: center; gap: 0.5rem;
     }
-    .code-block .bar .dots { display: flex; gap: 5px; }
-    .code-block .bar .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--border-light); }
+    .code-block .bar .dots { display: flex; gap: 4px; }
+    .code-block .bar .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--border-light); }
     .code-block pre {
-      padding: 1.25rem 1.5rem; overflow-x: auto;
-      font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', monospace;
-      font-size: 0.82rem; line-height: 1.7; color: var(--text-muted);
+      padding: 1rem 1.25rem; overflow-x: auto;
+      font-family: 'SF Mono', 'Fira Code', 'JetBrains Mono', monospace;
+      font-size: 0.78rem; line-height: 1.7; color: var(--text-muted);
     }
     .code-block pre .comment { color: var(--text-dim); }
     .code-block pre .cmd { color: var(--green); }
 
-    /* ── Docs Section ── */
-    .docs-section { margin-top: 0; }
-    details {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--radius); margin-bottom: 0.75rem;
-      transition: border-color 0.25s;
-    }
-    details:hover { border-color: var(--border-light); }
-    details[open] { border-color: var(--border-light); }
-    details summary {
-      padding: 1rem 1.25rem; cursor: pointer;
-      font-weight: 600; font-size: 0.95rem; color: var(--text);
-      list-style: none; display: flex; align-items: center; gap: 0.6rem;
-    }
-    details summary::-webkit-details-marker { display: none; }
-    details summary::before {
-      content: '\25B6'; font-size: 0.65rem; color: var(--text-dim);
-      transition: transform 0.2s;
-    }
-    details[open] summary::before { transform: rotate(90deg); }
-    details .details-body {
-      padding: 0 1.25rem 1.25rem;
-      font-size: 0.9rem; color: var(--text-muted); line-height: 1.7;
-    }
-    details .details-body p { margin-bottom: 0.75rem; }
-    details .details-body pre {
-      background: var(--bg); border: 1px solid var(--border);
-      border-radius: 6px; padding: 1rem 1.25rem; overflow-x: auto;
-      font-family: 'JetBrains Mono', 'SF Mono', monospace;
-      font-size: 0.8rem; line-height: 1.65; color: var(--text-muted);
-      margin: 0.75rem 0;
-    }
-    details .details-body code {
-      font-family: 'JetBrains Mono', 'SF Mono', monospace;
-      font-size: 0.83em; background: var(--bg); padding: 0.15em 0.4em;
-      border-radius: 4px; border: 1px solid var(--border); color: var(--orange);
-    }
-    details .details-body ul, details .details-body ol {
-      margin: 0.5rem 0 0.75rem 1.25rem;
-    }
-    details .details-body li { margin-bottom: 0.3rem; }
-    details .details-body strong { color: var(--text); }
-    .file-tree {
-      font-family: 'JetBrains Mono', 'SF Mono', monospace;
-      font-size: 0.8rem; line-height: 1.6; color: var(--text-dim);
-      margin: 0.75rem 0;
-    }
-    .file-tree .highlight { color: var(--text-muted); }
-
-    /* ── Blog link banner ── */
+    /* ── Blog Banner ── */
     .blog-banner {
-      margin-top: 2rem; padding: 1.5rem 2rem;
-      background: linear-gradient(135deg, var(--accent-glow), var(--orange-glow));
-      border: 1px solid var(--border-light); border-radius: var(--radius);
+      margin: 2.5rem 0; padding: 1.25rem 1.5rem;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 10px;
       display: flex; align-items: center; justify-content: space-between;
-      flex-wrap: wrap; gap: 1rem;
+      flex-wrap: wrap; gap: 0.75rem;
     }
-    .blog-banner .text h3 { font-size: 1.05rem; font-weight: 650; }
-    .blog-banner .text p { font-size: 0.87rem; color: var(--text-muted); margin-top: 0.2rem; }
+    .blog-banner h3 { font-size: 0.95rem; font-weight: 650; }
+    .blog-banner p { font-size: 0.82rem; color: var(--text-muted); margin-top: 0.1rem; }
 
     /* ── Footer ── */
     footer {
-      padding: 3rem 0; border-top: 1px solid var(--border);
-      text-align: center; color: var(--text-dim); font-size: 0.82rem;
+      padding: 2.5rem 0; border-top: 1px solid var(--border);
+      text-align: center; color: var(--text-dim); font-size: 0.78rem;
     }
-    footer .foot-links { display: flex; gap: 1.5rem; justify-content: center; margin-bottom: 0.75rem; }
-    footer .foot-links a { color: var(--text-muted); }
+    footer .foot-links {
+      display: flex; gap: 1.25rem; justify-content: center; margin-bottom: 0.5rem;
+    }
+    footer .foot-links a { color: var(--text-muted); font-size: 0.82rem; }
 
     /* ── Responsive ── */
     @media (max-width: 600px) {
-      .hero { padding: 6.5rem 0 3rem; }
-      .stats { gap: 1.5rem; }
-      .step { flex-direction: column; gap: 0.75rem; }
+      .hero { padding: 6rem 0 2.5rem; }
+      .stats { gap: 1.25rem; padding: 1.5rem 0; }
+      .stat .num { font-size: 1.4rem; }
+      nav .links { gap: 1rem; font-size: 0.8rem; }
     }
   </style>
 </head>
 <body>
 
-<!-- Nav -->
 <nav>
   <div class="inner">
-    <a href="#" class="brand"><img src="logo.png" alt="TK-Boost logo"> TK-Boost</a>
-    <div class="links">
-      <a href="#features">Features</a>
-      <a href="#how-it-works">How It Works</a>
-      <a href="#results">Results</a>
-      <a href="#docs">Docs</a>
-      <a href="blog.html">Blog</a>
-      <a href="https://arxiv.org/abs/2602.13521">Paper</a>
-      <a href="https://github.com/abiswal2001/TK-Boost">GitHub</a>
+    <a href="#" class="brand"><img src="logo.png" alt="TK-Boost"> TK-Boost</a>
+    <div class="right">
+      <div class="links">
+        <a href="#method">Method</a>
+        <a href="#results">Results</a>
+        <a href="blog.html">Blog</a>
+        <a href="https://arxiv.org/abs/2602.13521">Paper</a>
+        <a href="https://github.com/abiswal2001/TK-Boost">GitHub</a>
+      </div>
+      <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+        <span id="theme-icon">&#9790;</span>
+      </button>
     </div>
   </div>
 </nav>
 
 <div class="container">
 
-  <!-- Hero -->
   <div class="hero">
     <img class="logo" src="logo.png" alt="TK-Boost">
     <h1>Arming Data Agents with <span>Tribal Knowledge</span></h1>
     <p class="subtitle">
-      A bolt-on framework that teaches NL2SQL agents reusable corrective knowledge learned from experience&mdash;boosting accuracy on real-world databases.
+      A bolt-on framework that teaches NL2SQL agents reusable corrective knowledge learned from experience &mdash; boosting accuracy on real-world databases.
     </p>
     <p class="authors">
       Shubham Agarwal &middot; Asim Biswal &middot; Sepanta Zeighami &middot; Alvin Cheung &middot; Joseph Gonzalez &middot; Aditya G. Parameswaran
     </p>
     <div class="cta-row">
-      <a href="https://arxiv.org/abs/2602.13521" class="btn btn-primary">
-        <svg viewBox="0 0 16 16"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.5L9.5 0H4zm5.5 0v3A1.5 1.5 0 0 0 11 4.5h3"/></svg>
-        Read Paper
-      </a>
-      <a href="https://github.com/abiswal2001/TK-Boost" class="btn btn-outline">
-        <svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
-        View Code
-      </a>
-      <a href="blog.html" class="btn btn-outline">
-        Blog Post
-      </a>
+      <a href="https://arxiv.org/abs/2602.13521" class="btn btn-primary">Read Paper</a>
+      <a href="https://github.com/abiswal2001/TK-Boost" class="btn btn-ghost">GitHub</a>
+      <a href="blog.html" class="btn btn-ghost">Blog Post</a>
     </div>
   </div>
 
-  <!-- Stats -->
   <div class="stats">
-    <div class="stat">
-      <div class="num">+16.9%</div>
-      <div class="label">Spider 2.0</div>
-    </div>
-    <div class="stat">
-      <div class="num">+13.7%</div>
-      <div class="label">BIRD</div>
-    </div>
-    <div class="stat">
-      <div class="num">+11.4%</div>
-      <div class="label">ReFORCE</div>
-    </div>
-    <div class="stat">
-      <div class="num">+10.2%</div>
-      <div class="label">Agentar-Scale SQL</div>
-    </div>
+    <div class="stat"><div class="num">+16.9%</div><div class="label">Spider 2.0</div></div>
+    <div class="stat"><div class="num">+13.7%</div><div class="label">BIRD</div></div>
+    <div class="stat"><div class="num">+11.4%</div><div class="label">ReFORCE</div></div>
+    <div class="stat"><div class="num">+10.2%</div><div class="label">Agentar-Scale SQL</div></div>
   </div>
 
-  <!-- Features -->
-  <section id="features">
-    <div class="section-label">Features</div>
-    <h2>What TK-Boost Does</h2>
-    <p class="lead">NL2SQL agents know how to write SQL. What they lack is experience using real databases. TK-Boost fills that gap.</p>
-    <div class="cards">
-      <div class="card">
-        <div class="icon">&#x1f9e0;</div>
-        <h3>Tribal Knowledge</h3>
-        <p>Learns reusable corrective rules from agent mistakes&mdash;like a human analyst building intuition over time.</p>
-      </div>
-      <div class="card">
-        <div class="icon">&#x1f50c;</div>
-        <h3>Bolt-On Framework</h3>
-        <p>Works with any NL2SQL agent. No retraining, no architecture changes&mdash;just plug it in.</p>
-      </div>
-      <div class="card">
-        <div class="icon">&#x1f3af;</div>
-        <h3>CTE-Level Correction</h3>
-        <p>Applies knowledge one CTE at a time for precise, targeted fixes on complex queries.</p>
-      </div>
-      <div class="card">
-        <div class="icon">&#x1f50d;</div>
-        <h3>SQL-Based Retrieval</h3>
-        <p>Retrieves knowledge from the SQL draft (not the NL query) using structured applicability conditions.</p>
-      </div>
-      <div class="card">
-        <div class="icon">&#x1f4c8;</div>
-        <h3>Multi-Benchmark</h3>
-        <p>Validated on Spider 2.0 and BIRD across SQLite, Snowflake, and BigQuery.</p>
-      </div>
-      <div class="card">
-        <div class="icon">&#x26a1;</div>
-        <h3>Parallel Execution</h3>
-        <p>Batch-process instances concurrently with configurable worker pools.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- How It Works -->
-  <section id="how-it-works">
-    <div class="section-label">Method</div>
-    <h2>How It Works</h2>
-    <p class="lead">TK-Boost operates in two phases: offline knowledge discovery and online corrective augmentation.</p>
+  <section id="method">
+    <div class="section-tag">Method</div>
+    <h2>How TK-Boost Works</h2>
+    <p class="lead">Two phases: discover misconceptions offline, then correct them at query time.</p>
     <div class="steps">
       <div class="step">
         <div class="step-num">1</div>
         <div>
           <h3>Discover Misconceptions</h3>
-          <p>Run the NL2SQL agent on a small set of labeled queries. Compare results to ground truth and identify recurring mistakes&mdash;columns misused, joins misunderstood, filters misapplied.</p>
+          <p>Run the agent on labeled queries, compare to ground truth, and identify recurring mistakes.</p>
         </div>
       </div>
       <div class="step">
         <div class="step-num">2</div>
         <div>
-          <h3>Generate Tribal Knowledge</h3>
-          <p>For each misconception, generate a reusable natural-language corrective statement paired with applicability conditions (SQL keywords, tables, columns, data types) that define when it should be used.</p>
+          <h3>Generate Knowledge</h3>
+          <p>Convert each misconception into a reusable corrective statement with applicability conditions.</p>
         </div>
       </div>
       <div class="step">
         <div class="step-num">3</div>
         <div>
-          <h3>Index &amp; Store</h3>
-          <p>Index knowledge in TK-Store with structured tags so relevant rules can be retrieved precisely from any SQL draft.</p>
+          <h3>Index in TK-Store</h3>
+          <p>Tag knowledge with SQL keywords, tables, columns, and data types for precise retrieval.</p>
         </div>
       </div>
       <div class="step">
         <div class="step-num">4</div>
         <div>
           <h3>Correct at Query Time</h3>
-          <p>When answering new queries, the agent generates a SQL draft. TK-Boost retrieves matching knowledge and feeds targeted CTE-level feedback to fix misconceptions before producing the final answer.</p>
+          <p>Retrieve matching knowledge from the SQL draft and apply CTE-level feedback before final output.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Results -->
   <section id="results">
-    <div class="section-label">Experiments</div>
-    <h2>Results</h2>
-    <p class="lead">TK-Boost substantially improves NL2SQL agents across benchmarks, models, and existing state-of-the-art systems.</p>
+    <div class="section-tag">Results</div>
+    <h2>Benchmark Performance</h2>
+    <p class="lead">TK-Boost improves NL2SQL agents across benchmarks and existing SOTA systems.</p>
     <div class="results-grid">
       <div class="result-card">
         <div class="bench">Spider 2.0</div>
         <div class="gain">+16.9%</div>
-        <div class="desc">Execution accuracy improvement</div>
+        <div class="desc">Execution accuracy</div>
       </div>
       <div class="result-card">
         <div class="bench">BIRD</div>
         <div class="gain">+13.7%</div>
-        <div class="desc">Execution accuracy improvement</div>
+        <div class="desc">Execution accuracy</div>
       </div>
       <div class="result-card">
-        <div class="bench">ReFORCE (Bolt-On)</div>
+        <div class="bench">ReFORCE</div>
         <div class="gain">+11.4%</div>
-        <div class="desc">Added to existing SOTA method</div>
+        <div class="desc">Bolt-on to SOTA</div>
       </div>
       <div class="result-card">
-        <div class="bench">Agentar-Scale SQL (Bolt-On)</div>
+        <div class="bench">Agentar-Scale</div>
         <div class="gain">+10.2%</div>
-        <div class="desc">Added to existing SOTA method</div>
+        <div class="desc">Bolt-on to SOTA</div>
       </div>
     </div>
   </section>
 
-  <!-- Quick Start -->
   <section id="quickstart">
-    <div class="section-label">Get Started</div>
+    <div class="section-tag">Get Started</div>
     <h2>Quick Start</h2>
     <div class="code-block">
       <div class="bar">
@@ -436,414 +374,27 @@
       </div>
       <pre><span class="comment"># Clone and install</span>
 <span class="cmd">git clone</span> https://github.com/abiswal2001/TK-Boost.git
-<span class="cmd">cd</span> TK-Boost
-<span class="cmd">pip install</span> -r requirements.txt
+<span class="cmd">cd</span> TK-Boost && <span class="cmd">pip install</span> -r requirements.txt
 
-<span class="comment"># Run the SQL agent on a single instance</span>
+<span class="comment"># Run the SQL agent</span>
 <span class="cmd">python</span> src/agents/sql_agent_runner.py \
   --instance-id local066 \
   --jsonl-path data/spider2-lite.jsonl \
   --model azure/gpt-4.1 \
-  --out-base outputs/baseline
-
-<span class="comment"># Run with CTE refinement</span>
-<span class="cmd">python</span> src/agents/sql_agent_runner.py \
-  --instance-id local066 \
-  --jsonl-path data/spider2-lite.jsonl \
-  --model azure/gpt-4.1 \
-  --validate-cte \
-  --out-base outputs/validated</pre>
+  --out-base outputs/baseline</pre>
     </div>
   </section>
 
-  <!-- Documentation -->
-  <section id="docs" class="docs-section">
-    <div class="section-label">Documentation</div>
-    <h2>Full Usage Guide</h2>
-    <p class="lead" style="margin-bottom: 2rem;">Everything you need to run the agent, configure databases, generate hints, and evaluate results.</p>
-
-    <details>
-      <summary>Installation</summary>
-      <div class="details-body">
-        <pre>
-# Create virtual environment
-python3 -m venv env
-source env/bin/activate  # On Windows: env\Scripts\activate
-
-# Install dependencies
-pip install -r requirements.txt</pre>
-        <p>The <strong>demo.ipynb</strong> notebook provides a short end-to-end walkthrough: it runs the SQL agent on a single SQLite instance with predicted CTE hints, then inspects the generated SQL and compares the agent result to ground truth.</p>
-      </div>
-    </details>
-
-    <details>
-      <summary>Run SQL Agent &mdash; Single Instance</summary>
-      <div class="details-body">
-        <pre>
-python src/agents/sql_agent_runner.py \
-  --instance-id local066 \
-  --jsonl-path data/spider2-lite.jsonl \
-  --model azure/gpt-4.1 \
-  --out-base outputs/local_baseline \
-  --verbose</pre>
-      </div>
-    </details>
-
-    <details>
-      <summary>Run SQL Agent &mdash; Multiple Instances</summary>
-      <div class="details-body">
-        <pre>
-python src/agents/sql_agent_runner.py \
-  --instance-id local066 \
-  --instance-id local065 \
-  --instance-id local022 \
-  --jsonl-path data/spider2-lite.jsonl \
-  --model azure/gpt-4.1 \
-  --out-base outputs/local_baseline \
-  --verbose</pre>
-      </div>
-    </details>
-
-    <details>
-      <summary>Run SQL Agent &mdash; All Instances from JSONL</summary>
-      <div class="details-body">
-        <pre>
-python src/agents/sql_agent_runner.py \
-  --run-all-from-file \
-  --jsonl-path data/spider2-lite.jsonl \
-  --model azure/gpt-4.1 \
-  --out-base outputs/all_baseline \
-  --verbose</pre>
-      </div>
-    </details>
-
-    <details>
-      <summary>Run with Predicted Hints</summary>
-      <div class="details-body">
-        <p>Use predicted CTE briefs and table/column hints to guide the agent:</p>
-        <pre>
-python src/agents/sql_agent_runner.py \
-  --instance-id local066 \
-  --jsonl-path data/spider2-lite.jsonl \
-  --model azure/gpt-4.1 \
-  -c data/contexts/predicted_cte_briefs_local.csv \
-  -t data/contexts/predicted_tablescols_local.csv \
-  --out-base outputs/local_with_hints \
-  --verbose</pre>
-      </div>
-    </details>
-
-    <details>
-      <summary>Snowflake Instances</summary>
-      <div class="details-body">
-        <p>The agent automatically detects Snowflake instances (prefix <code>sf</code>) and uses the appropriate prompt and executor:</p>
-        <pre>
-python src/agents/sql_agent_runner.py \
-  --instance-id sf001 \
-  --instance-id sf002 \
-  --jsonl-path data/spider2-lite.jsonl \
-  --model azure/gpt-4.1 \
-  -c data/contexts/predicted_cte_briefs_snowflake_azure_o3.csv \
-  -t data/contexts/predicted_tablescols_snowflake_azure_o3.csv \
-  --out-base outputs/snowflake_baseline \
-  --verbose</pre>
-        <p><strong>Credentials:</strong> Configure via environment variables or <code>~/.snowflake/config</code>:</p>
-        <pre>
-export SNOWFLAKE_ACCOUNT="your_account"
-export SNOWFLAKE_USER="your_user"
-export SNOWFLAKE_PASSWORD="your_password"
-export SNOWFLAKE_WAREHOUSE="your_warehouse"</pre>
-      </div>
-    </details>
-
-    <details>
-      <summary>BigQuery Instances</summary>
-      <div class="details-body">
-        <p>The agent automatically detects BigQuery instances (prefix <code>bq</code> or <code>ga</code>) and uses the appropriate executor:</p>
-        <pre>
-python src/agents/sql_agent_runner.py \
-  --instance-id bq001 \
-  --instance-id ga001 \
-  --jsonl-path data/spider2-lite.jsonl \
-  --model azure/gpt-4.1 \
-  -c data/contexts/predicted_cte_briefs_bigquery_azure_o3.csv \
-  -t data/contexts/predicted_tablescols_bigquery_azure_o3.csv \
-  --out-base outputs/bigquery_baseline \
-  --verbose</pre>
-        <p><strong>Credentials:</strong> Configure via Google Cloud SDK:</p>
-        <pre>
-gcloud auth application-default login
-# Or use service account JSON
-export GOOGLE_APPLICATION_CREDENTIALS="/path/to/service-account-key.json"</pre>
-      </div>
-    </details>
-
-    <details>
-      <summary>CTE Refiner (Validation)</summary>
-      <div class="details-body">
-        <p>The CTE refiner iteratively checks and improves each CTE in the final SQL, then refines the final SELECT. Enable with <code>--validate-cte</code>:</p>
-        <pre>
-python src/agents/sql_agent_runner.py \
-  --instance-id local066 \
-  --jsonl-path data/spider2-lite.jsonl \
-  --model azure/gpt-4.1 \
-  -c data/contexts/predicted_cte_briefs_local.csv \
-  -t data/contexts/predicted_tablescols_local.csv \
-  --validate-cte \
-  --out-base outputs/local_validated \
-  --verbose</pre>
-        <p><strong>What happens:</strong></p>
-        <ol>
-          <li>Agent generates initial SQL solution</li>
-          <li>SQL is parsed into CTEs and final SELECT</li>
-          <li>Each CTE is validated individually (max 25 turns per CTE)</li>
-          <li>If issues are found, refiner suggests fixes and agent revises</li>
-          <li>Final SELECT is validated with all CTEs in place</li>
-          <li>Validated SQL and results are saved</li>
-        </ol>
-      </div>
-    </details>
-
-    <details>
-      <summary>Validation Output Files</summary>
-      <div class="details-body">
-        <p>When validation is enabled, these files are created per instance:</p>
-        <div class="file-tree">
-<pre>outputs/local066_20251031_120000/
-├── execution_query.sql              # Original agent SQL
-├── execution_result.csv             # Original agent results
-├── execution_query_validated.sql    # SQL after validation
-├── execution_result_validated.csv   # Results after validation
-├── refiner_cte1.json                # Refiner verdict for first CTE
-├── refiner_cte1_trace.txt           # Refinement trace for first CTE
-├── refiner_cte2.json                # Refiner verdict for second CTE
-├── refiner_cte2_trace.txt           # Refinement trace for second CTE
-├── refiner_final_select.json        # Refiner verdict for final SELECT
-├── refiner_final_select_trace.txt   # Refinement trace for final SELECT
-├── messages.json                    # Full conversation history
-├── processed_trace.txt              # Human-readable trace
-├── gt_query.sql                     # Ground truth SQL
-├── gt_result.csv                    # Ground truth results
-└── gt_result.json                   # Ground truth results (JSON)</pre>
-        </div>
-      </div>
-    </details>
-
-    <details>
-      <summary>Validation-Only Mode (From Existing Outputs)</summary>
-      <div class="details-body">
-        <p>Run the refiner on existing SQL outputs without regenerating agent responses using <code>--validate-output</code>:</p>
-        <pre>
-python src/agents/sql_agent_runner.py \
-  --validate-output outputs/snowflake_norefiner \
-  --jsonl-path data/spider2-lite.jsonl \
-  --model azure/gpt-4.1 \
-  -c data/contexts/predicted_cte_briefs_snowflake_azure_o3.csv \
-  -t data/contexts/predicted_tablescols_snowflake_azure_o3.csv \
-  --verbose</pre>
-        <p><strong>Use cases:</strong></p>
-        <ul>
-          <li>You ran the agent without validation and want to add validation later</li>
-          <li>You want to re-run validation with different settings (e.g., different model)</li>
-          <li>You want to validate a subset of outputs without re-generating them</li>
-        </ul>
-      </div>
-    </details>
-
-    <details>
-      <summary>Parallel Execution</summary>
-      <div class="details-body">
-        <p>Use the parallel runner to process multiple instances with configurable workers:</p>
-        <pre>
-python scripts/run_snowflake_parallel.py \
-  --jsonl-path data/spider2-lite.jsonl \
-  --model azure/gpt-4.1 \
-  -c data/contexts/predicted_cte_briefs_snowflake_azure_o3.csv \
-  -t data/contexts/predicted_tablescols_snowflake_azure_o3.csv \
-  --out-base outputs/snowflake_validated \
-  --workers 3 \
-  --timeout 600 \
-  --verbose</pre>
-      </div>
-    </details>
-
-    <details>
-      <summary>Generating Predicted Hints</summary>
-      <div class="details-body">
-        <p><strong>Predicted Tables/Columns:</strong></p>
-        <pre>
-# SQLite instances
-python generate_predicted_tables_columns.py \
-  --jsonl-path data/spider2-lite.jsonl \
-  --taxonomy-csv data/contexts/sql_nl_summaries_taxonomy.csv \
-  --out-csv data/contexts/predicted_tablescols_local.csv \
-  --model azure/o3 \
-  --engine sqlite \
-  --verbose
-
-# Snowflake instances
-python generate_predicted_tables_columns.py \
-  --jsonl-path data/spider2-lite.jsonl \
-  --taxonomy-csv data/contexts/sql_nl_summaries_taxonomy.csv \
-  --out-csv data/contexts/predicted_tablescols_snowflake_azure_o3.csv \
-  --model azure/o3 \
-  --engine snowflake \
-  --all-snowflake-from-jsonl \
-  --verbose
-
-# BigQuery instances
-python generate_predicted_tables_columns.py \
-  --jsonl-path data/spider2-lite.jsonl \
-  --taxonomy-csv data/contexts/sql_nl_summaries_taxonomy.csv \
-  --out-csv data/contexts/predicted_tablescols_bigquery_azure_o3.csv \
-  --model azure/o3 \
-  --engine bigquery \
-  --all-bigquery-from-jsonl \
-  --verbose</pre>
-
-        <p><strong>Predicted CTE Briefs:</strong></p>
-        <pre>
-# SQLite instances
-python generate_predicted_cte_briefs.py \
-  --jsonl-path data/spider2-lite.jsonl \
-  --taxonomy-csv data/contexts/sql_nl_summaries_taxonomy.csv \
-  --analysis-csv data/contexts/sql_nl_summaries_taxonomy_analysis_of_summary_results.csv \
-  --predicted-tables-cols-csv data/contexts/predicted_tablescols_local.csv \
-  --out-csv data/contexts/predicted_cte_briefs_local.csv \
-  --model azure/o3 \
-  --restrict-to-predicted \
-  --no-analysis-filter \
-  --verbose
-
-# Snowflake instances (with external knowledge)
-python generate_predicted_cte_briefs.py \
-  --jsonl-path data/spider2-lite.jsonl \
-  --taxonomy-csv data/contexts/sql_nl_summaries_taxonomy.csv \
-  --analysis-csv data/contexts/sql_nl_summaries_taxonomy_analysis_of_summary_results.csv \
-  --predicted-tables-cols-csv data/contexts/predicted_tablescols_snowflake_azure_o3.csv \
-  --out-csv data/contexts/predicted_cte_briefs_snowflake_azure_o3.csv \
-  --model azure/o3 \
-  --include-external-knowledge \
-  --external-knowledge-root data/spider2 \
-  --snowflake-ids-only \
-  --restrict-to-predicted \
-  --no-analysis-filter \
-  --verbose
-
-# BigQuery instances (with external knowledge)
-python generate_predicted_cte_briefs.py \
-  --jsonl-path data/spider2-lite.jsonl \
-  --taxonomy-csv data/contexts/sql_nl_summaries_taxonomy.csv \
-  --analysis-csv data/contexts/sql_nl_summaries_taxonomy_analysis_of_summary_results.csv \
-  --predicted-tables-cols-csv data/contexts/predicted_tablescols_bigquery_azure_o3.csv \
-  --out-csv data/contexts/predicted_cte_briefs_bigquery_azure_o3.csv \
-  --model azure/o3 \
-  --include-external-knowledge \
-  --external-knowledge-root data/spider2 \
-  --bigquery-ids-only \
-  --restrict-to-predicted \
-  --no-analysis-filter \
-  --verbose</pre>
-      </div>
-    </details>
-
-    <details>
-      <summary>Schema Context Generation (Snowflake / BigQuery)</summary>
-      <div class="details-body">
-        <p>Precompute compressed schema context files for cloud databases:</p>
-        <pre>
-# Snowflake: Creates data/sf_schemas/*.txt
-python scripts/precompute_snowflake_db_contexts.py
-
-# BigQuery: Creates data/bq_schemas/*.txt
-python scripts/create_bq_schema_contexts.py</pre>
-        <p>These scripts parse DDL files and create compressed, human-readable schema summaries that are injected into the agent's context.</p>
-      </div>
-    </details>
-
-    <details>
-      <summary>LLM Provider Configuration</summary>
-      <div class="details-body">
-        <p>Edit <code>src/utils/auth.py</code> to configure your LLM credentials:</p>
-        <pre>
-# Azure OpenAI
-os.environ["AZURE_API_KEY"] = "your-key"
-os.environ["AZURE_API_BASE"] = "https://your-endpoint.openai.azure.com/"
-os.environ["AZURE_API_VERSION"] = "2024-12-01-preview"
-
-# Or OpenAI
-os.environ["OPENAI_API_KEY"] = "your-key"</pre>
-        <p><strong>System prompts</strong> are defined in <code>src/agents/prompts.py</code>:</p>
-        <ul>
-          <li><code>BASE_PROMPT</code> &mdash; For SQLite instances</li>
-          <li><code>SNOWFLAKE_PROMPT</code> &mdash; For Snowflake instances (includes syntax and case-sensitivity notes)</li>
-        </ul>
-      </div>
-    </details>
-
-    <details>
-      <summary>Evaluation</summary>
-      <div class="details-body">
-        <p>Run evaluation against Spider2-lite gold results:</p>
-        <pre>
-cd evaluation
-python evals.py \
-  --mode exec_result \
-  --result_dir ../outputs/snowflake_validated \
-  --gold_dir ../data/spider2/gold</pre>
-        <p><strong>Output:</strong></p>
-        <ul>
-          <li><code>evals.csv</code> &mdash; Score (0/1) per instance</li>
-          <li><code>correct_ids.csv</code> &mdash; List of correct instance IDs</li>
-          <li>Summary statistics printed to console</li>
-        </ul>
-      </div>
-    </details>
-
-    <details>
-      <summary>Troubleshooting</summary>
-      <div class="details-body">
-        <p><strong>Snowflake Connection Issues:</strong></p>
-        <ul>
-          <li>Verify credentials in <code>~/.snowflake/config</code></li>
-          <li>Check network connectivity to Snowflake</li>
-          <li>Ensure warehouse is running</li>
-        </ul>
-        <p><strong>BigQuery Permission Errors:</strong></p>
-        <ul>
-          <li>Run <code>gcloud auth application-default login</code></li>
-          <li>Verify service account has BigQuery permissions</li>
-          <li>Check project ID in credentials</li>
-        </ul>
-        <p><strong>LLM Rate Limits:</strong></p>
-        <ul>
-          <li>Reduce <code>--workers</code> in parallel runner</li>
-          <li>Add retry logic with exponential backoff</li>
-          <li>Use a different model tier</li>
-        </ul>
-        <p><strong>Empty Validation Results:</strong></p>
-        <ul>
-          <li>Check that <code>execution_query.sql</code> exists in output directories</li>
-          <li>Verify instance IDs match between JSONL and output directories</li>
-          <li>Ensure predicted hints CSVs contain the instances you're validating</li>
-        </ul>
-      </div>
-    </details>
-
-  </section>
-
-  <!-- Blog Banner -->
   <div class="blog-banner">
-    <div class="text">
+    <div>
       <h3>Read the full blog post</h3>
       <p>A detailed walkthrough of the problem, approach, and key results.</p>
     </div>
-    <a href="blog.html" class="btn btn-primary">Read Blog Post &rarr;</a>
+    <a href="blog.html" class="btn btn-primary">Read Blog &rarr;</a>
   </div>
 
 </div>
 
-<!-- Footer -->
 <footer>
   <div class="container">
     <div class="foot-links">
@@ -854,6 +405,23 @@ python evals.py \
     <p>TK-Boost &middot; UC Berkeley</p>
   </div>
 </footer>
+
+<script>
+  function toggleTheme() {
+    const html = document.documentElement;
+    const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    html.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+    document.getElementById('theme-icon').innerHTML = next === 'dark' ? '&#9788;' : '&#9790;';
+  }
+  (function() {
+    const saved = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', saved);
+    document.addEventListener('DOMContentLoaded', function() {
+      document.getElementById('theme-icon').innerHTML = saved === 'dark' ? '&#9788;' : '&#9790;';
+    });
+  })();
+</script>
 
 </body>
 </html>
