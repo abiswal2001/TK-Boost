@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/logo.png" alt="TK-Boost Logo" width="180">
+  <img src="assets/logo.png" alt="TK-Boost Logo" width="250">
 </p>
 
 <h1 align="center">TK-Boost</h1>

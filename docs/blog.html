@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Blog &mdash; TK-Boost: Arming Data Agents with Tribal Knowledge</title>
   <meta name="description" content="Why NL2SQL agents fail on real databases and how tribal knowledge fixes them.">
-  <link rel="icon" href="logo.png" type="image/png">
+  <link rel="icon" href="title.png" type="image/png">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root[data-theme="light"] {
@@ -72,11 +72,11 @@
     }
     nav .brand {
       display: flex; align-items: center; gap: 0.5rem;
-      font-weight: 700; font-size: 1rem; color: var(--text); text-decoration: none;
+      font-weight: 700; font-size: 1.1rem; color: var(--text); text-decoration: none;
     }
-    nav .brand img { height: 26px; width: auto; }
+    nav .brand img { height: 30px; width: auto; }
     nav .right { display: flex; align-items: center; gap: 1.5rem; }
-    nav .links { display: flex; gap: 1.5rem; font-size: 0.85rem; }
+    nav .links { display: flex; gap: 1.5rem; font-size: 0.95rem; }
     nav .links a { color: var(--text-muted); text-decoration: none; }
     nav .links a:hover { color: var(--text); }
     nav .links a.active { color: var(--nav-active); font-weight: 600; }
@@ -89,7 +89,7 @@
     .theme-toggle:hover { border-color: var(--border-light); color: var(--text); }
 
     /* ── Article Layout ── */
-    .article { max-width: 680px; margin: 0 auto; padding: 6.5rem 1.5rem 4rem; }
+    .article { max-width: 740px; margin: 0 auto; padding: 6.5rem 1.5rem 4rem; }
 
     /* ── Article Hero ── */
     .article-hero {
@@ -104,25 +104,25 @@
       margin-bottom: 0.85rem;
     }
     .article-hero h1 {
-      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      font-size: clamp(1.9rem, 4.5vw, 2.6rem);
       font-weight: 800; letter-spacing: -0.03em; line-height: 1.2;
     }
     .article-hero .tldr {
-      margin-top: 1.15rem; padding: 1.1rem 1.3rem;
+      margin-top: 1.25rem; padding: 1.25rem 1.5rem;
       background: var(--surface); border: 1px solid var(--border);
       border-left: 3px solid var(--accent); border-radius: 8px;
-      color: var(--text-muted); font-size: 0.92rem; line-height: 1.7;
+      color: var(--text-muted); font-size: 1.02rem; line-height: 1.75;
     }
     .article-hero .authors {
-      margin-top: 1.15rem; font-size: 0.88rem; color: var(--text);
+      margin-top: 1.25rem; font-size: 1rem; color: var(--text);
       font-weight: 500; line-height: 1.5;
     }
     .article-hero .link-pills {
-      margin-top: 0.85rem; display: flex; gap: 0.45rem; flex-wrap: wrap;
+      margin-top: 0.95rem; display: flex; gap: 0.5rem; flex-wrap: wrap;
     }
     .article-hero .link-pills a {
-      display: inline-block; padding: 0.3rem 0.75rem;
-      font-size: 0.78rem; font-weight: 600; border-radius: 6px;
+      display: inline-block; padding: 0.4rem 0.9rem;
+      font-size: 0.88rem; font-weight: 600; border-radius: 6px;
       background: var(--surface); border: 1px solid var(--border);
       color: var(--text-muted); transition: all 0.2s;
     }
@@ -132,17 +132,17 @@
 
     /* ── Prose ── */
     .prose h2 {
-      font-size: 1.35rem; font-weight: 700; letter-spacing: -0.02em;
+      font-size: 1.55rem; font-weight: 700; letter-spacing: -0.02em;
       margin: 2.75rem 0 0.85rem; padding-top: 1.75rem;
       border-top: 1px solid var(--border);
     }
     .prose h2:first-child { border-top: none; padding-top: 0; margin-top: 0; }
-    .prose h3 { font-size: 1.05rem; font-weight: 650; margin: 1.75rem 0 0.6rem; }
-    .prose p { margin-bottom: 0.9rem; color: var(--text-muted); font-size: 0.95rem; }
+    .prose h3 { font-size: 1.2rem; font-weight: 650; margin: 1.75rem 0 0.6rem; }
+    .prose p { margin-bottom: 0.9rem; color: var(--text-muted); font-size: 1.05rem; }
     .prose strong { color: var(--text); font-weight: 600; }
     .prose em { font-style: italic; }
     .prose ul, .prose ol {
-      margin: 0.6rem 0 1rem 1.25rem; color: var(--text-muted); font-size: 0.92rem;
+      margin: 0.6rem 0 1rem 1.25rem; color: var(--text-muted); font-size: 1.02rem;
     }
     .prose li { margin-bottom: 0.35rem; }
     .prose code {
@@ -152,10 +152,10 @@
     }
     .prose pre {
       background: var(--code-bg); border: 1px solid var(--code-border);
-      border-radius: 8px; padding: 1rem 1.25rem;
+      border-radius: 8px; padding: 1.1rem 1.35rem;
       overflow-x: auto; margin: 0.75rem 0 1.25rem;
       font-family: 'SF Mono', 'JetBrains Mono', monospace;
-      font-size: 0.8rem; line-height: 1.7; color: var(--text-muted);
+      font-size: 0.9rem; line-height: 1.7; color: var(--text-muted);
     }
     .prose pre code { background: none; border: none; padding: 0; color: inherit; font-size: inherit; }
 
@@ -165,8 +165,8 @@
       background: var(--accent-glow); border: 1px solid var(--border);
       border-radius: 8px;
     }
-    .callout h4 { font-size: 0.95rem; margin-bottom: 0.4rem; color: var(--text); }
-    .callout p { margin: 0; font-size: 0.9rem; color: var(--text-muted); }
+    .callout h4 { font-size: 1.1rem; margin-bottom: 0.4rem; color: var(--text); }
+    .callout p { margin: 0; font-size: 1rem; color: var(--text-muted); }
 
     /* ── Stat Row ── */
     .stat-row { display: flex; gap: 0.75rem; margin: 1.25rem 0; flex-wrap: wrap; }
@@ -176,11 +176,11 @@
       background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
     }
     .stat-pill .num {
-      font-size: 1.5rem; font-weight: 800;
+      font-size: 1.8rem; font-weight: 800;
       background: var(--gradient-stat);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
     }
-    .stat-pill .lbl { font-size: 0.72rem; color: var(--text-dim); margin-top: 0.1rem; }
+    .stat-pill .lbl { font-size: 0.85rem; color: var(--text-dim); margin-top: 0.1rem; }
 
     /* ── Footer ── */
     footer {
