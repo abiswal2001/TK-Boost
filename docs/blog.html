@@ -22,10 +22,10 @@
       --orange: #e67e22;
       --green: #0d9668;
       --nav-bg: rgba(255, 255, 255, 0.85);
+      --nav-active: #1a1a2e;
       --code-bg: #f4f5f9;
       --code-border: #e0e3ea;
       --gradient-stat: linear-gradient(135deg, #0d9668, #2563eb);
-      --gradient-gain: linear-gradient(135deg, #e67e22, #dc2626);
     }
     :root[data-theme="dark"] {
       --bg: #0b0b12;
@@ -41,10 +41,10 @@
       --orange: #f0a050;
       --green: #3dd9a0;
       --nav-bg: rgba(11, 11, 18, 0.85);
+      --nav-active: #e6e6f0;
       --code-bg: #0e0e18;
       --code-border: #222238;
       --gradient-stat: linear-gradient(135deg, #3dd9a0, #5b8def);
-      --gradient-gain: linear-gradient(135deg, #f0a050, #f06060);
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -77,8 +77,9 @@
     nav .brand img { height: 26px; width: auto; }
     nav .right { display: flex; align-items: center; gap: 1.5rem; }
     nav .links { display: flex; gap: 1.5rem; font-size: 0.85rem; }
-    nav .links a { color: var(--text-muted); }
+    nav .links a { color: var(--text-muted); text-decoration: none; }
     nav .links a:hover { color: var(--text); }
+    nav .links a.active { color: var(--nav-active); font-weight: 600; }
     .theme-toggle {
       background: var(--surface); border: 1px solid var(--border);
       border-radius: 6px; padding: 0.35rem 0.5rem; cursor: pointer;
@@ -112,12 +113,22 @@
       border-left: 3px solid var(--accent); border-radius: 8px;
       color: var(--text-muted); font-size: 0.92rem; line-height: 1.7;
     }
-    .article-hero .meta {
-      margin-top: 1rem; font-size: 0.82rem; color: var(--text-dim);
-      display: flex; gap: 1.25rem; flex-wrap: wrap;
+    .article-hero .authors {
+      margin-top: 1.15rem; font-size: 0.88rem; color: var(--text);
+      font-weight: 500; line-height: 1.5;
     }
-    .article-hero .meta a { color: var(--text-dim); }
-    .article-hero .meta a:hover { color: var(--accent); }
+    .article-hero .link-pills {
+      margin-top: 0.85rem; display: flex; gap: 0.45rem; flex-wrap: wrap;
+    }
+    .article-hero .link-pills a {
+      display: inline-block; padding: 0.3rem 0.75rem;
+      font-size: 0.78rem; font-weight: 600; border-radius: 6px;
+      background: var(--surface); border: 1px solid var(--border);
+      color: var(--text-muted); transition: all 0.2s;
+    }
+    .article-hero .link-pills a:hover {
+      border-color: var(--accent); color: var(--accent); background: var(--accent-glow);
+    }
 
     /* ── Prose ── */
     .prose h2 {
@@ -188,7 +199,9 @@
     <a href="index.html" class="brand"><img src="logo.png" alt="TK-Boost"> TK-Boost</a>
     <div class="right">
       <div class="links">
-        <a href="index.html">Home</a>
+        <a href="index.html#method">Method</a>
+        <a href="index.html#results">Results</a>
+        <a href="blog.html" class="active">Blog</a>
         <a href="https://arxiv.org/abs/2602.13521">Paper</a>
         <a href="https://github.com/abiswal2001/TK-Boost">GitHub</a>
       </div>
@@ -209,10 +222,10 @@
       We show that many failures stem from recurring <strong>data misconceptions</strong>, not reasoning ability.
       TK-Boost teaches agents reusable corrective knowledge learned from experience, improving execution accuracy by up to <strong>+16.9% on Spider&nbsp;2.0</strong> and <strong>+13.7% on BIRD</strong>.
     </div>
-    <div class="meta">
-      <span>Shubham Agarwal, Asim Biswal, Sepanta Zeighami, Alvin Cheung, Joseph Gonzalez, Aditya G. Parameswaran</span>
-    </div>
-    <div class="meta" style="margin-top: 0.5rem;">
+    <p class="authors">
+      Shubham Agarwal, Asim Biswal, Sepanta Zeighami, Alvin Cheung, Joseph Gonzalez, Aditya G. Parameswaran
+    </p>
+    <div class="link-pills">
       <a href="https://arxiv.org/abs/2602.13521">Paper (arXiv)</a>
       <a href="https://github.com/abiswal2001/TK-Boost/tree/main">Code (GitHub)</a>
       <a href="mailto:abiswal@berkeley.edu,zeighami@berkeley.edu,shubham3@berkeley.edu">Contact Authors</a>
