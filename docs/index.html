@@ -179,6 +179,55 @@
     .code-block pre .comment { color: var(--text-dim); }
     .code-block pre .cmd { color: var(--green); }
 
+    /* ── Docs Section ── */
+    .docs-section { margin-top: 0; }
+    details {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); margin-bottom: 0.75rem;
+      transition: border-color 0.25s;
+    }
+    details:hover { border-color: var(--border-light); }
+    details[open] { border-color: var(--border-light); }
+    details summary {
+      padding: 1rem 1.25rem; cursor: pointer;
+      font-weight: 600; font-size: 0.95rem; color: var(--text);
+      list-style: none; display: flex; align-items: center; gap: 0.6rem;
+    }
+    details summary::-webkit-details-marker { display: none; }
+    details summary::before {
+      content: '\25B6'; font-size: 0.65rem; color: var(--text-dim);
+      transition: transform 0.2s;
+    }
+    details[open] summary::before { transform: rotate(90deg); }
+    details .details-body {
+      padding: 0 1.25rem 1.25rem;
+      font-size: 0.9rem; color: var(--text-muted); line-height: 1.7;
+    }
+    details .details-body p { margin-bottom: 0.75rem; }
+    details .details-body pre {
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: 6px; padding: 1rem 1.25rem; overflow-x: auto;
+      font-family: 'JetBrains Mono', 'SF Mono', monospace;
+      font-size: 0.8rem; line-height: 1.65; color: var(--text-muted);
+      margin: 0.75rem 0;
+    }
+    details .details-body code {
+      font-family: 'JetBrains Mono', 'SF Mono', monospace;
+      font-size: 0.83em; background: var(--bg); padding: 0.15em 0.4em;
+      border-radius: 4px; border: 1px solid var(--border); color: var(--orange);
+    }
+    details .details-body ul, details .details-body ol {
+      margin: 0.5rem 0 0.75rem 1.25rem;
+    }
+    details .details-body li { margin-bottom: 0.3rem; }
+    details .details-body strong { color: var(--text); }
+    .file-tree {
+      font-family: 'JetBrains Mono', 'SF Mono', monospace;
+      font-size: 0.8rem; line-height: 1.6; color: var(--text-dim);
+      margin: 0.75rem 0;
+    }
+    .file-tree .highlight { color: var(--text-muted); }
+
     /* ── Blog link banner ── */
     .blog-banner {
       margin-top: 2rem; padding: 1.5rem 2rem;
@@ -216,6 +265,7 @@
       <a href="#features">Features</a>
       <a href="#how-it-works">How It Works</a>
       <a href="#results">Results</a>
+      <a href="#docs">Docs</a>
       <a href="blog.html">Blog</a>
       <a href="https://arxiv.org/abs/2602.13521">Paper</a>
       <a href="https://github.com/abiswal2001/TK-Boost">GitHub</a>
@@ -404,6 +454,382 @@
   --validate-cte \
   --out-base outputs/validated</pre>
     </div>
+  </section>
+
+  <!-- Documentation -->
+  <section id="docs" class="docs-section">
+    <div class="section-label">Documentation</div>
+    <h2>Full Usage Guide</h2>
+    <p class="lead" style="margin-bottom: 2rem;">Everything you need to run the agent, configure databases, generate hints, and evaluate results.</p>
+
+    <details>
+      <summary>Installation</summary>
+      <div class="details-body">
+        <pre>
+# Create virtual environment
+python3 -m venv env
+source env/bin/activate  # On Windows: env\Scripts\activate
+
+# Install dependencies
+pip install -r requirements.txt</pre>
+        <p>The <strong>demo.ipynb</strong> notebook provides a short end-to-end walkthrough: it runs the SQL agent on a single SQLite instance with predicted CTE hints, then inspects the generated SQL and compares the agent result to ground truth.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>Run SQL Agent &mdash; Single Instance</summary>
+      <div class="details-body">
+        <pre>
+python src/agents/sql_agent_runner.py \
+  --instance-id local066 \
+  --jsonl-path data/spider2-lite.jsonl \
+  --model azure/gpt-4.1 \
+  --out-base outputs/local_baseline \
+  --verbose</pre>
+      </div>
+    </details>
+
+    <details>
+      <summary>Run SQL Agent &mdash; Multiple Instances</summary>
+      <div class="details-body">
+        <pre>
+python src/agents/sql_agent_runner.py \
+  --instance-id local066 \
+  --instance-id local065 \
+  --instance-id local022 \
+  --jsonl-path data/spider2-lite.jsonl \
+  --model azure/gpt-4.1 \
+  --out-base outputs/local_baseline \
+  --verbose</pre>
+      </div>
+    </details>
+
+    <details>
+      <summary>Run SQL Agent &mdash; All Instances from JSONL</summary>
+      <div class="details-body">
+        <pre>
+python src/agents/sql_agent_runner.py \
+  --run-all-from-file \
+  --jsonl-path data/spider2-lite.jsonl \
+  --model azure/gpt-4.1 \
+  --out-base outputs/all_baseline \
+  --verbose</pre>
+      </div>
+    </details>
+
+    <details>
+      <summary>Run with Predicted Hints</summary>
+      <div class="details-body">
+        <p>Use predicted CTE briefs and table/column hints to guide the agent:</p>
+        <pre>
+python src/agents/sql_agent_runner.py \
+  --instance-id local066 \
+  --jsonl-path data/spider2-lite.jsonl \
+  --model azure/gpt-4.1 \
+  -c data/contexts/predicted_cte_briefs_local.csv \
+  -t data/contexts/predicted_tablescols_local.csv \
+  --out-base outputs/local_with_hints \
+  --verbose</pre>
+      </div>
+    </details>
+
+    <details>
+      <summary>Snowflake Instances</summary>
+      <div class="details-body">
+        <p>The agent automatically detects Snowflake instances (prefix <code>sf</code>) and uses the appropriate prompt and executor:</p>
+        <pre>
+python src/agents/sql_agent_runner.py \
+  --instance-id sf001 \
+  --instance-id sf002 \
+  --jsonl-path data/spider2-lite.jsonl \
+  --model azure/gpt-4.1 \
+  -c data/contexts/predicted_cte_briefs_snowflake_azure_o3.csv \
+  -t data/contexts/predicted_tablescols_snowflake_azure_o3.csv \
+  --out-base outputs/snowflake_baseline \
+  --verbose</pre>
+        <p><strong>Credentials:</strong> Configure via environment variables or <code>~/.snowflake/config</code>:</p>
+        <pre>
+export SNOWFLAKE_ACCOUNT="your_account"
+export SNOWFLAKE_USER="your_user"
+export SNOWFLAKE_PASSWORD="your_password"
+export SNOWFLAKE_WAREHOUSE="your_warehouse"</pre>
+      </div>
+    </details>
+
+    <details>
+      <summary>BigQuery Instances</summary>
+      <div class="details-body">
+        <p>The agent automatically detects BigQuery instances (prefix <code>bq</code> or <code>ga</code>) and uses the appropriate executor:</p>
+        <pre>
+python src/agents/sql_agent_runner.py \
+  --instance-id bq001 \
+  --instance-id ga001 \
+  --jsonl-path data/spider2-lite.jsonl \
+  --model azure/gpt-4.1 \
+  -c data/contexts/predicted_cte_briefs_bigquery_azure_o3.csv \
+  -t data/contexts/predicted_tablescols_bigquery_azure_o3.csv \
+  --out-base outputs/bigquery_baseline \
+  --verbose</pre>
+        <p><strong>Credentials:</strong> Configure via Google Cloud SDK:</p>
+        <pre>
+gcloud auth application-default login
+# Or use service account JSON
+export GOOGLE_APPLICATION_CREDENTIALS="/path/to/service-account-key.json"</pre>
+      </div>
+    </details>
+
+    <details>
+      <summary>CTE Refiner (Validation)</summary>
+      <div class="details-body">
+        <p>The CTE refiner iteratively checks and improves each CTE in the final SQL, then refines the final SELECT. Enable with <code>--validate-cte</code>:</p>
+        <pre>
+python src/agents/sql_agent_runner.py \
+  --instance-id local066 \
+  --jsonl-path data/spider2-lite.jsonl \
+  --model azure/gpt-4.1 \
+  -c data/contexts/predicted_cte_briefs_local.csv \
+  -t data/contexts/predicted_tablescols_local.csv \
+  --validate-cte \
+  --out-base outputs/local_validated \
+  --verbose</pre>
+        <p><strong>What happens:</strong></p>
+        <ol>
+          <li>Agent generates initial SQL solution</li>
+          <li>SQL is parsed into CTEs and final SELECT</li>
+          <li>Each CTE is validated individually (max 25 turns per CTE)</li>
+          <li>If issues are found, refiner suggests fixes and agent revises</li>
+          <li>Final SELECT is validated with all CTEs in place</li>
+          <li>Validated SQL and results are saved</li>
+        </ol>
+      </div>
+    </details>
+
+    <details>
+      <summary>Validation Output Files</summary>
+      <div class="details-body">
+        <p>When validation is enabled, these files are created per instance:</p>
+        <div class="file-tree">
+<pre>outputs/local066_20251031_120000/
+├── execution_query.sql              # Original agent SQL
+├── execution_result.csv             # Original agent results
+├── execution_query_validated.sql    # SQL after validation
+├── execution_result_validated.csv   # Results after validation
+├── refiner_cte1.json                # Refiner verdict for first CTE
+├── refiner_cte1_trace.txt           # Refinement trace for first CTE
+├── refiner_cte2.json                # Refiner verdict for second CTE
+├── refiner_cte2_trace.txt           # Refinement trace for second CTE
+├── refiner_final_select.json        # Refiner verdict for final SELECT
+├── refiner_final_select_trace.txt   # Refinement trace for final SELECT
+├── messages.json                    # Full conversation history
+├── processed_trace.txt              # Human-readable trace
+├── gt_query.sql                     # Ground truth SQL
+├── gt_result.csv                    # Ground truth results
+└── gt_result.json                   # Ground truth results (JSON)</pre>
+        </div>
+      </div>
+    </details>
+
+    <details>
+      <summary>Validation-Only Mode (From Existing Outputs)</summary>
+      <div class="details-body">
+        <p>Run the refiner on existing SQL outputs without regenerating agent responses using <code>--validate-output</code>:</p>
+        <pre>
+python src/agents/sql_agent_runner.py \
+  --validate-output outputs/snowflake_norefiner \
+  --jsonl-path data/spider2-lite.jsonl \
+  --model azure/gpt-4.1 \
+  -c data/contexts/predicted_cte_briefs_snowflake_azure_o3.csv \
+  -t data/contexts/predicted_tablescols_snowflake_azure_o3.csv \
+  --verbose</pre>
+        <p><strong>Use cases:</strong></p>
+        <ul>
+          <li>You ran the agent without validation and want to add validation later</li>
+          <li>You want to re-run validation with different settings (e.g., different model)</li>
+          <li>You want to validate a subset of outputs without re-generating them</li>
+        </ul>
+      </div>
+    </details>
+
+    <details>
+      <summary>Parallel Execution</summary>
+      <div class="details-body">
+        <p>Use the parallel runner to process multiple instances with configurable workers:</p>
+        <pre>
+python scripts/run_snowflake_parallel.py \
+  --jsonl-path data/spider2-lite.jsonl \
+  --model azure/gpt-4.1 \
+  -c data/contexts/predicted_cte_briefs_snowflake_azure_o3.csv \
+  -t data/contexts/predicted_tablescols_snowflake_azure_o3.csv \
+  --out-base outputs/snowflake_validated \
+  --workers 3 \
+  --timeout 600 \
+  --verbose</pre>
+      </div>
+    </details>
+
+    <details>
+      <summary>Generating Predicted Hints</summary>
+      <div class="details-body">
+        <p><strong>Predicted Tables/Columns:</strong></p>
+        <pre>
+# SQLite instances
+python generate_predicted_tables_columns.py \
+  --jsonl-path data/spider2-lite.jsonl \
+  --taxonomy-csv data/contexts/sql_nl_summaries_taxonomy.csv \
+  --out-csv data/contexts/predicted_tablescols_local.csv \
+  --model azure/o3 \
+  --engine sqlite \
+  --verbose
+
+# Snowflake instances
+python generate_predicted_tables_columns.py \
+  --jsonl-path data/spider2-lite.jsonl \
+  --taxonomy-csv data/contexts/sql_nl_summaries_taxonomy.csv \
+  --out-csv data/contexts/predicted_tablescols_snowflake_azure_o3.csv \
+  --model azure/o3 \
+  --engine snowflake \
+  --all-snowflake-from-jsonl \
+  --verbose
+
+# BigQuery instances
+python generate_predicted_tables_columns.py \
+  --jsonl-path data/spider2-lite.jsonl \
+  --taxonomy-csv data/contexts/sql_nl_summaries_taxonomy.csv \
+  --out-csv data/contexts/predicted_tablescols_bigquery_azure_o3.csv \
+  --model azure/o3 \
+  --engine bigquery \
+  --all-bigquery-from-jsonl \
+  --verbose</pre>
+
+        <p><strong>Predicted CTE Briefs:</strong></p>
+        <pre>
+# SQLite instances
+python generate_predicted_cte_briefs.py \
+  --jsonl-path data/spider2-lite.jsonl \
+  --taxonomy-csv data/contexts/sql_nl_summaries_taxonomy.csv \
+  --analysis-csv data/contexts/sql_nl_summaries_taxonomy_analysis_of_summary_results.csv \
+  --predicted-tables-cols-csv data/contexts/predicted_tablescols_local.csv \
+  --out-csv data/contexts/predicted_cte_briefs_local.csv \
+  --model azure/o3 \
+  --restrict-to-predicted \
+  --no-analysis-filter \
+  --verbose
+
+# Snowflake instances (with external knowledge)
+python generate_predicted_cte_briefs.py \
+  --jsonl-path data/spider2-lite.jsonl \
+  --taxonomy-csv data/contexts/sql_nl_summaries_taxonomy.csv \
+  --analysis-csv data/contexts/sql_nl_summaries_taxonomy_analysis_of_summary_results.csv \
+  --predicted-tables-cols-csv data/contexts/predicted_tablescols_snowflake_azure_o3.csv \
+  --out-csv data/contexts/predicted_cte_briefs_snowflake_azure_o3.csv \
+  --model azure/o3 \
+  --include-external-knowledge \
+  --external-knowledge-root data/spider2 \
+  --snowflake-ids-only \
+  --restrict-to-predicted \
+  --no-analysis-filter \
+  --verbose
+
+# BigQuery instances (with external knowledge)
+python generate_predicted_cte_briefs.py \
+  --jsonl-path data/spider2-lite.jsonl \
+  --taxonomy-csv data/contexts/sql_nl_summaries_taxonomy.csv \
+  --analysis-csv data/contexts/sql_nl_summaries_taxonomy_analysis_of_summary_results.csv \
+  --predicted-tables-cols-csv data/contexts/predicted_tablescols_bigquery_azure_o3.csv \
+  --out-csv data/contexts/predicted_cte_briefs_bigquery_azure_o3.csv \
+  --model azure/o3 \
+  --include-external-knowledge \
+  --external-knowledge-root data/spider2 \
+  --bigquery-ids-only \
+  --restrict-to-predicted \
+  --no-analysis-filter \
+  --verbose</pre>
+      </div>
+    </details>
+
+    <details>
+      <summary>Schema Context Generation (Snowflake / BigQuery)</summary>
+      <div class="details-body">
+        <p>Precompute compressed schema context files for cloud databases:</p>
+        <pre>
+# Snowflake: Creates data/sf_schemas/*.txt
+python scripts/precompute_snowflake_db_contexts.py
+
+# BigQuery: Creates data/bq_schemas/*.txt
+python scripts/create_bq_schema_contexts.py</pre>
+        <p>These scripts parse DDL files and create compressed, human-readable schema summaries that are injected into the agent's context.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>LLM Provider Configuration</summary>
+      <div class="details-body">
+        <p>Edit <code>src/utils/auth.py</code> to configure your LLM credentials:</p>
+        <pre>
+# Azure OpenAI
+os.environ["AZURE_API_KEY"] = "your-key"
+os.environ["AZURE_API_BASE"] = "https://your-endpoint.openai.azure.com/"
+os.environ["AZURE_API_VERSION"] = "2024-12-01-preview"
+
+# Or OpenAI
+os.environ["OPENAI_API_KEY"] = "your-key"</pre>
+        <p><strong>System prompts</strong> are defined in <code>src/agents/prompts.py</code>:</p>
+        <ul>
+          <li><code>BASE_PROMPT</code> &mdash; For SQLite instances</li>
+          <li><code>SNOWFLAKE_PROMPT</code> &mdash; For Snowflake instances (includes syntax and case-sensitivity notes)</li>
+        </ul>
+      </div>
+    </details>
+
+    <details>
+      <summary>Evaluation</summary>
+      <div class="details-body">
+        <p>Run evaluation against Spider2-lite gold results:</p>
+        <pre>
+cd evaluation
+python evals.py \
+  --mode exec_result \
+  --result_dir ../outputs/snowflake_validated \
+  --gold_dir ../data/spider2/gold</pre>
+        <p><strong>Output:</strong></p>
+        <ul>
+          <li><code>evals.csv</code> &mdash; Score (0/1) per instance</li>
+          <li><code>correct_ids.csv</code> &mdash; List of correct instance IDs</li>
+          <li>Summary statistics printed to console</li>
+        </ul>
+      </div>
+    </details>
+
+    <details>
+      <summary>Troubleshooting</summary>
+      <div class="details-body">
+        <p><strong>Snowflake Connection Issues:</strong></p>
+        <ul>
+          <li>Verify credentials in <code>~/.snowflake/config</code></li>
+          <li>Check network connectivity to Snowflake</li>
+          <li>Ensure warehouse is running</li>
+        </ul>
+        <p><strong>BigQuery Permission Errors:</strong></p>
+        <ul>
+          <li>Run <code>gcloud auth application-default login</code></li>
+          <li>Verify service account has BigQuery permissions</li>
+          <li>Check project ID in credentials</li>
+        </ul>
+        <p><strong>LLM Rate Limits:</strong></p>
+        <ul>
+          <li>Reduce <code>--workers</code> in parallel runner</li>
+          <li>Add retry logic with exponential backoff</li>
+          <li>Use a different model tier</li>
+        </ul>
+        <p><strong>Empty Validation Results:</strong></p>
+        <ul>
+          <li>Check that <code>execution_query.sql</code> exists in output directories</li>
+          <li>Verify instance IDs match between JSONL and output directories</li>
+          <li>Ensure predicted hints CSVs contain the instances you're validating</li>
+        </ul>
+      </div>
+    </details>
+
   </section>
 
   <!-- Blog Banner -->

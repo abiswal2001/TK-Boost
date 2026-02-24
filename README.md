@@ -1,81 +1,103 @@
 <p align="center">
-  <img src="raw/image (14).png" alt="TK-Boost Logo" width="200">
+  <img src="assets/logo.png" alt="TK-Boost Logo" width="180">
 </p>
 
 <h1 align="center">TK-Boost</h1>
-<h3 align="center">Arming Data Agents with Tribal Knowledge</h3>
 
 <p align="center">
-  <a href="https://arxiv.org/abs/2602.13521"><strong>Paper (arXiv)</strong></a> &nbsp;|&nbsp;
-  <a href="https://skejriwal44.github.io/TK-Boost/"><strong>Project Page</strong></a> &nbsp;|&nbsp;
-  <a href="https://skejriwal44.github.io/TK-Boost/blog.html"><strong>Blog Post</strong></a>
+  <strong>Arming Data Agents with Tribal Knowledge</strong>
 </p>
 
 <p align="center">
-  <em>Shubham Agarwal, Asim Biswal, Sepanta Zeighami, Alvin Cheung, Joseph Gonzalez, Aditya G. Parameswaran</em>
+  <a href="https://arxiv.org/abs/2602.13521">
+    <img src="https://img.shields.io/badge/arXiv-2602.13521-b31b1b.svg" alt="arXiv">
+  </a>
+  <a href="https://skejriwal44.github.io/TK-Boost/">
+    <img src="https://img.shields.io/badge/Project-Page-blue" alt="Project Page">
+  </a>
+  <a href="https://skejriwal44.github.io/TK-Boost/blog.html">
+    <img src="https://img.shields.io/badge/Blog-Post-green" alt="Blog Post">
+  </a>
+  <a href="LICENSE">
+    <img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT">
+  </a>
+</p>
+
+<p align="center">
+  <em>Shubham Agarwal &middot; Asim Biswal &middot; Sepanta Zeighami &middot; Alvin Cheung &middot; Joseph Gonzalez &middot; Aditya G. Parameswaran</em><br>
+  <em>UC Berkeley</em>
 </p>
 
 ---
 
-## Abstract
+**TK-Boost** is a bolt-on framework for augmenting any NL2SQL agent with **tribal knowledge** — reusable corrective knowledge that fixes the agent's recurring misconceptions about real-world databases, learned from experience.
 
-Natural language to SQL (NL2SQL) translation enables non-expert users to query relational databases through natural language. Recently, NL2SQL agents, powered by the reasoning capabilities of Large Language Models (LLMs), have significantly advanced NL2SQL translation. Nonetheless, NL2SQL agents still make mistakes when faced with large-scale real-world databases because they lack knowledge of how to correctly leverage the underlying data and form misconceptions about the data when querying it, leading to errors.
-
-**TK-Boost** is a bolt-on framework for augmenting any NL2SQL agent with **tribal knowledge**: knowledge that corrects the agent's misconceptions in querying the database accumulated through experience using the database. TK-Boost first identifies the agent's misconceptions by analyzing its mistakes, generates tribal knowledge to address them, and indexes this knowledge with applicability conditions for accurate retrieval. When answering new queries, TK-Boost provides targeted feedback to the agent, resolving misconceptions during SQL generation.
+> NL2SQL agents already know how to write SQL. What they lack is experience using real databases. Tribal knowledge fills that gap.
 
 ### Key Results
 
-| Benchmark | Improvement |
-|---|---|
-| Spider 2.0 | **+16.9%** execution accuracy |
-| BIRD | **+13.7%** execution accuracy |
-| ReFORCE (bolt-on) | **+11.4%** execution accuracy |
-| Agentar-Scale SQL (bolt-on) | **+10.2%** execution accuracy |
+| Benchmark | Accuracy Gain |
+|:---|:---|
+| **Spider 2.0** | **+16.9%** |
+| **BIRD** | **+13.7%** |
+| **ReFORCE** (bolt-on to SOTA) | **+11.4%** |
+| **Agentar-Scale SQL** (bolt-on to SOTA) | **+10.2%** |
 
 ---
 
 ## Features
 
-- **Multi-Database Support**: SQLite, Snowflake, and BigQuery with automatic engine detection
-- **Predicted Hints**: Use LLM-generated table/column predictions and CTE briefs to guide agent exploration
-- **External Knowledge**: Automatically inject relevant context from markdown files
-- **CTE Refiner**: Optional refinement loop to iteratively improve SQL correctness
-- **Refinement-Only Mode**: Run refiner on existing outputs without regenerating agent responses
-- **Organized Output**: Structured directories with traces, queries, results, and ground truth
-- **Parallel Execution**: Run multiple instances concurrently for efficient batch processing
+- **Bolt-On Design** — works with any NL2SQL agent, no retraining needed
+- **Multi-Database** — SQLite, Snowflake, and BigQuery with automatic engine detection
+- **CTE-Level Correction** — applies knowledge one CTE at a time for precise fixes
+- **SQL-Based Retrieval** — retrieves knowledge from the SQL draft using structured applicability conditions
+- **Predicted Hints** — LLM-generated table/column predictions and CTE briefs
+- **Parallel Execution** — batch-process instances concurrently
 
+---
 
-## Installation
+## Quick Start
 
 ```bash
-# Create virtual environment
-python3 -m venv env
-source env/bin/activate  # On Windows: env\Scripts\activate
-
-# Install dependencies
+git clone https://github.com/abiswal2001/TK-Boost.git
+cd TK-Boost
+python3 -m venv env && source env/bin/activate
 pip install -r requirements.txt
 ```
 
-## Demo
+```bash
+# Run the SQL agent on a single instance
+python src/agents/sql_agent_runner.py \
+  --instance-id local066 \
+  --jsonl-path data/spider2-lite.jsonl \
+  --model azure/gpt-4.1 \
+  --out-base outputs/baseline \
+  --verbose
+```
 
-The **`demo.ipynb`** notebook is a short end-to-end walkthrough: it runs the SQL agent on a single SQLite instance (e.g. `local066`) with predicted CTE hints, then inspects the generated SQL and compares the agent result to ground truth. Use it to sanity-check your setup and see the runner in action before using the CLI.
+See **`demo.ipynb`** for a full end-to-end walkthrough.
 
-## Basic Usage
+---
 
-### Run SQL Agent (Single Instance)
+## Usage
 
-Run the agent on a single instance without validation:
+<details>
+<summary><strong>Run with Predicted Hints</strong></summary>
 
 ```bash
 python src/agents/sql_agent_runner.py \
   --instance-id local066 \
   --jsonl-path data/spider2-lite.jsonl \
   --model azure/gpt-4.1 \
-  --out-base outputs/local_baseline \
+  -c data/contexts/predicted_cte_briefs_local.csv \
+  -t data/contexts/predicted_tablescols_local.csv \
+  --out-base outputs/local_with_hints \
   --verbose
 ```
+</details>
 
-### Run SQL Agent (Multiple Instances)
+<details>
+<summary><strong>Run Multiple Instances</strong></summary>
 
 ```bash
 python src/agents/sql_agent_runner.py \
@@ -88,7 +110,7 @@ python src/agents/sql_agent_runner.py \
   --verbose
 ```
 
-### Run SQL Agent (All Instances from JSONL)
+Or run all instances from the JSONL file:
 
 ```bash
 python src/agents/sql_agent_runner.py \
@@ -98,25 +120,12 @@ python src/agents/sql_agent_runner.py \
   --out-base outputs/all_baseline \
   --verbose
 ```
+</details>
 
-### Run with Predicted Hints
+<details>
+<summary><strong>Snowflake Instances</strong></summary>
 
-Use predicted CTE briefs and table/column hints to guide the agent:
-
-```bash
-python src/agents/sql_agent_runner.py \
-  --instance-id local066 \
-  --jsonl-path data/spider2-lite.jsonl \
-  --model azure/gpt-4.1 \
-  -c data/contexts/predicted_cte_briefs_local.csv \
-  -t data/contexts/predicted_tablescols_local.csv \
-  --out-base outputs/local_with_hints \
-  --verbose
-```
-
-### Run Snowflake Instances
-
-The agent automatically detects Snowflake instances (prefix `sf`) and uses the appropriate prompt and executor:
+The agent auto-detects Snowflake instances (prefix `sf`):
 
 ```bash
 python src/agents/sql_agent_runner.py \
@@ -130,11 +139,19 @@ python src/agents/sql_agent_runner.py \
   --verbose
 ```
 
-**Note**: Snowflake credentials should be configured via environment variables or Snowflake config file.
+**Credentials:** Configure via `~/.snowflake/config` or environment variables:
+```bash
+export SNOWFLAKE_ACCOUNT="your_account"
+export SNOWFLAKE_USER="your_user"
+export SNOWFLAKE_PASSWORD="your_password"
+export SNOWFLAKE_WAREHOUSE="your_warehouse"
+```
+</details>
 
-### Run BigQuery Instances
+<details>
+<summary><strong>BigQuery Instances</strong></summary>
 
-The agent automatically detects BigQuery instances (prefix `bq` or `ga`) and uses the appropriate executor:
+The agent auto-detects BigQuery instances (prefix `bq` or `ga`):
 
 ```bash
 python src/agents/sql_agent_runner.py \
@@ -148,13 +165,18 @@ python src/agents/sql_agent_runner.py \
   --verbose
 ```
 
-**Note**: BigQuery credentials should be configured via Google Cloud SDK or service account JSON.
+**Credentials:** Configure via Google Cloud SDK:
+```bash
+gcloud auth application-default login
+# Or use service account JSON
+export GOOGLE_APPLICATION_CREDENTIALS="/path/to/service-account-key.json"
+```
+</details>
 
-## Running with CTE Refiner
+<details>
+<summary><strong>CTE Refiner (Validation)</strong></summary>
 
-The CTE refiner iteratively checks and improves each CTE in the final SQL, then refines the final SELECT statement. Enable it with the `-v` or `--validate-cte` flag:
-
-### Basic Validation
+The CTE refiner iteratively validates and improves each CTE, then refines the final SELECT:
 
 ```bash
 python src/agents/sql_agent_runner.py \
@@ -168,40 +190,35 @@ python src/agents/sql_agent_runner.py \
   --verbose
 ```
 
-**What happens:**
+**How it works:**
 1. Agent generates initial SQL solution
 2. SQL is parsed into CTEs and final SELECT
-3. Each CTE is validated individually (max 25 turns per CTE)
-4. If issues are found, refiner suggests fixes and agent revises
-5. Final SELECT is validated with all CTEs in place
-6. Validated SQL and results are saved
+3. Each CTE is validated individually (max 25 turns)
+4. Refiner suggests fixes, agent revises
+5. Final SELECT validated with all CTEs
+6. Validated SQL and results saved
 
-### Validation Output Files
-
-When validation is enabled, additional files are created in the output directory:
-
+**Output files:**
 ```
 outputs/local066_20251031_120000/
-├── execution_query.sql                    # Original agent SQL
-├── execution_result.csv                   # Original agent results
-├── execution_query_validated.sql          # SQL after validation
-├── execution_result_validated.csv         # Results after validation
-├── refiner_cte1.json                    # Refiner verdict for first CTE
-├── refiner_cte1_trace.txt               # Refinement trace for first CTE
-├── refiner_cte2.json                    # Refiner verdict for second CTE
-├── refiner_cte2_trace.txt               # Refinement trace for second CTE
-├── refiner_final_select.json            # Refiner verdict for final SELECT
-├── refiner_final_select_trace.txt       # Refinement trace for final SELECT
-├── messages.json                          # Full conversation history
-├── processed_trace.txt                    # Human-readable trace
-├── gt_query.sql                           # Ground truth SQL
-├── gt_result.csv                          # Ground truth results
-└── gt_result.json                         # Ground truth results (JSON)
+├── execution_query.sql              # Original agent SQL
+├── execution_result.csv             # Original agent results
+├── execution_query_validated.sql    # SQL after validation
+├── execution_result_validated.csv   # Results after validation
+├── refiner_cte1.json                # Refiner verdict per CTE
+├── refiner_cte1_trace.txt           # Refinement trace per CTE
+├── refiner_final_select.json        # Final SELECT verdict
+├── messages.json                    # Full conversation history
+├── processed_trace.txt              # Human-readable trace
+├── gt_query.sql                     # Ground truth SQL
+└── gt_result.csv                    # Ground truth results
 ```
+</details>
 
-## Validation-Only Mode (From Existing Outputs)
+<details>
+<summary><strong>Validation-Only Mode</strong></summary>
 
-If you have already generated agent outputs and want to **only** run the refiner on existing SQL (without regenerating agent responses), use the `--validate-output` flag:
+Run the refiner on existing outputs without regenerating agent responses:
 
 ```bash
 python src/agents/sql_agent_runner.py \
@@ -212,24 +229,98 @@ python src/agents/sql_agent_runner.py \
   -t data/contexts/predicted_tablescols_snowflake_azure_o3.csv \
   --verbose
 ```
+</details>
 
-## Evaluation
-
-Run evaluation against Spider2-lite gold results:
+<details>
+<summary><strong>Parallel Execution</strong></summary>
 
 ```bash
-cd evaluation
-python evals.py \
-  --mode exec_result \
-  --result_dir ../outputs/snowflake_validated \
-  --gold_dir ../data/spider2/gold
+python scripts/run_snowflake_parallel.py \
+  --jsonl-path data/spider2-lite.jsonl \
+  --model azure/gpt-4.1 \
+  -c data/contexts/predicted_cte_briefs_snowflake_azure_o3.csv \
+  -t data/contexts/predicted_tablescols_snowflake_azure_o3.csv \
+  --out-base outputs/snowflake_validated \
+  --workers 3 \
+  --timeout 600 \
+  --verbose
 ```
+</details>
+
+<details>
+<summary><strong>Generating Predicted Hints</strong></summary>
+
+**Tables/Columns:**
+```bash
+# SQLite
+python generate_predicted_tables_columns.py \
+  --jsonl-path data/spider2-lite.jsonl \
+  --taxonomy-csv data/contexts/sql_nl_summaries_taxonomy.csv \
+  --out-csv data/contexts/predicted_tablescols_local.csv \
+  --model azure/o3 --engine sqlite --verbose
+
+# Snowflake
+python generate_predicted_tables_columns.py \
+  --jsonl-path data/spider2-lite.jsonl \
+  --taxonomy-csv data/contexts/sql_nl_summaries_taxonomy.csv \
+  --out-csv data/contexts/predicted_tablescols_snowflake_azure_o3.csv \
+  --model azure/o3 --engine snowflake --all-snowflake-from-jsonl --verbose
+
+# BigQuery
+python generate_predicted_tables_columns.py \
+  --jsonl-path data/spider2-lite.jsonl \
+  --taxonomy-csv data/contexts/sql_nl_summaries_taxonomy.csv \
+  --out-csv data/contexts/predicted_tablescols_bigquery_azure_o3.csv \
+  --model azure/o3 --engine bigquery --all-bigquery-from-jsonl --verbose
+```
+
+**CTE Briefs:**
+```bash
+# SQLite
+python generate_predicted_cte_briefs.py \
+  --jsonl-path data/spider2-lite.jsonl \
+  --taxonomy-csv data/contexts/sql_nl_summaries_taxonomy.csv \
+  --analysis-csv data/contexts/sql_nl_summaries_taxonomy_analysis_of_summary_results.csv \
+  --predicted-tables-cols-csv data/contexts/predicted_tablescols_local.csv \
+  --out-csv data/contexts/predicted_cte_briefs_local.csv \
+  --model azure/o3 --restrict-to-predicted --no-analysis-filter --verbose
+
+# Snowflake (with external knowledge)
+python generate_predicted_cte_briefs.py \
+  --jsonl-path data/spider2-lite.jsonl \
+  --taxonomy-csv data/contexts/sql_nl_summaries_taxonomy.csv \
+  --analysis-csv data/contexts/sql_nl_summaries_taxonomy_analysis_of_summary_results.csv \
+  --predicted-tables-cols-csv data/contexts/predicted_tablescols_snowflake_azure_o3.csv \
+  --out-csv data/contexts/predicted_cte_briefs_snowflake_azure_o3.csv \
+  --model azure/o3 --include-external-knowledge --external-knowledge-root data/spider2 \
+  --snowflake-ids-only --restrict-to-predicted --no-analysis-filter --verbose
+
+# BigQuery (with external knowledge)
+python generate_predicted_cte_briefs.py \
+  --jsonl-path data/spider2-lite.jsonl \
+  --taxonomy-csv data/contexts/sql_nl_summaries_taxonomy.csv \
+  --analysis-csv data/contexts/sql_nl_summaries_taxonomy_analysis_of_summary_results.csv \
+  --predicted-tables-cols-csv data/contexts/predicted_tablescols_bigquery_azure_o3.csv \
+  --out-csv data/contexts/predicted_cte_briefs_bigquery_azure_o3.csv \
+  --model azure/o3 --include-external-knowledge --external-knowledge-root data/spider2 \
+  --bigquery-ids-only --restrict-to-predicted --no-analysis-filter --verbose
+```
+
+**Schema Contexts (Snowflake / BigQuery):**
+```bash
+python scripts/precompute_snowflake_db_contexts.py   # Creates data/sf_schemas/*.txt
+python scripts/create_bq_schema_contexts.py           # Creates data/bq_schemas/*.txt
+```
+</details>
+
+---
 
 ## Configuration
 
-### LLM Provider
+<details>
+<summary><strong>LLM Provider</strong></summary>
 
-Edit `src/utils/auth.py` to configure Azure OpenAI or OpenAI credentials:
+Edit `src/utils/auth.py`:
 
 ```python
 # Azure OpenAI
@@ -241,24 +332,26 @@ os.environ["AZURE_API_VERSION"] = "2024-12-01-preview"
 os.environ["OPENAI_API_KEY"] = "your-key"
 ```
 
-### Database Credentials
+System prompts are in `src/agents/prompts.py`:
+- `BASE_PROMPT` — SQLite instances
+- `SNOWFLAKE_PROMPT` — Snowflake instances (syntax & case-sensitivity notes)
+</details>
 
-**Snowflake**: Configure via `~/.snowflake/config` or environment variables:
+---
+
+## Evaluation
+
 ```bash
-export SNOWFLAKE_ACCOUNT="your_account"
-export SNOWFLAKE_USER="your_user"
-export SNOWFLAKE_PASSWORD="your_password"
-export SNOWFLAKE_WAREHOUSE="your_warehouse"
+cd evaluation
+python evals.py \
+  --mode exec_result \
+  --result_dir ../outputs/snowflake_validated \
+  --gold_dir ../data/spider2/gold
 ```
 
-**BigQuery**: Configure via Google Cloud SDK:
-```bash
-gcloud auth application-default login
-# Or use service account JSON
-export GOOGLE_APPLICATION_CREDENTIALS="/path/to/service-account-key.json"
-```
+**Output:** `evals.csv` (scores per instance), `correct_ids.csv` (passing instances), and summary statistics.
 
-**SQLite**: Databases are read from `data/spider2/` directory structure.
+---
 
 ## Citation
 
@@ -273,8 +366,4 @@ export GOOGLE_APPLICATION_CREDENTIALS="/path/to/service-account-key.json"
 
 ## License
 
-MIT License - See LICENSE file for details
-
-## Contributing
-
-Contributions welcome! Please open an issue or pull request on GitHub.
+MIT License — See [LICENSE](LICENSE) for details.
