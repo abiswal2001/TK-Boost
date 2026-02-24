@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TK-Boost</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: #e4e4e7;
+      background: #09090b;
+      line-height: 1.6;
+    }
+    a { color: #60a5fa; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .container { max-width: 720px; margin: 0 auto; padding: 0 1.5rem; }
+
+    header {
+      padding: 4rem 0 2rem;
+      text-align: center;
+      border-bottom: 1px solid #27272a;
+    }
+    header h1 { font-size: 2.5rem; font-weight: 700; letter-spacing: -0.02em; }
+    header p { margin-top: 0.75rem; color: #a1a1aa; font-size: 1.1rem; max-width: 540px; margin-left: auto; margin-right: auto; }
+
+    .badges { margin-top: 1.25rem; display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap; }
+    .badge {
+      display: inline-block; padding: 0.25rem 0.75rem; border-radius: 9999px;
+      font-size: 0.8rem; font-weight: 500; background: #18181b; border: 1px solid #27272a;
+      color: #a1a1aa;
+    }
+
+    section { padding: 2.5rem 0; border-bottom: 1px solid #27272a; }
+    section:last-of-type { border-bottom: none; }
+    section h2 { font-size: 1.3rem; margin-bottom: 1rem; color: #f4f4f5; }
+
+    .features { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    @media (max-width: 500px) { .features { grid-template-columns: 1fr; } }
+    .feature {
+      padding: 1rem; border-radius: 0.5rem;
+      background: #18181b; border: 1px solid #27272a;
+    }
+    .feature strong { display: block; margin-bottom: 0.25rem; color: #f4f4f5; font-size: 0.95rem; }
+    .feature span { color: #a1a1aa; font-size: 0.85rem; }
+
+    pre {
+      background: #18181b; border: 1px solid #27272a; border-radius: 0.5rem;
+      padding: 1rem; overflow-x: auto; font-size: 0.85rem; color: #d4d4d8;
+    }
+
+    footer {
+      padding: 2rem 0; text-align: center; color: #52525b; font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>TK-Boost</h1>
+      <p>SQL agent framework for multi-database benchmarks with iterative CTE-based refinement.</p>
+      <div class="badges">
+        <span class="badge">SQLite</span>
+        <span class="badge">Snowflake</span>
+        <span class="badge">BigQuery</span>
+        <span class="badge">LLM-Powered</span>
+      </div>
+    </header>
+
+    <section>
+      <h2>Features</h2>
+      <div class="features">
+        <div class="feature">
+          <strong>Multi-Database</strong>
+          <span>SQLite, Snowflake, and BigQuery with automatic engine detection.</span>
+        </div>
+        <div class="feature">
+          <strong>CTE Refiner</strong>
+          <span>Iteratively validates and improves each CTE independently.</span>
+        </div>
+        <div class="feature">
+          <strong>Predicted Hints</strong>
+          <span>LLM-generated table/column predictions guide exploration.</span>
+        </div>
+        <div class="feature">
+          <strong>Parallel Execution</strong>
+          <span>Batch-process multiple instances concurrently.</span>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Quick Start</h2>
+      <pre><code>git clone https://github.com/cusgadmin/TK-Boost.git
+cd TK-Boost
+pip install -r requirements.txt
+
+python src/agents/sql_agent_runner.py \
+  --instance-id local066 \
+  --jsonl-path data/spider2-lite.jsonl \
+  --model azure/gpt-4.1 \
+  --out-base outputs/baseline</code></pre>
+    </section>
+
+    <section>
+      <h2>How It Works</h2>
+      <p style="color:#a1a1aa; font-size: 0.95rem;">
+        The agent receives a natural language question and a database schema.
+        It explores the database, generates candidate SQL using Common Table Expressions,
+        then optionally refines each CTE through an LLM-driven validation loop.
+        Results are evaluated against ground truth for accuracy.
+      </p>
+    </section>
+
+    <footer>
+      <a href="https://github.com/cusgadmin/TK-Boost">View on GitHub</a>
+    </footer>
+  </div>
+</body>
+</html>
