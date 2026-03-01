@@ -91,6 +91,8 @@
       font-size: 0.78rem; font-weight: 500; color: var(--text-dim);
       margin-bottom: 1.1rem;
     }
+    a.affil { text-decoration: none; }
+    a.affil:hover { border-color: var(--border-light); color: var(--text-muted); }
     .affil .dot {
       width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0;
       background: linear-gradient(135deg, var(--accent), var(--orange));
@@ -164,7 +166,7 @@
 <div class="page">
   <div class="hero">
     <img class="logo" src="logo.png" alt="TK-Boost">
-    <div><div class="affil"><span class="dot"></span>Sky Computing Lab &middot; UC Berkeley</div></div>
+    <div><a href="https://sky.cs.berkeley.edu" target="_blank" rel="noopener" class="affil"><span class="dot"></span>Sky Computing Lab &middot; UC Berkeley</a></div>
     <h1>Arming Data Agents with <span>Tribal Knowledge</span></h1>
     <p class="subtitle">
       A bolt-on framework that teaches NL2SQL agents reusable corrective knowledge learned from experience &mdash; boosting accuracy on real-world databases.
