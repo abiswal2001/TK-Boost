@@ -12,10 +12,10 @@
   <a href="https://arxiv.org/abs/2602.13521">
     <img src="https://img.shields.io/badge/arXiv-2602.13521-b31b1b.svg" alt="arXiv">
   </a>
-  <a href="https://skejriwal44.github.io/TK-Boost/">
+  <a href="https://abiswal2001.github.io/TK-Boost/">
     <img src="https://img.shields.io/badge/Project-Page-blue" alt="Project Page">
   </a>
-  <a href="https://skejriwal44.github.io/TK-Boost/blog.html">
+  <a href="https://abiswal2001.github.io/TK-Boost/blog.html">
     <img src="https://img.shields.io/badge/Blog-Post-green" alt="Blog Post">
   </a>
   <a href="LICENSE">
@@ -356,11 +356,11 @@ python evals.py \
 ## Citation
 
 ```bibtex
-@article{agarwal2025arming,
+@article{agarwal2026tkboost,
   title={Arming Data Agents with Tribal Knowledge},
   author={Agarwal, Shubham and Biswal, Asim and Zeighami, Sepanta and Cheung, Alvin and Gonzalez, Joseph and Parameswaran, Aditya G.},
   journal={arXiv preprint arXiv:2602.13521},
-  year={2025}
+  year={2026}
 }
 ```
 

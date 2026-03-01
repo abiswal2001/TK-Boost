@@ -14,17 +14,21 @@
       --border: #e0e3ea;
       --border-light: #d0d4de;
       --text: #1a1a2e;
-      --text-muted: #555770;
+      --text-muted: #4a4a68;
       --text-dim: #8a8da6;
       --accent: #2563eb;
       --accent-hover: #1d4ed8;
-      --accent-glow: rgba(37, 99, 235, 0.08);
-      --orange: #e67e22;
+      --accent-glow: rgba(37, 99, 235, 0.07);
+      --orange: #d97706;
       --green: #0d9668;
-      --nav-bg: rgba(255, 255, 255, 0.85);
-      --nav-active: #1a1a2e;
-      --code-bg: #f4f5f9;
+      --red: #dc2626;
+      --nav-bg: rgba(255,255,255,0.88);
+      --code-bg: #f6f7fb;
       --code-border: #e0e3ea;
+      --sql-wrong-bg: #fff5f5;
+      --sql-wrong-border: #fecaca;
+      --sql-right-bg: #f0fdf4;
+      --sql-right-border: #bbf7d0;
       --gradient-stat: linear-gradient(135deg, #0d9668, #2563eb);
     }
     :root[data-theme="dark"] {
@@ -40,23 +44,27 @@
       --accent-glow: rgba(91, 141, 239, 0.1);
       --orange: #f0a050;
       --green: #3dd9a0;
-      --nav-bg: rgba(11, 11, 18, 0.85);
-      --nav-active: #e6e6f0;
+      --red: #f06060;
+      --nav-bg: rgba(11,11,18,0.88);
       --code-bg: #0e0e18;
       --code-border: #222238;
+      --sql-wrong-bg: #1a0a0a;
+      --sql-wrong-border: #5a2020;
+      --sql-right-bg: #071510;
+      --sql-right-border: #1a4a30;
       --gradient-stat: linear-gradient(135deg, #3dd9a0, #5b8def);
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       background: var(--bg); color: var(--text);
       line-height: 1.75; -webkit-font-smoothing: antialiased;
       transition: background 0.3s, color 0.3s;
     }
     a { color: var(--accent); text-decoration: none; }
-    a:hover { color: var(--accent-hover); }
+    a:hover { color: var(--accent-hover); text-decoration: underline; text-underline-offset: 2px; }
 
     /* ── Nav ── */
     nav {
@@ -64,132 +72,165 @@
       background: var(--nav-bg);
       backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--border);
-      transition: background 0.3s, border-color 0.3s;
     }
     nav .inner {
-      max-width: 960px; margin: 0 auto; padding: 0.7rem 1.5rem;
+      max-width: 960px; margin: 0 auto; padding: 0.75rem 1.5rem;
       display: flex; align-items: center; justify-content: space-between;
     }
     nav .brand {
       display: flex; align-items: center; gap: 0.5rem;
-      font-weight: 700; font-size: 1.1rem; color: var(--text); text-decoration: none;
+      font-weight: 700; font-size: 1.05rem; color: var(--text); text-decoration: none;
     }
-    nav .brand img { height: 30px; width: auto; }
+    nav .brand img { height: 28px; width: auto; }
+    nav .brand:hover { text-decoration: none; }
     nav .right { display: flex; align-items: center; gap: 1.5rem; }
-    nav .links { display: flex; gap: 1.5rem; font-size: 0.95rem; }
+    nav .links { display: flex; gap: 1.5rem; font-size: 0.92rem; }
     nav .links a { color: var(--text-muted); text-decoration: none; }
-    nav .links a:hover { color: var(--text); }
-    nav .links a.active { color: var(--nav-active); font-weight: 600; }
+    nav .links a:hover { color: var(--text); text-decoration: none; }
+    nav .links a.active { color: var(--text); font-weight: 600; }
     .theme-toggle {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: 6px; padding: 0.35rem 0.5rem; cursor: pointer;
-      font-size: 0.85rem; line-height: 1; color: var(--text-muted);
-      transition: all 0.2s;
+      background: none; border: 1px solid var(--border);
+      border-radius: 6px; padding: 0.3rem 0.5rem; cursor: pointer;
+      font-size: 0.85rem; color: var(--text-dim); transition: all 0.2s;
     }
-    .theme-toggle:hover { border-color: var(--border-light); color: var(--text); }
+    .theme-toggle:hover { color: var(--text); border-color: var(--border-light); }
 
-    /* ── Article Layout ── */
-    .article { max-width: 740px; margin: 0 auto; padding: 6.5rem 1.5rem 4rem; }
+    /* ── Layout ── */
+    .article { max-width: 720px; margin: 0 auto; padding: 6rem 1.5rem 5rem; }
 
-    /* ── Article Hero ── */
+    /* ── Hero ── */
     .article-hero {
-      margin-bottom: 2.5rem; padding-bottom: 2rem;
+      margin-bottom: 3rem; padding-bottom: 2.5rem;
       border-bottom: 1px solid var(--border);
     }
     .article-hero .tag {
-      display: inline-block; padding: 0.2rem 0.6rem; border-radius: 5px;
-      font-size: 0.68rem; font-weight: 700; text-transform: uppercase;
-      letter-spacing: 0.1em; background: var(--accent-glow);
-      color: var(--accent); border: 1px solid var(--border);
-      margin-bottom: 0.85rem;
+      display: inline-block; padding: 0.22rem 0.65rem; border-radius: 5px;
+      font-size: 0.67rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.11em;
+      background: var(--accent-glow); color: var(--accent); border: 1px solid var(--border);
+      margin-bottom: 1rem;
     }
     .article-hero h1 {
-      font-size: clamp(1.9rem, 4.5vw, 2.6rem);
+      font-size: clamp(1.85rem, 4.5vw, 2.5rem);
       font-weight: 800; letter-spacing: -0.03em; line-height: 1.2;
     }
     .article-hero .tldr {
-      margin-top: 1.25rem; padding: 1.25rem 1.5rem;
+      margin-top: 1.35rem; padding: 1.2rem 1.4rem;
       background: var(--surface); border: 1px solid var(--border);
       border-left: 3px solid var(--accent); border-radius: 8px;
-      color: var(--text-muted); font-size: 1.02rem; line-height: 1.75;
+      color: var(--text-muted); font-size: 1rem; line-height: 1.8;
     }
     .article-hero .authors {
-      margin-top: 1.25rem; font-size: 1rem; color: var(--text);
-      font-weight: 500; line-height: 1.5;
+      margin-top: 1.25rem; font-size: 0.97rem; color: var(--text);
+      font-weight: 500; line-height: 1.55;
     }
     .article-hero .link-pills {
-      margin-top: 0.95rem; display: flex; gap: 0.5rem; flex-wrap: wrap;
+      margin-top: 1rem; display: flex; gap: 0.5rem; flex-wrap: wrap;
     }
     .article-hero .link-pills a {
-      display: inline-block; padding: 0.4rem 0.9rem;
-      font-size: 0.88rem; font-weight: 600; border-radius: 6px;
+      display: inline-flex; align-items: center; gap: 0.3rem;
+      padding: 0.42rem 1rem; font-size: 0.86rem; font-weight: 600; border-radius: 7px;
       background: var(--surface); border: 1px solid var(--border);
-      color: var(--text-muted); transition: all 0.2s;
+      color: var(--text-muted); transition: all 0.18s; text-decoration: none;
     }
     .article-hero .link-pills a:hover {
       border-color: var(--accent); color: var(--accent); background: var(--accent-glow);
+      text-decoration: none;
     }
+    .contact-row {
+      margin-top: 0.8rem; display: flex; align-items: center; flex-wrap: wrap; gap: 0.35rem;
+      font-size: 0.88rem;
+    }
+    .contact-label { color: var(--text-dim); font-weight: 600; font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.05em; }
+    .contact-sep { color: var(--border-light); }
+    .contact-row a { color: var(--text-muted); text-decoration: none; }
+    .contact-row a:hover { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
 
     /* ── Prose ── */
     .prose h2 {
-      font-size: 1.55rem; font-weight: 700; letter-spacing: -0.02em;
-      margin: 2.75rem 0 0.85rem; padding-top: 1.75rem;
+      font-size: 1.45rem; font-weight: 700; letter-spacing: -0.02em;
+      margin: 3rem 0 0.9rem; padding-top: 2rem;
       border-top: 1px solid var(--border);
+      color: var(--text);
     }
     .prose h2:first-child { border-top: none; padding-top: 0; margin-top: 0; }
-    .prose h3 { font-size: 1.2rem; font-weight: 650; margin: 1.75rem 0 0.6rem; }
-    .prose p { margin-bottom: 0.9rem; color: var(--text-muted); font-size: 1.05rem; }
+    .prose h3 {
+      font-size: 1.1rem; font-weight: 700; margin: 1.75rem 0 0.5rem;
+      color: var(--text);
+    }
+    .prose p { margin-bottom: 1rem; color: var(--text-muted); font-size: 1.02rem; line-height: 1.8; }
     .prose strong { color: var(--text); font-weight: 600; }
     .prose em { font-style: italic; }
     .prose ul, .prose ol {
-      margin: 0.6rem 0 1rem 1.25rem; color: var(--text-muted); font-size: 1.02rem;
+      margin: 0.5rem 0 1.1rem 1.35rem; color: var(--text-muted); font-size: 1rem;
     }
-    .prose li { margin-bottom: 0.35rem; }
+    .prose li { margin-bottom: 0.4rem; line-height: 1.75; }
     .prose code {
       font-family: 'SF Mono', 'JetBrains Mono', monospace;
-      font-size: 0.83em; background: var(--surface); padding: 0.12em 0.35em;
+      font-size: 0.82em; background: var(--surface); padding: 0.13em 0.38em;
       border-radius: 4px; border: 1px solid var(--border); color: var(--orange);
     }
     .prose pre {
       background: var(--code-bg); border: 1px solid var(--code-border);
-      border-radius: 8px; padding: 1.1rem 1.35rem;
-      overflow-x: auto; margin: 0.75rem 0 1.25rem;
+      border-radius: 8px; padding: 1rem 1.25rem;
+      overflow-x: auto; margin: 0.6rem 0 1.1rem;
       font-family: 'SF Mono', 'JetBrains Mono', monospace;
       font-size: 0.9rem; line-height: 1.7; color: var(--text-muted);
     }
     .prose pre code { background: none; border: none; padding: 0; color: inherit; font-size: inherit; }
 
+    /* ── SQL contrast blocks ── */
+    .sql-wrong {
+      background: var(--sql-wrong-bg) !important;
+      border-color: var(--sql-wrong-border) !important;
+    }
+    .sql-wrong code { color: var(--red) !important; }
+    .sql-right {
+      background: var(--sql-right-bg) !important;
+      border-color: var(--sql-right-border) !important;
+    }
+    .sql-right code { color: var(--green) !important; }
+    .sql-label {
+      font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;
+      margin-bottom: 0.2rem; padding: 0 0.1rem;
+    }
+    .sql-label.wrong { color: var(--red); }
+    .sql-label.right { color: var(--green); }
+
     /* ── Callout ── */
     .callout {
-      margin: 2rem 0; padding: 1.25rem 1.4rem;
+      margin: 2rem 0; padding: 1.3rem 1.5rem;
       background: var(--accent-glow); border: 1px solid var(--border);
-      border-radius: 8px;
+      border-left: 3px solid var(--accent); border-radius: 8px;
     }
-    .callout h4 { font-size: 1.1rem; margin-bottom: 0.4rem; color: var(--text); }
-    .callout p { margin: 0; font-size: 1rem; color: var(--text-muted); }
+    .callout h4 { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--text); }
+    .callout p { margin: 0; font-size: 0.98rem; color: var(--text-muted); }
+    .callout p + p { margin-top: 0.5rem; }
 
     /* ── Stat Row ── */
-    .stat-row { display: flex; gap: 0.75rem; margin: 1.25rem 0; flex-wrap: wrap; }
+    .stat-row { display: flex; gap: 0.75rem; margin: 1.35rem 0; flex-wrap: wrap; }
     .stat-pill {
-      flex: 1; min-width: 130px; text-align: center;
-      padding: 1rem 0.75rem;
-      background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
+      flex: 1; min-width: 120px; text-align: center;
+      padding: 1.1rem 0.75rem;
+      background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+      transition: border-color 0.2s;
     }
+    .stat-pill:hover { border-color: var(--border-light); }
     .stat-pill .num {
-      font-size: 1.8rem; font-weight: 800;
+      font-size: 1.9rem; font-weight: 800; letter-spacing: -0.02em;
       background: var(--gradient-stat);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
     }
-    .stat-pill .lbl { font-size: 0.85rem; color: var(--text-dim); margin-top: 0.1rem; }
+    .stat-pill .lbl { font-size: 0.82rem; color: var(--text-dim); margin-top: 0.15rem; }
 
     /* ── Footer ── */
     footer {
-      max-width: 680px; margin: 0 auto; padding: 2rem 1.5rem;
+      max-width: 720px; margin: 0 auto; padding: 2.5rem 1.5rem 3rem;
       border-top: 1px solid var(--border);
       text-align: center; color: var(--text-dim); font-size: 0.78rem;
     }
     footer .foot-links { display: flex; gap: 1.25rem; justify-content: center; margin-bottom: 0.5rem; }
-    footer .foot-links a { color: var(--text-muted); font-size: 0.82rem; }
+    footer .foot-links a { color: var(--text-muted); font-size: 0.82rem; text-decoration: none; }
+    footer .foot-links a:hover { color: var(--accent); }
   </style>
 </head>
 <body>
@@ -199,8 +240,6 @@
     <a href="index.html" class="brand"><img src="logo.png" alt="TK-Boost"> TK-Boost</a>
     <div class="right">
       <div class="links">
-        <a href="index.html#method">Method</a>
-        <a href="index.html#results">Results</a>
         <a href="blog.html" class="active">Blog</a>
         <a href="https://arxiv.org/abs/2602.13521">Paper</a>
         <a href="https://github.com/abiswal2001/TK-Boost">GitHub</a>
@@ -226,15 +265,23 @@
       Shubham Agarwal, Asim Biswal, Sepanta Zeighami, Alvin Cheung, Joseph Gonzalez, Aditya G. Parameswaran
     </p>
     <div class="link-pills">
-      <a href="https://arxiv.org/abs/2602.13521">Paper (arXiv)</a>
-      <a href="https://github.com/abiswal2001/TK-Boost/tree/main">Code (GitHub)</a>
-      <a href="mailto:abiswal@berkeley.edu,zeighami@berkeley.edu,shubham3@berkeley.edu">Contact Authors</a>
+      <a href="https://arxiv.org/abs/2602.13521">📄 Paper (arXiv)</a>
+      <a href="https://github.com/abiswal2001/TK-Boost/tree/main">🔗 Code (GitHub)</a>
+    </div>
+    <div class="contact-row">
+      <span class="contact-label">Contact</span>
+      <span class="contact-sep">·</span>
+      <a href="mailto:abiswal@berkeley.edu">abiswal@berkeley.edu</a>
+      <span class="contact-sep">·</span>
+      <a href="mailto:zeighami@berkeley.edu">zeighami@berkeley.edu</a>
+      <span class="contact-sep">·</span>
+      <a href="mailto:shubham3@berkeley.edu">shubham3@berkeley.edu</a>
     </div>
   </div>
 
   <div class="prose">
 
-    <h2>Fluent SQL &#8800; Correct SQL</h2>
+    <h2>🔴 Fluent SQL &#8800; Correct SQL</h2>
     <p>
       NL2SQL agents have made natural-language interfaces to databases far more practical. Today's agents can explore schemas, issue intermediate queries, and iteratively refine SQL before producing a final answer. Despite this progress, execution accuracy on realistic benchmarks remains surprisingly low.
     </p>
@@ -244,14 +291,16 @@
     <p>
       Consider a simple example. A <code>purchase</code> table contains both <code>brand</code> and <code>name</code> columns. The <code>brand</code> column was added later and is sparsely populated, while the <code>name</code> column reliably contains the brand as a prefix (e.g., &ldquo;Nike Air Max&rdquo;). Humans quickly learn to filter using:
     </p>
-    <pre><code>WHERE name LIKE 'Nike %'</code></pre>
+    <div class="sql-label right">✓ Correct</div>
+    <pre class="sql-right"><code>WHERE name LIKE 'Nike %'</code></pre>
     <p>NL2SQL agents repeatedly use:</p>
-    <pre><code>WHERE brand = 'Nike'</code></pre>
+    <div class="sql-label wrong">✗ Agent's mistake</div>
+    <pre class="sql-wrong"><code>WHERE brand = 'Nike'</code></pre>
     <p>
       This error reappears across many queries. These recurring logical errors &mdash; caused by missing knowledge about what data should be selected and how it should be used &mdash; are what we call <strong>misconceptions</strong>.
     </p>
 
-    <h2>Naive Approaches</h2>
+    <h2>❌ Naive Approaches</h2>
     <p>Two natural ideas have emerged to improve agents:</p>
     <ol>
       <li><strong>Memory / trajectory reuse</strong> &mdash; Retrieve past queries and include them in the prompt.</li>
@@ -262,7 +311,7 @@
       Memory retrieval often surfaces irrelevant past queries and can even introduce new errors. &ldquo;Facts&rdquo; about the database restate schema and content but rarely correct how the agent <em>uses</em> the data. Moreover, even if the right information is retrieved, the agent must be properly fed the information in order to correct its mistakes.
     </p>
 
-    <h2>Tribal Knowledge</h2>
+    <h2>🧠 Tribal Knowledge</h2>
     <p>Human analysts learn databases through experience. Over time they accumulate rules like:</p>
     <ul>
       <li>&ldquo;Don't trust this column for filtering &mdash; it has many NULL values.&rdquo;</li>
@@ -276,7 +325,7 @@
       TK-Boost is a bolt-on framework that allows NL2SQL agents to acquire and use this knowledge. It defines both a mechanism for discovering and applying knowledge for NL2SQL agents.
     </p>
 
-    <h2>Overview of TK-Boost</h2>
+    <h2>⚙️ Overview of TK-Boost</h2>
     <p>TK-Boost operates in two phases.</p>
 
     <h3>Offline: Knowledge Discovery</h3>
@@ -289,7 +338,7 @@
       When answering new queries, the agent first generates a SQL draft. TK-Boost then retrieves relevant knowledge using the current draft and provides targeted feedback to fix errors before the final SQL is produced. Correcting <em>after</em> generation is key: knowledge is applied only when relevant mistakes appear.
     </p>
 
-    <h2>Retrieval and CTE-Level Correction</h2>
+    <h2>🔍 Retrieval and CTE-Level Correction</h2>
     <p>Applying knowledge reliably requires precise retrieval.</p>
     <p>
       Instead of retrieving knowledge from the natural-language query, TK-Boost retrieves it from the <strong>agent's SQL draft</strong> using structured features that define an applicability condition:
@@ -304,7 +353,7 @@
       Knowledge is then applied <strong>one CTE at a time</strong>, enabling precise corrections for complex queries.
     </p>
 
-    <h2>Results</h2>
+    <h2>📊 Results</h2>
     <p>
       We evaluate TK-Boost on Spider 2.0 and BIRD across multiple NL2SQL agents and models.
     </p>
@@ -327,13 +376,23 @@
 
     <p>For more details on our experiment setup and baselines, please refer to our <a href="https://arxiv.org/abs/2602.13521">paper</a>.</p>
 
-    <h2>Takeaway</h2>
+    <h2>💡 Takeaway</h2>
 
     <div class="callout">
       <h4>The Key Insight</h4>
       <p>NL2SQL agents already know how to write SQL. What they lack is experience using real databases.</p>
-      <p style="margin-top: 0.4rem;">Tribal knowledge provides a mechanism for agents to learn from past mistakes and reuse those lessons for future queries.</p>
+      <p>Tribal knowledge provides a mechanism for agents to learn from past mistakes and reuse those lessons for future queries.</p>
     </div>
+
+    <h2>📄 Cite</h2>
+    <p>If you use TK-Boost in your work, please cite:</p>
+    <pre><code>@article{agarwal2026tkboost,
+  title   = {Arming Data Agents with Tribal Knowledge},
+  author  = {Agarwal, Shubham and Biswal, Asim and Zeighami, Sepanta and
+             Cheung, Alvin and Gonzalez, Joseph and Parameswaran, Aditya G.},
+  journal = {arXiv preprint arXiv:2602.13521},
+  year    = {2026}
+}</code></pre>
 
   </div>
 </article>
@@ -344,7 +403,7 @@
     <a href="https://arxiv.org/abs/2602.13521">arXiv</a>
     <a href="https://github.com/abiswal2001/TK-Boost">GitHub</a>
   </div>
-  <p>TK-Boost &middot; UC Berkeley</p>
+  <p>TK-Boost &middot; UC Berkeley &middot; 2026</p>
 </footer>
 
 <script>
