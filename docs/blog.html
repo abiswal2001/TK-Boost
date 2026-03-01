@@ -206,6 +206,21 @@
     .callout p { margin: 0; font-size: 0.98rem; color: var(--text-muted); }
     .callout p + p { margin-top: 0.5rem; }
 
+    /* ── Figures ── */
+    .figure-wrap { margin: 1.5rem 0; text-align: center; }
+    .figure-wrap img { max-width: 100%; height: auto; border-radius: 8px; border: 1px solid var(--border); }
+    .figure-wrap .caption { font-size: 0.88rem; color: var(--text-dim); margin-top: 0.5rem; line-height: 1.5; }
+    .figure-float-group { display: flex; gap: 1rem; margin: 1rem 0; flex-wrap: wrap; align-items: flex-start; }
+    .figure-float-group .figure-wrap { flex: 1; min-width: 200px; margin: 0; }
+    @media (min-width: 640px) {
+      .figure-side-by-side { float: right; max-width: 380px; margin: 0 0 1rem 1.5rem; }
+      .figure-side-by-side .figure-float-group { flex-direction: row; margin: 0; }
+      .figure-side-by-side .figure-wrap { min-width: 0; }
+      .figure-side-by-side .figure-wrap img { max-width: 180px; }
+      .prose .clearfix::after { content: ""; display: table; clear: both; }
+    }
+    .clearfix { clear: both; }
+
     /* ── Stat Row ── */
     .stat-row { display: flex; gap: 0.75rem; margin: 1.35rem 0; flex-wrap: wrap; }
     .stat-pill {
@@ -282,6 +297,12 @@
   <div class="prose">
 
     <h2>🔴 Fluent SQL &#8800; Correct SQL</h2>
+
+    <figure class="figure-wrap">
+      <img src="../tribalknowledgefigures/figure1_cropped.png" alt="Motivating example: agent misconception and correction" width="800">
+      <figcaption class="caption">Figure 1: A recurring agent mistake (using sparse <code>brand</code>) and the corrective tribal knowledge.</figcaption>
+    </figure>
+
     <p>
       NL2SQL agents have made natural-language interfaces to databases far more practical. Today's agents can explore schemas, issue intermediate queries, and iteratively refine SQL before producing a final answer. Despite this progress, execution accuracy on realistic benchmarks remains surprisingly low.
     </p>
@@ -301,6 +322,12 @@
     </p>
 
     <h2>❌ Naive Approaches</h2>
+
+    <figure class="figure-wrap">
+      <img src="../tribalknowledgefigures/figure2.png" alt="TK-Boost vs naive approaches" width="800">
+      <figcaption class="caption">Figure 2: How TK-Boost differs from memory retrieval and database-fact approaches.</figcaption>
+    </figure>
+
     <p>Two natural ideas have emerged to improve agents:</p>
     <ol>
       <li><strong>Memory / trajectory reuse</strong> &mdash; Retrieve past queries and include them in the prompt.</li>
@@ -339,6 +366,12 @@
     </p>
 
     <h2>🔍 Retrieval and CTE-Level Correction</h2>
+
+    <figure class="figure-wrap">
+      <img src="../tribalknowledgefigures/figure4.png" alt="CTE-level feedback loop" width="800">
+      <figcaption class="caption">Figure 4: CTE-level refinement: knowledge is retrieved for each CTE for refinement.</figcaption>
+    </figure>
+
     <p>Applying knowledge reliably requires precise retrieval.</p>
     <p>
       Instead of retrieving knowledge from the natural-language query, TK-Boost retrieves it from the <strong>agent's SQL draft</strong> using structured features that define an applicability condition:
@@ -354,6 +387,12 @@
     </p>
 
     <h2>📊 Results</h2>
+
+    <figure class="figure-wrap">
+      <img src="../tribalknowledgefigures/nl2sql_main_results.png" alt="Main results: Spider 2.0 and BIRD" width="800">
+      <figcaption class="caption">Execution accuracy on Spider 2.0 and BIRD. TK-Boost substantially outperforms baselines.</figcaption>
+    </figure>
+
     <p>
       We evaluate TK-Boost on Spider 2.0 and BIRD across multiple NL2SQL agents and models.
     </p>
@@ -366,8 +405,26 @@
     <p>Improvement substantially exceeds memory and naive knowledge baselines.</p>
 
     <p>
-      In addition, TK-Boost works as a <strong>bolt-on augmentation</strong> for existing agents. We select two of the leading open-source solutions for the Spider 2.0 and BIRD benchmarks in ReFORCE and Agentar-Scale SQL respectively. For each method, we insert tribal knowledge in a post-generation refinement step and observe the results.
+      In addition, TK-Boost works as a <strong>bolt-on augmentation</strong> for existing agents. We select two of the leading open-source solutions for the Spider 2.0 and BIRD benchmarks in ReFORCE and Agentar-Scale SQL respectively.
     </p>
+
+    <div class="figure-side-by-side clearfix">
+      <div class="figure-float-group">
+        <figure class="figure-wrap">
+          <img src="../tribalknowledgefigures/sota_reforce_tk.png" alt="ReFORCE with TK-Boost" width="280">
+          <figcaption class="caption">ReFORCE + TK-Boost</figcaption>
+        </figure>
+        <figure class="figure-wrap">
+          <img src="../tribalknowledgefigures/sota_agentar_tk.png" alt="Agentar-Scale SQL with TK-Boost" width="280">
+          <figcaption class="caption">Agentar-Scale SQL + TK-Boost</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <p>
+      For each method, we insert tribal knowledge in a post-generation refinement step and observe the results. Bolt-on gains on state-of-the-art agents: ReFORCE and Agentar-Scale SQL both improve when augmented with tribal knowledge.
+    </p>
+    <div class="clearfix"></div>
 
     <div class="stat-row">
       <div class="stat-pill"><div class="num">+11.4%</div><div class="lbl">ReFORCE</div></div>
