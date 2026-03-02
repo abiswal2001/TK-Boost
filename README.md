@@ -24,7 +24,7 @@
 </p>
 
 <p align="center">
-  <em>Shubham Agarwal &middot; Asim Biswal &middot; Sepanta Zeighami &middot; Alvin Cheung &middot; Joseph Gonzalez &middot; Aditya G. Parameswaran</em><br>
+  <em>Shubham Agarwal* &middot; Asim Biswal* &middot; Sepanta Zeighami* &middot; Alvin Cheung &middot; Joseph Gonzalez &middot; Aditya G. Parameswaran</em><br>
   <em>UC Berkeley</em>
 </p>
 
