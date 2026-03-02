@@ -1,6 +1,6 @@
 from typing import Optional
 
-from src.executors import SQLiteExecutor, SnowflakeExecutor, BigQueryExecutor
+from src.executors import SQLiteExecutor, SnowflakeExecutor, BigQueryExecutor, PostgresExecutor
 from src.utils.agent_utils import infer_engine
 from src.utils.db_paths import resolve_sqlite_db_path
 
@@ -15,6 +15,10 @@ def make_executor(engine: str, db_path_or_cred: Optional[str]):
         return SnowflakeExecutor(db_path_or_cred or "src/executors/snowflake_credential.json")
     if eng in ("bq", "bigquery"):
         return BigQueryExecutor(db_path_or_cred or "src/executors/bigquery_credential.json")
+    if eng in ("postgres", "postgresql"):
+        if not db_path_or_cred:
+            raise ValueError("Postgres requires a DSN string or credential file path")
+        return PostgresExecutor(db_path_or_cred)
     raise ValueError(f"Unsupported engine: {engine}")
 
 

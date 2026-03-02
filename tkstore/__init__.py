@@ -2,7 +2,13 @@ from .format_utils import format_csv_as_table
 from .harness import generate_memory_diff_first_turn, run_diff_for_instance
 from .rules import generate_rules_from_diff
 from .tagger_index import MemoryRetriever, MemoryIndex, generate_tagged_memories_json, search_index_for_sql
-from .builder import add_memory, MemoryBuilder
+from .builder import (
+    add_memory,
+    MemoryBuilder,
+    build_knowledge_from_example,
+    build_knowledge_from_examples_dir,
+)
+from .examples import load_example, scaffold_example_dir
 
 __all__ = [
     "format_csv_as_table",
@@ -15,6 +21,10 @@ __all__ = [
     "MemoryIndex",
     "add_memory",
     "MemoryBuilder",
+    "build_knowledge_from_example",
+    "build_knowledge_from_examples_dir",
+    "load_example",
+    "scaffold_example_dir",
 ]
 
 
