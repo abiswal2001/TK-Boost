@@ -1,0 +1,35 @@
+{
+  "database_memories": [
+    "ENSURE: When classifying tracks by length, apply CASE thresholds directly on the milliseconds column using the exact millisecond boundaries (≤197335 ms for “Short”, ≤2840276 ms for “Medium”, ELSE “Long”) | CONTEXT: The tracks table’s milliseconds column stores duration in ms, so thresholds must match this unit to correctly bucket each record | WHEN_TO_CHECK: Anytime you create a length‐category CASE on tracks.milliseconds | EXAMPLE_USAGE:",
+    "Correct:",
+    "CASE",
+    "WHEN milliseconds <= 197335 THEN 'Short'",
+    "WHEN milliseconds <= 2840276 THEN 'Medium'",
+    "ELSE 'Long'",
+    "END",
+    "Incorrect (unit mismatch):",
+    "CASE",
+    "WHEN milliseconds <= 197.335 THEN 'Short'",
+    "WHEN milliseconds <= 2840.276 THEN 'Medium'",
+    "ELSE 'Long'",
+    "END",
+    "ENSURE: When reporting the From_Minutes and To_Minutes for each track category, derive these values from the fixed millisecond thresholds via CASE expressions rather than using MIN()/MAX() on the data | CONTEXT: If no track falls exactly on a threshold, MIN(duration) or MAX(duration) will not match the intended category boundaries, leading to misleading “0.0–3.3” vs “actual_min–actual_max” ranges | WHEN_TO_CHECK: When building SELECT expressions for From_Minutes or To_Minutes in the track categories result | EXAMPLE_USAGE:",
+    "Correct:",
+    "CASE category",
+    "WHEN 'Short'  THEN 0",
+    "WHEN 'Medium' THEN 197335/60000.0",
+    "ELSE 2840276/60000.0",
+    "END AS From_Minutes",
+    "Incorrect:",
+    "MIN(milliseconds)/60000.0 AS From_Minutes"
+  ],
+  "generic_memories": [
+    "VERIFY: Classification threshold values in CASE … WHEN must use the same measurement units as the source column | PRINCIPLE: Mismatching units (e.g., treating milliseconds as seconds) causes improper bucketing and incorrect result sets | WHEN_TO_APPLY: Any time you write a CASE or filter comparing numeric fields to literal thresholds | EXAMPLE_USAGE:",
+    "When categorizing response_time_us into “fast” vs “slow”:",
+    "Correct: CASE WHEN response_time_us <= 500000 THEN 'fast' ELSE 'slow' END",
+    "Incorrect: CASE WHEN response_time_us <= 0.5 THEN 'fast' ELSE 'slow' END",
+    "ENSURE: Human‐readable range columns for predefined buckets reflect the intended fixed boundaries, not the data‐driven MIN/MAX values | PRINCIPLE: Using aggregates to label category ranges ties them to dataset extremes, which may shift over time or omit exact boundaries | WHEN_TO_APPLY: Whenever you need “from” and “to” labels for categories defined by fixed rules | EXAMPLE_USAGE:",
+    "Correct: Use CASE on the same thresholds applied in classification to emit literal boundary values.",
+    "Incorrect: Use MIN(column) and MAX(column) per group, which yields actual min/max instead of the rule‐based limits."
+  ]
+}

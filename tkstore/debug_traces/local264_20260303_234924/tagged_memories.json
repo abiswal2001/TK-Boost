@@ -1,0 +1,96 @@
+{
+  "instance_id": "local264",
+  "user_query": "Which model category (L1_model) appears the most frequently across all steps and versions when comparing traditional models to the Stack model, and what is the total count of its occurrences?",
+  "db": "stacking",
+  "clean_summary": "The original query counted all rows; we needed to exclude the Stack model and pick only the top-scoring traditional model per group, so we removed the incorrect step join, added `ms.model <> 'Stack'`, and enforced the best-per-group logic with a NOT EXISTS subquery.",
+  "database_memories": [
+    "ENSURE: when joining model_score and model, use only ms.name = m.name and ms.version = m.version, and do not include the step column | CONTEXT: model_score(name, version, step, model, score) and model(name, version, step, algo) share name/version as the true join keys while step values may not align | WHEN_TO_CHECK: Whenever joining model_score to model to enrich score data with model metadata | EXAMPLE_USAGE: Correct: JOIN model m ON ms.name = m.name AND ms.version = m.version; Incorrect: JOIN model m ON ms.name = m.name AND ms.version = m.version AND ms.step = m.step filters out valid score rows.",
+    "REMEMBER: exclude ms.model = 'Stack' when computing top single-model performance | CONTEXT: model_score.model labels ensemble runs as 'Stack' which should be omitted when identifying the best traditional model | WHEN_TO_CHECK: In the WHERE clause before ranking or grouping model_score rows | EXAMPLE_USAGE: Correct: SELECT … FROM model_score ms WHERE ms.model <> 'Stack'; Incorrect: Omitting this filter includes 'Stack' ensembles, skewing the best-model count.",
+    "ENSURE: when using a NOT EXISTS subquery to select the highest-scoring traditional model per name/version/step, include ms2.model <> 'Stack' inside the subquery | CONTEXT: model_score may have multiple non‐Stack contenders per group and the subquery must compare only among those candidates | WHEN_TO_CHECK: When filtering for the top score per name, version, and step via an anti-join pattern | EXAMPLE_USAGE: Correct: WHERE NOT EXISTS (SELECT 1 FROM model_score ms2 WHERE ms2.name = ms.name AND ms2.version = ms.version AND ms2.step = ms.step AND ms2.score > ms.score AND ms2.model <> 'Stack'); Incorrect: Omitting ms2.model <> 'Stack' lets stack models influence the max‐score comparison."
+  ],
+  "generic_memories": [
+    "VERIFY: join ON clauses include only the columns that reflect actual foreign‐key relationships and avoid adding extra predicates | PRINCIPLE: Overconstraining joins with non-key columns can unintentionally filter out valid rows and distort results | WHEN_TO_APPLY: Whenever writing a JOIN between tables | EXAMPLE_USAGE: Joining Orders and Customers should use ON Orders.customer_id = Customers.id; adding ON Orders.order_date = Customers.signup_date is incorrect, as date is not part of the key.",
+    "ENSURE: NOT EXISTS or anti-join subqueries used to pick the top or bottom record per group replicate all exclusion/inclusion filters from the outer query inside the subquery | PRINCIPLE: Inconsistent filtering between the outer query and the subquery can compare against unintended rows and break the intended top-per-group logic | WHEN_TO_APPLY: When using NOT EXISTS, LEFT JOIN … IS NULL, or similar patterns to select max/min per group | EXAMPLE_USAGE: To find the highest-priced active product per category, use WHERE p.status <> 'discontinued' in both the outer query and the NOT EXISTS subquery; omitting it in the subquery may compare against discontinued items and return wrong winners."
+  ],
+  "index_rows": [
+    {
+      "scope": "db",
+      "sql_operations": [
+        "join"
+      ],
+      "table": "model_score",
+      "column": "all",
+      "data_type": "all",
+      "nulls": "all",
+      "applies_when": "when joining model_score to model",
+      "rule": "ENSURE: when joining model_score and model, use only ms.name = m.name and ms.version = m.version, and do not include the step column | CONTEXT: model_score(name, version, step, model, score) and model(name, version, step, algo) share name/version as the true join keys while step values may not align | WHEN_TO_CHECK: Whenever joining model_score to model to enrich score data with model metadata | EXAMPLE_USAGE: Correct: JOIN model m ON ms.name = m.name AND ms.version = m.version; Incorrect: JOIN model m ON ms.name = m.name AND ms.version = m.version AND ms.step = m.step filters out valid score rows.",
+      "search_keywords": [
+        "join"
+      ]
+    },
+    {
+      "scope": "db",
+      "sql_operations": [
+        "filter"
+      ],
+      "table": "model_score",
+      "column": "model_score.model",
+      "data_type": "str",
+      "nulls": "all",
+      "applies_when": "when filtering model_score rows",
+      "rule": "REMEMBER: exclude ms.model = 'Stack' when computing top single-model performance | CONTEXT: model_score.model labels ensemble runs as 'Stack' which should be omitted when identifying the best traditional model | WHEN_TO_CHECK: In the WHERE clause before ranking or grouping model_score rows | EXAMPLE_USAGE: Correct: SELECT … FROM model_score ms WHERE ms.model <> 'Stack'; Incorrect: Omitting this filter includes 'Stack' ensembles, skewing the best-model count.",
+      "search_keywords": [
+        "where"
+      ]
+    },
+    {
+      "scope": "db",
+      "sql_operations": [
+        "subquery",
+        "filter"
+      ],
+      "table": "model_score",
+      "column": "model_score.model",
+      "data_type": "str",
+      "nulls": "all",
+      "applies_when": "when using NOT EXISTS for top-per-group",
+      "rule": "ENSURE: when using a NOT EXISTS subquery to select the highest-scoring traditional model per name/version/step, include ms2.model <> 'Stack' inside the subquery | CONTEXT: model_score may have multiple non‐Stack contenders per group and the subquery must compare only among those candidates | WHEN_TO_CHECK: When filtering for the top score per name, version, and step via an anti-join pattern | EXAMPLE_USAGE: Correct: WHERE NOT EXISTS (SELECT 1 FROM model_score ms2 WHERE ms2.name = ms.name AND ms2.version = ms.version AND ms2.step = ms.step AND ms2.score > ms.score AND ms2.model <> 'Stack'); Incorrect: Omitting ms2.model <> 'Stack' lets stack models influence the max‐score comparison.",
+      "search_keywords": [
+        "subquery",
+        "where"
+      ]
+    },
+    {
+      "scope": "generic",
+      "sql_operations": [
+        "join"
+      ],
+      "table": "all",
+      "column": "all",
+      "data_type": "all",
+      "nulls": "all",
+      "applies_when": "when joining tables",
+      "rule": "VERIFY: join ON clauses include only the columns that reflect actual foreign‐key relationships and avoid adding extra predicates | PRINCIPLE: Overconstraining joins with non-key columns can unintentionally filter out valid rows and distort results | WHEN_TO_APPLY: Whenever writing a JOIN between tables | EXAMPLE_USAGE: Joining Orders and Customers should use ON Orders.customer_id = Customers.id; adding ON Orders.order_date = Customers.signup_date is incorrect, as date is not part of the key.",
+      "search_keywords": [
+        "join"
+      ]
+    },
+    {
+      "scope": "generic",
+      "sql_operations": [
+        "subquery",
+        "filter"
+      ],
+      "table": "all",
+      "column": "all",
+      "data_type": "all",
+      "nulls": "all",
+      "applies_when": "when using NOT EXISTS",
+      "rule": "ENSURE: NOT EXISTS or anti-join subqueries used to pick the top or bottom record per group replicate all exclusion/inclusion filters from the outer query inside the subquery | PRINCIPLE: Inconsistent filtering between the outer query and the subquery can compare against unintended rows and break the intended top-per-group logic | WHEN_TO_APPLY: When using NOT EXISTS, LEFT JOIN … IS NULL, or similar patterns to select max/min per group | EXAMPLE_USAGE: To find the highest-priced active product per category, use WHERE p.status <> 'discontinued' in both the outer query and the NOT EXISTS subquery; omitting it in the subquery may compare against discontinued items and return wrong winners.",
+      "search_keywords": [
+        "subquery",
+        "where"
+      ]
+    }
+  ]
+}

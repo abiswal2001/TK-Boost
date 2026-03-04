@@ -107,6 +107,7 @@ store_obj = tkboost.generate(
 - Returns a `TKStore` object.
 - If `store` does not exist, it is created (with canonical header).
 - `examples_dir` processes all example folders under that directory.
+- `example_json` is useful for single-example runs; most users should use `examples_dir`.
 - If `debug=True`, per-example debug artifacts are written (including `llm_interactions.json` and SQL/rule artifacts).
 
 ## 4) `tkboost.sql(...)`
@@ -122,7 +123,6 @@ result = tkboost.sql(
     model=None,
     db_name=None,             # retrieval db filter
     db_info=None,             # optional schema/context text used for draft generation
-    generic_only=False,
     use_llm_filtering=False,
 )
 ```
@@ -212,20 +212,20 @@ from tkboost import SQLiteExecutor
 
 tkboost.init(provider="auto", model="gpt-4o-mini")
 
-executor = SQLiteExecutor("/abs/path/to/my.sqlite")
+executor = SQLiteExecutor("tkstore/example/Baseball.sqlite")
 
 store = tkboost.generate(
-    examples_dir="/abs/path/to/train_examples",
-    store="/abs/path/to/tkstore.csv",
+    example_json="tkstore/example/example.json",  # local007
+    store="tkstore/tkstore_example.csv",
     executor=executor,
     debug=True,
 )
 
 result = tkboost.sql(
-    question="What is average order value by country?",
+    question="Compute the average career span in years for baseball players.",
     executor=executor,
     store=store,
-    db_name="E_commerce",
+    db_name="Baseball",
 )
 
 print(result["refined_sql"])

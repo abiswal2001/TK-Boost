@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Usage &mdash; TK-Boost</title>
+  <meta name="description" content="Practical usage guide for TK-Boost: setup, Spider2 data, and building knowledge on your own data.">
+  <link rel="icon" href="title.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root[data-theme="light"] {
+      --bg: #ffffff;
+      --surface: #f1f3f7;
+      --border: #e0e3ea;
+      --border-light: #d0d4de;
+      --text: #1a1a2e;
+      --text-muted: #555770;
+      --text-dim: #8a8da6;
+      --accent: #2563eb;
+      --accent-hover: #1d4ed8;
+      --nav-bg: rgba(255,255,255,0.88);
+    }
+    :root[data-theme="dark"] {
+      --bg: #0b0b12;
+      --surface: #141420;
+      --border: #222238;
+      --border-light: #2e2e4a;
+      --text: #e6e6f0;
+      --text-muted: #9494b0;
+      --text-dim: #606080;
+      --accent: #5b8def;
+      --accent-hover: #4a7de8;
+      --nav-bg: rgba(11,11,18,0.88);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      transition: background 0.3s, color 0.3s;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 100;
+      background: var(--nav-bg);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    nav .inner {
+      max-width: 960px; margin: 0 auto; padding: 0.75rem 1.5rem;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    nav .brand {
+      display: flex; align-items: center; gap: 0.5rem;
+      font-weight: 700; font-size: 1.05rem; color: var(--text); text-decoration: none;
+    }
+    nav .brand img { height: 28px; width: auto; }
+    nav .right { display: flex; align-items: center; gap: 1.5rem; }
+    nav .links { display: flex; gap: 1.5rem; font-size: 0.92rem; }
+    nav .links a { color: var(--text-muted); }
+    nav .links a:hover { color: var(--text); }
+    nav .links a.active { color: var(--text); font-weight: 600; }
+    .theme-toggle {
+      background: none; border: 1px solid var(--border);
+      border-radius: 6px; padding: 0.3rem 0.5rem; cursor: pointer;
+      font-size: 0.85rem; color: var(--text-dim); transition: all 0.2s;
+    }
+    .theme-toggle:hover { color: var(--text); border-color: var(--border-light); }
+    .page { max-width: 960px; margin: 0 auto; padding: 5.6rem 1.5rem 2rem; }
+    .content { max-width: 760px; margin: 0 auto; }
+    .section {
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+    .section h1 { font-size: 2rem; margin-bottom: 0.35rem; }
+    .section h2 { font-size: 1.35rem; margin-bottom: 0.65rem; letter-spacing: -0.02em; }
+    .section p, .section li {
+      color: var(--text-muted);
+      font-size: 1rem;
+      line-height: 1.75;
+    }
+    .section ul { margin-left: 1.1rem; margin-top: 0.45rem; }
+    .section code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-size: 0.85em;
+      background: rgba(127,127,127,0.12);
+      border-radius: 4px;
+      padding: 0.08rem 0.28rem;
+    }
+    .section pre {
+      margin-top: 0.7rem;
+      background: rgba(127,127,127,0.08);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.8rem 0.9rem;
+      overflow-x: auto;
+      font-size: 0.84rem;
+      line-height: 1.55;
+      color: var(--text);
+    }
+    .note {
+      margin-top: 0.65rem;
+      font-size: 0.9rem;
+      color: var(--text-dim);
+    }
+    footer {
+      width: 100%;
+      padding: 0.85rem 0;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      color: var(--text-dim);
+      font-size: 0.75rem;
+      background: var(--bg);
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="inner">
+    <a href="index.html" class="brand"><img src="logo.png" alt="TK-Boost"> TK-Boost</a>
+    <div class="right">
+      <div class="links">
+        <a href="index.html">Home</a>
+        <a href="blog.html">Blog</a>
+        <a href="usage.html" class="active">Usage</a>
+        <a href="https://arxiv.org/abs/2602.13521">Paper</a>
+        <a href="https://github.com/abiswal2001/TK-Boost">GitHub</a>
+      </div>
+      <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+        <span id="theme-icon">&#9790;</span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<div class="page">
+  <div class="content">
+    <section class="section" style="border-top:none; padding-top:0;">
+      <h1>Usage</h1>
+      <p>Practical setup and runbook for TK-Boost.</p>
+    </section>
+
+    <section class="section">
+      <h2>Quickstart (minimal)</h2>
+      <p>This is the minimal end-to-end pattern (using the `local007` example format):</p>
+      <pre><code>import tkboost
+from tkboost import SQLiteExecutor
+
+tkboost.init(provider="auto", model="gpt-4o-mini")
+
+executor = SQLiteExecutor("tkstore/example/Baseball.sqlite")
+
+store = tkboost.generate(
+    example_json="tkstore/example/example.json",  # local007
+    store="tkstore/tkstore_example.csv",
+    executor=executor,
+    debug=True,
+)
+
+result = tkboost.sql(
+    question="Compute the average career span in years for baseball players.",
+    executor=executor,
+    store=store,
+    db_name="Baseball",
+)
+
+print(result["refined_sql"])
+store.visualize(port=8501)</code></pre>
+      <p class="note">
+        If your base agent is GPT-5, keep `agent_sql_path` in each training example pointed at that agent's draft SQL.
+        TK-Boost generation/refinement flow stays the same.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>Basic environment setup</h2>
+      <pre><code>git clone https://github.com/abiswal2001/TK-Boost.git
+cd TK-Boost
+python3 -m venv env
+source env/bin/activate
+pip install -r requirements.txt</code></pre>
+      <p class="note">
+        `tkboost.sql(...)` and `tkboost.generate(...)` use `litellm`; ensure your chosen provider credentials are set.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>Using Spider2 data</h2>
+      <p>
+        Get the Spider2 benchmark package from the official release channels (paper/project page),
+        then place files where TK-Boost expects them.
+      </p>
+      <ul>
+        <li>Put instance metadata JSONL at a path like <code>data/spider2-lite.jsonl</code>.</li>
+        <li>Place DB assets under a stable local directory (for example under <code>data/spider2/</code>).</li>
+        <li>For each training example folder, create an <code>example.json</code> that points to your local DB and SQL/result files.</li>
+      </ul>
+      <p class="note">
+        The repo includes working templates/scripts under <code>tkstore/</code> and <code>scripts/</code> that show expected file naming.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>Using your own data</h2>
+      <p>Create one folder per training example:</p>
+      <pre><code>my_examples/
+  ex_001/
+    example.json
+    gold.sql
+    # optional:
+    # execution_query.sql
+    # gt_result.csv
+    # execution_result.csv
+    # db_info.txt
+  ex_002/
+    example.json
+    gold.sql</code></pre>
+      <p>Minimal `example.json`:</p>
+      <pre><code>{
+  "example_id": "ex_001",
+  "db_name": "my_db",
+  "engine": "sqlite",
+  "question": "Natural language question here",
+  "gold_sql_path": "gold.sql"
+}</code></pre>
+      <p>Then generate knowledge in batch:</p>
+      <pre><code>from tkboost import SQLiteExecutor
+import tkboost
+
+tkboost.init(provider="auto")
+executor = SQLiteExecutor("/absolute/path/to/my_db.sqlite")
+
+store = tkboost.generate(
+    examples_dir="/absolute/path/to/my_examples",
+    store="/absolute/path/to/my_tkstore.csv",
+    executor=executor,
+    debug=True,
+)</code></pre>
+    </section>
+
+    <section class="section">
+      <h2>More API details</h2>
+      <p>
+        Full SDK reference: <a href="https://github.com/abiswal2001/TK-Boost/blob/main/docs/API_SUMMARY.md">API_SUMMARY.md</a>
+      </p>
+    </section>
+  </div>
+</div>
+
+<footer>TK-Boost &middot; UC Berkeley &middot; 2026</footer>
+
+<script>
+  function toggleTheme() {
+    const html = document.documentElement;
+    const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    html.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+    document.getElementById('theme-icon').innerHTML = next === 'dark' ? '&#9788;' : '&#9790;';
+  }
+  (function() {
+    const saved = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', saved);
+    document.addEventListener('DOMContentLoaded', function() {
+      document.getElementById('theme-icon').innerHTML = saved === 'dark' ? '&#9788;' : '&#9790;';
+    });
+  })();
+</script>
+</body>
+</html>

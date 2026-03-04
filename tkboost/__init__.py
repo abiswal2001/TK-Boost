@@ -410,7 +410,6 @@ def sql(
     model: Optional[str] = None,
     db_name: Optional[str] = None,
     db_info: Optional[str] = None,
-    generic_only: bool = False,
     use_llm_filtering: bool = False,
 ) -> Dict[str, Any]:
     """Refine SQL using tribal knowledge from a store.
@@ -437,7 +436,7 @@ def sql(
     retriever = MemoryRetriever(store_path)
     rules = retriever.retrieve(
         sql_text=draft_sql,
-        generic_only=generic_only,
+        generic_only=False,
         use_llm_filtering=use_llm_filtering,
         llm_model=effective_model,
         db=db_name,

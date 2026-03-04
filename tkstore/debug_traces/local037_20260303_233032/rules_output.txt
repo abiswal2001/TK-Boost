@@ -1,0 +1,22 @@
+DATABASE_MEMORIES:
+ENSURE: when aggregating the number of orders in the payments table, use COUNT(DISTINCT payments.order_id) instead of COUNT(*) to count unique orders | CONTEXT: the payments table stores one row per payment transaction with payments.order_id as the link to each order, so COUNT(*) will overcount orders with multiple payment records | WHEN_TO_CHECK: when computing payment counts per grouping (for example, per product category) by querying the payments table | EXAMPLE_USAGE:  
+Incorrect:  
+SELECT pr.category_id, COUNT(*) AS payment_count  
+FROM payments p  
+JOIN products pr ON p.product_id = pr.product_id  
+GROUP BY pr.category_id;  
+Correct:  
+SELECT pr.category_id, COUNT(DISTINCT p.order_id) AS payment_count  
+FROM payments p  
+JOIN products pr ON p.product_id = pr.product_id  
+GROUP BY pr.category_id;
+
+GENERIC_MEMORIES:
+VERIFY: aggregation of unique entities in a fact table uses COUNT(DISTINCT key) rather than COUNT(*) | PRINCIPLE: COUNT(*) counts all rows including duplicates from one-to-many relationships, whereas COUNT(DISTINCT key) ensures each unique entity is counted only once | WHEN_TO_APPLY: whenever counting distinct items (such as orders, customers, or sessions) from tables that can contain multiple records per item | EXAMPLE_USAGE:  
+Situation: you have an events table where each session generates multiple event rows.  
+Incorrect:  
+SELECT COUNT(*) AS session_count FROM events;  
+(This counts every event row.)  
+Correct:  
+SELECT COUNT(DISTINCT session_id) AS session_count FROM events;  
+(This counts each session exactly once.)

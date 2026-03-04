@@ -227,6 +227,7 @@
     <div class="right">
       <div class="links">
         <a href="blog.html">Blog</a>
+        <a href="usage.html">Usage</a>
         <a href="https://arxiv.org/abs/2602.13521">Paper</a>
         <a href="https://github.com/abiswal2001/TK-Boost">GitHub</a>
       </div>
@@ -274,63 +275,41 @@
     <section class="section">
       <h2>Quickstart: Build Tribal Knowledge on Your Data</h2>
       <p>
-        The new API is intentionally simple:
+        Quickstart should only need `init`, an executor, `generate(..., debug=True)`, and `sql(...)`.
       </p>
       <pre><code>import tkboost
 from tkboost import SQLiteExecutor
 
-tkboost.init(
-    provider="auto",     # "openai" | "azure" | "auto"
-    api_key="...",       # or rely on env vars
-    model="gpt-4o-mini"
+tkboost.init(provider="auto", model="gpt-4o-mini")
+
+executor = SQLiteExecutor("tkstore/example/Baseball.sqlite")
+
+store = tkboost.generate(
+    example_json="tkstore/example/example.json",  # local007
+    store="tkstore/tkstore_example.csv",
+    executor=executor,
+    debug=True,
 )
 
-executor = SQLiteExecutor("/absolute/path/to/database.sqlite")
-
-tkboost.generate(
-    example_json="path/to/example.json",
+result = tkboost.sql(
+    question="Compute the average career span in years for baseball players.",
     executor=executor,
-    store="path/to/tkstore.csv"
+    store=store,
+    db_name="Baseball",
 )</code></pre>
 
       <p>
-        Minimal required files are just <code>example.json</code> and <code>gold.sql</code>.
-        Optional files (agent SQL, cached results, db info, evidence) can be added as needed.
+        You can pass either <code>example_json</code> (single example) or <code>examples_dir</code> (batch of example folders).
+        In practice, most workflows use <code>examples_dir</code>; <code>example_json</code> is useful for one-off debugging.
       </p>
-      <details class="expand">
-        <summary>Show example training directory + example.json</summary>
-        <pre><code>my_example/
-  example.json          # required
-  gold.sql              # required
-  # optional:
-  # agent.sql
-  # gold_result.csv
-  # agent_result.csv
-  # db_info.txt
-  # external_evidence.txt
-
-{
-  "example_id": "example_001",
-  "db_name": "my_database",
-  "engine": "sqlite",
-  "question": "Your NL question",
-  "gold_sql_path": "gold.sql",
-  "agent_sql_path": null,
-  "gold_result_path": null,
-  "agent_result_path": null,
-  "db_info_path": "db_info.txt",
-  "external_evidence_path": null
-}</code></pre>
-      </details>
-
       <p class="note">
-        Full format details and advanced usage are in
-        <a class="inline-link" href="https://github.com/abiswal2001/TK-Boost/blob/main/tkstore/README.md">tkstore/README.md</a>.
+        For full setup (Spider2 data layout, preparing your own examples, and more runnable templates), see
+        <a class="inline-link" href="usage.html">Usage</a>.
       </p>
 
       <p class="note">
-        Note: setup friction is lower but not fully eliminated yet. We’re actively improving onboarding
-        (including better scaffolding/CLI helpers for creating training examples).
+        Formal parameter-by-parameter API docs live in
+        <a class="inline-link" href="https://github.com/abiswal2001/TK-Boost/blob/main/docs/API_SUMMARY.md">API_SUMMARY.md</a>.
       </p>
     </section>
   </div>
