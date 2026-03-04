@@ -1,6 +1,8 @@
 import csv
 import io
+import json
 import re
+from datetime import datetime
 from pathlib import Path
 from typing import List, Optional, Dict, Any
 
@@ -12,6 +14,53 @@ from .harness import generate_memory_diff_first_turn
 from .rules import generate_rules_from_diff
 from .tagger_index import MemoryIndex, generate_tagged_memories_json
 from src.executors.factory import make_executor
+
+
+def _persist_via_tkstore(
+    tkstore_obj: Any,
+    tagged: Dict[str, Any],
+    example_id: str,
+    db_name: str,
+    clean_summary: str,
+) -> None:
+    # Local import avoids circular import at module load.
+    from tkboost import TKStoreEntry  # type: ignore
+
+    index_rows = tagged.get("index_rows") if isinstance(tagged, dict) else None
+    entries: List[Any] = []
+    if isinstance(index_rows, list):
+        for ir in index_rows:
+            ops = ir.get("sql_operations", "all")
+            if isinstance(ops, list):
+                ops = ";".join(str(o).lower() for o in ops if str(o).strip()) or "all"
+            entries.append(
+                TKStoreEntry(
+                    instance_id=example_id,
+                    db=str(ir.get("db", db_name or "all") or "all"),
+                    scope=str(ir.get("scope", "generic") or "generic"),
+                    sql_operations=str(ops),
+                    table=str(ir.get("table", "all") or "all"),
+                    column=str(ir.get("column", "all") or "all"),
+                    data_type=str(ir.get("data_type", "all") or "all"),
+                    nulls=str(ir.get("nulls", "all") or "all"),
+                    rule=str(ir.get("rule", "")).replace("\n", " "),
+                )
+            )
+    tkstore_obj.insert_many(entries)
+    if clean_summary:
+        tkstore_obj.insert(
+            TKStoreEntry(
+                instance_id=example_id,
+                db=db_name or "all",
+                scope="question",
+                sql_operations="NA",
+                table="NA",
+                column="NA",
+                data_type="NA",
+                nulls="NA",
+                rule=clean_summary.replace("\n", " "),
+            )
+        )
 
 
 def add_memory(
@@ -191,7 +240,7 @@ def _generate_agent_sql(question: str, engine: str, db_info: Optional[str], exte
     return sql
 
 
-def _append_clean_summary_row(index_path: str, example_id: str, database_id: str, clean_summary: str) -> None:
+def _append_clean_summary_row(index_path: str, example_id: str, db_name: str, clean_summary: str) -> None:
     if not clean_summary:
         return
     p = Path(index_path)
@@ -210,20 +259,33 @@ def _append_clean_summary_row(index_path: str, example_id: str, database_id: str
     else:
         next_id = max(0, len(existing_lines) - 1)
 
-    row = [next_id, example_id, database_id or "all", "question", "NA", "NA", "NA", "NA", "NA", clean_summary.replace("\n", " ")]
+    row = [next_id, example_id, db_name or "all", "question", "NA", "NA", "NA", "NA", "NA", clean_summary.replace("\n", " ")]
     with open(p, "a", encoding="utf-8", newline="") as af:
         writer = csv.writer(af)
         writer.writerow(row)
 
 
+def _debug_run_dir(base_store: Optional[str], example_id: str) -> Path:
+    ts = datetime.utcnow().strftime("%Y%m%d_%H%M%S")
+    if base_store:
+        root = Path(base_store).expanduser().resolve().parent / "debug_traces"
+    else:
+        root = Path("tkstore") / "debug_traces"
+    return root / f"{example_id}_{ts}"
+
+
 def build_knowledge_from_example(
     example_json_path: str,
-    index_path: Optional[str] = None,
+    store: Optional[str] = None,
+    index_path: Optional[str] = None,  # legacy alias
+    tkstore_obj: Optional[Any] = None,
+    executor: Optional[Any] = None,
     model: str = "azure/o4-mini",
     draft_sql_model: Optional[str] = None,
     max_turns: int = 6,
     verbose: bool = True,
     hint: Optional[str] = None,
+    debug: bool = False,
 ) -> Dict[str, Any]:
     """Build or extend tkstore from a single portable example.json.
 
@@ -238,15 +300,34 @@ def build_knowledge_from_example(
     ex = load_example(example_json_path)
     engine = ex["engine"]
     example_id = ex["example_id"]
-    database_id = ex["database_id"]
+    db_name = ex["db_name"]
     question = ex["question"]
+    debug_dir: Optional[Path] = None
+    trace_path: Optional[str] = None
+    if debug:
+        debug_dir = _debug_run_dir(store or index_path, example_id)
+        debug_dir.mkdir(parents=True, exist_ok=True)
+        trace_path = str(debug_dir / "llm_interactions.json")
 
     gold_sql = Path(ex["gold_sql_path"]).read_text(encoding="utf-8")
     db_info = _read_optional_text(ex.get("db_info_path"))
     external_evidence = _read_optional_text(ex.get("external_evidence_path"))
 
     credential_or_db_path = ex.get("db_path") or ex.get("credential_path")
-    executor = make_executor(engine, credential_or_db_path)
+    exec_obj = executor
+    if exec_obj is None:
+        if engine == "sqlite" and not credential_or_db_path:
+            raise ValueError(
+                "sqlite example requires either db_path in example.json or an explicit executor argument"
+            )
+        exec_obj = make_executor(engine, credential_or_db_path)
+    elif not credential_or_db_path:
+        # Best-effort backfill so downstream diff/refiner utilities still receive a path/credential.
+        for attr in ("db_path", "credential_path", "dsn_or_cred"):
+            val = getattr(exec_obj, attr, None)
+            if val:
+                credential_or_db_path = str(val)
+                break
     try:
         agent_sql = _read_optional_text(ex.get("agent_sql_path"))
         if not agent_sql:
@@ -257,21 +338,25 @@ def build_knowledge_from_example(
                 external_evidence=external_evidence,
                 model=draft_sql_model or model,
             )
+        if debug and debug_dir is not None:
+            (debug_dir / "agent_sql_final.sql").write_text(agent_sql, encoding="utf-8")
+            (debug_dir / "gold_sql.sql").write_text(gold_sql, encoding="utf-8")
 
         gold_result = _read_optional_text(ex.get("gold_result_path"))
         if not gold_result:
-            gold_result = _execute_sql_to_csv(executor, gold_sql)
+            gold_result = _execute_sql_to_csv(exec_obj, gold_sql)
 
         agent_result = _read_optional_text(ex.get("agent_result_path"))
         if not agent_result:
-            agent_result = _execute_sql_to_csv(executor, agent_sql)
+            agent_result = _execute_sql_to_csv(exec_obj, agent_sql)
     finally:
-        close_fn = getattr(executor, "close", None)
-        if callable(close_fn):
-            try:
-                close_fn()
-            except Exception:
-                pass
+        if executor is None:
+            close_fn = getattr(exec_obj, "close", None)
+            if callable(close_fn):
+                try:
+                    close_fn()
+                except Exception:
+                    pass
 
     prompt_context_parts: List[str] = []
     if db_info:
@@ -291,22 +376,31 @@ def build_knowledge_from_example(
         processed_trace_text=None,
         engine=engine,
         db_path_or_cred=credential_or_db_path,
-        db_name=database_id,
+        db_name=db_name,
         external_knowledge=prompt_context,
         max_turns=max_turns,
         model=model,
         verbose=verbose,
         hint=hint,
+        debug_trace_path=trace_path,
     ) or ""
+    if debug and debug_dir is not None:
+        (debug_dir / "diff_output.txt").write_text(diff_output, encoding="utf-8")
 
     rules = generate_rules_from_diff(diff_output, agent_sql, agent_result, model=model, verbose=verbose) or ""
+    if debug and debug_dir is not None:
+        (debug_dir / "rules_output.txt").write_text(rules, encoding="utf-8")
     clean_summary = _extract_clean_summary(diff_output)
     parsed = _extract_memories_from_rules(rules)
+    if debug and debug_dir is not None:
+        (debug_dir / "parsed_memories.json").write_text(
+            json.dumps(parsed, indent=2, ensure_ascii=False), encoding="utf-8"
+        )
 
     tagged = generate_tagged_memories_json(
         instance_id=example_id,
         user_query=question,
-        db_name=database_id,
+        db_name=db_name,
         gold_sql=gold_sql,
         agent_sql=agent_sql,
         clean_summary=clean_summary,
@@ -320,18 +414,31 @@ def build_knowledge_from_example(
     )
     if tagged is None:
         raise RuntimeError(f"Tagger failed for example {example_id}")
+    if debug and debug_dir is not None:
+        (debug_dir / "tagged_memories.json").write_text(
+            json.dumps(tagged, indent=2, ensure_ascii=False), encoding="utf-8"
+        )
 
-    target_index = index_path or _default_index_for_engine(engine)
-    mem_index = MemoryIndex(target_index)
-    Path(target_index).parent.mkdir(parents=True, exist_ok=True)
-    mem_index.append_tagged(tagged, str(Path(target_index).parent), example_id, verbose=verbose)
-    _append_clean_summary_row(target_index, example_id, database_id, clean_summary)
+    target_store = store or index_path or _default_index_for_engine(engine)
+    if tkstore_obj is None:
+        from tkboost import TKStore  # type: ignore
+
+        tkstore_obj = TKStore(target_store)
+    _persist_via_tkstore(
+        tkstore_obj=tkstore_obj,
+        tagged=tagged,
+        example_id=example_id,
+        db_name=db_name,
+        clean_summary=clean_summary,
+    )
 
     return {
         "example_id": example_id,
-        "database_id": database_id,
+        "db_name": db_name,
         "engine": engine,
-        "index_path": target_index,
+        "store": target_store,
+        "index_path": target_store,  # legacy alias
+        "debug_dir": (str(debug_dir) if debug_dir is not None else None),
         "clean_summary": clean_summary,
         "database_memories_count": len(parsed["database_memories"]),
         "generic_memories_count": len(parsed["generic_memories"]),
@@ -340,12 +447,16 @@ def build_knowledge_from_example(
 
 def build_knowledge_from_examples_dir(
     examples_root: str,
-    index_path: Optional[str] = None,
+    store: Optional[str] = None,
+    index_path: Optional[str] = None,  # legacy alias
+    tkstore_obj: Optional[Any] = None,
+    executor: Optional[Any] = None,
     model: str = "azure/o4-mini",
     draft_sql_model: Optional[str] = None,
     max_turns: int = 6,
     verbose: bool = True,
     hint: Optional[str] = None,
+    debug: bool = False,
 ) -> List[Dict[str, Any]]:
     """Build or extend tkstore from all example.json files under a directory."""
     root = Path(examples_root).expanduser().resolve()
@@ -358,12 +469,15 @@ def build_knowledge_from_examples_dir(
             results.append(
                 build_knowledge_from_example(
                     example_json_path=str(p),
-                    index_path=index_path,
+                    store=store or index_path,
+                    tkstore_obj=tkstore_obj,
+                    executor=executor,
                     model=model,
                     draft_sql_model=draft_sql_model,
                     max_turns=max_turns,
                     verbose=verbose,
                     hint=hint,
+                    debug=debug,
                 )
             )
         except Exception as e:

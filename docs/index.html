@@ -277,6 +277,7 @@
         The new API is intentionally simple:
       </p>
       <pre><code>import tkboost
+from tkboost import SQLiteExecutor
 
 tkboost.init(
     provider="auto",     # "openai" | "azure" | "auto"
@@ -284,9 +285,12 @@ tkboost.init(
     model="gpt-4o-mini"
 )
 
+executor = SQLiteExecutor("/absolute/path/to/database.sqlite")
+
 tkboost.generate(
     example_json="path/to/example.json",
-    store_path="path/to/tkstore.csv"
+    executor=executor,
+    store="path/to/tkstore.csv"
 )</code></pre>
 
       <p>
@@ -307,10 +311,9 @@ tkboost.generate(
 
 {
   "example_id": "example_001",
-  "database_id": "my_database",
+  "db_name": "my_database",
   "engine": "sqlite",
   "question": "Your NL question",
-  "db_path": "/absolute/path/to/database.sqlite",
   "gold_sql_path": "gold.sql",
   "agent_sql_path": null,
   "gold_result_path": null,

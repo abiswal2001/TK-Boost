@@ -3,7 +3,7 @@ from pathlib import Path
 from typing import Dict, Any, Optional
 
 
-REQUIRED_FIELDS = ("example_id", "database_id", "engine", "question", "gold_sql_path")
+REQUIRED_FIELDS = ("example_id", "engine", "question", "gold_sql_path")
 OPTIONAL_PATH_FIELDS = (
     "agent_sql_path",
     "gold_result_path",
@@ -19,13 +19,13 @@ def load_example(example_json_path: str) -> Dict[str, Any]:
 
     Required fields:
       - example_id
-      - database_id
       - engine
       - question
       - gold_sql_path
 
     Notes:
-      - For sqlite examples, db_path is required.
+      - For sqlite examples, db_path is required only if no executor is passed later.
+      - `db_name` is preferred. Legacy `database_id` is still accepted.
       - Relative paths are resolved against the example JSON parent directory.
     """
     p = Path(example_json_path).expanduser().resolve()
@@ -40,28 +40,25 @@ def load_example(example_json_path: str) -> Dict[str, Any]:
     engine = str(raw["engine"]).lower().strip()
     base_dir = p.parent
 
+    db_name = raw.get("db_name") or raw.get("database_id") or raw.get("db") or "default_db"
+
     ex: Dict[str, Any] = {
         "example_id": str(raw["example_id"]).strip(),
-        "database_id": str(raw["database_id"]).strip(),
+        "db_name": str(db_name).strip(),
         "engine": engine,
         "question": str(raw["question"]).strip(),
         "db_path": None,
         "gold_sql_path": None,
     }
 
-    if engine == "sqlite":
-        db_path = raw.get("db_path")
-        if not db_path:
-            raise ValueError(f"sqlite example requires db_path: {p}")
+    db_path = raw.get("db_path")
+    if db_path:
         db_path_resolved = Path(db_path)
         if not db_path_resolved.is_absolute():
             db_path_resolved = (base_dir / db_path_resolved).resolve()
         if not db_path_resolved.exists():
             raise FileNotFoundError(f"db_path does not exist: {db_path_resolved}")
         ex["db_path"] = str(db_path_resolved)
-    else:
-        # Non-sqlite engines can use credential_path and/or external connector defaults.
-        ex["db_path"] = None
 
     gold_sql_path = Path(raw["gold_sql_path"])
     if not gold_sql_path.is_absolute():
@@ -90,7 +87,7 @@ def scaffold_example_dir(target_dir: str, example_id: str = "example_001") -> st
 
     template = {
         "example_id": example_id,
-        "database_id": "my_database",
+        "db_name": "my_database",
         "engine": "sqlite",
         "question": "Write your natural language question here.",
         "db_path": "/absolute/path/to/database.sqlite",

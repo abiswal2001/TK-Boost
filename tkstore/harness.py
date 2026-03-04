@@ -68,6 +68,7 @@ def generate_memory_diff_first_turn(
     model: str = "azure/o4-mini",
     verbose: bool = True,
     hint: Optional[str] = None,
+    debug_trace_path: Optional[str] = None,
 ) -> Optional[str]:
     """
     First-turn interaction: ask the LLM for a concise human-readable diff between
@@ -83,6 +84,28 @@ def generate_memory_diff_first_turn(
                         If None, will attempt to resolve from JSONL based on engine type.
         db_name: Database name (for Snowflake/BigQuery schema context loading). If None, will attempt to extract from JSONL.
     """
+    debug_events: List[Dict[str, Any]] = []
+
+    def _write_debug_trace(final_output: Optional[str], status: str) -> None:
+        if not debug_trace_path:
+            return
+        try:
+            out_path = Path(debug_trace_path)
+            out_path.parent.mkdir(parents=True, exist_ok=True)
+            payload = {
+                "instance_id": instance_id,
+                "engine": engine,
+                "db_name": db_name,
+                "max_turns": max_turns,
+                "status": status,
+                "final_output": final_output,
+                "events": debug_events,
+            }
+            out_path.write_text(json.dumps(payload, indent=2, ensure_ascii=False), encoding="utf-8")
+        except Exception as e:
+            if verbose:
+                print(f"[debug] failed to write trace: {e}")
+
     # Infer engine from instance_id if not provided
     if engine is None:
         engine = infer_engine(instance_id)
@@ -557,6 +580,17 @@ def generate_memory_diff_first_turn(
                     print(reasoning if len(reasoning) < 2000 else reasoning[:2000] + "...")
             except Exception:
                 pass
+        edit_plans = [ed.strip() for ed in re.findall(r"EDIT_PLAN\s*:\s*(.*)", text, flags=re.IGNORECASE) if ed.strip()]
+        sql_snippet = _extract_tagged(text, "sql") or _extract_tagged(text, "solution")
+        debug_events.append(
+            {
+                "event": "assistant_response",
+                "sql_attempts_so_far": sql_attempts,
+                "content": text,
+                "edit_plans": edit_plans,
+                "proposed_sql": (sql_snippet.strip() if sql_snippet else None),
+            }
+        )
 
         # Detect immediate final signal in assistant text
         if "MATCH_OK" in text or "MINIMAL_FIX" in text:
@@ -612,8 +646,10 @@ def generate_memory_diff_first_turn(
                     executor.close()
                 except Exception:
                     pass
-            
-            return (final or "").strip()
+
+            final_out = (final or "").strip()
+            _write_debug_trace(final_out, "match_ok")
+            return final_out
 
         thinking = _extract_tagged(text, "think")
         sql_block = _extract_tagged(text, "sql")
@@ -682,6 +718,17 @@ def generate_memory_diff_first_turn(
                 )
                 if verbose:
                     print(f"[harness] Rejected assistant SQL: minimality violation (GOLD similarity: {gold_similarity:.2f}, AGENT similarity: {agent_similarity:.2f})")
+                debug_events.append(
+                    {
+                        "event": "sql_attempt_rejected",
+                        "attempt": sql_attempts,
+                        "reason": "minimality_violation",
+                        "agent_similarity": round(agent_similarity, 4),
+                        "gold_similarity": round(gold_similarity, 4),
+                        "sql": sql_to_run,
+                        "sql_result": sql_result_text,
+                    }
+                )
                 messages.append({"role": "user", "content": sql_result_text})
                 continue
             
@@ -724,6 +771,16 @@ def generate_memory_diff_first_turn(
             if verbose:
                 print("[SQL_RESULT returned]")
                 print(sql_result_text if len(sql_result_text) < 2000 else sql_result_text[:2000] + "...")
+            debug_events.append(
+                {
+                    "event": "sql_attempt_executed",
+                    "attempt": sql_attempts,
+                    "agent_similarity": round(agent_similarity, 4),
+                    "gold_similarity": round(gold_similarity, 4),
+                    "sql": sql_to_run,
+                    "sql_result": sql_result_text,
+                }
+            )
             messages.append({"role": "user", "content": "SQL_RESULT:\n" + sql_result_text})
             continue
 
@@ -798,6 +855,7 @@ def generate_memory_diff_first_turn(
             #         "content": f"ERROR: You declared NO_DIFF, but there is a clear STRUCTURAL DIFFERENCE: {result_label} has {sql_result_row_count} data rows while GOLD has {gold_row_count} data rows. You MUST examine the GOLD SQL carefully to understand how it retrieves the data (it may use different tables, joins, date calculations, or filters). Propose SQL edits based on the GOLD SQL approach. DO NOT declare NO_DIFF or MATCH_OK when row counts differ."
             #     })
             #     continue  # Continue the loop instead of returning
+            _write_debug_trace("NO_DIFF", "no_diff")
             return "NO_DIFF"
         
         # If no sql_block and not NO_DIFF, the assistant should have provided an EDIT_PLAN
@@ -833,7 +891,8 @@ def generate_memory_diff_first_turn(
             executor.close()
         except Exception:
             pass
-    
+
+    _write_debug_trace(result, "max_turns_reached")
     return result
 
 
@@ -896,9 +955,10 @@ def generate_rules_from_diff(
         "- GENERIC_MEMORIES: General lessons that apply across any database/question. These should abstract away specific table/column names and focus on SQL patterns, join logic, aggregation principles, etc.\n\n"
         "Output format (STRICT):\n"
         "DATABASE_MEMORIES (one per line):\n"
-        "Format: REMEMBER/VERIFY/ENSURE: <actionable advice for the validation agent for a future question on this database> | CONTEXT: <explain what tables/columns are involved and why this check matters for this database> | WHEN_TO_CHECK: <describe when this validation applies - e.g., 'when joining table X with table Y' or 'when aggregating column Z'> | EXAMPLE_USAGE: <detailed example showing: when you have table X and column Y, verify that you do Z (with concrete SQL fragment showing correct vs incorrect approach)>\n"
+        "Format: REMEMBER/VERIFY/ENSURE: <actionable advice for the validation agent for a future question on this database> | CONTEXT: <explain what ACTUAL DATABASE tables/columns are involved and why this matters> | WHEN_TO_CHECK: <describe when this validation applies using table/column names from the DATABASE, not CTE names> | EXAMPLE_USAGE: <detailed example with correct vs incorrect approach>\n"
         "Good example: ENSURE: when JOINING ball_by_ball and batsman_scored, make sure to include innings_no | CONTEXT: ball_by_ball table contains match_id, over_id, ball_id, innings_no; batsman_scored table contains match_id, over_id, ball_id, innings_no, runs_scored. When these tables are joined, all matching keys must be included to avoid cross-innings data misalignment | WHEN_TO_CHECK: When joining ball_by_ball with batsman_scored | EXAMPLE_USAGE: When joining these tables, verify the JOIN condition includes all matching keys: 'ON b.match_id = s.match_id AND b.over_id = s.over_id AND b.ball_id = s.ball_id AND b.innings_no = s.innings_no' is correct. Missing the innings_no condition (like 'ON b.match_id = s.match_id AND b.over_id = s.over_id AND b.ball_id = s.ball_id') causes runs from different innings to be incorrectly matched, leading to doubled values.\n"
         "Good example: REMEMBER: the data for pre-2000 races are in the results table. This table must be used in conjunction with constructor_standings for full races results data | CONTEXT: ... | WHEN_TO_CHECK: When performing queries about race results on F1 database | EXAMPLE_USAGE: ....\n"
+        "BAD example (DO NOT DO THIS): ENSURE: In the city_pair_distances CTE, select dep_city_en AS city1... -- This is BAD because 'city_pair_distances' is a CTE name from one specific query, NOT a database table. Another question won't have that CTE. Instead, reference the actual tables: ENSURE: When computing distances between flight routes from the flights table joined with airports_data, treat departure→arrival pairs as directional...\n"
         "...\n\n"
         "GENERIC_MEMORIES (one per line):\n"
         "Format: VERIFY/CHECK/ENSURE: <general validation principle> | PRINCIPLE: <explain the underlying SQL principle or pattern> | WHEN_TO_APPLY: <describe when this principle applies broadly> | EXAMPLE_USAGE: <detailed example showing: when you encounter situation X (without specific table names), then verify Y (with abstract SQL pattern showing correct vs incorrect approach)>\n"
@@ -906,12 +966,16 @@ def generate_rules_from_diff(
         "...\n\n"
         "IMPORTANT GUIDELINES:\n"
         "- Each MEMORY must be grounded in the DIFF/SQL/results provided below\n"
-        "- DATABASE_MEMORIES should use exact table/column names from the DIFF when available\n"
-        "- GENERIC_MEMORIES should abstract away specific names and focus on patterns\n"
+        "- DATABASE_MEMORIES should reference actual DATABASE TABLES and COLUMNS, NOT CTE names. CTEs (WITH ... AS) are query-specific constructs that won't exist in other questions on the same database. Always trace back to the real underlying tables (e.g., 'flights', 'airports_data') rather than intermediate CTE names (e.g., 'city_pair_distances', 'helmet_status'). This is CRITICAL for reusability.\n"
+        "- DATABASE_MEMORIES should describe data patterns and table relationships, not reproduce the structure of one specific query. Another question on the same database will have completely different CTEs but the same tables.\n"
+        "- GENERIC_MEMORIES should abstract away ALL specific names (tables, columns, CTEs) and focus on SQL patterns, join logic, aggregation principles, etc.\n"
+        "- DO NOT output tautological or obvious rules that are true in almost every SQL query (e.g., 'use COUNT(DISTINCT key) instead of COUNT(*)' without any concrete join-grain context, 'GROUP BY non-aggregated columns', 'match output to expected result').\n"
+        "- Every memory must encode a non-trivial, failure-derived insight from THIS diff: the row-grain trap, date parsing pitfall, key mismatch, boundary condition, unit mismatch, filter leakage, etc.\n"
+        "- For GENERIC_MEMORIES especially, prefer transferable but specific failure modes over textbook statements. If a rule would still sound useful with no knowledge of the observed failure, it is too generic and should be dropped or rewritten.\n"
         "- EXAMPLES should be detailed and explanatory (not just one-line SQL fragments)\n"
         "- EXAMPLES should clearly show correct vs incorrect approaches\n"
         "- Frame all memories as refiner-facing checks (what to verify, not assertions)\n"
-        "- Avoid vague wording; use concrete table/column names in DATABASE_MEMORIES\n"
+        "- Avoid vague wording; use concrete table/column names (from the DATABASE, not from CTEs) in DATABASE_MEMORIES\n"
         "- Do not hallucinate table/column names not present in the DIFF\n\n"
         "DIFF:\n" + diff_text + "\n"
         "Note: If the DIFF indicates ambiguous/incorrect tables or columns, formatting issues, wrong JOINs, misplaced filters, logical/math errors, or unexpected NULLs, the GENERIC_MEMORIES should record a concise, testable lesson that guides refiners to check for and avoid the same mistake in future queries.\n"

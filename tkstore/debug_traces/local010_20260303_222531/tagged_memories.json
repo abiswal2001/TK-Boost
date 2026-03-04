@@ -1,0 +1,117 @@
+{
+  "instance_id": "local010",
+  "user_query": "Distribute all the unique city pairs into the distance ranges 0, 1000, 2000, 3000, 4000, 5000, and 6000+, based on their average distance of all routes between them. Then how many pairs are there in the distance range with the fewest unique city paires?",
+  "db": "Airlines",
+  "clean_summary": "The original symmetric CASE WHEN on city names grouped routes bidirectionally, but the GOLD logic treats departure→arrival pairs distinctly; removing that CASE WHEN and selecting the cities directly corrected the bin counts and produced the expected minimum of 6.",
+  "database_memories": [
+    "ENSURE: In the city_pair_distances CTE, select dep_city_en AS city1 and arr_city_en AS city2 directly instead of applying a CASE WHEN for symmetric pairing | CONTEXT: city_pair_distances CTE aggregates flight routes using dep_city_en and arr_city_en; using CASE WHEN to reorder these cities merges distinct directional routes | WHEN_TO_CHECK: When defining the SELECT clause and GROUP BY in the city_pair_distances CTE | EXAMPLE_USAGE:",
+    "Incorrect:",
+    "WITH city_pair_distances AS (",
+    "SELECT CASE WHEN dep_city_en < arr_city_en THEN dep_city_en ELSE arr_city_en END AS city1,",
+    "CASE WHEN dep_city_en < arr_city_en THEN arr_city_en ELSE dep_city_en END AS city2,",
+    "distance",
+    "FROM flights",
+    "Correct:",
+    "WITH city_pair_distances AS (",
+    "SELECT dep_city_en AS city1,",
+    "arr_city_en AS city2,",
+    "distance",
+    "FROM flights",
+    "VERIFY: In the city_pair_distances CTE, GROUP BY dep_city_en and arr_city_en to preserve directional pairings | CONTEXT: Grouping on swapped city1/city2 pairs collapses departure→arrival routes into undifferentiated bins; distance bins must reflect true direction | WHEN_TO_CHECK: When writing the GROUP BY clause in the city_pair_distances CTE | EXAMPLE_USAGE:",
+    "Incorrect:",
+    "SELECT dep_city_en AS city1, arr_city_en AS city2, distance_bin, COUNT(*)",
+    "FROM city_pair_distances",
+    "GROUP BY city1, city2, distance_bin;",
+    "Correct:",
+    "SELECT dep_city_en AS city1, arr_city_en AS city2, distance_bin, COUNT(*)",
+    "FROM city_pair_distances",
+    "GROUP BY dep_city_en, arr_city_en, distance_bin;"
+  ],
+  "generic_memories": [
+    "VERIFY: Avoid CASE WHEN transformations that reorder or normalize paired columns when directionality matters | PRINCIPLE: Conditional swapping of two columns merges distinct records into a single group, leading to incorrect aggregation if order is significant | WHEN_TO_APPLY: Whenever grouping or aggregating on paired or directional data fields | EXAMPLE_USAGE:",
+    "Situation: columns A (source) and B (target) represent directional pairs.",
+    "Incorrect:",
+    "SELECT CASE WHEN A < B THEN A ELSE B END AS src,",
+    "CASE WHEN A < B THEN B ELSE A END AS tgt,",
+    "COUNT(*)",
+    "FROM routes",
+    "GROUP BY src, tgt;",
+    "Correct:",
+    "SELECT A AS src, B AS tgt, COUNT(*)",
+    "FROM routes",
+    "GROUP BY A, B;",
+    "ENSURE: GROUP BY clauses must include exactly the non-aggregated columns as they appear in SELECT | PRINCIPLE: SQL aggregates data based on the specified GROUP BY keys; mismatches between selected non-aggregated columns and GROUP BY expressions produce overly coarse or incorrect aggregations | WHEN_TO_APPLY: Anytime a query selects non-aggregated fields alongside aggregates | EXAMPLE_USAGE:",
+    "Correct:",
+    "SELECT user_id, event_type, COUNT(*)",
+    "FROM events",
+    "GROUP BY user_id, event_type;",
+    "Incorrect:",
+    "SELECT user_id, event_type, COUNT(*)",
+    "FROM events",
+    "GROUP BY user_id;"
+  ],
+  "index_rows": [
+    {
+      "scope": "db",
+      "sql_operations": [
+        "group by"
+      ],
+      "table": "city_pair_distances",
+      "column": "all",
+      "data_type": "all",
+      "nulls": "all",
+      "applies_when": "when defining select clause",
+      "search_keywords": [
+        "group by"
+      ],
+      "rule": "ENSURE: In the city_pair_distances CTE, select dep_city_en AS city1 and arr_city_en AS city2 directly instead of applying a CASE WHEN for symmetric pairing | CONTEXT: city_pair_distances CTE aggregates flight routes using dep_city_en and arr_city_en; using CASE WHEN to reorder these cities merges distinct directional routes | WHEN_TO_CHECK: When defining the SELECT clause and GROUP BY in the city_pair_distances CTE | EXAMPLE_USAGE:\nIncorrect:\nWITH city_pair_distances AS (\nSELECT CASE WHEN dep_city_en < arr_city_en THEN dep_city_en ELSE arr_city_en END AS city1,\nCASE WHEN dep_city_en < arr_city_en THEN arr_city_en ELSE dep_city_en END AS city2,\ndistance\nFROM flights\nCorrect:\nWITH city_pair_distances AS (\nSELECT dep_city_en AS city1,\narr_city_en AS city2,\ndistance\nFROM flights"
+    },
+    {
+      "scope": "db",
+      "sql_operations": [
+        "group by"
+      ],
+      "table": "city_pair_distances",
+      "column": "all",
+      "data_type": "all",
+      "nulls": "all",
+      "applies_when": "when writing group by clause",
+      "search_keywords": [
+        "group by"
+      ],
+      "rule": "VERIFY: In the city_pair_distances CTE, GROUP BY dep_city_en and arr_city_en to preserve directional pairings | CONTEXT: Grouping on swapped city1/city2 pairs collapses departure→arrival routes into undifferentiated bins; distance bins must reflect true direction | WHEN_TO_CHECK: When writing the GROUP BY clause in the city_pair_distances CTE | EXAMPLE_USAGE:\nIncorrect:\nSELECT dep_city_en AS city1, arr_city_en AS city2, distance_bin, COUNT(*)\nFROM city_pair_distances\nGROUP BY city1, city2, distance_bin;\nCorrect:\nSELECT dep_city_en AS city1, arr_city_en AS city2, distance_bin, COUNT(*)\nFROM city_pair_distances\nGROUP BY dep_city_en, arr_city_en, distance_bin;"
+    },
+    {
+      "scope": "generic",
+      "sql_operations": [
+        "group by"
+      ],
+      "table": "all",
+      "column": "all",
+      "data_type": "all",
+      "nulls": "all",
+      "applies_when": "all",
+      "search_keywords": [
+        "group by"
+      ],
+      "rule": "VERIFY: Avoid CASE WHEN transformations that reorder or normalize paired columns when directionality matters | PRINCIPLE: Conditional swapping of two columns merges distinct records into a single group, leading to incorrect aggregation if order is significant | WHEN_TO_APPLY: Whenever grouping or aggregating on paired or directional data fields | EXAMPLE_USAGE:\nSituation: columns A (source) and B (target) represent directional pairs.\nIncorrect:\nSELECT CASE WHEN A < B THEN A ELSE B END AS src,\nCASE WHEN A < B THEN B ELSE A END AS tgt,\nCOUNT(*)\nFROM routes\nGROUP BY src, tgt;\nCorrect:\nSELECT A AS src, B AS tgt, COUNT(*)\nFROM routes\nGROUP BY A, B;"
+    },
+    {
+      "scope": "generic",
+      "sql_operations": [
+        "aggregation",
+        "group by"
+      ],
+      "table": "all",
+      "column": "all",
+      "data_type": "all",
+      "nulls": "all",
+      "applies_when": "all",
+      "search_keywords": [
+        "aggregation",
+        "group by"
+      ],
+      "rule": "ENSURE: GROUP BY clauses must include exactly the non-aggregated columns as they appear in SELECT | PRINCIPLE: SQL aggregates data based on the specified GROUP BY keys; mismatches between selected non-aggregated columns and GROUP BY expressions produce overly coarse or incorrect aggregations | WHEN_TO_APPLY: Anytime a query selects non-aggregated fields alongside aggregates | EXAMPLE_USAGE:\nCorrect:\nSELECT user_id, event_type, COUNT(*)\nFROM events\nGROUP BY user_id, event_type;\nIncorrect:\nSELECT user_id, event_type, COUNT(*)\nFROM events\nGROUP BY user_id;"
+    }
+  ]
+}

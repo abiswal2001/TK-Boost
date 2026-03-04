@@ -1,0 +1,18 @@
+CUMULATIVE_EDITS:
+1) Added an EXISTS filter in the WHERE clause of helmet_status CTE to ensure only parties with any “motorcycle” safety equipment are included — [NECESSARY]
+
+MINIMAL_REQUIRED_EDITS:
+- In the helmet_status CTE, append:
+  AND EXISTS (
+      SELECT 1
+      FROM parties p
+      WHERE p.case_id = c.case_id
+        AND (
+          p.party_safety_equipment_1 LIKE '%motorcycle%'
+          OR p.party_safety_equipment_2 LIKE '%motorcycle%'
+        )
+  )
+
+EVIDENCE: The percent_killed_helmet_not_used value is now 0.0, matching the GOLD result exactly.
+
+CLEAN_SUMMARY: The fix restricts collisions to those with at least one party having motorcycle-related safety equipment, which removes improper counts in the helmet_not_used group and aligns the fatality percentages with the GOLD result.

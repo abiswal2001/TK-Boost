@@ -1,0 +1,17 @@
+{
+  "instance_id": "local020",
+  "engine": "sqlite",
+  "db_name": "IPL",
+  "max_turns": 6,
+  "status": "match_ok",
+  "final_output": "CUMULATIVE_EDITS:\n\nMINIMAL_REQUIRED_EDITS:\n\nEVIDENCE: The single output row “AC Gilchrist” matches the GOLD result exactly.\n\nCLEAN_SUMMARY: Original agent SQL already produced the correct result; no edits were necessary.",
+  "events": [
+    {
+      "event": "assistant_response",
+      "sql_attempts_so_far": 0,
+      "content": "MATCH_OK\nMINIMAL_FIX: No changes needed.",
+      "edit_plans": [],
+      "proposed_sql": null
+    }
+  ]
+}
