@@ -1,9 +1,0 @@
-CUMULATIVE_EDITS:
-1) Changed SELECT to CAST(AOV AS INTEGER) AS AOV — [NECESSARY]
-
-MINIMAL_REQUIRED_EDITS:
-- CAST(AOV AS INTEGER) AS AOV
-
-EVIDENCE: AOV values now match gold exactly.
-
-CLEAN_SUMMARY: AOV was showing decimals but gold requires integer values; casting AOV to integer fixed the discrepancy.

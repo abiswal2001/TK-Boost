@@ -1,4 +1,0 @@
-DATABASE_MEMORIES:
-
-GENERIC_MEMORIES:
-VERIFY: final result set matches the gold result exactly | PRINCIPLE: A query is only correct if its returned rows and values mirror the trusted gold output in both count and content | WHEN_TO_APPLY: Immediately after executing the agent’s SQL and before proposing any edits | EXAMPLE_USAGE: If the expected output is a single row with “AC Gilchrist”, check that the agent’s query returns exactly one row and that the only field equals “AC Gilchrist”. Any deviation in row count or field value indicates a mismatch and requires repair.

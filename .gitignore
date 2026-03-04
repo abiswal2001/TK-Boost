@@ -87,3 +87,4 @@ outputs/snowflake_validator_withmem/**/execution_result_after_*.csv
 outputs/snowflake_validator_withmem/**/execution_result_final.csv
 outputs/snowflake_validator_nomem/**/execution_result_after_*.csv
 outputs/snowflake_validator_nomem/**/execution_result_final.csv
+tkstore/debug_traces/*s
