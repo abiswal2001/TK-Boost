@@ -12,6 +12,7 @@ from tkboost import (
     BigQueryExecutor,
     SnowflakeExecutor,
     PostgresExecutor,
+    SQLAgent,
     TKStore,
     TKStoreEntry,
 )
@@ -143,6 +144,27 @@ result = tkboost.sql(
   - `error`
   - `preview_headers`
   - `preview_rows` (up to 10 rows)
+
+## 4.5) `SQLAgent` (basic ReAct draft agent)
+
+Generate a draft SQL by running the same ReAct-style loop from `sql_agent_runner` under a compact SDK API.
+
+```python
+from tkboost import SQLAgent
+
+agent = SQLAgent(model="azure/gpt-5", max_turns=25, verbose=False)
+draft = agent.translate(
+    question="Compute the average career span in years for baseball players.",
+    executor=executor,
+    db_name="Baseball",
+    instance_id="local007_demo",
+)
+
+draft_sql = draft["sql"]
+```
+
+`SQLAgent` uses credentials configured via `tkboost.init(...)`.
+`agent.draft(...)` remains available as a backward-compatible alias.
 
 ## 5) `TKStore` object
 

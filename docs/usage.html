@@ -147,30 +147,54 @@
 
     <section class="section">
       <h2>Quickstart (minimal)</h2>
-      <p>This is the minimal end-to-end pattern (using the `local007` example format):</p>
+      <p>This is the minimal end-to-end pattern (using the `local007` example format).</p>
+
+      <p><strong>Step 1 — Initialize + translate question to SQL with a ReAct agent</strong></p>
       <pre><code>import tkboost
-from tkboost import SQLiteExecutor
+from tkboost import SQLiteExecutor, SQLAgent
 
 tkboost.init(provider="auto", model="gpt-4o-mini")
 
 executor = SQLiteExecutor("tkstore/example/Baseball.sqlite")
+agent = SQLAgent(model="azure/gpt-5")
 
-store = tkboost.generate(
+draft = agent.translate(
+    question="Compute the average career span in years for baseball players.",
+    executor=executor,
+    db_name="Baseball",
+)</code></pre>
+
+      <p><strong>Step 2 — Generate/update tribal knowledge store</strong></p>
+      <pre><code>store = tkboost.generate(
     example_json="tkstore/example/example.json",  # local007
     store="tkstore/tkstore_example.csv",
     executor=executor,
     debug=True,
-)
+)</code></pre>
 
-result = tkboost.sql(
-    question="Compute the average career span in years for baseball players.",
+      <p><strong>Step 3 — Refine the same draft using TK (no draft regeneration)</strong></p>
+      <pre><code>result = tkboost.sql(
+    draft=draft["sql"],
     executor=executor,
     store=store,
     db_name="Baseball",
-)
+)</code></pre>
 
-print(result["refined_sql"])
-store.visualize(port=8501)</code></pre>
+      <p><strong>Step 4 — Compare agent vs refined outputs (quick quality check)</strong></p>
+      <pre><code>from pathlib import Path
+
+gold_sql = Path("tkstore/example/gold.sql").read_text(encoding="utf-8")
+
+_, agent_rows = executor.execute(draft["sql"])
+_, refined_rows = executor.execute(result["refined_sql"])
+_, gold_rows = executor.execute(gold_sql)
+
+print("agent:", agent_rows[:3])
+print("refined:", refined_rows[:3])
+print("gold:", gold_rows[:3])</code></pre>
+
+      <p><strong>Optional — inspect the store dashboard</strong></p>
+      <pre><code>store.visualize(port=8501)</code></pre>
       <p class="note">
         If your base agent is GPT-5, keep `agent_sql_path` in each training example pointed at that agent's draft SQL.
         TK-Boost generation/refinement flow stays the same.

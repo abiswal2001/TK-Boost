@@ -372,6 +372,97 @@ def _infer_engine_from_executor(executor: Optional[Executor]) -> str:
     return "sqlite"
 
 
+def _infer_executor_target(executor: Executor) -> str:
+    """Infer db/credential target path from a concrete executor object."""
+    for attr in ("db_path", "credential_path", "dsn_or_cred"):
+        val = getattr(executor, attr, None)
+        if isinstance(val, str) and val.strip():
+            return val
+    raise ValueError(
+        "Unable to infer executor target path/credential from executor. "
+        "Expected one of attributes: db_path, credential_path, dsn_or_cred."
+    )
+
+
+class SQLAgent:
+    """Thin ReAct SQL agent wrapper around src.agents.sql_agent_runner.run_agent.
+
+    This wrapper uses tkboost.init()-configured credentials/model defaults and exposes
+    a compact interface for generating an executable draft SQL.
+    """
+
+    def __init__(self, model: Optional[str] = None, max_turns: int = 25, verbose: bool = False):
+        self.model = model
+        self.max_turns = max_turns
+        self.verbose = verbose
+
+    def translate(
+        self,
+        question: str,
+        executor: Executor,
+        db_name: str = "default_db",
+        instance_id: str = "adhoc",
+        predicted_cte_hint: Optional[str] = None,
+        predicted_schema_hint: Optional[str] = None,
+        schema_context: Optional[str] = None,
+        external_knowledge: Optional[str] = None,
+        expected_output_format: Optional[str] = None,
+    ) -> Dict[str, Any]:
+        if not question or not question.strip():
+            raise ValueError("question is required")
+        if executor is None:
+            raise ValueError("executor is required")
+
+        from src.agents.sql_agent_runner import Instance, run_agent  # lazy import
+
+        model = self.model or _STATE.get("model") or "gpt-4o-mini"
+        engine = _infer_engine_from_executor(executor)
+        db_path_or_cred = _infer_executor_target(executor)
+        inst = Instance(
+            instance_id=instance_id,
+            db=db_name,
+            question=question,
+            external_knowledge=external_knowledge,
+        )
+
+        final_sql, headers, rows, messages, exec_used = run_agent(
+            inst=inst,
+            engine=engine,
+            db_path_or_cred=db_path_or_cred,
+            model=model,
+            predicted_cte_hint=predicted_cte_hint,
+            predicted_schema_hint=predicted_schema_hint,
+            schema_context=schema_context,
+            external_knowledge=external_knowledge,
+            expected_output_format=expected_output_format,
+            max_turns=self.max_turns,
+            train_context_file=None,
+            verbose=self.verbose,
+        )
+        try:
+            if hasattr(exec_used, "close"):
+                exec_used.close()
+        except Exception:
+            pass
+
+        return {
+            "sql": final_sql,
+            "headers": headers,
+            "row_count": len(rows or []),
+            "preview_rows": [list(r) for r in (rows or [])[:10]],
+            "messages": messages,
+            "model": model,
+            "engine": engine,
+        }
+
+    def draft(self, *args: Any, **kwargs: Any) -> Dict[str, Any]:
+        """Backward-compatible alias for translate()."""
+        return self.translate(*args, **kwargs)
+
+    def __call__(self, *args: Any, **kwargs: Any) -> Dict[str, Any]:
+        return self.translate(*args, **kwargs)
+
+
 def _generate_draft_sql(question: str, engine: str, model: str, db_info: Optional[str] = None) -> str:
     try:
         import litellm  # type: ignore
@@ -490,6 +581,7 @@ def sql(
 __all__ = [
     "TKStoreEntry",
     "TKStore",
+    "SQLAgent",
     "init",
     "generate",
     "sql",
