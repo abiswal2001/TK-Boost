@@ -36,12 +36,13 @@
 
 ### Key Results
 
-| Benchmark | Accuracy Gain |
-|:---|:---|
-| **Spider 2.0** | **+16.9%** |
-| **BIRD** | **+13.7%** |
-| **ReFORCE** (bolt-on to SOTA) | **+11.4%** |
-| **Agentar-Scale SQL** (bolt-on to SOTA) | **+10.2%** |
+| Agent | Spider2 (max gain) | BIRD (max gain) |
+|:---|:---:|:---:|
+| **GPT-4.1 Agent** | **+25.3%** | **+14.0%** |
+| **ReFORCE** (bolt-on) | **+11.4%** | **+5.6%** |
+| **Agentar-Scale-SQL-32B** (bolt-on) | **+10.2%** | **+3.6%** |
+
+Spider2 gains are reported as the largest observed delta across SQLite, BigQuery, and Snowflake from the paper figures.
 
 ---
 
@@ -64,6 +65,9 @@ python3 -m venv env && source env/bin/activate
 pip install -r requirements.txt
 ```
 
+See TK-Boost in action yourself through the example below, or [visualize](#visualize-spider-2-tribal-knowledge) tribal knowledge from Spider-2.
+
+Note: this example typically takes 5-10 minutes end-to-end (agent translation + knowledge generation + refinement).
 ```python
 import tkboost
 from tkboost import SQLiteExecutor, SQLAgent
@@ -97,6 +101,43 @@ result = tkboost.sql(
     store=store,
     db_name="Baseball",
 )
+```
+
+
+Compare the refined SQL result to the initial draft result:
+
+```python
+from pathlib import Path
+
+gold_sql = Path("tkstore/example/gold.sql").read_text(encoding="utf-8")
+
+_, agent_rows = executor.execute(draft["sql"])
+_, refined_rows = executor.execute(result["refined_sql"])
+_, gold_rows = executor.execute(gold_sql)
+
+print("agent:", agent_rows[:3])
+print("refined:", refined_rows[:3])
+print("gold:", gold_rows[:3])
+```
+
+Expected output (local007):
+- `agent` is off (e.g., around `4.82`)
+- `refined` fixes the result (e.g., around `4.92`)
+- `gold` answer is `4.92375...`
+
+### Visualize Spider-2 Tribal Knowledge
+
+```python
+from tkboost import TKStore
+
+store = TKStore("tkstore/tkstore_example.csv")
+store.visualize(port=8501)
+```
+
+Terminal one-liner:
+
+```bash
+python -c "from tkboost import TKStore; TKStore('tkstore/tkstore_example.csv').visualize()"
 ```
 
 ---
@@ -147,15 +188,15 @@ bigquery_exec = BigQueryExecutor("/abs/path/to/service_account.json")
 postgres_exec = PostgresExecutor("postgresql://user:pass@host:5432/dbname")
 ```
 
-Use whichever executor matches your data source; all implement `execute(sql)`.
+All executors implement `execute(sql)`.
 </details>
 
 <details>
-<summary><strong>Debug traces and artifacts</strong></summary>
+<summary><strong>Debug traces</strong></summary>
 
 Set `debug=True` in `tkboost.generate(...)` to persist intermediate artifacts (including `llm_interactions.json`) for each example.
 
-These traces are used by the TKStore visualizer and are useful for diagnosing bad/weak rules.
+These traces are used by the TKStore visualizer and are useful for diagnosing weak rules.
 </details>
 
 <details>
