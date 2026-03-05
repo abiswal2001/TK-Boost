@@ -152,7 +152,7 @@ Generate a draft SQL by running the same ReAct-style loop from `sql_agent_runner
 ```python
 from tkboost import SQLAgent
 
-agent = SQLAgent(model="azure/gpt-5", max_turns=25, verbose=False)
+agent = SQLAgent(max_turns=25, verbose=False)
 draft = agent.translate(
     question="Compute the average career span in years for baseball players.",
     executor=executor,
@@ -232,7 +232,7 @@ Common optional fields:
 import tkboost
 from tkboost import SQLiteExecutor
 
-tkboost.init(provider="auto", model="gpt-4o-mini")
+tkboost.init(provider="auto", model="azure/gpt-5")
 
 executor = SQLiteExecutor("tkstore/example/Baseball.sqlite")
 

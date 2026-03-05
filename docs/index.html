@@ -281,10 +281,10 @@
       <pre><code>import tkboost
 from tkboost import SQLiteExecutor, SQLAgent
 
-tkboost.init(provider="auto", model="gpt-4o-mini")
+tkboost.init(provider="auto", model="azure/gpt-5")
 
 executor = SQLiteExecutor("tkstore/example/Baseball.sqlite")
-agent = SQLAgent(model="azure/gpt-5")
+agent = SQLAgent()
 
 draft = agent.translate(
     question="Compute the average career span in years for baseball players.",

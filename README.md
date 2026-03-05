@@ -48,11 +48,10 @@
 ## Features
 
 - **Bolt-On Design** — works with any NL2SQL agent, no retraining needed
-- **Multi-Database** — SQLite, Snowflake, and BigQuery with automatic engine detection
-- **CTE-Level Correction** — applies knowledge one CTE at a time for precise fixes
-- **SQL-Based Retrieval** — retrieves knowledge from the SQL draft using structured applicability conditions
-- **Predicted Hints** — LLM-generated table/column predictions and CTE briefs
-- **Parallel Execution** — batch-process instances concurrently
+- **Interpretable Knowledge** - visualize and understand the agent's data misconcpetions, and see how tribal knowledge helps.
+- **Engine Agnostic** — SQLite, PostgresSQL, Snowflake, and BigQuery
+
+
 
 ---
 
@@ -65,252 +64,105 @@ python3 -m venv env && source env/bin/activate
 pip install -r requirements.txt
 ```
 
-```bash
-# Run the SQL agent on a single instance
-python src/agents/sql_agent_runner.py \
-  --instance-id local066 \
-  --jsonl-path data/spider2-lite.jsonl \
-  --model azure/gpt-4.1 \
-  --out-base outputs/baseline \
-  --verbose
-```
+```python
+import tkboost
+from tkboost import SQLiteExecutor, SQLAgent
 
-See **`demo.ipynb`** for a full end-to-end walkthrough.
+# 1) Initialize credentials/model (uses env vars or explicit args)
+tkboost.init(provider="auto", model="azure/gpt-5")
+
+# 2) Create executor + ReAct SQL agent
+executor = SQLiteExecutor("tkstore/example/Baseball.sqlite")
+agent = SQLAgent()
+
+# 3) Translate question -> draft SQL
+draft = agent.translate(
+    question="Compute the average career span in years for baseball players.",
+    executor=executor,
+    db_name="Baseball",
+)
+
+# 4) Generate tribal knowledge store
+store = tkboost.generate(
+    example_json="tkstore/example/example.json",  # local007
+    store="tkstore/tkstore_example.csv",
+    executor=executor,
+    debug=True,
+)
+
+# 5) Refine same draft using tribal knowledge
+result = tkboost.sql(
+    draft=draft["sql"],
+    executor=executor,
+    store=store,
+    db_name="Baseball",
+)
+```
 
 ---
 
 ## Usage
 
-<details>
-<summary><strong>Run with Predicted Hints</strong></summary>
+Quickstart above covers end-to-end flow. This section includes supporting setup/reference info.
 
-```bash
-python src/agents/sql_agent_runner.py \
-  --instance-id local066 \
-  --jsonl-path data/spider2-lite.jsonl \
-  --model azure/gpt-4.1 \
-  -c data/contexts/predicted_cte_briefs_local.csv \
-  -t data/contexts/predicted_tablescols_local.csv \
-  --out-base outputs/local_with_hints \
-  --verbose
+<details>
+<summary><strong>Training data setup (`example.json` + files)</strong></summary>
+
+Minimum required fields in each `example.json`:
+- `example_id`
+- `engine`
+- `question`
+- `gold_sql_path`
+
+Common optional fields:
+- `db_name` (preferred)
+- `db_path` (needed for SQLite if executor is not passed)
+- `agent_sql_path`, `gold_result_path`, `agent_result_path`
+- `db_info_path`, `external_evidence_path`, `credential_path`
+
+Minimal example:
+
+```json
+{
+  "example_id": "local007",
+  "db_name": "Baseball",
+  "engine": "sqlite",
+  "question": "Compute the average career span in years for baseball players.",
+  "gold_sql_path": "gold.sql"
+}
 ```
+
+While generating knowledge for a directory of training examples (`examples_dir`), each example must be specified with its own `example_json`.
 </details>
 
 <details>
-<summary><strong>Run Multiple Instances</strong></summary>
+<summary><strong>Available SQL executors</strong></summary>
 
-```bash
-python src/agents/sql_agent_runner.py \
-  --instance-id local066 \
-  --instance-id local065 \
-  --instance-id local022 \
-  --jsonl-path data/spider2-lite.jsonl \
-  --model azure/gpt-4.1 \
-  --out-base outputs/local_baseline \
-  --verbose
+```python
+from tkboost import SQLiteExecutor, SnowflakeExecutor, BigQueryExecutor, PostgresExecutor
+
+sqlite_exec = SQLiteExecutor("/abs/path/to/database.sqlite")
+snowflake_exec = SnowflakeExecutor("/abs/path/to/snowflake_credential.json")
+bigquery_exec = BigQueryExecutor("/abs/path/to/service_account.json")
+postgres_exec = PostgresExecutor("postgresql://user:pass@host:5432/dbname")
 ```
 
-Or run all instances from the JSONL file:
-
-```bash
-python src/agents/sql_agent_runner.py \
-  --run-all-from-file \
-  --jsonl-path data/spider2-lite.jsonl \
-  --model azure/gpt-4.1 \
-  --out-base outputs/all_baseline \
-  --verbose
-```
+Use whichever executor matches your data source; all implement `execute(sql)`.
 </details>
 
 <details>
-<summary><strong>Snowflake Instances</strong></summary>
+<summary><strong>Debug traces and artifacts</strong></summary>
 
-The agent auto-detects Snowflake instances (prefix `sf`):
+Set `debug=True` in `tkboost.generate(...)` to persist intermediate artifacts (including `llm_interactions.json`) for each example.
 
-```bash
-python src/agents/sql_agent_runner.py \
-  --instance-id sf001 \
-  --instance-id sf002 \
-  --jsonl-path data/spider2-lite.jsonl \
-  --model azure/gpt-4.1 \
-  -c data/contexts/predicted_cte_briefs_snowflake_azure_o3.csv \
-  -t data/contexts/predicted_tablescols_snowflake_azure_o3.csv \
-  --out-base outputs/snowflake_baseline \
-  --verbose
-```
-
-**Credentials:** Configure via `~/.snowflake/config` or environment variables:
-```bash
-export SNOWFLAKE_ACCOUNT="your_account"
-export SNOWFLAKE_USER="your_user"
-export SNOWFLAKE_PASSWORD="your_password"
-export SNOWFLAKE_WAREHOUSE="your_warehouse"
-```
+These traces are used by the TKStore visualizer and are useful for diagnosing bad/weak rules.
 </details>
 
 <details>
-<summary><strong>BigQuery Instances</strong></summary>
+<summary><strong>More details</strong></summary>
 
-The agent auto-detects BigQuery instances (prefix `bq` or `ga`):
-
-```bash
-python src/agents/sql_agent_runner.py \
-  --instance-id bq001 \
-  --instance-id ga001 \
-  --jsonl-path data/spider2-lite.jsonl \
-  --model azure/gpt-4.1 \
-  -c data/contexts/predicted_cte_briefs_bigquery_azure_o3.csv \
-  -t data/contexts/predicted_tablescols_bigquery_azure_o3.csv \
-  --out-base outputs/bigquery_baseline \
-  --verbose
-```
-
-**Credentials:** Configure via Google Cloud SDK:
-```bash
-gcloud auth application-default login
-# Or use service account JSON
-export GOOGLE_APPLICATION_CREDENTIALS="/path/to/service-account-key.json"
-```
-</details>
-
-<details>
-<summary><strong>CTE Refiner (Validation)</strong></summary>
-
-The CTE refiner iteratively validates and improves each CTE, then refines the final SELECT:
-
-```bash
-python src/agents/sql_agent_runner.py \
-  --instance-id local066 \
-  --jsonl-path data/spider2-lite.jsonl \
-  --model azure/gpt-4.1 \
-  -c data/contexts/predicted_cte_briefs_local.csv \
-  -t data/contexts/predicted_tablescols_local.csv \
-  --validate-cte \
-  --out-base outputs/local_validated \
-  --verbose
-```
-
-**How it works:**
-1. Agent generates initial SQL solution
-2. SQL is parsed into CTEs and final SELECT
-3. Each CTE is validated individually (max 25 turns)
-4. Refiner suggests fixes, agent revises
-5. Final SELECT validated with all CTEs
-6. Validated SQL and results saved
-
-**Output files:**
-```
-outputs/local066_20251031_120000/
-├── execution_query.sql              # Original agent SQL
-├── execution_result.csv             # Original agent results
-├── execution_query_validated.sql    # SQL after validation
-├── execution_result_validated.csv   # Results after validation
-├── refiner_cte1.json                # Refiner verdict per CTE
-├── refiner_cte1_trace.txt           # Refinement trace per CTE
-├── refiner_final_select.json        # Final SELECT verdict
-├── messages.json                    # Full conversation history
-├── processed_trace.txt              # Human-readable trace
-├── gt_query.sql                     # Ground truth SQL
-└── gt_result.csv                    # Ground truth results
-```
-</details>
-
-<details>
-<summary><strong>Validation-Only Mode</strong></summary>
-
-Run the refiner on existing outputs without regenerating agent responses:
-
-```bash
-python src/agents/sql_agent_runner.py \
-  --validate-output outputs/snowflake_norefiner \
-  --jsonl-path data/spider2-lite.jsonl \
-  --model azure/gpt-4.1 \
-  -c data/contexts/predicted_cte_briefs_snowflake_azure_o3.csv \
-  -t data/contexts/predicted_tablescols_snowflake_azure_o3.csv \
-  --verbose
-```
-</details>
-
-<details>
-<summary><strong>Parallel Execution</strong></summary>
-
-```bash
-python scripts/run_snowflake_parallel.py \
-  --jsonl-path data/spider2-lite.jsonl \
-  --model azure/gpt-4.1 \
-  -c data/contexts/predicted_cte_briefs_snowflake_azure_o3.csv \
-  -t data/contexts/predicted_tablescols_snowflake_azure_o3.csv \
-  --out-base outputs/snowflake_validated \
-  --workers 3 \
-  --timeout 600 \
-  --verbose
-```
-</details>
-
-<details>
-<summary><strong>Generating Predicted Hints</strong></summary>
-
-**Tables/Columns:**
-```bash
-# SQLite
-python generate_predicted_tables_columns.py \
-  --jsonl-path data/spider2-lite.jsonl \
-  --taxonomy-csv data/contexts/sql_nl_summaries_taxonomy.csv \
-  --out-csv data/contexts/predicted_tablescols_local.csv \
-  --model azure/o3 --engine sqlite --verbose
-
-# Snowflake
-python generate_predicted_tables_columns.py \
-  --jsonl-path data/spider2-lite.jsonl \
-  --taxonomy-csv data/contexts/sql_nl_summaries_taxonomy.csv \
-  --out-csv data/contexts/predicted_tablescols_snowflake_azure_o3.csv \
-  --model azure/o3 --engine snowflake --all-snowflake-from-jsonl --verbose
-
-# BigQuery
-python generate_predicted_tables_columns.py \
-  --jsonl-path data/spider2-lite.jsonl \
-  --taxonomy-csv data/contexts/sql_nl_summaries_taxonomy.csv \
-  --out-csv data/contexts/predicted_tablescols_bigquery_azure_o3.csv \
-  --model azure/o3 --engine bigquery --all-bigquery-from-jsonl --verbose
-```
-
-**CTE Briefs:**
-```bash
-# SQLite
-python generate_predicted_cte_briefs.py \
-  --jsonl-path data/spider2-lite.jsonl \
-  --taxonomy-csv data/contexts/sql_nl_summaries_taxonomy.csv \
-  --analysis-csv data/contexts/sql_nl_summaries_taxonomy_analysis_of_summary_results.csv \
-  --predicted-tables-cols-csv data/contexts/predicted_tablescols_local.csv \
-  --out-csv data/contexts/predicted_cte_briefs_local.csv \
-  --model azure/o3 --restrict-to-predicted --no-analysis-filter --verbose
-
-# Snowflake (with external knowledge)
-python generate_predicted_cte_briefs.py \
-  --jsonl-path data/spider2-lite.jsonl \
-  --taxonomy-csv data/contexts/sql_nl_summaries_taxonomy.csv \
-  --analysis-csv data/contexts/sql_nl_summaries_taxonomy_analysis_of_summary_results.csv \
-  --predicted-tables-cols-csv data/contexts/predicted_tablescols_snowflake_azure_o3.csv \
-  --out-csv data/contexts/predicted_cte_briefs_snowflake_azure_o3.csv \
-  --model azure/o3 --include-external-knowledge --external-knowledge-root data/spider2 \
-  --snowflake-ids-only --restrict-to-predicted --no-analysis-filter --verbose
-
-# BigQuery (with external knowledge)
-python generate_predicted_cte_briefs.py \
-  --jsonl-path data/spider2-lite.jsonl \
-  --taxonomy-csv data/contexts/sql_nl_summaries_taxonomy.csv \
-  --analysis-csv data/contexts/sql_nl_summaries_taxonomy_analysis_of_summary_results.csv \
-  --predicted-tables-cols-csv data/contexts/predicted_tablescols_bigquery_azure_o3.csv \
-  --out-csv data/contexts/predicted_cte_briefs_bigquery_azure_o3.csv \
-  --model azure/o3 --include-external-knowledge --external-knowledge-root data/spider2 \
-  --bigquery-ids-only --restrict-to-predicted --no-analysis-filter --verbose
-```
-
-**Schema Contexts (Snowflake / BigQuery):**
-```bash
-python scripts/precompute_snowflake_db_contexts.py   # Creates data/sf_schemas/*.txt
-python scripts/create_bq_schema_contexts.py           # Creates data/bq_schemas/*.txt
-```
+- Full SDK reference: [`docs/API_SUMMARY.md`](docs/API_SUMMARY.md)
+- Evaluation/repro instructions: [`evaluation/README.md`](evaluation/README.md)
 </details>
 
 ---
@@ -341,15 +193,7 @@ System prompts are in `src/agents/prompts.py`:
 
 ## Evaluation
 
-```bash
-cd evaluation
-python evals.py \
-  --mode exec_result \
-  --result_dir ../outputs/snowflake_validated \
-  --gold_dir ../data/spider2/gold
-```
-
-**Output:** `evals.csv` (scores per instance), `correct_ids.csv` (passing instances), and summary statistics.
+See [`evaluation/README.md`](evaluation/README.md) for full setup and commands to reproduce Spider2 evaluation results.
 
 ---
 
