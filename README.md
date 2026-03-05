@@ -38,7 +38,7 @@
 
 | Agent | Spider2 (max gain) | BIRD (max gain) |
 |:---|:---:|:---:|
-| **GPT-4.1 Agent** | **+25.3%** | **+14.0%** |
+| **GPT-4.1 Agent** | **+16.9%** | **+14.0%** |
 | **ReFORCE** (bolt-on) | **+11.4%** | **+5.6%** |
 | **Agentar-Scale-SQL-32B** (bolt-on) | **+10.2%** | **+3.6%** |
 
