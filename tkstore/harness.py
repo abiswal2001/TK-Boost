@@ -508,7 +508,6 @@ def generate_memory_diff_first_turn(
         resp = None
         context_window_error = False
         try:
-            # import pdb; pdb.set_trace()
             resp = litellm.completion(model=model, messages=messages)
         except Exception as e:
             if _is_context_window_error(e):
@@ -545,8 +544,7 @@ def generate_memory_diff_first_turn(
             else:
                 # Not a context window error, re-raise as-is
                 raise
-        
-        # import pdb; pdb.set_trace()
+
         try:
             msg_obj = resp["choices"][0]["message"]
         except Exception:
