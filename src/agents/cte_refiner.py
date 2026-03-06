@@ -16,24 +16,6 @@ import litellm
 
 
 # --- Provider/Env ---
-USE_OPENAI = True
-OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
-OPENAI_API_BASE = os.environ.get("OPENAI_API_BASE")
-
-AZURE_API_KEY = os.environ.get("AZURE_API_KEY")
-AZURE_API_BASE = os.environ.get("AZURE_API_BASE")
-AZURE_API_VERSION = os.environ.get("AZURE_API_VERSION")
-
-if USE_OPENAI:
-    if OPENAI_API_KEY:
-        os.environ["OPENAI_API_KEY"] = OPENAI_API_KEY
-    if OPENAI_API_BASE:
-        os.environ["OPENAI_API_BASE"] = OPENAI_API_BASE
-else:
-    os.environ["AZURE_API_KEY"] = AZURE_API_KEY
-    os.environ["AZURE_API_BASE"] = AZURE_API_BASE
-    os.environ["AZURE_API_VERSION"] = AZURE_API_VERSION
-
 AZURE_TO_OPENAI_MODEL = {
     "azure/gpt-4.1": "gpt-4.1",
     "azure/gpt-4o": "gpt-4o",
@@ -41,8 +23,16 @@ AZURE_TO_OPENAI_MODEL = {
 }
 
 
+def _is_openai_provider() -> bool:
+    if os.environ.get("OPENAI_API_KEY"):
+        return True
+    if os.environ.get("AZURE_API_KEY") or os.environ.get("AZURE_OPENAI_API_KEY"):
+        return False
+    return True
+
+
 def llm(model: str, messages: list, **kwargs):
-    mapped = AZURE_TO_OPENAI_MODEL.get(model, model) if USE_OPENAI else model
+    mapped = AZURE_TO_OPENAI_MODEL.get(model, model) if _is_openai_provider() else model
     return litellm.completion(model=mapped, messages=messages, **kwargs)
 
 

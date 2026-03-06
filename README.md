@@ -49,14 +49,14 @@ Spider2 gains are reported as the largest observed delta across SQLite, BigQuery
 ## Features
 
 - **Bolt-On Design** — works with any NL2SQL agent, no retraining needed
-- **Interpretable Knowledge** - visualize and understand the agent's data misconcpetions, and see how tribal knowledge helps.
-- **Engine Agnostic** — SQLite, PostgresSQL, Snowflake, and BigQuery
-
-
+- **Interpretable Knowledge** — visualize and understand the agent's data misconceptions, and see how tribal knowledge helps.
+- **Engine Agnostic** — SQLite, PostgreSQL, Snowflake, and BigQuery
 
 ---
 
 ## Quick Start
+
+### 1. Install
 
 ```bash
 git clone https://github.com/abiswal2001/TK-Boost.git
@@ -65,36 +65,67 @@ python3 -m venv env && source env/bin/activate
 pip install -r requirements.txt
 ```
 
-See TK-Boost in action yourself through the example below, or [visualize](#visualize-spider-2-tribal-knowledge) tribal knowledge from Spider-2.
+### 2. Set your LLM API key
 
-Note: this example typically takes 5-10 minutes end-to-end (agent translation + knowledge generation + refinement).
+```bash
+# OpenAI
+export OPENAI_API_KEY="sk-..."
+
+# Or Azure OpenAI
+export AZURE_API_KEY="your-key"
+export AZURE_API_BASE="https://your-endpoint.openai.azure.com/"
+export AZURE_API_VERSION="2024-12-01-preview"
+```
+
+### 3. Download the example database
+
+The example uses a SQLite database from [Spider2](https://github.com/xlang-ai/Spider2). Download it once:
+
+```bash
+curl -L -o /tmp/spider2-localdb.zip \
+  "https://drive.usercontent.google.com/download?id=1coEVsCZq-Xvj9p2TnhBFoFTsY-UoYGmG&export=download&confirm=t"
+unzip -q /tmp/spider2-localdb.zip -d /tmp/spider2-localdb
+find /tmp/spider2-localdb -name "Baseball.sqlite" -exec cp {} tkstore/example/ \;
+rm -rf /tmp/spider2-localdb /tmp/spider2-localdb.zip
+```
+
+### 4. Run the example
+
+One-liner:
+
+```bash
+python quickstart.py
+```
+
+Here's what it does (takes ~5-10 minutes end-to-end):
+
 ```python
 import tkboost
 from tkboost import SQLiteExecutor, SQLAgent
 
-# 1) Initialize credentials/model (uses env vars or explicit args)
-tkboost.init(provider="auto", model="azure/gpt-5")
+# Auto-detect provider from env vars (OpenAI or Azure)
+tkboost.init(provider="auto")
 
-# 2) Create executor + ReAct SQL agent
+# Point at the Baseball database
 executor = SQLiteExecutor("tkstore/example/Baseball.sqlite")
-agent = SQLAgent()
 
-# 3) Translate question -> draft SQL
+# Agent drafts a SQL query (ReAct loop)
+agent = SQLAgent()
 draft = agent.translate(
     question="Compute the average career span in years for baseball players.",
     executor=executor,
     db_name="Baseball",
 )
 
-# 4) Generate tribal knowledge store
+# Generate tribal knowledge from a training example
 store = tkboost.generate(
-    example_json="tkstore/example/example.json",  # local007
+    example_json="tkstore/example/example.json",
     store="tkstore/tkstore_example.csv",
     executor=executor,
     debug=True,
 )
 
-# 5) Refine same draft using tribal knowledge
+# Refine the draft using tribal knowledge
 result = tkboost.sql(
     draft=draft["sql"],
     executor=executor,
@@ -103,27 +134,10 @@ result = tkboost.sql(
 )
 ```
 
-
-Compare the refined SQL result to the initial draft result:
-
-```python
-from pathlib import Path
-
-gold_sql = Path("tkstore/example/gold.sql").read_text(encoding="utf-8")
-
-_, agent_rows = executor.execute(draft["sql"])
-_, refined_rows = executor.execute(result["refined_sql"])
-_, gold_rows = executor.execute(gold_sql)
-
-print("agent:", agent_rows[:3])
-print("refined:", refined_rows[:3])
-print("gold:", gold_rows[:3])
-```
-
 Expected output (local007):
-- `agent` is off (e.g., around `4.82`)
-- `refined` fixes the result (e.g., around `4.92`)
-- `gold` answer is `4.92375...`
+- `Agent (draft)` is off (e.g., around `4.82`)
+- `Refined (TK)` fixes the result (e.g., around `4.92`)
+- `Gold (expected)` is `4.92375...`
 
 ### Visualize Spider-2 Tribal Knowledge
 
@@ -213,17 +227,14 @@ These traces are used by the TKStore visualizer and are useful for diagnosing we
 <details>
 <summary><strong>LLM Provider</strong></summary>
 
-Edit `src/utils/auth.py`:
+`tkboost.init(provider="auto")` auto-detects your provider from environment variables — no source edits needed.
 
-```python
-# Azure OpenAI
-os.environ["AZURE_API_KEY"] = "your-key"
-os.environ["AZURE_API_BASE"] = "https://your-endpoint.openai.azure.com/"
-os.environ["AZURE_API_VERSION"] = "2024-12-01-preview"
+| Provider | Required env vars |
+|:---|:---|
+| **OpenAI** | `OPENAI_API_KEY` |
+| **Azure OpenAI** | `AZURE_API_KEY`, `AZURE_API_BASE`, `AZURE_API_VERSION` |
 
-# Or OpenAI
-os.environ["OPENAI_API_KEY"] = "your-key"
-```
+You can also pass keys directly: `tkboost.init(provider="openai", api_key="sk-...")`.
 
 System prompts are in `src/agents/prompts.py`:
 - `BASE_PROMPT` — SQLite instances
