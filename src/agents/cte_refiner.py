@@ -292,8 +292,9 @@ def run_refiner(instance_id: str, db_id: str, user_query: str, cte_text: str, ct
     if verbose:
         print("="*80)
         print(f"CTE REFINER | instance_id={instance_id} | db_path={db_path}")
-        provider = "OpenAI" if USE_OPENAI else "Azure"
-        print(f"Provider={provider} | Model={AZURE_TO_OPENAI_MODEL.get(model, model) if USE_OPENAI else model}")
+        is_openai = _is_openai_provider()
+        provider = "OpenAI" if is_openai else "Azure"
+        print(f"Provider={provider} | Model={AZURE_TO_OPENAI_MODEL.get(model, model) if is_openai else model}")
         if predicted_ctes:
             print("Mode=WITH_PREDICTED_CTES")
         print("="*80)
