@@ -103,7 +103,8 @@ Here's what it does (takes ~5-10 minutes end-to-end):
 
 ```python
 import tkboost
-from tkboost import SQLiteExecutor, SQLAgent
+from pathlib import Path
+from tkboost import SQLiteExecutor
 
 # Auto-detect provider from env vars (OpenAI or Azure)
 tkboost.init(provider="auto")
@@ -111,35 +112,40 @@ tkboost.init(provider="auto")
 # Point at the Baseball database
 executor = SQLiteExecutor("tkstore/example/Baseball.sqlite")
 
-# Agent drafts a SQL query (ReAct loop)
-agent = SQLAgent()
-draft = agent.translate(
-    question="Compute the average career span in years for baseball players.",
-    executor=executor,
-    db_name="Baseball",
-)
+# Use the local007 draft SQL from example
+draft_sql = Path("tkstore/example/execution_query.sql").read_text(encoding="utf-8")
+gold_sql = Path("tkstore/example/gold.sql").read_text(encoding="utf-8")
 
 # Generate tribal knowledge from a training example
 store = tkboost.generate(
     example_json="tkstore/example/example.json",
-    store="tkstore/tkstore_example.csv",
+    store="tmp/quickstart_tkstore_example.csv",
     executor=executor,
     debug=True,
 )
 
 # Refine the draft using tribal knowledge
 result = tkboost.sql(
-    draft=draft["sql"],
+    draft=draft_sql,
     executor=executor,
     store=store,
     db_name="Baseball",
 )
+
+_, agent_rows = executor.execute(draft_sql)
+_, refined_rows = executor.execute(result["refined_sql"])
+_, gold_rows = executor.execute(gold_sql)
+print("agent:", agent_rows[:3])
+print("refined:", refined_rows[:3])
+print("gold:", gold_rows[:3])
 ```
 
 Expected output (local007):
 - `Agent (draft)` is off (e.g., around `4.82`)
 - `Refined (TK)` fixes the result (e.g., around `4.92`)
 - `Gold (expected)` is `4.92375...`
+
+We saw how the knowledge generated helped correct this example, but TK-Boost's real strength is building knowledge that generalizes to new questions. Try it out on your data!
 
 ### Visualize Spider-2 Tribal Knowledge
 

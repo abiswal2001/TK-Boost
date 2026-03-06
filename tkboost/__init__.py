@@ -21,7 +21,7 @@ from tkstore.tagger_index import MemoryRetriever
 
 _STATE: Dict[str, Any] = {
     "provider": "auto",
-    "model": "gpt-4o-mini",
+    "model": "azure/gpt-5",
     "draft_sql_model": None,
 }
 
@@ -100,7 +100,7 @@ class TKStore:
     ) -> List[Dict[str, Any]]:
         if not self.store:
             raise ValueError("TKStore has no bound store path.")
-        model = llm_model or _STATE.get("model") or "gpt-4o-mini"
+        model = llm_model or _STATE.get("model") or "azure/gpt-5"
         return MemoryRetriever(self.store).retrieve(
             sql_text=sql_text,
             generic_only=generic_only,
@@ -256,7 +256,7 @@ def init(
             os.environ["OPENAI_API_KEY"] = api_key
         if base_url:
             os.environ["OPENAI_API_BASE"] = base_url
-        default_model = "gpt-4o-mini"
+        default_model = "gpt-5"
     else:
         if azure_api_key:
             os.environ["AZURE_API_KEY"] = azure_api_key
@@ -272,7 +272,7 @@ def init(
             os.environ["AZURE_OPENAI_ENDPOINT"] = base_url
         if api_version:
             os.environ["AZURE_API_VERSION"] = api_version
-        default_model = "azure/o4-mini"
+        default_model = "azure/gpt-5"
 
     _STATE["provider"] = selected
     _STATE["model"] = model or default_model
@@ -296,6 +296,7 @@ def generate(
     verbose: bool = True,
     hint: Optional[str] = None,
     debug: bool = False,
+    sim_gate: bool = False,
 ) -> TKStore:
     """Generate tribal knowledge and write/append to a store CSV.
 
@@ -304,11 +305,12 @@ def generate(
     - Provide exactly one of: example_json or examples_dir.
     - Returns a TKStore wrapper for the target CSV.
     - If debug=True, writes per-example debug artifacts (LLM traces, intermediate SQL/results).
+    - sim_gate defaults to False; set True to enable similarity-based rejection of overly gold-like SQL edits during repair.
     """
     if bool(example_json) == bool(examples_dir):
         raise ValueError("Provide exactly one of example_json or examples_dir")
 
-    effective_model = model or _STATE.get("model") or "gpt-4o-mini"
+    effective_model = model or _STATE.get("model") or "azure/gpt-5"
     effective_draft = draft_sql_model if draft_sql_model is not None else _STATE.get("draft_sql_model")
     target_store = store
     tk_store = TKStore(target_store) if target_store else None
@@ -325,6 +327,7 @@ def generate(
             verbose=verbose,
             hint=hint,
             debug=debug,
+            sim_gate=sim_gate,
         )
         return TKStore(store=result.get("store") or target_store, last_generate_result=result)
 
@@ -339,6 +342,7 @@ def generate(
         verbose=verbose,
         hint=hint,
         debug=debug,
+        sim_gate=sim_gate,
     )
     inferred_store = target_store
     if not inferred_store:
@@ -415,7 +419,7 @@ class SQLAgent:
 
         from src.agents.sql_agent_runner import Instance, run_agent  # lazy import
 
-        model = self.model or _STATE.get("model") or "gpt-4o-mini"
+        model = self.model or _STATE.get("model") or "azure/gpt-5"
         engine = _infer_engine_from_executor(executor)
         db_path_or_cred = _infer_executor_target(executor)
         inst = Instance(
@@ -515,7 +519,7 @@ def sql(
     except Exception as e:
         raise RuntimeError("litellm is required for tkboost.sql(). Install dependencies first.") from e
 
-    effective_model = model or _STATE.get("model") or "gpt-4o-mini"
+    effective_model = model or _STATE.get("model") or "azure/gpt-5"
     engine = _infer_engine_from_executor(executor)
 
     draft_sql = draft

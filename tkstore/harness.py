@@ -69,6 +69,7 @@ def generate_memory_diff_first_turn(
     verbose: bool = True,
     hint: Optional[str] = None,
     debug_trace_path: Optional[str] = None,
+    sim_gate: bool = False,
 ) -> Optional[str]:
     """
     First-turn interaction: ask the LLM for a concise human-readable diff between
@@ -704,9 +705,10 @@ def generate_memory_diff_first_turn(
             agent_similarity = _compute_sql_similarity(sql_to_run, agent_full_sql_text or "")
             gold_similarity = _compute_sql_similarity(sql_to_run, gold_sql_text or "")
             
-            # If SQL is more similar to GOLD than to AGENT (and both similarities are high), it's likely a copy
-            # Threshold: if gold_similarity > 0.7 and gold_similarity > agent_similarity + 0.2, reject
-            if gold_similarity > 0.7 and gold_similarity > agent_similarity + 0.2:
+            # Optional similarity gate: reject SQL that appears copied from GOLD
+            # instead of being a minimal edit of AGENT SQL.
+            # Threshold: gold_similarity > 0.7 and gold_similarity > agent_similarity + 0.2
+            if sim_gate and gold_similarity > 0.7 and gold_similarity > agent_similarity + 0.2:
                 sql_result_text = (
                     f"SQL_REJECTED_MINIMALITY_VIOLATION: The proposed SQL is too similar to GOLD SQL "
                     f"(similarity: {gold_similarity:.2f}) and not similar enough to AGENT SQL "
@@ -786,6 +788,8 @@ def generate_memory_diff_first_turn(
         if "NO_DIFF" in (text or ""):
             # Validate: if there's a clear structural difference, reject NO_DIFF
             # Check row counts: if SQL_RESULT is empty and GOLD has rows (or vice versa), reject NO_DIFF
+            value_tol = float(os.environ.get("NO_DIFF_VALUE_TOL", "0.05"))
+
             def _count_rows(csv_text: Optional[str]) -> int:
                 """Count data rows (excluding header) in CSV-like text"""
                 if not csv_text or csv_text.strip() == "":
@@ -797,6 +801,53 @@ def generate_memory_diff_first_turn(
                     return 0
                 # Count non-empty data lines (exclude header)
                 return len([l for l in lines[1:] if l.strip()])
+
+            def _extract_table_rows(text_blob: Optional[str]) -> List[List[str]]:
+                """Extract data rows from either CSV text or markdown table text."""
+                if not text_blob or not text_blob.strip():
+                    return []
+                txt = text_blob.strip()
+                lines = [ln.rstrip() for ln in txt.splitlines() if ln.strip()]
+                if not lines:
+                    return []
+                # Support markdown tables produced by format_csv_as_table.
+                if lines[0].strip().startswith("|") and len(lines) >= 2 and re.search(r"-{3,}", lines[1]):
+                    data_rows: List[List[str]] = []
+                    for ln in lines[2:]:
+                        if not ln.strip().startswith("|"):
+                            continue
+                        cells = [c.strip() for c in ln.strip().strip("|").split("|")]
+                        data_rows.append(cells)
+                    return data_rows
+                # Fall back to CSV parsing.
+                parsed = list(csv.reader(lines))
+                if len(parsed) <= 1:
+                    return []
+                return [[str(c).strip() for c in r] for r in parsed[1:]]
+
+            def _rows_match_with_tol(a_rows: List[List[str]], b_rows: List[List[str]], tol: float) -> Tuple[bool, str]:
+                if len(a_rows) != len(b_rows):
+                    return False, f"row_count_mismatch: {len(a_rows)} vs {len(b_rows)}"
+                for i, (ra, rb) in enumerate(zip(a_rows, b_rows)):
+                    if len(ra) != len(rb):
+                        return False, f"column_count_mismatch at row {i+1}: {len(ra)} vs {len(rb)}"
+                    for j, (ca, cb) in enumerate(zip(ra, rb)):
+                        sa = str(ca).strip()
+                        sb = str(cb).strip()
+                        if sa == sb:
+                            continue
+                        try:
+                            fa = float(sa)
+                            fb = float(sb)
+                            if abs(fa - fb) <= tol:
+                                continue
+                            return False, (
+                                f"value_mismatch at row {i+1}, col {j+1}: {fa} vs {fb} "
+                                f"(abs diff {abs(fa-fb):.6g} > tol {tol})"
+                            )
+                        except Exception:
+                            return False, f"value_mismatch at row {i+1}, col {j+1}: '{sa}' vs '{sb}'"
+                return True, ""
             
             gold_row_count = _count_rows(gold_result_csv_text) if gold_result_csv_text else 0
             # Get latest SQL_RESULT from messages if available
@@ -841,6 +892,25 @@ def generate_memory_diff_first_turn(
                         "content": f"ERROR: You declared NO_DIFF, but there is a clear STRUCTURAL DIFFERENCE: {reason}. You MUST examine the GOLD SQL carefully to understand how it retrieves the data (it may use different tables, joins, date calculations, or filters). Propose SQL edits based on the GOLD SQL approach. DO NOT declare NO_DIFF or MATCH_OK when row counts differ."
                     })
                     continue  # Continue the loop instead of returning
+
+            # Value-level validation: reject NO_DIFF if values still differ from GOLD.
+            sql_result_content = latest_sql_result.split("SQL_RESULT:\n")[-1] if latest_sql_result and "SQL_RESULT:\n" in latest_sql_result else (latest_sql_result or agent_result_csv_text or "")
+            sql_rows = _extract_table_rows(sql_result_content)
+            gold_rows = _extract_table_rows(gold_result_csv_text)
+            if sql_rows and gold_rows:
+                matches, reason = _rows_match_with_tol(sql_rows, gold_rows, value_tol)
+                if not matches:
+                    if verbose:
+                        print(f"[harness] Rejecting NO_DIFF: {reason}")
+                    messages.append({
+                        "role": "user",
+                        "content": (
+                            f"ERROR: You declared NO_DIFF, but SQL_RESULT still differs from GOLD: {reason}. "
+                            f"Numeric tolerance is {value_tol}. You MUST continue proposing minimal SQL edits. "
+                            f"Do NOT declare NO_DIFF or MATCH_OK until results match within tolerance."
+                        ),
+                    })
+                    continue
             
             # OLD CODE (disabled - was checking for unequal counts):
             # if sql_result_row_count is not None and gold_row_count != sql_result_row_count:
@@ -952,13 +1022,13 @@ def generate_rules_from_diff(
         "- DATABASE_MEMORIES: Database-specific memories focused on specific tables, columns, and operations for THIS database schema. These should reference exact table/column names from the DIFF/SQL when available. Frame them as validation checks advice or data insights for this specific database schema. These memories are reusable across questions on the same database.\n"
         "- GENERIC_MEMORIES: General lessons that apply across any database/question. These should abstract away specific table/column names and focus on SQL patterns, join logic, aggregation principles, etc.\n\n"
         "Output format (STRICT):\n"
-        "DATABASE_MEMORIES (one per line):\n"
+        "DATABASE_MEMORIES:\n"
         "Format: REMEMBER/VERIFY/ENSURE: <actionable advice for the validation agent for a future question on this database> | CONTEXT: <explain what ACTUAL DATABASE tables/columns are involved and why this matters> | WHEN_TO_CHECK: <describe when this validation applies using table/column names from the DATABASE, not CTE names> | EXAMPLE_USAGE: <detailed example with correct vs incorrect approach>\n"
         "Good example: ENSURE: when JOINING ball_by_ball and batsman_scored, make sure to include innings_no | CONTEXT: ball_by_ball table contains match_id, over_id, ball_id, innings_no; batsman_scored table contains match_id, over_id, ball_id, innings_no, runs_scored. When these tables are joined, all matching keys must be included to avoid cross-innings data misalignment | WHEN_TO_CHECK: When joining ball_by_ball with batsman_scored | EXAMPLE_USAGE: When joining these tables, verify the JOIN condition includes all matching keys: 'ON b.match_id = s.match_id AND b.over_id = s.over_id AND b.ball_id = s.ball_id AND b.innings_no = s.innings_no' is correct. Missing the innings_no condition (like 'ON b.match_id = s.match_id AND b.over_id = s.over_id AND b.ball_id = s.ball_id') causes runs from different innings to be incorrectly matched, leading to doubled values.\n"
         "Good example: REMEMBER: the data for pre-2000 races are in the results table. This table must be used in conjunction with constructor_standings for full races results data | CONTEXT: ... | WHEN_TO_CHECK: When performing queries about race results on F1 database | EXAMPLE_USAGE: ....\n"
         "BAD example (DO NOT DO THIS): ENSURE: In the city_pair_distances CTE, select dep_city_en AS city1... -- This is BAD because 'city_pair_distances' is a CTE name from one specific query, NOT a database table. Another question won't have that CTE. Instead, reference the actual tables: ENSURE: When computing distances between flight routes from the flights table joined with airports_data, treat departure→arrival pairs as directional...\n"
         "...\n\n"
-        "GENERIC_MEMORIES (one per line):\n"
+        "GENERIC_MEMORIES:\n"
         "Format: VERIFY/CHECK/ENSURE: <general validation principle> | PRINCIPLE: <explain the underlying SQL principle or pattern> | WHEN_TO_APPLY: <describe when this principle applies broadly> | EXAMPLE_USAGE: <detailed example showing: when you encounter situation X (without specific table names), then verify Y (with abstract SQL pattern showing correct vs incorrect approach)>\n"
         "Good example: VERIFY: JOIN clauses include all necessary composite keys | PRINCIPLE: When tables have multi-part primary/composite keys (e.g., match_id + innings_no, or order_id + item_id), all key components must be included in JOIN conditions to ensure correct record matching | WHEN_TO_APPLY: Whenever joining tables that have composite or multi-column keys, verify all key components are included in the JOIN ON clause | EXAMPLE_USAGE: When joining two tables with composite keys (e.g., table A has columns (id1, id2) and table B has columns (id1, id2, data)), verify the JOIN includes both: 'ON A.id1 = B.id1 AND A.id2 = B.id2' is correct. Missing one key component (like 'ON A.id1 = B.id1') can cause incorrect cross-matching where rows with same id1 but different id2 get incorrectly joined, leading to duplicated or misaligned data.\n"
         "...\n\n"
@@ -994,7 +1064,7 @@ def generate_rules_from_diff(
     return out.strip() if out else None
 
 
-def run_diff_for_instance(instance_id: str, outputs_dir: str, jsonl_path: Optional[str] = None, db_path: Optional[str] = None, max_turns: int = 6, model: str = "azure/o4-mini", debug: bool = False, hint: Optional[str] = None) -> None:
+def run_diff_for_instance(instance_id: str, outputs_dir: str, jsonl_path: Optional[str] = None, db_path: Optional[str] = None, max_turns: int = 6, model: str = "azure/o4-mini", debug: bool = False, hint: Optional[str] = None, sim_gate: bool = False) -> None:
     """
     Helper main to run interactive diff/repair for an instance using files under outputs_dir.
     Expects files: execution_query.sql, gt_query.sql, execution_result.csv, gt_result.csv, processed_trace.txt (optional).
@@ -1003,6 +1073,7 @@ def run_diff_for_instance(instance_id: str, outputs_dir: str, jsonl_path: Option
     Args:
         debug: If True, stop after getting diff results and write to debug_result.txt (skip tagging/indexing).
         hint: Optional hint to provide to the model when generating the diff.
+        sim_gate: If True, enable similarity-based minimality rejection against GOLD SQL.
     """
     out = Path(outputs_dir)
     # strict: require outputs_dir exists
@@ -1160,6 +1231,7 @@ def run_diff_for_instance(instance_id: str, outputs_dir: str, jsonl_path: Option
             model=model,
             verbose=True,
             hint=hint,
+            sim_gate=sim_gate,
         )
         print("\n=== FINAL OUTPUT ===")
         print(result)
@@ -1262,6 +1334,23 @@ def run_diff_for_instance(instance_id: str, outputs_dir: str, jsonl_path: Option
                 # Match GENERIC_MEMORIES: followed by content until end or next major section
                 mg = re.search(r"GENERIC_MEMORIES\s*:?\s*(.*?)(?=\s*(?:DATABASE_MEMORIES|QUESTION_MEMORIES|CLEAN_SUMMARY|$))", rules, flags=re.S | re.IGNORECASE)
                 g_block = mg.group(1).strip() if mg else ""
+                def _is_scaffold_line(line: str) -> bool:
+                    s = (line or "").strip().lower()
+                    if not s:
+                        return True
+                    if s in {
+                        "database_memories",
+                        "generic_memories",
+                        "question_memories",
+                        "(one per line):",
+                        "(one per line)",
+                        "one per line:",
+                        "one per line",
+                        "...",
+                    }:
+                        return True
+                    return False
+
                 def _split_items(block: str) -> List[str]:
                     lines = []
                     for ln in block.splitlines():
@@ -1271,8 +1360,10 @@ def run_diff_for_instance(instance_id: str, outputs_dir: str, jsonl_path: Option
                         # Skip if it's just the section header repeated
                         if ln.upper() in ["DATABASE_MEMORIES", "GENERIC_MEMORIES", "QUESTION_MEMORIES"]:
                             continue
-                        # remove leading numbering like '1) ' or bullets like '- '
-                        ln = re.sub(r"^[\d\)\-\•\*]\s*", "", ln)
+                        # Remove common list prefixes: bullets and numbered items.
+                        ln = re.sub(r"^(?:[-*•]\s+|\d+[\)\.\-:]\s+)", "", ln)
+                        if _is_scaffold_line(ln):
+                            continue
                         if ln:  # Only add non-empty lines
                             lines.append(ln)
                     return lines

@@ -181,6 +181,23 @@ def _extract_memories_from_rules(rules_text: str) -> Dict[str, List[str]]:
     q_block = mq.group(1).strip() if mq else ""
     g_block = mg.group(1).strip() if mg else ""
 
+    def _is_scaffold_line(line: str) -> bool:
+        s = (line or "").strip().lower()
+        if not s:
+            return True
+        if s in {
+            "database_memories",
+            "generic_memories",
+            "question_memories",
+            "(one per line):",
+            "(one per line)",
+            "one per line:",
+            "one per line",
+            "...",
+        }:
+            return True
+        return False
+
     def _split_items(block: str) -> List[str]:
         out: List[str] = []
         for ln in block.splitlines():
@@ -189,7 +206,10 @@ def _extract_memories_from_rules(rules_text: str) -> Dict[str, List[str]]:
                 continue
             if ln.upper() in {"DATABASE_MEMORIES", "GENERIC_MEMORIES", "QUESTION_MEMORIES"}:
                 continue
-            ln = re.sub(r"^[\d\)\-\•\*]\s*", "", ln)
+            # Remove common list prefixes: bullets and numbered items.
+            ln = re.sub(r"^(?:[-*•]\s+|\d+[\)\.\-:]\s+)", "", ln)
+            if _is_scaffold_line(ln):
+                continue
             if ln:
                 out.append(ln)
         return out
@@ -286,6 +306,7 @@ def build_knowledge_from_example(
     verbose: bool = True,
     hint: Optional[str] = None,
     debug: bool = False,
+    sim_gate: bool = False,
 ) -> Dict[str, Any]:
     """Build or extend tkstore from a single portable example.json.
 
@@ -383,6 +404,7 @@ def build_knowledge_from_example(
         verbose=verbose,
         hint=hint,
         debug_trace_path=trace_path,
+        sim_gate=sim_gate,
     ) or ""
     if debug and debug_dir is not None:
         (debug_dir / "diff_output.txt").write_text(diff_output, encoding="utf-8")
@@ -457,6 +479,7 @@ def build_knowledge_from_examples_dir(
     verbose: bool = True,
     hint: Optional[str] = None,
     debug: bool = False,
+    sim_gate: bool = False,
 ) -> List[Dict[str, Any]]:
     """Build or extend tkstore from all example.json files under a directory."""
     root = Path(examples_root).expanduser().resolve()
@@ -478,6 +501,7 @@ def build_knowledge_from_examples_dir(
                     verbose=verbose,
                     hint=hint,
                     debug=debug,
+                    sim_gate=sim_gate,
                 )
             )
         except Exception as e:
