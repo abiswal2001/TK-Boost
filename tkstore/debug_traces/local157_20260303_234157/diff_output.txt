@@ -1,0 +1,19 @@
+MAX_TURNS_REACHED
+OBSERVED_DIFFS:
+- previous_volume for BTC on 01-08-2021 is 27410.0 vs expected 44650.0 [STRUCTURAL]
+- daily_change for BTC on 01-08-2021 is 193.07 vs expected 79.91 [STRUCTURAL]
+- multiple subsequent previous_volume and daily_change values misaligned due to wrong ordering key [STRUCTURAL]
+- row count and ordering are correct but values diverge [STRUCTURAL]
+
+CUMULATIVE_EDITS:
+1) Removed initial date filter from CTE parsed [NECESSARY]  
+2) Re-added WHERE on SUBSTR(market_date) for August 1–10, 2021 [NECESSARY]  
+3) Switched SELECT volume to use parsed_volume instead of raw string [NECESSARY]  
+4) Added parsed_date as CAST of YYYYMMDD in CTE parsed [NECESSARY]  
+5) Applied WHERE p1.parsed_date BETWEEN 20210801 AND 20210810 in final query [NECESSARY]  
+
+MINIMAL_REQUIRED_EDITS:
+- Change all subquery predicates and ORDER BY from p2.market_date to p2.parsed_date (and p1.market_date to p1.parsed_date) to correctly pick the previous non-zero day [STRUCTURAL]
+
+CLEAN_SUMMARY:
+The core issue was ordering by the string market_date instead of the integer parsed_date in the correlated subqueries, causing wrong previous_volume and daily_change. Switching those comparisons and ORDER BY to parsed_date fixes the values.

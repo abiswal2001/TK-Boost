@@ -1145,11 +1145,11 @@ class MemoryIndex:
     """
     def __init__(self, index_path: str):
         self.idx_path = Path(index_path)
-        self.header = ["mem_id", "instance_id", "scope", "sql_operations", "table", "column", "data_type", "nulls", "rule"]
+        self.header = ["mem_id", "instance_id", "db", "scope", "sql_operations", "table", "column", "data_type", "nulls", "rule"]
 
     def append_tagged(self, tagged_obj: Dict[str, Any], out_dir: str, instance_id: str, verbose: bool = True) -> None:
         # store global memory index in configured memory folder
-        idx_path = Path(config.MEMORY_INDEX_PATH)
+        idx_path = self.idx_path
         header = self.header
         rows = []
 
@@ -1159,6 +1159,7 @@ class MemoryIndex:
             for ir in index_rows:
                 try:
                     scope = ir.get("scope", "db")  # Default to 'db' for database memories if not specified
+                    db_name = ir.get("db", tagged_obj.get("db", "all")) if isinstance(tagged_obj, dict) else "all"
                     ops = ir.get("sql_operations", [])
                     if not isinstance(ops, list):
                         ops = [ops]
@@ -1168,9 +1169,9 @@ class MemoryIndex:
                     data_type = ir.get("data_type", "unspecified") or "unspecified"
                     nulls = ir.get("nulls", "all") or "all"
                     rule = ir.get("rule", "")
-                    rows.append([instance_id, scope, ops_str, table, column, data_type, nulls, rule.replace('\n', ' ')])
+                    rows.append([instance_id, db_name or "all", scope, ops_str, table, column, data_type, nulls, rule.replace('\n', ' ')])
                 except Exception:
-                    rows.append([instance_id, "generic", "all", "all", "all", "unspecified", "all", json.dumps(ir, ensure_ascii=False)])
+                    rows.append([instance_id, "all", "generic", "all", "all", "all", "unspecified", "all", json.dumps(ir, ensure_ascii=False)])
         else:
             # Fallback: best-effort extraction using available fields
             def _normalize_ops(ops: Any) -> str:
@@ -1237,9 +1238,10 @@ class MemoryIndex:
                         table, column = _extract_table_col(data_objs)
                         data_type = _infer_data_type(data_objs, text)
                         nulls = _infer_nulls(data_objs, text)
-                        rows.append([instance_id, scope_name, ops, table, column, data_type, nulls, text.replace('\n', ' ')])
+                        db_name = (tagged_obj.get("db", "all") if isinstance(tagged_obj, dict) else "all") or "all"
+                        rows.append([instance_id, db_name, scope_name, ops, table, column, data_type, nulls, text.replace('\n', ' ')])
                     except Exception:
-                        rows.append([instance_id, scope_name, "all", "all", "all", "unspecified", "No", str(mem)])
+                        rows.append([instance_id, "all", scope_name, "all", "all", "all", "unspecified", "No", str(mem)])
 
         # write CSV (append)
         try:

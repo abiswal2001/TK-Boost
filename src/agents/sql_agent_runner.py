@@ -37,7 +37,6 @@ from src.utils.auth import configure_llm_env, USE_OPENAI
 
 
 # ----------------- LLM Provider Mapping -----------------
-USE_OPENAI = True
 AZURE_TO_OPENAI_MODEL = {
     "azure/gpt-4.1": "gpt-4.1",
     "azure/gpt-4o": "gpt-4o",
@@ -45,8 +44,17 @@ AZURE_TO_OPENAI_MODEL = {
 }
 
 
+def _is_openai_provider() -> bool:
+    """True when using OpenAI directly (not Azure)."""
+    if os.environ.get("OPENAI_API_KEY"):
+        return True
+    if os.environ.get("AZURE_API_KEY") or os.environ.get("AZURE_OPENAI_API_KEY"):
+        return False
+    return USE_OPENAI
+
+
 def llm_completion(model: str, messages: list, **params):
-    mapped_model = AZURE_TO_OPENAI_MODEL.get(model, model) if USE_OPENAI else model
+    mapped_model = AZURE_TO_OPENAI_MODEL.get(model, model) if _is_openai_provider() else model
     return litellm.completion(model=mapped_model, messages=messages, **params)
 
 

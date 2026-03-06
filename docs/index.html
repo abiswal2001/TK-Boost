@@ -41,7 +41,7 @@
       background: var(--bg); color: var(--text);
       line-height: 1.65; -webkit-font-smoothing: antialiased;
       transition: background 0.3s, color 0.3s;
-      height: 100vh; overflow: hidden;
+      overflow: auto;
     }
     a { color: var(--accent); text-decoration: none; }
 
@@ -72,12 +72,12 @@
     .theme-toggle:hover { color: var(--text); border-color: var(--border-light); }
 
     .page {
-      height: 100vh;
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      padding: 0 1.5rem; text-align: center;
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 5.5rem 1.5rem 2rem;
     }
 
-    .hero { max-width: 680px; width: 100%; }
+    .hero { max-width: 760px; width: 100%; text-align: center; margin: 0 auto; }
 
     .hero img.logo {
       height: 96px; margin-bottom: 0.9rem;
@@ -126,17 +126,91 @@
     .btn-ghost { border: 1px solid var(--border); color: var(--text-muted); background: transparent; }
     .btn-ghost:hover { border-color: var(--border-light); color: var(--text); background: var(--surface); }
 
+    .content {
+      max-width: 760px;
+      margin: 2.6rem auto 0;
+    }
+    .section {
+      margin-top: 2rem;
+      padding-top: 1.6rem;
+      border-top: 1px solid var(--border);
+    }
+    .section h2 {
+      font-size: 1.4rem;
+      margin-bottom: 0.7rem;
+      letter-spacing: -0.02em;
+    }
+    .section p, .section li {
+      color: var(--text-muted);
+      font-size: 1rem;
+      line-height: 1.75;
+    }
+    .section ul {
+      margin-left: 1.1rem;
+      margin-top: 0.4rem;
+    }
+    .section code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-size: 0.85em;
+      background: rgba(127,127,127,0.12);
+      border-radius: 4px;
+      padding: 0.08rem 0.28rem;
+    }
+    .section pre {
+      margin-top: 0.7rem;
+      background: rgba(127,127,127,0.08);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.8rem 0.9rem;
+      overflow-x: auto;
+      font-size: 0.84rem;
+      line-height: 1.55;
+      color: var(--text);
+    }
+    .inline-link {
+      font-weight: 600;
+    }
+    details.expand {
+      margin-top: 0.8rem;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.65rem 0.8rem;
+      background: rgba(127,127,127,0.05);
+    }
+    details.expand summary {
+      cursor: pointer;
+      color: var(--text);
+      font-weight: 600;
+      font-size: 0.94rem;
+      list-style: none;
+    }
+    details.expand summary::-webkit-details-marker { display: none; }
+    details.expand summary::before {
+      content: "▸";
+      color: var(--text-dim);
+      margin-right: 0.45rem;
+      display: inline-block;
+      transition: transform 0.15s ease;
+    }
+    details.expand[open] summary::before {
+      transform: rotate(90deg);
+    }
+    .note {
+      margin-top: 0.75rem;
+      font-size: 0.86rem;
+      color: var(--text-dim);
+    }
+
     footer {
-      position: fixed; bottom: 0; width: 100%;
+      width: 100%;
       padding: 0.85rem 0; border-top: 1px solid var(--border);
       text-align: center; color: var(--text-dim); font-size: 0.75rem;
       background: var(--bg);
+      margin-top: 2rem;
     }
 
     @media (max-width: 600px) {
-      body { overflow: auto; height: auto; }
-      .page { height: auto; padding-top: 5.5rem; padding-bottom: 4rem; }
-      footer { position: static; }
+      .page { padding-top: 5.2rem; }
     }
     @media (max-height: 650px) {
       .hero img.logo { height: 64px; margin-bottom: 0.6rem; }
@@ -153,6 +227,7 @@
     <div class="right">
       <div class="links">
         <a href="blog.html">Blog</a>
+        <a href="usage.html">Usage</a>
         <a href="https://arxiv.org/abs/2602.13521">Paper</a>
         <a href="https://github.com/abiswal2001/TK-Boost">GitHub</a>
       </div>
@@ -179,6 +254,90 @@
       <a href="https://github.com/abiswal2001/TK-Boost" class="btn btn-ghost">🔗 GitHub</a>
       <a href="blog.html" class="btn btn-ghost">✍️ Blog Post</a>
     </div>
+  </div>
+
+  <div class="content">
+    <section class="section">
+      <h2>Overview</h2>
+      <p>
+        TK-Boost is a bolt-on framework for improving NL2SQL reliability on real databases.
+        Instead of only relying on prompt engineering or past query retrieval, TK-Boost learns
+        reusable <em>tribal knowledge</em>: corrective rules derived from real mistakes.
+      </p>
+      <ul>
+        <li>Finds recurring SQL/data misconceptions from training examples.</li>
+        <li>Stores them as structured, searchable knowledge.</li>
+        <li>Applies the right checks at refinement time (e.g., CTE-level correction).</li>
+        <li>Works across engines (SQLite today; Snowflake, BigQuery, and Postgres support in code paths).</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>Quickstart: Build Tribal Knowledge on Your Data</h2>
+      <p>
+        Quickstart should only need translation, knowledge generation, and refinement.
+      </p>
+      <p><strong>Step 1 — Initialize + translate question to SQL with a ReAct agent</strong></p>
+      <pre><code>import tkboost
+from tkboost import SQLiteExecutor, SQLAgent
+
+tkboost.init(provider="auto", model="azure/gpt-5")
+
+executor = SQLiteExecutor("tkstore/example/Baseball.sqlite")
+agent = SQLAgent()
+
+draft = agent.translate(
+    question="Compute the average career span in years for baseball players.",
+    executor=executor,
+    db_name="Baseball",
+)</code></pre>
+
+      <p><strong>Step 2 — Generate/update tribal knowledge store</strong></p>
+      <pre><code>store = tkboost.generate(
+    example_json="tkstore/example/example.json",  # local007
+    store="tkstore/tkstore_example.csv",
+    executor=executor,
+    debug=True,
+)</code></pre>
+
+      <p><strong>Step 3 — Refine the same draft using TK (no draft regeneration)</strong></p>
+      <pre><code>result = tkboost.sql(
+    draft=draft["sql"],
+    executor=executor,
+    store=store,
+    db_name="Baseball",
+)</code></pre>
+
+      <p><strong>Step 4 — Compare agent vs refined outputs (quick quality check)</strong></p>
+      <pre><code>from pathlib import Path
+
+gold_sql = Path("tkstore/example/gold.sql").read_text(encoding="utf-8")
+
+_, agent_rows = executor.execute(draft["sql"])
+_, refined_rows = executor.execute(result["refined_sql"])
+_, gold_rows = executor.execute(gold_sql)
+
+print("agent:", agent_rows[:3])
+print("refined:", refined_rows[:3])
+print("gold:", gold_rows[:3])</code></pre>
+
+      <p><strong>Optional — visualize and edit your store</strong></p>
+      <pre><code>store.visualize(port=8501)</code></pre>
+
+      <p>
+        You can pass either <code>example_json</code> (single example) or <code>examples_dir</code> (batch of example folders).
+        In practice, most workflows use <code>examples_dir</code>; <code>example_json</code> is useful for one-off debugging.
+      </p>
+      <p class="note">
+        For full setup (Spider2 data layout, preparing your own examples, and more runnable templates), see
+        <a class="inline-link" href="usage.html">Usage</a>.
+      </p>
+
+      <p class="note">
+        Formal parameter-by-parameter API docs live in
+        <a class="inline-link" href="https://github.com/abiswal2001/TK-Boost/blob/main/docs/API_SUMMARY.md">API_SUMMARY.md</a>.
+      </p>
+    </section>
   </div>
 </div>
 

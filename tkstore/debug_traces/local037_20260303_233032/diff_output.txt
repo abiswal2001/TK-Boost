@@ -1,0 +1,9 @@
+CUMULATIVE_EDITS:
+1) Replace COUNT(*) with COUNT(DISTINCT p.order_id) in category_payments CTE — [NECESSARY]
+
+MINIMAL_REQUIRED_EDITS:
+- Replace `COUNT(*)` with `COUNT(DISTINCT p.order_id) AS payment_count` in the `category_payments` CTE
+
+EVIDENCE: Payment_count values for `cama_mesa_banho` (7540), `beleza_saude` (6874), and `esporte_lazer` (5904) now exactly match the GOLD result.
+
+CLEAN_SUMMARY: Changing the aggregation to `COUNT(DISTINCT p.order_id)` fixes overcounting of multiple payment records per order, producing the correct distinct order counts per category.

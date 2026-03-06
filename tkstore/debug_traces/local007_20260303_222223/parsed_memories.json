@@ -1,0 +1,31 @@
+{
+  "database_memories": [
+    "ENSURE: Use strftime‐based year difference for final_game and debut instead of julianday division | CONTEXT: The table contains date columns final_game and debut storing player career endpoints; calculating year spans via julianday/365 led to small rounding errors | WHEN_TO_CHECK: When computing total career length in years from final_game and debut | EXAMPLE_USAGE:",
+    "Incorrect:",
+    "SELECT ABS((julianday(final_game) - julianday(debut)) / 365) AS career_years",
+    "Correct:",
+    "SELECT ABS(",
+    "CAST(strftime('%Y', final_game) AS INTEGER)",
+    "CAST(strftime('%Y', debut) AS INTEGER)",
+    "AS career_years",
+    "ENSURE: Compute fractional months with strftime month subtraction divided by 12.0, not julianday modulus arithmetic | CONTEXT: Approximating month differences via (julianday(...) % 365) / 30.44 caused drift; month numbers are exact integers | WHEN_TO_CHECK: When deriving the portion of a year from month differences between two dates | EXAMPLE_USAGE:",
+    "Incorrect:",
+    "SELECT ROUND(ABS(((julianday(final_game) - julianday(debut)) % 365) / 30.44), 2) / 12 AS career_months_fraction",
+    "Correct:",
+    "SELECT ROUND(",
+    "ABS(CAST(strftime('%m', final_game) AS INTEGER)",
+    "CAST(strftime('%m', debut) AS INTEGER))",
+    "/ 12.0, 2",
+    "AS career_months_fraction"
+  ],
+  "generic_memories": [
+    "VERIFY: Date‐difference calculations should leverage date extraction functions rather than raw day count division | PRINCIPLE: Directly extracting year or month components avoids imprecision inherent in dividing day counts by average lengths | WHEN_TO_APPLY: Whenever computing intervals in years or months between two date fields | EXAMPLE_USAGE:",
+    "When you need years between date1 and date2:",
+    "Incorrect: ABS((julianday(date2)-julianday(date1))/365)",
+    "Correct: ABS(CAST(strftime('%Y', date2) AS INTEGER) - CAST(strftime('%Y', date1) AS INTEGER))",
+    "ENSURE: Fractional year components are calculated via precise component subtraction and proper division | PRINCIPLE: Using modulus on day differences and average month lengths can misalign actual calendar months; subtracting month integers yields exact month spans | WHEN_TO_APPLY: When decomposing a time span into integer years plus fractional months | EXAMPLE_USAGE:",
+    "To get months fraction after full years:",
+    "Incorrect: ROUND((julianday(date2)-julianday(date1)) % 365 / 30.44, 2) / 12",
+    "Correct: ROUND(ABS(CAST(strftime('%m', date2) AS INTEGER) - CAST(strftime('%m', date1) AS INTEGER)) / 12.0, 2)"
+  ]
+}

@@ -1,6 +1,6 @@
 # Evaluation
 
-Evaluation suite for Spider2-lite outputs.
+This page explains how to reproduce the paper's Spider2 evaluation results from TK-Boost outputs.
 
 ## Setup
 

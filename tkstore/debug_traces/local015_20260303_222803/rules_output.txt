@@ -1,0 +1,37 @@
+DATABASE_MEMORIES:
+ENSURE: when constructing the helmet_status CTE to separate helmet_used vs helmet_not_used, include an EXISTS subquery on the parties table that filters for party_safety_equipment_1 or party_safety_equipment_2 LIKE '%motorcycle%' | CONTEXT: collisions c CTE must only include cases where at least one party actually has motorcycle safety equipment recorded in parties.party_safety_equipment_1 or parties.party_safety_equipment_2; omitting this filter causes irrelevant cases to be counted and skews percent_killed_helmet_not_used | WHEN_TO_CHECK: When defining helmet_status CTE in any query that segments collisions by helmet usage | EXAMPLE_USAGE:  
+Correct:  
+WITH helmet_status AS (  
+  SELECT c.case_id, …  
+  FROM collisions c  
+  WHERE c.start_time BETWEEN '2012-05-01' AND '2013-04-30'  
+    AND c.collision_type = 'motorcycle'  
+    AND EXISTS (  
+      SELECT 1  
+      FROM parties p  
+      WHERE p.case_id = c.case_id  
+        AND (p.party_safety_equipment_1 LIKE '%motorcycle%'  
+             OR p.party_safety_equipment_2 LIKE '%motorcycle%')  
+    )  
+)  
+Incorrect (missing filter):  
+WITH helmet_status AS (  
+  SELECT c.case_id, …  
+  FROM collisions c  
+  WHERE c.start_time BETWEEN '2012-05-01' AND '2013-04-30'  
+    AND c.collision_type = 'motorcycle'  
+);
+
+GENERIC_MEMORIES:
+VERIFY: use an EXISTS (or IN) subquery to restrict a CTE or derived table to only those rows that have matching records meeting specific criteria in a related table | PRINCIPLE: segmenting data into categories based on attributes stored in a secondary table requires an explicit existence check; otherwise, aggregates will include rows that don’t actually belong to the intended subset | WHEN_TO_APPLY: Whenever you create a CTE or derived table that splits data by a property defined in another table | EXAMPLE_USAGE:  
+When splitting orders into “priority” vs “non_priority” you should write:  
+WITH priority_orders AS (  
+  SELECT o.*  
+  FROM orders o  
+  WHERE EXISTS (  
+    SELECT 1 FROM customers c  
+    WHERE c.customer_id = o.customer_id  
+      AND c.priority_flag = 'Y'  
+  )  
+)  
+Instead of omitting the EXISTS clause and accidentally including all orders regardless of customer priority.

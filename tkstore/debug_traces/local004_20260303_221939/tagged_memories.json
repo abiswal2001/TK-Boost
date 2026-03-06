@@ -1,0 +1,72 @@
+{
+  "instance_id": "local004",
+  "user_query": "Could you tell me the number of orders, average payment per order and customer lifespan in weeks of the 3 custumers with the highest average payment per order, where the lifespan is calculated by subtracting the earliest purchase date from the latest purchase date in days, dividing by seven, and if the result is less than seven days, setting it to 1.0?",
+  "db": "E_commerce",
+  "clean_summary": "AOV was showing decimals but gold requires integer values; casting AOV to integer fixed the discrepancy.",
+  "database_memories": [
+    "ENSURE: CAST the AOV column to INTEGER in the final SELECT | CONTEXT: The AOV field in the order_metrics (or equivalent) result set is calculated as a decimal average by default, but the gold standard expects integer values | WHEN_TO_CHECK: Anytime you include AOV in a SELECT for reporting or comparison against the gold output | EXAMPLE_USAGE:",
+    "Correct:",
+    "SELECT CAST(AOV AS INTEGER) AS AOV",
+    "FROM order_metrics;",
+    "Incorrect:",
+    "SELECT AOV",
+    "FROM order_metrics;  -- returns decimals and causes mismatches"
+  ],
+  "generic_memories": [
+    "VERIFY: output numeric columns match the expected integer or decimal type | PRINCIPLE: Ensuring the data type of numeric results aligns with the specification prevents assertion failures when comparing to a gold standard or expected output | WHEN_TO_APPLY: Whenever an expression or aggregation yields a different numeric type (e.g., decimal) than what the output spec calls for (e.g., integer) | EXAMPLE_USAGE:",
+    "If integers are expected:",
+    "Correct: SELECT CAST(AVG(score) AS INTEGER) AS avg_score",
+    "Incorrect: SELECT AVG(score) AS avg_score  -- yields decimals that may not match tests"
+  ],
+  "index_rows": [
+    {
+      "scope": "db",
+      "sql_operations": [
+        "cast"
+      ],
+      "table": "order_metrics",
+      "column": "order_metrics.AOV",
+      "data_type": "int",
+      "nulls": "all",
+      "applies_when": "when include AOV in select",
+      "rule": "ENSURE: CAST the AOV column to INTEGER in the final SELECT | CONTEXT: The AOV field in the order_metrics (or equivalent) result set is calculated as a decimal average by default, but the gold standard expects integer values | WHEN_TO_CHECK: Anytime you include AOV in a SELECT for reporting or comparison against the gold output | EXAMPLE_USAGE:\nCorrect:\nSELECT CAST(AOV AS INTEGER) AS AOV\nFROM order_metrics;\nIncorrect:\nSELECT AOV\nFROM order_metrics;  -- returns decimals and causes mismatches",
+      "search_keywords": [
+        "cast"
+      ]
+    },
+    {
+      "scope": "generic",
+      "sql_operations": [
+        "aggregation",
+        "cast"
+      ],
+      "table": "all",
+      "column": "all",
+      "data_type": "all",
+      "nulls": "all",
+      "applies_when": "when expression yields different numeric type",
+      "rule": "VERIFY: output numeric columns match the expected integer or decimal type | PRINCIPLE: Ensuring the data type of numeric results aligns with the specification prevents assertion failures when comparing to a gold standard or expected output | WHEN_TO_APPLY: Whenever an expression or aggregation yields a different numeric type (e.g., decimal) than what the output spec calls for (e.g., integer) | EXAMPLE_USAGE:\nIf integers are expected:\nCorrect: SELECT CAST(AVG(score) AS INTEGER) AS avg_score\nIncorrect: SELECT AVG(score) AS avg_score  -- yields decimals that may not match tests",
+      "search_keywords": [
+        "aggregation",
+        "cast"
+      ]
+    }
+  ],
+  "grounding": [
+    {
+      "row": 0,
+      "token": "cast",
+      "evidence": "CAST(AOV AS"
+    },
+    {
+      "row": 1,
+      "token": "aggregation",
+      "evidence": "GROUP BY"
+    },
+    {
+      "row": 1,
+      "token": "cast",
+      "evidence": "CAST(AVG(score"
+    }
+  ]
+}

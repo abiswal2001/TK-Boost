@@ -1,0 +1,14 @@
+{
+  "example_id": "local007",
+  "db_name": "Baseball",
+  "engine": "sqlite",
+  "question": "Could you help me calculate the average single career span value in years for all baseball players? Please precise the result as a float number. First, calculate the difference in years, months, and days between the debut and final game dates. For each player, the career span is computed as the sum of the absolute number of years, plus the absolute number of months divided by 12, plus the absolute number of days divided by 365. Round each part to two decimal places before summing. Finally, average the career spans and round the result to a float number.",
+  "db_path": "Baseball.sqlite",
+  "gold_sql_path": "gold.sql",
+  "agent_sql_path": "execution_query.sql",
+  "gold_result_path": "gt_result.csv",
+  "agent_result_path": "execution_result.csv",
+  "db_info_path": null,
+  "external_evidence_path": null,
+  "credential_path": null
+}
