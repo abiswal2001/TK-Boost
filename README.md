@@ -89,6 +89,8 @@ find /tmp/spider2-localdb -name "Baseball.sqlite" -exec cp {} tkstore/example/ \
 rm -rf /tmp/spider2-localdb /tmp/spider2-localdb.zip
 ```
 
+See TK-Boost in action yourself through the example below, or [visualize](#visualize-spider-2-tribal-knowledge) tribal knowledge from Spider-2.
+
 ### 4. Run the example
 
 One-liner:
