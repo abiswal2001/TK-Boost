@@ -23,9 +23,12 @@ def _load_store_rows(store_path: str) -> List[Dict[str, Any]]:
 
 
 def _write_store_rows(store_path: str, rows: List[Dict[str, Any]]) -> None:
-    if not rows:
-        return
     p = Path(store_path)
+    if not rows:
+        existing = _load_store_rows(store_path)
+        if existing:
+            return
+        return
     fieldnames = list(rows[0].keys())
     with open(p, "w", encoding="utf-8", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=fieldnames)

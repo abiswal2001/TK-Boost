@@ -265,7 +265,8 @@ def evaluate_spider2sql(args):
     mode = args.mode
     gold_result_dir = os.path.join(args.gold_dir, "exec_result")
 
-    eval_standard_dict = load_jsonl_to_dict("spider2lite_eval.jsonl")
+    eval_jsonl = os.path.join(args.gold_dir, "spider2lite_eval.jsonl")
+    eval_standard_dict = load_jsonl_to_dict(eval_jsonl)
 
     gold_ids = list(eval_standard_dict.keys())
     pred_ids = []
@@ -384,6 +385,7 @@ def evaluate_spider2sql(args):
         # print(f"Evaluating {id}...")
         error_info = None
         score = 0
+        score_final = 0
         assistant_turns = None
         try:
             pred_csv_path = pred_paths.get(id)

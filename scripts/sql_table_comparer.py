@@ -19,7 +19,7 @@ import litellm
 
 # ----------------- Configuration -----------------
 AZURE_API_KEY = os.environ.get("AZURE_API_KEY")
-AZURE_API_BASE = os.environ.get("AZURE_API_BASE", "https://east-docetl.openai.azure.com/")
+AZURE_API_BASE = os.environ.get("AZURE_API_BASE")
 AZURE_API_VERSION = os.environ.get("AZURE_API_VERSION", "2024-12-01-preview")
 
 # Set up environment
@@ -67,7 +67,8 @@ def get_database_schema_for_instance(instance_id: str) -> Dict[str, List[Dict]]:
     # Fallback to SQLite for local instances
     db_name = None
     try:
-        with open('questions_bq/spider2-lite.jsonl', 'r') as f:
+        jsonl_path = os.path.join("data", "spider2-lite.jsonl")
+        with open(jsonl_path, 'r') as f:
             for line in f:
                 if line.strip():
                     data = json.loads(line.strip())
@@ -80,8 +81,8 @@ def get_database_schema_for_instance(instance_id: str) -> Dict[str, List[Dict]]:
     if not db_name:
         raise FileNotFoundError(f"Could not find database name for instance {instance_id}")
     
-    # Look for the database file using the correct path
-    db_path = f"/Users/cusgadmin/Documents/StructuredMemory/structuredagentmemory/data/{instance_id}/{db_name}.sqlite"
+    # Look for the database file using relative project paths
+    db_path = os.path.join("data", "spider2", instance_id, f"{db_name}.sqlite")
     
     if not os.path.exists(db_path):
         raise FileNotFoundError(f"Database file not found: {db_path}")

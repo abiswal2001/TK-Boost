@@ -313,6 +313,7 @@ def run_agent(inst: Instance,
         {"role": "user", "content": build_user_message(inst, predicted_cte_hint, predicted_schema_hint, schema_context, external_knowledge, expected_output_format)},
     ]
     final_sql = None
+    sql_text = ""
 
     for turn in range(1, max_turns + 1):
         if verbose:
@@ -380,8 +381,7 @@ def run_agent(inst: Instance,
             continue
 
     if not final_sql:
-        # fallback: take last executed SQL if any
-        final_sql = sql_text if 'sql_text' in locals() else ""
+        final_sql = sql_text
 
     # Execute final SQL for output
     headers, rows = (None, [])
