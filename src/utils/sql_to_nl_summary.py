@@ -28,7 +28,7 @@ import litellm
 
 # Inline Azure credentials (load from environment) and export env vars
 AZURE_API_KEY = os.environ.get("AZURE_API_KEY")
-AZURE_API_BASE = os.environ.get("AZURE_API_BASE", "https://east-docetl.openai.azure.com/")
+AZURE_API_BASE = os.environ.get("AZURE_API_BASE")
 AZURE_API_VERSION = os.environ.get("AZURE_API_VERSION", "2024-12-01-preview")
 
 if AZURE_API_KEY:
@@ -43,7 +43,7 @@ if AZURE_API_KEY:
 
 PROJECT_ROOT = Path(__file__).parent
 GT_META_CSV = PROJECT_ROOT / "bq_gt_sql_metadata.csv"
-QUESTIONS_JSONL = Path("questions_bq/gt_bq_questions.jsonl")
+QUESTIONS_JSONL = Path("data/gt_bq_questions.jsonl")
 GROUND_TRUTH_DIR = PROJECT_ROOT / "correctbqsqls"
 OUT_CSV_DEFAULT = PROJECT_ROOT / "bq_sql_nl_summaries.csv"
 OUT_CSV_TAX = PROJECT_ROOT / "bq_sql_nl_summaries_taxonomy.csv"

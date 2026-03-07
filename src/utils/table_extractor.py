@@ -44,7 +44,7 @@ import litellm
 
 # ----------------- Configuration -----------------
 AZURE_API_KEY = os.environ.get("AZURE_API_KEY")
-AZURE_API_BASE = os.environ.get("AZURE_API_BASE", "https://east-docetl.openai.azure.com/")
+AZURE_API_BASE = os.environ.get("AZURE_API_BASE")
 AZURE_API_VERSION = os.environ.get("AZURE_API_VERSION", "2024-12-01-preview")
 
 # Set up environment (match sql_agent_runner.py)
@@ -205,7 +205,7 @@ def main():
     parser.add_argument('--min-overlap', type=int, default=1, help='Minimum number of overlapping tables to include a pair')
     parser.add_argument('--correct-ids', type=str, default='outputs_vanilla/correct_ids.csv', help='Path to correct_ids.csv to mark success flags')
     parser.add_argument('--model', type=str, default='azure/gpt-4o', help='LLM model identifier for litellm')
-    parser.add_argument('--questions-jsonl', type=str, default='questions_bq/spider2-lite.jsonl', help='Questions JSONL path to enrich db per instance')
+    parser.add_argument('--questions-jsonl', type=str, default='data/spider2-lite.jsonl', help='Questions JSONL path to enrich db per instance')
     args = parser.parse_args()
 
     out_path = Path(args.out_csv)

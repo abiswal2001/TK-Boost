@@ -28,7 +28,7 @@ def _is_openai_provider() -> bool:
         return True
     if os.environ.get("AZURE_API_KEY") or os.environ.get("AZURE_OPENAI_API_KEY"):
         return False
-    return True
+    return False
 
 
 def llm(model: str, messages: list, **kwargs):

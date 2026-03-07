@@ -35,7 +35,8 @@ class SnowflakeExecutor(Executor):
         if self._conn is None:
             if snowflake is None:
                 raise RuntimeError("snowflake-connector-python not installed. Install it to use SnowflakeExecutor.")
-            creds = json.load(open(self.credential_path))
+            with open(self.credential_path, "r", encoding="utf-8") as f:
+                creds = json.load(f)
             self._conn = snowflake.connector.connect(**creds)
             self._cursor = self._conn.cursor()
 

@@ -1181,7 +1181,7 @@ class MemoryIndex:
                     return ";".join([str(o).lower() for o in ops])
                 return str(ops).lower()
 
-            def _extract_table_col(data_objs: List[str]) -> (str, str):
+            def _extract_table_col(data_objs: List[str]):
                 table = "all"
                 column = "all"
                 for d in data_objs:

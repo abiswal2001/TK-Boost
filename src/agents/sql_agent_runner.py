@@ -313,6 +313,7 @@ def run_agent(inst: Instance,
         {"role": "user", "content": build_user_message(inst, predicted_cte_hint, predicted_schema_hint, schema_context, external_knowledge, expected_output_format)},
     ]
     final_sql = None
+    sql_text = ""
 
     for turn in range(1, max_turns + 1):
         if verbose:
@@ -380,8 +381,7 @@ def run_agent(inst: Instance,
             continue
 
     if not final_sql:
-        # fallback: take last executed SQL if any
-        final_sql = sql_text if 'sql_text' in locals() else ""
+        final_sql = sql_text
 
     # Execute final SQL for output
     headers, rows = (None, [])
@@ -814,7 +814,7 @@ def main():
     p = argparse.ArgumentParser(description="SQL Agent Runner")
     p.add_argument("--instance-id", action="append", default=[], help="Instance ID to run; can repeat")
     p.add_argument("--run-all-from-file", action="store_true", help="Run all instances from JSONL path")
-    p.add_argument("--jsonl-path", default="questions_bq/spider2-lite.jsonl", help="JSONL path with instances")
+    p.add_argument("--jsonl-path", default="data/spider2-lite.jsonl", help="JSONL path with instances")
     # Engine and credential inference from instance_id; no explicit args required
     p.add_argument("--model", default="azure/gpt-4.1", help="LLM model")
     p.add_argument("-c", "--predicted-cte-briefs-csv", default=None, help="CSV path for predicted CTE briefs")
