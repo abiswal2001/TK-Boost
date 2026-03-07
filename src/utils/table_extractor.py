@@ -205,7 +205,7 @@ def main():
     parser.add_argument('--min-overlap', type=int, default=1, help='Minimum number of overlapping tables to include a pair')
     parser.add_argument('--correct-ids', type=str, default='outputs_vanilla/correct_ids.csv', help='Path to correct_ids.csv to mark success flags')
     parser.add_argument('--model', type=str, default='azure/gpt-4o', help='LLM model identifier for litellm')
-    parser.add_argument('--questions-jsonl', type=str, default='questions_bq/spider2-lite.jsonl', help='Questions JSONL path to enrich db per instance')
+    parser.add_argument('--questions-jsonl', type=str, default='data/spider2-lite.jsonl', help='Questions JSONL path to enrich db per instance')
     args = parser.parse_args()
 
     out_path = Path(args.out_csv)

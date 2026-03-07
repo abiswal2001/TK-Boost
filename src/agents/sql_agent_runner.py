@@ -814,7 +814,7 @@ def main():
     p = argparse.ArgumentParser(description="SQL Agent Runner")
     p.add_argument("--instance-id", action="append", default=[], help="Instance ID to run; can repeat")
     p.add_argument("--run-all-from-file", action="store_true", help="Run all instances from JSONL path")
-    p.add_argument("--jsonl-path", default="questions_bq/spider2-lite.jsonl", help="JSONL path with instances")
+    p.add_argument("--jsonl-path", default="data/spider2-lite.jsonl", help="JSONL path with instances")
     # Engine and credential inference from instance_id; no explicit args required
     p.add_argument("--model", default="azure/gpt-4.1", help="LLM model")
     p.add_argument("-c", "--predicted-cte-briefs-csv", default=None, help="CSV path for predicted CTE briefs")
