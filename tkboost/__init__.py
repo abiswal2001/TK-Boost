@@ -506,10 +506,18 @@ def sql(
     db_name: Optional[str] = None,
     db_info: Optional[str] = None,
     use_llm_filtering: bool = False,
+    max_turns: int = 10,
+    min_probes: int = 3,
+    verbose: bool = False,
 ) -> Dict[str, Any]:
     """Refine SQL using tribal knowledge from a store.
 
-    If `draft` is not provided, a draft is generated from `question` using init() credentials.
+    Uses the CTE refiner's multi-turn agentic loop for iterative
+    refinement with DB probing.  Falls back to single-shot refinement
+    when no SQLite executor is available.
+
+    If `draft` is not provided, a draft is generated from `question`
+    using init() credentials.
     """
     store_path = store.path if isinstance(store, TKStore) else store
     if not store_path:
@@ -543,6 +551,56 @@ def sql(
             rule_lines.append(f"- {txt}")
     rules_block = "\n".join(rule_lines) if rule_lines else "- No matching tribal knowledge rules found."
 
+    # --- Multi-turn refinement via cte_refiner (SQLite only) ---
+    db_path = getattr(executor, "db_path", None) if executor else None
+    if db_path and isinstance(executor, SQLiteExecutor):
+        from src.agents.cte_refiner import run_refiner
+
+        cte_goal = (
+            "Refine this SQL query so it returns the correct result. "
+            "Use these tribal knowledge rules as guidance:\n\n"
+            f"{rules_block}"
+        )
+        verdict = run_refiner(
+            instance_id="",
+            db_id="",
+            user_query=question or "Refine the SQL query to return correct results.",
+            cte_text=draft_sql,
+            cte_goal=cte_goal,
+            model=effective_model,
+            max_turns=max_turns,
+            min_required_sql=min_probes,
+            verbose=verbose,
+            db_path=db_path,
+        )
+
+        refined_sql = draft_sql
+        if verdict.get("status") == "issues" and verdict.get("suggested_fix_sql"):
+            refined_sql = verdict["suggested_fix_sql"]
+        elif verdict.get("status") == "ok":
+            refined_sql = draft_sql
+
+        execution: Dict[str, Any] = {"ok": None, "error": None, "preview_headers": None, "preview_rows": None}
+        if executor is not None:
+            try:
+                headers, rows = executor.execute(refined_sql)
+                execution["ok"] = True
+                execution["preview_headers"] = headers
+                execution["preview_rows"] = [list(r) for r in rows[:10]]
+            except Exception as e:
+                execution["ok"] = False
+                execution["error"] = str(e)
+
+        return {
+            "draft_sql": draft_sql,
+            "refined_sql": refined_sql,
+            "rule_count": len(rules),
+            "rules_used": rules[:40],
+            "execution": execution,
+            "verdict": verdict,
+        }
+
+    # --- Fallback: single-shot refinement (non-SQLite or no executor) ---
     refine_prompt = (
         "You are a SQL refiner. Improve the DRAFT SQL using only relevant tribal knowledge rules.\n"
         "Return ONLY the corrected SQL (prefer ```sql fenced block```), no explanation.\n\n"
@@ -562,7 +620,7 @@ def sql(
         content = getattr(resp.choices[0].message, "content", "")
     refined_sql = _extract_sql_from_text(content or "") or draft_sql
 
-    execution: Dict[str, Any] = {"ok": None, "error": None, "preview_headers": None, "preview_rows": None}
+    execution = {"ok": None, "error": None, "preview_headers": None, "preview_rows": None}
     if executor is not None:
         try:
             headers, rows = executor.execute(refined_sql)

@@ -208,7 +208,7 @@ def load_ground_truth(instance_id: str) -> Tuple[Optional[str], Optional[List[Tu
     """
     # Try to load SQL query
     gt_query = None
-    sql_file_path = Path(f"ground_truth_union/{instance_id}.sql")
+    sql_file_path = Path(f"evaluation/gold/sql/{instance_id}.sql")
     if sql_file_path.exists():
         gt_query = sql_file_path.read_text().strip()
     

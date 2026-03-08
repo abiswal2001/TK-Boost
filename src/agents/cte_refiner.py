@@ -28,7 +28,7 @@ def _is_openai_provider() -> bool:
         return True
     if os.environ.get("AZURE_API_KEY") or os.environ.get("AZURE_OPENAI_API_KEY"):
         return False
-    return False
+    return True
 
 
 def llm(model: str, messages: list, **kwargs):
@@ -283,8 +283,9 @@ Only when confident, emit a single <verdict_json> containing:
 """
 
 
-def run_refiner(instance_id: str, db_id: str, user_query: str, cte_text: str, cte_goal: str, predicted_ctes: str = None, previous_ctes: str = None, model: str = "azure/gpt-4.1", max_turns: int = 30, verbose: bool = True, trace_output_path: str = None, use_all_rules: bool = False, tribalknowledge_generic_only: bool = True, external_knowledge: str = None, schema_context: str = None):
-    db_path = get_database_path(instance_id, db_id)
+def run_refiner(instance_id: str, db_id: str, user_query: str, cte_text: str, cte_goal: str, predicted_ctes: str = None, previous_ctes: str = None, model: str = "azure/gpt-4.1", max_turns: int = 30, verbose: bool = True, trace_output_path: str = None, use_all_rules: bool = False, tribalknowledge_generic_only: bool = True, external_knowledge: str = None, schema_context: str = None, db_path: str = None, min_required_sql: int = None):
+    if not db_path:
+        db_path = get_database_path(instance_id, db_id)
     
     # Initialize trace logger
     trace = TraceLogger(trace_output_path)
@@ -368,7 +369,8 @@ def run_refiner(instance_id: str, db_id: str, user_query: str, cte_text: str, ct
         sql_executed = 0
         harness_executed = False
         no_sql_streak = 0
-        min_required_sql = 8
+        if min_required_sql is None:
+            min_required_sql = 8
         executed_sql_texts = []  # track probes actually run for hard gating
         for turn in range(1, max_turns + 1):
             if verbose:
