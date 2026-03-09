@@ -537,48 +537,165 @@ def sql(
         draft_sql = _generate_draft_sql(question=question, engine=engine, model=effective_model, db_info=db_info)
 
     retriever = MemoryRetriever(store_path)
-    rules = retriever.retrieve(
-        sql_text=draft_sql,
-        generic_only=False,
-        use_llm_filtering=use_llm_filtering,
-        llm_model=effective_model,
-        db=db_name,
-    )
-    rule_lines = []
-    for r in rules[:40]:
-        txt = (r.get("rule") or "").strip()
-        if txt:
-            rule_lines.append(f"- {txt}")
-    rules_block = "\n".join(rule_lines) if rule_lines else "- No matching tribal knowledge rules found."
 
-    # --- Multi-turn refinement via cte_refiner (SQLite only) ---
+    # --- Multi-turn per-CTE refinement via cte_refiner (SQLite only) ---
     db_path = getattr(executor, "db_path", None) if executor else None
     if db_path and isinstance(executor, SQLiteExecutor):
         from src.agents.cte_refiner import run_refiner
-
-        cte_goal = (
-            "Refine this SQL query so it returns the correct result. "
-            "Use these tribal knowledge rules as guidance:\n\n"
-            f"{rules_block}"
-        )
-        verdict = run_refiner(
-            instance_id="",
-            db_id="",
-            user_query=question or "Refine the SQL query to return correct results.",
-            cte_text=draft_sql,
-            cte_goal=cte_goal,
-            model=effective_model,
-            max_turns=max_turns,
-            min_required_sql=min_probes,
-            verbose=verbose,
-            db_path=db_path,
+        from src.utils.agent_utils import (
+            parse_ctes_from_sql, rebuild_sql_from_ctes, extract_goal_from_cte_body,
         )
 
-        refined_sql = draft_sql
-        if verdict.get("status") == "issues" and verdict.get("suggested_fix_sql"):
-            refined_sql = verdict["suggested_fix_sql"]
-        elif verdict.get("status") == "ok":
+        user_q = question or "Refine the SQL query to return correct results."
+        ctes, remainder_sql = parse_ctes_from_sql(draft_sql)
+        all_verdicts: List[Dict[str, Any]] = []
+        all_rules: List[Dict[str, Any]] = []
+        total_rule_count = 0
+
+        def _rules_block_for(sql_text: str) -> tuple:
+            """Retrieve rules for a SQL fragment and build the text block."""
+            frag_rules = retriever.retrieve(
+                sql_text=sql_text,
+                generic_only=False,
+                use_llm_filtering=use_llm_filtering,
+                llm_model=effective_model,
+                db=db_name,
+            )
+            lines = []
+            for r in frag_rules[:40]:
+                txt = (r.get("rule") or "").strip()
+                if txt:
+                    lines.append(f"- {txt}")
+            block = "\n".join(lines) if lines else "- No matching tribal knowledge rules found."
+            return frag_rules, block
+
+        if ctes:
+            turns_per_cte = max(max_turns // max(len(ctes) + 1, 1), 5)
+
+            for idx_cte, c in enumerate(ctes):
+                cte_name = c.get("name") or ""
+                cte_body = c.get("body") or ""
+                cte_sql = f"WITH {cte_name} AS (\n{cte_body}\n)"
+                goal_comment = extract_goal_from_cte_body(cte_body, cte_name)
+
+                cte_rules, cte_rules_block = _rules_block_for(cte_sql)
+                all_rules.extend(cte_rules)
+                total_rule_count += len(cte_rules)
+
+                cte_goal = (
+                    f"{goal_comment}\n\n"
+                    "Use these tribal knowledge rules as guidance:\n\n"
+                    f"{cte_rules_block}"
+                )
+
+                prev_blocks = []
+                for pc in ctes[:idx_cte]:
+                    pname = pc.get("name") or ""
+                    pbody = pc.get("body") or ""
+                    pgoal = extract_goal_from_cte_body(pbody, pname)
+                    prev_blocks.append(f"-- CTE: {pname}\n-- Goal: {pgoal}\nWITH {pname} AS (\n{pbody}\n)")
+                previous_ctes_text = "\n\n".join(prev_blocks).strip() or None
+
+                if verbose:
+                    print(f"\n--- Refining CTE {idx_cte+1}/{len(ctes)}: {cte_name} "
+                          f"({len(cte_rules)} rules retrieved) ---")
+
+                verdict = run_refiner(
+                    instance_id="",
+                    db_id="",
+                    user_query=user_q,
+                    cte_text=cte_sql,
+                    cte_goal=cte_goal,
+                    previous_ctes=previous_ctes_text,
+                    model=effective_model,
+                    max_turns=turns_per_cte,
+                    min_required_sql=min_probes,
+                    verbose=verbose,
+                    db_path=db_path,
+                )
+                all_verdicts.append({"cte": cte_name, "verdict": verdict})
+
+                if verdict.get("status") == "issues" and verdict.get("suggested_fix_sql"):
+                    fix_sql = verdict["suggested_fix_sql"]
+                    fixed_ctes, _ = parse_ctes_from_sql(fix_sql)
+                    if fixed_ctes:
+                        c["body"] = fixed_ctes[0].get("body") or cte_body
+                    else:
+                        c["body"] = fix_sql
+
+            # Final SELECT refinement
+            if remainder_sql and remainder_sql.strip():
+                full_sql = rebuild_sql_from_ctes(ctes, remainder_sql)
+                rem_rules, rem_rules_block = _rules_block_for(full_sql)
+                all_rules.extend(rem_rules)
+                total_rule_count += len(rem_rules)
+
+                rem_goal = (
+                    f"Final SELECT using {len(ctes)} CTE(s)\n\n"
+                    "Use these tribal knowledge rules as guidance:\n\n"
+                    f"{rem_rules_block}"
+                )
+                prev_blocks = []
+                for c in ctes:
+                    cn = c.get("name") or ""
+                    cb = c.get("body") or ""
+                    cg = extract_goal_from_cte_body(cb, cn)
+                    prev_blocks.append(f"-- CTE: {cn}\n-- Goal: {cg}\nWITH {cn} AS (\n{cb}\n)")
+                previous_ctes_text = "\n\n".join(prev_blocks).strip() or None
+
+                if verbose:
+                    print(f"\n--- Refining final SELECT ({len(rem_rules)} rules retrieved) ---")
+
+                final_verdict = run_refiner(
+                    instance_id="",
+                    db_id="",
+                    user_query=user_q,
+                    cte_text=full_sql,
+                    cte_goal=rem_goal,
+                    previous_ctes=previous_ctes_text,
+                    model=effective_model,
+                    max_turns=turns_per_cte,
+                    min_required_sql=min_probes,
+                    verbose=verbose,
+                    db_path=db_path,
+                )
+                all_verdicts.append({"cte": "_final_select", "verdict": final_verdict})
+
+                if final_verdict.get("status") == "issues" and final_verdict.get("suggested_fix_sql"):
+                    refined_sql = final_verdict["suggested_fix_sql"]
+                else:
+                    refined_sql = rebuild_sql_from_ctes(ctes, remainder_sql)
+            else:
+                refined_sql = rebuild_sql_from_ctes(ctes, remainder_sql)
+
+        else:
+            # No CTEs: single-pass refinement on the whole SQL
+            all_rules_list, rules_block = _rules_block_for(draft_sql)
+            all_rules.extend(all_rules_list)
+            total_rule_count = len(all_rules_list)
+
+            cte_goal = (
+                "Refine this SQL query so it returns the correct result. "
+                "Use these tribal knowledge rules as guidance:\n\n"
+                f"{rules_block}"
+            )
+            verdict = run_refiner(
+                instance_id="",
+                db_id="",
+                user_query=user_q,
+                cte_text=draft_sql,
+                cte_goal=cte_goal,
+                model=effective_model,
+                max_turns=max_turns,
+                min_required_sql=min_probes,
+                verbose=verbose,
+                db_path=db_path,
+            )
+            all_verdicts.append({"cte": "_full_query", "verdict": verdict})
+
             refined_sql = draft_sql
+            if verdict.get("status") == "issues" and verdict.get("suggested_fix_sql"):
+                refined_sql = verdict["suggested_fix_sql"]
 
         execution: Dict[str, Any] = {"ok": None, "error": None, "preview_headers": None, "preview_rows": None}
         if executor is not None:
@@ -591,21 +708,43 @@ def sql(
                 execution["ok"] = False
                 execution["error"] = str(e)
 
+        seen_ids: set = set()
+        unique_rules: List[Dict[str, Any]] = []
+        for r in all_rules:
+            mid = r.get("mem_id")
+            if mid not in seen_ids:
+                seen_ids.add(mid)
+                unique_rules.append(r)
+
         return {
             "draft_sql": draft_sql,
             "refined_sql": refined_sql,
-            "rule_count": len(rules),
-            "rules_used": rules[:40],
+            "rule_count": total_rule_count,
+            "rules_used": unique_rules[:40],
             "execution": execution,
-            "verdict": verdict,
+            "verdicts": all_verdicts,
         }
 
     # --- Fallback: single-shot refinement (non-SQLite or no executor) ---
+    fb_rules = retriever.retrieve(
+        sql_text=draft_sql,
+        generic_only=False,
+        use_llm_filtering=use_llm_filtering,
+        llm_model=effective_model,
+        db=db_name,
+    )
+    fb_lines = []
+    for r in fb_rules[:40]:
+        txt = (r.get("rule") or "").strip()
+        if txt:
+            fb_lines.append(f"- {txt}")
+    fb_rules_block = "\n".join(fb_lines) if fb_lines else "- No matching tribal knowledge rules found."
+
     refine_prompt = (
         "You are a SQL refiner. Improve the DRAFT SQL using only relevant tribal knowledge rules.\n"
         "Return ONLY the corrected SQL (prefer ```sql fenced block```), no explanation.\n\n"
         f"[DRAFT_SQL]\n{draft_sql}\n\n"
-        f"[TRIBAL_KNOWLEDGE_RULES]\n{rules_block}\n"
+        f"[TRIBAL_KNOWLEDGE_RULES]\n{fb_rules_block}\n"
     )
     resp = litellm.completion(
         model=effective_model,
@@ -634,8 +773,8 @@ def sql(
     return {
         "draft_sql": draft_sql,
         "refined_sql": refined_sql,
-        "rule_count": len(rules),
-        "rules_used": rules[:40],
+        "rule_count": len(fb_rules),
+        "rules_used": fb_rules[:40],
         "execution": execution,
     }
 
