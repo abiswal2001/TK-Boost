@@ -433,6 +433,12 @@ class SQLAgent:
             external_knowledge=external_knowledge,
         )
 
+        # Compute trace base path so sub-agents can save traces alongside the main agent
+        trace_base_path = None
+        if self.trace_dir:
+            ts = time.strftime("%Y%m%d_%H%M%S")
+            trace_base_path = str(Path(self.trace_dir) / f"{instance_id}_{ts}")
+
         final_sql, headers, rows, messages, exec_used = run_agent(
             inst=inst,
             engine=engine,
@@ -446,6 +452,7 @@ class SQLAgent:
             max_turns=self.max_turns,
             train_context_file=None,
             verbose=self.verbose,
+            trace_dir=trace_base_path,
         )
         try:
             if hasattr(exec_used, "close"):
@@ -453,36 +460,34 @@ class SQLAgent:
         except Exception:
             pass
 
-        # Save traces
+        # Save traces (sub-agent traces already saved by run_agent via trace_dir)
         trace_path = None
-        if self.trace_dir:
-            ts = time.strftime("%Y%m%d_%H%M%S")
-            trace_base = Path(self.trace_dir) / f"{instance_id}_{ts}"
+        if trace_base_path:
+            trace_base = Path(trace_base_path)
             trace_base.mkdir(parents=True, exist_ok=True)
-            trace_base_path = trace_base
 
             # messages.json — full LLM conversation
-            (trace_base_path / "messages.json").write_text(
+            (trace_base / "messages.json").write_text(
                 json.dumps(messages, indent=2), encoding="utf-8"
             )
             # processed_trace.txt — human-readable trace
-            (trace_base_path / "processed_trace.txt").write_text(
+            (trace_base / "processed_trace.txt").write_text(
                 generate_processed_trace(messages), encoding="utf-8"
             )
             # execution_query.sql — final SQL
-            (trace_base_path / "execution_query.sql").write_text(
+            (trace_base / "execution_query.sql").write_text(
                 final_sql or "", encoding="utf-8"
             )
             # execution_result.csv — query results
             if headers and rows:
                 import csv as _csv
-                with open(trace_base_path / "execution_result.csv", "w", newline="", encoding="utf-8") as f:
+                with open(trace_base / "execution_result.csv", "w", newline="", encoding="utf-8") as f:
                     writer = _csv.writer(f)
                     writer.writerow(headers)
                     for r in rows:
                         writer.writerow(list(r))
 
-            trace_path = str(trace_base_path)
+            trace_path = str(trace_base)
             if self.verbose:
                 print(f"\n📁 Traces saved to: {trace_path}")
 

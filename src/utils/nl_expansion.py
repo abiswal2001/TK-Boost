@@ -161,10 +161,14 @@ def run_sub_agent(
     executor: Executor,
     model: str,
     verbose: bool = False,
+    trace_dir: Optional[str] = None,
+    main_turn: Optional[int] = None,
+    nl_call_index: int = 0,
 ) -> str:
     """Run a full ReAct agent to translate a natural language description into SQL."""
-    from src.agents.sql_agent_runner import Instance, run_agent
-    from src.agents.prompts import BASE_PROMPT
+    from src.agents.sql_agent_runner import Instance, run_agent, generate_processed_trace
+    from src.agents.prompts import SUB_AGENT_PROMPT
+    import json
 
     question = (
         f"{description}\n"
@@ -194,8 +198,27 @@ def run_sub_agent(
         predicted_schema_hint=None,
         max_turns=10,
         verbose=verbose,
-        system_prompt=BASE_PROMPT,
+        system_prompt=SUB_AGENT_PROMPT,
     )
+
+    # Save sub-agent trace into a shared sub_agents/ directory
+    if trace_dir:
+        from pathlib import Path
+        sub_dir = Path(trace_dir) / "sub_agents"
+        sub_dir.mkdir(parents=True, exist_ok=True)
+        turn_label = f"turn{main_turn}" if main_turn is not None else "final"
+        prefix = f"{turn_label}_nl{nl_call_index}"
+        (sub_dir / f"{prefix}_messages.json").write_text(
+            json.dumps(_messages, indent=2), encoding="utf-8"
+        )
+        (sub_dir / f"{prefix}_trace.txt").write_text(
+            generate_processed_trace(_messages), encoding="utf-8"
+        )
+        (sub_dir / f"{prefix}_query.sql").write_text(
+            final_sql or "", encoding="utf-8"
+        )
+        if verbose:
+            print(f"📁 Sub-agent trace saved to: {sub_dir}/{prefix}_*")
 
     if verbose:
         print(f"\n{'─'*40}")
@@ -216,6 +239,8 @@ def expand_nl_calls(
     executor: Executor,
     model: str,
     verbose: bool = False,
+    trace_dir: Optional[str] = None,
+    main_turn: Optional[int] = None,
 ) -> str:
     """Expand all NL() calls in a SQL string into real subqueries.
 
@@ -228,7 +253,7 @@ def expand_nl_calls(
 
     # Process in reverse order to preserve string positions
     expanded = sql
-    for call in reversed(calls):
+    for call_idx, call in enumerate(reversed(calls)):
         try:
             generated_sql = run_sub_agent(
                 description=call.description,
@@ -236,6 +261,9 @@ def expand_nl_calls(
                 executor=executor,
                 model=model,
                 verbose=verbose,
+                trace_dir=trace_dir,
+                main_turn=main_turn,
+                nl_call_index=len(calls) - 1 - call_idx,
             )
 
             # Parse output_schema to get column names for the wrapper

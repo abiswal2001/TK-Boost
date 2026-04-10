@@ -31,7 +31,7 @@ from src.utils.agent_utils import (
     load_external_knowledge,
 )
 from src.agents.cte_refiner import run_refiner as refiner_run
-from src.agents.prompts import BASE_PROMPT, SNOWFLAKE_PROMPT, NL_UDF_PROMPT
+from src.agents.prompts import MAIN_AGENT_PROMPT, SUB_AGENT_PROMPT, SNOWFLAKE_PROMPT
 from src.utils.db_paths import resolve_sqlite_db_path
 from src.utils.auth import configure_llm_env, USE_OPENAI
 from src.utils.nl_expansion import expand_nl_calls
@@ -244,13 +244,13 @@ def load_ground_truth(instance_id: str) -> Tuple[Optional[str], Optional[List[Tu
 # ----------------- Agent Core -----------------
 def get_system_prompt(instance_id: str, train_context_file: str = None) -> str:
     """Return appropriate system prompt based on instance type.
-    
+
     If train_context_file is provided (TEMP EXPERIMENT), prepend its contents
     to the system prompt."""
     if instance_id.lower().startswith('sf'):
         base_prompt = SNOWFLAKE_PROMPT
     else:
-        base_prompt = BASE_PROMPT
+        base_prompt = MAIN_AGENT_PROMPT
     
     # TEMP EXPERIMENT: Prepend train context if provided
     if train_context_file:
@@ -307,16 +307,28 @@ def run_agent(inst: Instance,
               max_turns: int = 25,
               train_context_file: str = None,  # TEMP EXPERIMENT
               verbose: bool = True,
-              system_prompt: Optional[str] = None) -> Tuple[str, Optional[List[str]], List[Tuple], List[dict], Executor]:
+              system_prompt: Optional[str] = None,
+              trace_dir: Optional[str] = None) -> Tuple[str, Optional[List[str]], List[Tuple], List[dict], Executor]:
     executor = make_executor(engine, db_path_or_cred)
     if system_prompt is None:
-        system_prompt = get_system_prompt(inst.instance_id, train_context_file) + NL_UDF_PROMPT
+        system_prompt = get_system_prompt(inst.instance_id, train_context_file)
     messages = [
         {"role": "system", "content": system_prompt},
         {"role": "user", "content": build_user_message(inst, predicted_cte_hint, predicted_schema_hint, schema_context, external_knowledge, expected_output_format)},
     ]
     final_sql = None
     sql_text = ""
+
+    def _flush_messages():
+        """Write current messages to trace_dir incrementally."""
+        if trace_dir:
+            from pathlib import Path
+            Path(trace_dir).mkdir(parents=True, exist_ok=True)
+            (Path(trace_dir) / "messages.json").write_text(
+                json.dumps(messages, indent=2), encoding="utf-8"
+            )
+
+    _flush_messages()
 
     for turn in range(1, max_turns + 1):
         if verbose:
@@ -342,7 +354,8 @@ def run_agent(inst: Instance,
             # Separate reasoning and content like vanilla runner
             messages.append({"role": "assistant", "content": "<think>" + reasoning_content + "</think>"})
             messages.append({"role": "assistant", "content": content})
-        
+        _flush_messages()
+
         if verbose:
             print(f"\n[ASSISTANT RESPONSE]:")
             print(content[:500] + "..." if len(content) > 500 else content)
@@ -360,13 +373,15 @@ def run_agent(inst: Instance,
             if verbose:
                 print(f"\n⚠️  No SQL block detected, prompting agent...")
             messages.append({"role": "user", "content": "Send one <sql> now."})
+            _flush_messages()
             continue
 
         sql_text = sql_blocks[0].strip()
 
         # Expand any NL() calls into real subqueries before execution
         try:
-            sql_text = expand_nl_calls(sql_text, executor, model, verbose=verbose)
+            sql_text = expand_nl_calls(sql_text, executor, model, verbose=verbose,
+                                       trace_dir=trace_dir, main_turn=turn)
         except Exception as e:
             if verbose:
                 print(f"\n⚠️  NL() expansion error: {e}")
@@ -385,10 +400,12 @@ def run_agent(inst: Instance,
                 if len(table_text.split("\n")) > 10:
                     print("... (truncated)")
             messages.append({"role": "user", "content": "SQL_RESULT_TABLE:\n" + table_text})
+            _flush_messages()
         except Exception as e:
             if verbose:
                 print(f"\n❌ [SQL ERROR]: {str(e)}")
             messages.append({"role": "user", "content": f"SQL_ERROR: {str(e)}"})
+            _flush_messages()
             continue
 
     if not final_sql:
@@ -397,7 +414,8 @@ def run_agent(inst: Instance,
     # Expand any NL() calls in the final solution before execution
     if final_sql:
         try:
-            final_sql = expand_nl_calls(final_sql, executor, model, verbose=verbose)
+            final_sql = expand_nl_calls(final_sql, executor, model, verbose=verbose,
+                                        trace_dir=trace_dir, main_turn=None)
         except Exception as e:
             if verbose:
                 print(f"⚠️  NL() expansion error in final SQL: {e}")
@@ -969,6 +987,7 @@ def main():
             max_turns=25,
             train_context_file=args.train_context_file,  # TEMP EXPERIMENT
             verbose=bool(args.verbose),
+            trace_dir=str(out_dir),
         )
         
         # Save original agent outputs immediately
