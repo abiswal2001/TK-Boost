@@ -395,10 +395,12 @@ class SQLAgent:
     a compact interface for generating an executable draft SQL.
     """
 
-    def __init__(self, model: Optional[str] = None, max_turns: int = 25, verbose: bool = False):
+    def __init__(self, model: Optional[str] = None, max_turns: int = 25,
+                 verbose: bool = False, trace_dir: Optional[str] = "traces"):
         self.model = model
         self.max_turns = max_turns
         self.verbose = verbose
+        self.trace_dir = trace_dir
 
     def translate(
         self,
@@ -417,7 +419,9 @@ class SQLAgent:
         if executor is None:
             raise ValueError("executor is required")
 
-        from src.agents.sql_agent_runner import Instance, run_agent  # lazy import
+        from src.agents.sql_agent_runner import Instance, run_agent, generate_processed_trace  # lazy import
+        import json
+        import time
 
         model = self.model or _STATE.get("model") or "azure/gpt-5"
         engine = _infer_engine_from_executor(executor)
@@ -449,6 +453,39 @@ class SQLAgent:
         except Exception:
             pass
 
+        # Save traces
+        trace_path = None
+        if self.trace_dir:
+            ts = time.strftime("%Y%m%d_%H%M%S")
+            trace_base = Path(self.trace_dir) / f"{instance_id}_{ts}"
+            trace_base.mkdir(parents=True, exist_ok=True)
+            trace_base_path = trace_base
+
+            # messages.json — full LLM conversation
+            (trace_base_path / "messages.json").write_text(
+                json.dumps(messages, indent=2), encoding="utf-8"
+            )
+            # processed_trace.txt — human-readable trace
+            (trace_base_path / "processed_trace.txt").write_text(
+                generate_processed_trace(messages), encoding="utf-8"
+            )
+            # execution_query.sql — final SQL
+            (trace_base_path / "execution_query.sql").write_text(
+                final_sql or "", encoding="utf-8"
+            )
+            # execution_result.csv — query results
+            if headers and rows:
+                import csv as _csv
+                with open(trace_base_path / "execution_result.csv", "w", newline="", encoding="utf-8") as f:
+                    writer = _csv.writer(f)
+                    writer.writerow(headers)
+                    for r in rows:
+                        writer.writerow(list(r))
+
+            trace_path = str(trace_base_path)
+            if self.verbose:
+                print(f"\n📁 Traces saved to: {trace_path}")
+
         return {
             "sql": final_sql,
             "headers": headers,
@@ -457,6 +494,7 @@ class SQLAgent:
             "messages": messages,
             "model": model,
             "engine": engine,
+            "trace_path": trace_path,
         }
 
     def draft(self, *args: Any, **kwargs: Any) -> Dict[str, Any]:

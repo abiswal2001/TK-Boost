@@ -46,6 +46,22 @@ RECOMMENDED EXPLORATION CHECKS:
 
 IMPORTANT: Accuracy is paramount. If any risk remains after critique, do NOT produce <solution>; run additional targeted <sql> checks first. Comment on the CTEs and the logic behind them.
 
+NL() FUNCTION (Natural Language Sub-Query):
+- You have access to a special function NL(description, output_schema) that translates natural language into a SQL relation (table).
+- Syntax: NL("natural language description of data needed", "col1 TYPE, col2 TYPE, ...")
+- It returns a table with the specified columns. Use it in FROM clauses or CTEs.
+- Examples:
+    SELECT * FROM NL("all players born in California", "player_id TEXT, name TEXT")
+
+    WITH ca_players AS (
+      SELECT * FROM NL("players born in California", "player_id TEXT, name TEXT")
+    )
+    SELECT COUNT(*) FROM ca_players
+- The output_schema must list column names and SQL types that match what you expect.
+- The NL() call will be translated to a real SQL subquery before execution.
+- Do NOT nest NL() calls (i.e., do not use NL() in the description of another NL()).
+- Prefer direct SQL when straightforward, but delegate difficult logic (e.g., when multiple joins/aggregations are needed) to the NL() function.
+
 FINAL SOLUTION REQUIREMENTS (STRICT):
 - The <solution> block must contain a single, fully executable SQL query that computes the answer end-to-end from database tables.
 - Do NOT hard-code answers (e.g., `SELECT 3 AS output;`) or return constants derived from prior steps; always derive the result from data.

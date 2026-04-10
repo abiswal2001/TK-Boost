@@ -34,6 +34,7 @@ from src.agents.cte_refiner import run_refiner as refiner_run
 from src.agents.prompts import BASE_PROMPT, SNOWFLAKE_PROMPT
 from src.utils.db_paths import resolve_sqlite_db_path
 from src.utils.auth import configure_llm_env, USE_OPENAI
+from src.utils.nl_expansion import expand_nl_calls
 
 
 # ----------------- LLM Provider Mapping -----------------
@@ -314,6 +315,7 @@ def run_agent(inst: Instance,
     ]
     final_sql = None
     sql_text = ""
+    _nl_schema_cache = None  # lazily populated on first NL() expansion
 
     for turn in range(1, max_turns + 1):
         if verbose:
@@ -360,10 +362,21 @@ def run_agent(inst: Instance,
             continue
 
         sql_text = sql_blocks[0].strip()
+
+        # Expand any NL() calls into real subqueries before execution
+        try:
+            sql_text, _nl_schema_cache = expand_nl_calls(
+                sql_text, executor, model,
+                schema_context=_nl_schema_cache, verbose=verbose,
+            )
+        except Exception as e:
+            if verbose:
+                print(f"\n⚠️  NL() expansion error: {e}")
+
         if verbose:
             print(f"\n[EXECUTING SQL]:")
             print(sql_text[:300] + "..." if len(sql_text) > 300 else sql_text)
-        
+
         try:
             headers, rows = executor.execute(sql_text)
             table_text = format_table(headers, rows)
@@ -382,6 +395,17 @@ def run_agent(inst: Instance,
 
     if not final_sql:
         final_sql = sql_text
+
+    # Expand any NL() calls in the final solution before execution
+    if final_sql:
+        try:
+            final_sql, _nl_schema_cache = expand_nl_calls(
+                final_sql, executor, model,
+                schema_context=_nl_schema_cache, verbose=verbose,
+            )
+        except Exception as e:
+            if verbose:
+                print(f"⚠️  NL() expansion error in final SQL: {e}")
 
     # Execute final SQL for output
     headers, rows = (None, [])
