@@ -2,7 +2,7 @@
 
 import re
 from dataclasses import dataclass
-from typing import Dict, List, Optional, Tuple
+from typing import List, Optional, Tuple
 
 from src.executors.base import Executor
 
@@ -153,105 +153,71 @@ def _parse_quoted_arg(sql: str, pos: int) -> Tuple[Optional[str], int]:
     return None, pos  # unterminated string
 
 
-# --------------- Schema Context ---------------
+# --------------- Sub-Agent Translation ---------------
 
-_schema_cache: Dict[str, str] = {}
-
-
-def get_schema_context(executor: Executor) -> str:
-    """Retrieve database schema as text for LLM context.
-
-    Caches by executor db_path to avoid repeated queries within a session.
-    """
-    cache_key = getattr(executor, 'db_path', None) or id(executor)
-    cache_key = str(cache_key)
-    if cache_key in _schema_cache:
-        return _schema_cache[cache_key]
-
-    lines = []
-    try:
-        _, tables = executor.execute(
-            "SELECT name FROM sqlite_master WHERE type='table' ORDER BY name"
-        )
-        for (table_name,) in tables:
-            lines.append(f"TABLE: {table_name}")
-            try:
-                _, cols = executor.execute(f"PRAGMA table_info({table_name})")
-                for col in cols:
-                    # col: (cid, name, type, notnull, default, pk)
-                    col_name = col[1]
-                    col_type = col[2] or "TEXT"
-                    lines.append(f"  {col_name} {col_type}")
-            except Exception:
-                lines.append("  (schema unavailable)")
-            lines.append("")
-    except Exception as e:
-        lines.append(f"(schema retrieval failed: {e})")
-
-    schema_text = "\n".join(lines)
-    _schema_cache[cache_key] = schema_text
-    return schema_text
+def _get_base_prompt_no_nl() -> str:
+    """Return BASE_PROMPT with the NL() FUNCTION section stripped out."""
+    from src.agents.prompts import BASE_PROMPT
+    # Remove the NL() section (from "NL() FUNCTION" to the line before "FINAL SOLUTION")
+    return re.sub(
+        r'NL\(\) FUNCTION \(Natural Language Sub-Query\):.*?(?=FINAL SOLUTION REQUIREMENTS)',
+        '',
+        BASE_PROMPT,
+        flags=re.DOTALL,
+    )
 
 
-def clear_schema_cache():
-    """Clear the cached schema context."""
-    _schema_cache.clear()
-
-
-# --------------- NL-to-SQL Translation ---------------
-
-NL_TRANSLATE_SYSTEM_PROMPT = """\
-You are a SQL generation assistant. Given a natural language description and a database schema, \
-generate a single SELECT query that returns the described data.
-
-RULES:
-- Return ONLY a single SELECT statement. No explanations, no markdown, no extra text.
-- The result columns MUST match this output schema exactly: {output_schema}
-- Use the column names and types specified in the output schema.
-- Use only tables and columns that exist in the database schema below.
-- Do NOT use NL() or any custom functions in your generated SQL.
-- Write standard SQLite-compatible SQL.
-
-DATABASE SCHEMA:
-{schema_context}
-"""
-
-
-def translate_nl_to_sql(
+def run_sub_agent(
     description: str,
     output_schema: str,
-    schema_context: str,
+    executor: Executor,
     model: str,
+    verbose: bool = False,
 ) -> str:
-    """Translate a natural language description into a SQL SELECT statement."""
-    from src.agents.sql_agent_runner import llm_completion
+    """Run a full ReAct agent to translate a natural language description into SQL."""
+    from src.agents.sql_agent_runner import Instance, run_agent
 
-    system_msg = NL_TRANSLATE_SYSTEM_PROMPT.format(
-        output_schema=output_schema,
-        schema_context=schema_context,
+    question = (
+        f"{description}\n"
+        f"The output must have exactly these columns: {output_schema}"
     )
-    user_msg = f"Generate SQL for: {description}\nRequired output columns: {output_schema}"
 
-    resp = llm_completion(
+    engine = "sqlite"  # NL() UDF currently supports SQLite
+    db_path_or_cred = getattr(executor, 'db_path', None)
+
+    inst = Instance(
+        instance_id="nl_sub_agent",
+        db="",
+        question=question,
+    )
+
+    if verbose:
+        print(f"\n{'─'*40}")
+        print(f"[NL() SUB-AGENT START]: {description}")
+        print(f"{'─'*40}")
+
+    final_sql, _headers, _rows, _messages, _exec = run_agent(
+        inst=inst,
+        engine=engine,
+        db_path_or_cred=db_path_or_cred,
         model=model,
-        messages=[
-            {"role": "system", "content": system_msg},
-            {"role": "user", "content": user_msg},
-        ],
+        predicted_cte_hint=None,
+        predicted_schema_hint=None,
+        max_turns=10,
+        verbose=verbose,
+        system_prompt=_get_base_prompt_no_nl(),
     )
 
-    content = (resp["choices"][0]["message"].get("content") or "").strip()
-
-    # Strip markdown fences if present
-    content = re.sub(r'^```\s*sql\s*', '', content, flags=re.IGNORECASE)
-    content = re.sub(r'^```\s*', '', content)
-    content = re.sub(r'```\s*$', '', content)
-    content = content.strip()
+    if verbose:
+        print(f"\n{'─'*40}")
+        print(f"[NL() SUB-AGENT DONE]: {final_sql[:200] if final_sql else '(no SQL)'}")
+        print(f"{'─'*40}")
 
     # Strip trailing semicolons
-    content = content.rstrip(';').strip()
+    if final_sql:
+        final_sql = final_sql.rstrip(';').strip()
 
-    return content
+    return final_sql or ""
 
 
 # --------------- Main Expansion ---------------
@@ -260,30 +226,27 @@ def expand_nl_calls(
     sql: str,
     executor: Executor,
     model: str,
-    schema_context: Optional[str] = None,
     verbose: bool = False,
-) -> Tuple[str, Optional[str]]:
+) -> str:
     """Expand all NL() calls in a SQL string into real subqueries.
 
-    Returns (expanded_sql, schema_context) where schema_context is returned
-    so it can be cached by the caller for subsequent calls.
+    Each NL() call is translated by running a full sub-agent (ReAct loop).
+    Returns the expanded SQL string.
     """
     calls = find_nl_calls(sql)
     if not calls:
-        return sql, schema_context
-
-    if schema_context is None:
-        schema_context = get_schema_context(executor)
+        return sql
 
     # Process in reverse order to preserve string positions
     expanded = sql
     for call in reversed(calls):
         try:
-            generated_sql = translate_nl_to_sql(
+            generated_sql = run_sub_agent(
                 description=call.description,
                 output_schema=call.output_schema,
-                schema_context=schema_context,
+                executor=executor,
                 model=model,
+                verbose=verbose,
             )
 
             # Parse output_schema to get column names for the wrapper
@@ -306,7 +269,7 @@ def expand_nl_calls(
             # agent gets SQL_ERROR feedback and can retry
             pass
 
-    return expanded, schema_context
+    return expanded
 
 
 def _parse_schema_columns(output_schema: str) -> List[str]:

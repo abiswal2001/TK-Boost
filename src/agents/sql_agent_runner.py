@@ -306,16 +306,17 @@ def run_agent(inst: Instance,
               expected_output_format: Optional[str] = None,
               max_turns: int = 25,
               train_context_file: str = None,  # TEMP EXPERIMENT
-              verbose: bool = True) -> Tuple[str, Optional[List[str]], List[Tuple], List[dict], Executor]:
+              verbose: bool = True,
+              system_prompt: Optional[str] = None) -> Tuple[str, Optional[List[str]], List[Tuple], List[dict], Executor]:
     executor = make_executor(engine, db_path_or_cred)
-    system_prompt = get_system_prompt(inst.instance_id, train_context_file)  # TEMP EXPERIMENT: pass train_context_file
+    if system_prompt is None:
+        system_prompt = get_system_prompt(inst.instance_id, train_context_file)
     messages = [
         {"role": "system", "content": system_prompt},
         {"role": "user", "content": build_user_message(inst, predicted_cte_hint, predicted_schema_hint, schema_context, external_knowledge, expected_output_format)},
     ]
     final_sql = None
     sql_text = ""
-    _nl_schema_cache = None  # lazily populated on first NL() expansion
 
     for turn in range(1, max_turns + 1):
         if verbose:
@@ -365,10 +366,7 @@ def run_agent(inst: Instance,
 
         # Expand any NL() calls into real subqueries before execution
         try:
-            sql_text, _nl_schema_cache = expand_nl_calls(
-                sql_text, executor, model,
-                schema_context=_nl_schema_cache, verbose=verbose,
-            )
+            sql_text = expand_nl_calls(sql_text, executor, model, verbose=verbose)
         except Exception as e:
             if verbose:
                 print(f"\n⚠️  NL() expansion error: {e}")
@@ -399,10 +397,7 @@ def run_agent(inst: Instance,
     # Expand any NL() calls in the final solution before execution
     if final_sql:
         try:
-            final_sql, _nl_schema_cache = expand_nl_calls(
-                final_sql, executor, model,
-                schema_context=_nl_schema_cache, verbose=verbose,
-            )
+            final_sql = expand_nl_calls(final_sql, executor, model, verbose=verbose)
         except Exception as e:
             if verbose:
                 print(f"⚠️  NL() expansion error in final SQL: {e}")
