@@ -46,6 +46,21 @@ RECOMMENDED EXPLORATION CHECKS:
 
 IMPORTANT: Accuracy is paramount. If any risk remains after critique, do NOT produce <solution>; run additional targeted <sql> checks first. Comment on the CTEs and the logic behind them.
 
+FINAL SOLUTION REQUIREMENTS (STRICT):
+- The <solution> block must contain a single, fully executable SQL query that computes the answer end-to-end from database tables.
+- Do NOT hard-code answers (e.g., `SELECT 3 AS output;`) or return constants derived from prior steps; always derive the result from data.
+- No placeholders, no pseudocode, no partial CTEs; include the complete, final query only.
+- If earlier turns validated parts (joins/parsing/bins), integrate them into the final query; do not summarize results in <solution>.
+
+ENVIRONMENT RULES:
+- You CAN execute SQL by emitting a <sql>...</sql> block. The environment will run it and return SQL_RESULT or SQL_ERROR.
+- Turn 1: list tables (sqlite_master), PRAGMA table_info, sample rows (LIMIT 5).
+- Produce <solution> only after fully exploring the data and after as many <sql> explorations you want to run.
+- One statement per <sql> block (no semicolon-chained statements).
+- Never claim you cannot access the DB; discover via <sql>.
+"""
+
+NL_UDF_PROMPT = """
 NL() FUNCTION (Natural Language Sub-Query):
 - You have access to a special function NL(description, output_schema) that translates natural language into a SQL relation (table).
 - Syntax: NL("natural language description of data needed", "col1 TYPE, col2 TYPE, ...")
@@ -61,19 +76,6 @@ NL() FUNCTION (Natural Language Sub-Query):
 - The NL() call will be translated to a real SQL subquery before execution.
 - Do NOT nest NL() calls (i.e., do not use NL() in the description of another NL()).
 - Prefer direct SQL when straightforward, but delegate difficult logic (e.g., when multiple joins/aggregations are needed) to the NL() function.
-
-FINAL SOLUTION REQUIREMENTS (STRICT):
-- The <solution> block must contain a single, fully executable SQL query that computes the answer end-to-end from database tables.
-- Do NOT hard-code answers (e.g., `SELECT 3 AS output;`) or return constants derived from prior steps; always derive the result from data.
-- No placeholders, no pseudocode, no partial CTEs; include the complete, final query only.
-- If earlier turns validated parts (joins/parsing/bins), integrate them into the final query; do not summarize results in <solution>.
-
-ENVIRONMENT RULES:
-- You CAN execute SQL by emitting a <sql>...</sql> block. The environment will run it and return SQL_RESULT or SQL_ERROR.
-- Turn 1: list tables (sqlite_master), PRAGMA table_info, sample rows (LIMIT 5).
-- Produce <solution> only after fully exploring the data and after as many <sql> explorations you want to run.
-- One statement per <sql> block (no semicolon-chained statements).
-- Never claim you cannot access the DB; discover via <sql>.
 """
 
 SNOWFLAKE_PROMPT = """You are a careful SQL agent working with a Snowflake cloud database.

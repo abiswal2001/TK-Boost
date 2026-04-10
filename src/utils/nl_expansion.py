@@ -155,18 +155,6 @@ def _parse_quoted_arg(sql: str, pos: int) -> Tuple[Optional[str], int]:
 
 # --------------- Sub-Agent Translation ---------------
 
-def _get_base_prompt_no_nl() -> str:
-    """Return BASE_PROMPT with the NL() FUNCTION section stripped out."""
-    from src.agents.prompts import BASE_PROMPT
-    # Remove the NL() section (from "NL() FUNCTION" to the line before "FINAL SOLUTION")
-    return re.sub(
-        r'NL\(\) FUNCTION \(Natural Language Sub-Query\):.*?(?=FINAL SOLUTION REQUIREMENTS)',
-        '',
-        BASE_PROMPT,
-        flags=re.DOTALL,
-    )
-
-
 def run_sub_agent(
     description: str,
     output_schema: str,
@@ -176,6 +164,7 @@ def run_sub_agent(
 ) -> str:
     """Run a full ReAct agent to translate a natural language description into SQL."""
     from src.agents.sql_agent_runner import Instance, run_agent
+    from src.agents.prompts import BASE_PROMPT
 
     question = (
         f"{description}\n"
@@ -205,7 +194,7 @@ def run_sub_agent(
         predicted_schema_hint=None,
         max_turns=10,
         verbose=verbose,
-        system_prompt=_get_base_prompt_no_nl(),
+        system_prompt=BASE_PROMPT,
     )
 
     if verbose:

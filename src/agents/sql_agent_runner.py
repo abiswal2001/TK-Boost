@@ -31,7 +31,7 @@ from src.utils.agent_utils import (
     load_external_knowledge,
 )
 from src.agents.cte_refiner import run_refiner as refiner_run
-from src.agents.prompts import BASE_PROMPT, SNOWFLAKE_PROMPT
+from src.agents.prompts import BASE_PROMPT, SNOWFLAKE_PROMPT, NL_UDF_PROMPT
 from src.utils.db_paths import resolve_sqlite_db_path
 from src.utils.auth import configure_llm_env, USE_OPENAI
 from src.utils.nl_expansion import expand_nl_calls
@@ -310,7 +310,7 @@ def run_agent(inst: Instance,
               system_prompt: Optional[str] = None) -> Tuple[str, Optional[List[str]], List[Tuple], List[dict], Executor]:
     executor = make_executor(engine, db_path_or_cred)
     if system_prompt is None:
-        system_prompt = get_system_prompt(inst.instance_id, train_context_file)
+        system_prompt = get_system_prompt(inst.instance_id, train_context_file) + NL_UDF_PROMPT
     messages = [
         {"role": "system", "content": system_prompt},
         {"role": "user", "content": build_user_message(inst, predicted_cte_hint, predicted_schema_hint, schema_context, external_knowledge, expected_output_format)},
